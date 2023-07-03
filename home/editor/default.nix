@@ -74,4 +74,6 @@
    source = ./neovim;
    recursive = true;
  };
+
+ xdg.dataFile."fonts/VictorMonoNerdFont".source = ./VictorMono_Nerd_Font_Regular.ttf;
 }
