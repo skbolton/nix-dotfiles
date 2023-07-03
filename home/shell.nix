@@ -87,7 +87,7 @@
         vicmd_symbol = "[󰇂 ](green)";
       };
       jobs = {
-        symbol = " ";
+        symbol = "󰠜";
         style = "bold bright-black";
       };
     };
