@@ -140,4 +140,6 @@
     extraOptions = [ "--group-directories-first" "--header" ];
     git = true;
   };
+
+  programs.btop.enable = true;
 }
