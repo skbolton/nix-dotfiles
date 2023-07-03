@@ -70,16 +70,16 @@
       ];
       hostname = {
         ssh_symbol = "󰐻 ";
-  style = "bold bright-yellow";
+        style = "bold bright-yellow";
       };
       git_branch = {
         symbol = "󰊢 ";
-  style = "purple";
-  format = "on [$symbol$branch]($style) ";
+        style = "purple";
+        format = "on [$symbol$branch]($style) ";
       };
       directory = {
-  style = "italic cyan";
-  format = "[$path]($style) ";
+        style = "italic cyan";
+        format = "[$path]($style) ";
       };
       character = {
         success_symbol = "[󰇂 ](green)";
@@ -87,8 +87,8 @@
         vicmd_symbol = "[󰇂 ](green)";
       };
       jobs = {
-  symbol = " ";
-  style = "bold bright-black";
+        symbol = " ";
+        style = "bold bright-black";
       };
     };
   };
