@@ -25,5 +25,10 @@
         variant = "mocha";
       };
     };
+
+    cursorTheme = {
+      name = "Catppucin-Mocha-Lavender-Cursors";
+      package = pkgs.catppuccin-cursors.mochaTeal;
+    };
   };
 }
