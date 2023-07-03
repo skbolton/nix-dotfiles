@@ -87,6 +87,7 @@
     wget
     yubikey-personalization
     yubikey-manager
+    pavucontrol
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
@@ -106,6 +107,14 @@
 
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
+
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
