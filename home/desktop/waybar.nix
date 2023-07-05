@@ -36,11 +36,11 @@
         };
 
         mpris = {
-          format = "{status_icon} {artist} / {title}";
+          format = "{status_icon}<span weight='bold'>{artist}</span> | {title}";
           status-icons = {
-            playing = "󰎈 ";
-            paused = "󰏤 ";
-            stopped = "󰓛 ";
+            playing = "<span foreground='#A1EFD3'>󰎈</span> ";
+            paused =  "<span foreground='#FFE6B3'>󰏤</span> ";
+            stopped = "<span foreground='#F48FB1'>󰓛</span> ";
           };
         };
 
