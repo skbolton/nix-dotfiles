@@ -12,6 +12,7 @@
     settings = {
       mainBar = {
         margin = "0";
+        layer = "top";
         modules-left = [ "wlr/workspaces" "mpris" ];
         modules-center = [ "wlr/taskbar"];
         modules-right = [ "pulseaudio" "network#interface" "network#speed" "cpu" "temperature" "clock" "tray" ];
@@ -95,7 +96,7 @@
       }
 
       tooltip {
-        background-color: #100E23;
+        background-color: #2D2B40;
         color: #CBE3E7;
       }
 
