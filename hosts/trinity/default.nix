@@ -48,10 +48,12 @@
     enable = true;
     videoDrivers = ["amdgpu"];
 
-    displayManager.sddm.enable = true;
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
+    };
     windowManager.awesome.enable = true;
   };
-
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -114,6 +116,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
   };
 
   # This value determines the NixOS release from which the default

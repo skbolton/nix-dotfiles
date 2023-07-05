@@ -1,7 +1,8 @@
-{ config, pkgs, ... }: 
+{ inputs, config, pkgs, ... }: 
 
 {
   imports = [
+    inputs.hyprland.homeManagerModules.default
    ./git.nix
    ./gpg.nix
    ./shell.nix

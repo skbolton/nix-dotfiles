@@ -48,13 +48,6 @@
     '';
   };
 
-  # This was needed so that home manager session vars 
-  # where available to desktop environment
-  # TODO: What to do on Wayland? Maybe SDDM still sources?
-  home.file.".xprofile".text = ''
-  source $HOME/.config/zsh/.zshenv
-  '';
-
   programs.starship = {
     enable = true;
     enableZshIntegration = true;

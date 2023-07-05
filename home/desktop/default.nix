@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./hyprland.nix
+  ];
+
   home.packages = with pkgs; [ 
     synology-drive-client
     logseq 
@@ -14,21 +18,31 @@
     arandr
   ];
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+      gtk-theme = "Catppuccin-Mocha-Standard-Blue-dark";
+      cursor-theme = "Bibata-Modern-Ice";
+    };
+  };
+
   gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Mocha-Compact-Lavendar-Dark";
+      name = "Catppuccin-Mocha-Standard-Blue-dark";
       package = pkgs.catppuccin-gtk.override {
-        accents = [ "lavender" ];
-        size = "compact";
-        tweaks = [ "rimless" ];
+        accents = [ "blue" ];
+        size = "standard"; # compact
+        tweaks = [];
         variant = "mocha";
       };
     };
 
     cursorTheme = {
-      name = "Catppucin-Mocha-Lavender-Cursors";
-      package = pkgs.catppuccin-cursors.mochaTeal;
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
     };
   };
+
+  home.sessionVariables.GTK_THEME = "Catppuccin-Mocha-Standard-Blue-dark";
 }
