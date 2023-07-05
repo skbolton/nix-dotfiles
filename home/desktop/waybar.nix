@@ -28,10 +28,10 @@
           on-click = "activate";
           sort-by-number = true;
           format-icons = {
-            "1" = "";
-            "2" = "󰈹";
-            "3" = "󰒱";
-            "4" = "󰧑";
+            "1" = "<span foreground=\"#A1EFD3\"></span>";
+            "2" = "<span foreground=\"#FFE6B3\">󰈹</span>";
+            "3" = "<span foreground=\"#91DDFF\">󰒱</span>";
+            "4" = "<span foreground=\"#D4BFFF\">󰧑</span>";
           };
         };
 
@@ -106,7 +106,7 @@
       }
 
       #workspaces button.active {
-        color: #d4bfff;
+        background-color: #2D2B40;
       }
 
       #taskbar button.active {
