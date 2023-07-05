@@ -2,6 +2,8 @@
 
 {
 
+  home.packages = [ pkgs.inter ];
+
   services.playerctld.enable = true;
 
   programs.waybar = {
@@ -12,7 +14,7 @@
         margin = "0";
         modules-left = [ "wlr/workspaces" "mpris" ];
         modules-center = [ "wlr/taskbar"];
-        modules-right = [ "pulseaudio" "network#interface" "network#speed" "cpu" "temperature" "clock" ];
+        modules-right = [ "pulseaudio" "network#interface" "network#speed" "cpu" "temperature" "clock" "tray" ];
 
         persistent_workspaces = {
           "1" = [];
@@ -34,9 +36,9 @@
         mpris = {
           format = "{status_icon} {artist} / {title}";
           status-icons = {
-            playing = "󰎈";
-            paused = "󰏤";
-            stopped = "󰓛";
+            playing = "󰎈 ";
+            paused = "󰏤 ";
+            stopped = "󰓛 ";
           };
         };
 
@@ -49,7 +51,7 @@
         };
 
         "network#interface" = {
-          format-ethernet = "󰣶 {ifname}";
+          format-ethernet = "󰣶  {ifname}";
           format-wifi = "󰖩 {ifname}";
           tooltip = true;
           tooltip-format = "{ipaddr}";
@@ -69,16 +71,25 @@
         };
 
         clock = {
-          format = "󰥔 {:%H:%M}";
+          format = "  {:%H:%M}";
           format-alt = "󰃭 {:%Y-%m-%d}";
+        };
+
+        tray = {
+          icon-size = 16;
+          spacing = 8;
         };
       };
     };
 
     style = ''
+      * {
+        min-height: 0;
+      }
+
       window#waybar {
         border-bottom: solid 2px #2D2B40;
-        font-family: RobotoMono Nerd Font;
+        font-family: 'Inter', 'RobotoMono Nerd Font';
         font-size: 14px;
       }
 
@@ -88,17 +99,21 @@
       }
 
       #workspaces button {
-        padding: 8px;
-        margin-right: 8px;
+        padding: 2px 8px;
+        margin: 0 8px 0 0;
       }
 
       #workspaces button.active {
         color: #d4bfff;
       }
 
+      #taskbar button.active {
+        background-color: #2D2B40;
+      }
+
       .modules-right * {
         padding: 0 8px;
-        margin-left: 8px;
+        margin: 0 0 0 8px;
       }
 
       #mpris {
@@ -133,10 +148,19 @@
         color: #100E23;
       }
 
-
       #clock {
         background-color: #A1EFD3;
         color: #100E23;
+      }
+
+      #tray {
+        background-color: #2D2B40;
+        padding: 0 8px 0 8px;
+      }
+      
+      #tray * {
+        padding: 0;
+        margin: 0;
       }
     '';
   };
