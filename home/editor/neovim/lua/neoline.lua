@@ -50,7 +50,7 @@ end
 -- LEFT
 -----------------------------------------------------------
 gls.left[1] = {
-  FileName = {
+  FileDetails = {
     icon = function()
       return '  ' .. file.get_file_icon()
     end,
