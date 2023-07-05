@@ -4,6 +4,7 @@
 
   imports = [
     ./waybar.nix
+    ./dunst.nix
   ];
 
   home.packages = with pkgs; [ swaybg wl-clipboard grim slurp inputs.hyprland-contrib.packages.x86_64-linux.grimblast  ];
@@ -30,6 +31,7 @@
     windowrulev2 = workspace 2,title:^(Mozilla Firefox)(.*)$
     windowrulev2 = workspace 4,title:^(Logseq)
 
+    exec-once = dunst
     exec-once = hyprctl setcursor Bibata-Modern-Ice 22
     exec-once = synology-drive
     exec-once = waybar
