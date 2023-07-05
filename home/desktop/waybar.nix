@@ -25,6 +25,7 @@
         "wlr/workspaces" = {
           format = "{icon}";
           on-click = "activate";
+          sort-by-number = true;
           format-icons = {
             "1" = "";
             "2" = "󰈹";

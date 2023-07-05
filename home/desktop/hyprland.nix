@@ -21,8 +21,21 @@
     monitor=DP-1,preferred,auto,1.25
     monitor=DP-2,preferred,auto,1.25
 
+    workspace = 1, monitor:DP-2, default:true
+    workspace = 2, monitor:DP-1, default:true
+    workspace = 3, monitor:DP-1
+    workspace = 4, monitor:DP-2
+
+    windowrulev2 = workspace 1,class:kitty
+    windowrulev2 = workspace 2,title:^(Mozilla Firefox)(.*)$
+    windowrulev2 = workspace 4,title:^(Logseq)
+
     exec-once = hyprctl setcursor Bibata-Modern-Ice 22
+    exec-once = synology-drive
     exec-once = waybar
+    exec-once = [workspace 2 silent] firefox
+    exec-once = [workspace 4 silent] logseq
+    exec-once = kitty
 
     # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
     input {
@@ -102,13 +115,6 @@
      disable_hyprland_logo = true
      disable_splash_rendering = true
    }
-
-    # Example windowrule v1
-    # windowrule = float, ^(kitty)$
-    # Example windowrule v2
-    # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-    # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-
 
     # See https://wiki.hyprland.org/Configuring/Keywords/ for more
     $mainMod = SUPER
