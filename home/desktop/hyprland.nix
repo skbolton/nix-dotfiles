@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
 
@@ -6,7 +6,7 @@
     ./waybar.nix
   ];
 
-  home.packages = with pkgs; [ swaybg wl-clipboard ];
+  home.packages = with pkgs; [ swaybg wl-clipboard grim slurp inputs.hyprland-contrib.packages.x86_64-linux.grimblast  ];
 
   xdg.dataFile."wallpaper/1e1c31.png".source = ./1e1c31.png;
 
