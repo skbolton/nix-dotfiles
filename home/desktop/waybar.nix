@@ -13,7 +13,7 @@
       mainBar = {
         margin = "0";
         layer = "top";
-        modules-left = [ "wlr/workspaces" "mpris" ];
+        modules-left = [ "custom/nix" "wlr/workspaces" "mpris" ];
         modules-center = [ "wlr/taskbar"];
         modules-right = [ "pulseaudio" "network#interface" "network#speed" "cpu" "temperature" "clock" "tray" ];
 
@@ -42,6 +42,10 @@
             paused = "󰏤 ";
             stopped = "󰓛 ";
           };
+        };
+
+        "custom/nix" = {
+          format = "󱄅 ";
         };
 
         "wlr/taskbar" = {
@@ -98,6 +102,11 @@
       tooltip {
         background-color: #2D2B40;
         color: #CBE3E7;
+      }
+
+      #custom-nix {
+        color: #91DDFF;
+        padding: 2px 8px;
       }
 
       #workspaces button {
