@@ -24,7 +24,7 @@
       vim-speeddating
       leap-nvim
       nvim-colorizer-lua
-      markdown-preview-nvim
+      { plugin = markdown-preview-nvim; optional = true; }
 
       galaxyline-nvim
 
