@@ -125,7 +125,7 @@
     bind = $mainMod, M, exit,
     bind = $mainMod, E, exec, dolphin
     bind = $mainMod, V, togglefloating,
-    bind = ALT, d, exec, wofi --show drun
+    bind = ALT, d, exec, wofi --show drun -I
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, J, togglesplit, # dwindle
 

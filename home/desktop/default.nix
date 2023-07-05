@@ -23,6 +23,7 @@
       color-scheme = "prefer-dark";
       gtk-theme = "Catppuccin-Mocha-Standard-Blue-dark";
       cursor-theme = "Bibata-Modern-Ice";
+      icon-theme = "Fluent-dark";
     };
   };
 
@@ -41,6 +42,11 @@
     cursorTheme = {
       name = "Bibata-Modern-Ice";
       package = pkgs.bibata-cursors;
+    };
+
+    iconTheme = {
+      name = "Fluent-dark";
+      package = pkgs.fluent-icon-theme;
     };
   };
 
