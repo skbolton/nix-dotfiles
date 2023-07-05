@@ -124,7 +124,7 @@
 
       .modules-right * {
         padding: 0 8px;
-        margin: 0 0 0 8px;
+        margin: 0 0 0 4px;
       }
 
       #mpris {
