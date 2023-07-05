@@ -1,6 +1,10 @@
 { pkgs, config, lib, ... }:
 
 {
+  home.sessionVariables = {
+    BROWSER = "firefox";
+    GTK_THEME = "Catppuccin-Mocha-Standard-Blue-dark";
+  };
 
   home.packages = with pkgs; [ 
     asdf-vm
