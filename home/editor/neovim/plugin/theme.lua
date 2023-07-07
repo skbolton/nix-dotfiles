@@ -1,3 +1,4 @@
+vim.g.embark_terminal_italics = true;
 vim.cmd('colorscheme embark')
 
 -- return {
