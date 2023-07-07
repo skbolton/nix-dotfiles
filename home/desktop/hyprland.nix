@@ -30,6 +30,7 @@
     windowrulev2 = workspace 1,class:kitty
     windowrulev2 = workspace 2,title:^(Mozilla Firefox)(.*)$
     windowrulev2 = workspace 4,title:^(Logseq)
+    windowrulev2 = float,title:(GnuCash Tip Of The Day)
 
     exec-once = dunst
     exec-once = hyprctl setcursor Bibata-Modern-Ice 22

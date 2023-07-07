@@ -16,6 +16,7 @@
     gnome.nautilus
     lxappearance
     arandr
+    gnucash
   ];
 
   dconf.settings = {
