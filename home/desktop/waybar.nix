@@ -53,32 +53,32 @@
         };
 
         pulseaudio = {
-          format = "󰓃 {volume}%";
+          format = "<span foreground='#F48FB1'>󰓃</span> {volume}%";
         };
 
         "network#interface" = {
-          format-ethernet = "󰣶  {ifname}";
-          format-wifi = "󰖩 {ifname}";
+          format-ethernet = "<span foreground='#91DDFF'>󰣶 </span> {ifname}";
+          format-wifi = "<span foreground='#91DDFF'>󰖩 </span>{ifname}";
           tooltip = true;
           tooltip-format = "{ipaddr}";
         };
 
         "network#speed" = {
-          format = "⇡{bandwidthUpBits} ⇣{bandwidthDownBits}";
+          format = "<span foreground='#78A8FF'>⇡</span>{bandwidthUpBits} <span foreground='#78A8FF'>⇣</span>{bandwidthDownBits}";
         };
 
         cpu = {
-          format = "  {usage}% 󱐌{avg_frequency}";
+          format = "<span foreground='#D4BFFF'>  </span>{usage}% <span foreground='#D4BFFF'>󱐌 </span>{avg_frequency}";
         };
 
         temperature = {
-          format = "{icon} {temperatureC} °C";
+          format = "<span foreground='#FFE6B3'>{icon} </span>{temperatureC} °C";
           format-icons = [ "" "" "" "󰈸"];
         };
 
         clock = {
-          format = "  {:%H:%M}";
-          format-alt = "󰃭 {:%Y-%m-%d}";
+          format = "<span foreground='#A1EFD3'>  </span>{:%H:%M}";
+          format-alt = "<span foreground='#A1EFD3'󰃭  </span>{:%Y-%m-%d}";
         };
 
         tray = {
@@ -91,6 +91,7 @@
     style = ''
       * {
         min-height: 0;
+        color: #CBE3E7;
       }
 
       window#waybar {
@@ -131,37 +132,6 @@
         background-color: #2D2B40;
         padding: 0 8px;
         color: #8A889D;
-      }
-
-      #pulseaudio {
-        background-color: #F48FB1;
-        color: #100E23;
-      }
-
-      #network.interface {
-        background-color: #91DDFF;
-        color: #100E23;
-      }
-
-      #network.speed {
-        background-color: #78A8FF;
-        color: #100E23;
-      }
-
-
-      #cpu {
-        background-color: #D4BFFF;
-        color: #100E23;
-      }
-
-      #temperature {
-        background-color: #FFE6B3;
-        color: #100E23;
-      }
-
-      #clock {
-        background-color: #A1EFD3;
-        color: #100E23;
       }
 
       #tray {
