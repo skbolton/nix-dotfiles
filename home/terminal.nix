@@ -1,5 +1,10 @@
-{ ... }:
+{ pkgs, ... }:
 {
+
+  home.packages = with pkgs; [
+    iosevka
+  ];
+
   programs.kitty = {
     enable = true;
 
@@ -12,8 +17,10 @@
       background_opacity = 1;
       cursor_shape = "beam";
 
-      font_family = "Rec Mono Collins";
-      font_size = "12.0";
+      font_family = "Iosevka";
+      italic_font = "Operator Mono Book Italic";
+      bold_italic_font = "Operator Mono Bold Italic";
+      font_size = "14.0";
 
       # Terminal Settings
       allow_remote_control = "yes";
