@@ -57,6 +57,12 @@
         sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
     }
 
+    device:getech-huge-trackball-1 {
+      scroll_method = on_button_down
+      scroll_button = 279
+      natural_scroll = true
+    }
+
     general {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
