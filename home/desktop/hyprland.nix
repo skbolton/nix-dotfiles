@@ -29,7 +29,7 @@
 
     windowrulev2 = workspace 1,class:kitty
     windowrulev2 = workspace 2,title:^(Mozilla Firefox)(.*)$
-    windowrulev2 = workspace 4,title:^(Logseq)
+    windowrulev2 = workspace special:notes,title:^(Logseq)
     windowrulev2 = float,title:(GnuCash Tip Of The Day)
 
     exec-once = dunst
@@ -37,7 +37,7 @@
     exec-once = synology-drive
     exec-once = waybar
     exec-once = [workspace 2 silent] firefox
-    exec-once = [workspace 4 silent] logseq
+    exec-once = [workspace special:notes silent] logseq
     exec-once = kitty
 
     # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
@@ -137,6 +137,7 @@
     bind = ALT, d, exec, wofi --show drun -I
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, J, togglesplit, # dwindle
+    bind = $mainMod, s, togglespecialworkspace, notes
 
     # Move focus with mainMod + vim arrow keys
     bind = $mainMod, h, movefocus, l
