@@ -7,7 +7,7 @@
     ./dunst.nix
   ];
 
-  home.packages = with pkgs; [ swaybg wl-clipboard grim slurp inputs.hyprland-contrib.packages.x86_64-linux.grimblast  ];
+  home.packages = with pkgs; [ playerctl swaybg wl-clipboard grim slurp inputs.hyprland-contrib.packages.x86_64-linux.grimblast neofetch ];
 
   xdg.dataFile."wallpaper/1e1c31.png".source = ./1e1c31.png;
 
@@ -192,6 +192,11 @@
     # Move/resize windows with mainMod + LMB/RMB and dragging
     bindm = $mainMod, mouse:272, movewindow
     bindm = $mainMod, mouse:273, resizewindow
+
+    # Media buttons
+    bind = , XF86AudioPrev, exec, playerctl previous
+    bind = , XF86AudioNext, exec, playerctl next
+    bind = , XF86AudioPlay, exec, playerctl play-pause
 
     exec-once = swaybg -i ~/.local/share/wallpaper/1e1c31.png -m fill
     '';
