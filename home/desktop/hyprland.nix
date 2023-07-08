@@ -131,9 +131,10 @@
     # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
     bind = ALT, Return, exec, kitty
     bind = $mainMod, w, killactive,
-    bind = $mainMod, M, exit,
-    bind = $mainMod, E, exec, dolphin
-    bind = $mainMod, V, togglefloating,
+    bind = $mainMod SHIFT, q, exit,
+    bind = $mainMod, f, fullscreen, 0
+    bind = $mainMod, m, fullscreen, 1
+    bind = $mainMod, t, togglefloating,
     bind = ALT, d, exec, wofi --show drun -I
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, J, togglesplit, # dwindle
