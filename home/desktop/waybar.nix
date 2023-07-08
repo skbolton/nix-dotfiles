@@ -15,7 +15,7 @@
         layer = "top";
         modules-left = [ "custom/nix" "wlr/workspaces" "mpris" ];
         modules-center = [ "wlr/taskbar"];
-        modules-right = [ "pulseaudio" "network#interface" "network#speed" "cpu" "temperature" "clock" "tray" ];
+        modules-right = [ "pulseaudio" "network#interface" "network#speed" "cpu" "temperature" "clock" "custom/notification" "tray" ];
 
         persistent_workspaces = {
           "1" = [];
@@ -81,6 +81,13 @@
           format-alt = "<span foreground='#A1EFD3'󰃭  </span>{:%Y-%m-%d}";
         };
 
+        "custom/notification" = {
+          exec = "~/.config/waybar/scripts/dunst.sh";
+          tooltip = false;
+          on-click = "dunstctl set-paused toggle";
+          restart-interval = 1;
+        };
+
         tray = {
           icon-size = 16;
           spacing = 8;
@@ -134,6 +141,12 @@
         color: #8A889D;
       }
 
+      #custom-notification {
+        padding: 0 8px 0 8px;
+        background-color: #2D2B40;
+        color: #100E23;
+      }
+
       #tray {
         background-color: #2D2B40;
         padding: 0 8px 0 8px;
@@ -144,6 +157,21 @@
         margin: 0;
       }
     '';
+  };
+
+  xdg.configFile."waybar/scripts/dunst.sh" = {
+    text = ''
+    COUNT=$(dunstctl count waiting)
+    ENABLED="󰂚 "
+    DISABLED="󰂛 "
+    if [ $COUNT != 0 ]; then DISABLED="󱅫 "; fi
+    if dunstctl is-paused | grep -q "false"; then
+      echo "<span foreground='#A1EFD3'>$ENABLED</span>"
+    else
+      echo "<span foreground='#F48FB1'>$DISABLED</span>"
+    fi
+    '';
+    executable = true;
   };
 }
 
