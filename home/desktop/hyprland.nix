@@ -136,6 +136,7 @@
     bind = $mainMod, m, fullscreen, 1
     bind = $mainMod, t, togglefloating,
     bind = ALT, d, exec, wofi --show drun -I
+    bind = $mainMod, e, exec, thunar
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, J, togglesplit, # dwindle
     bind = $mainMod, s, togglespecialworkspace, notes
