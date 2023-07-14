@@ -141,6 +141,7 @@
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, J, togglesplit, # dwindle
     bind = $mainMod, s, togglespecialworkspace, notes
+    bind = $mainMod SHIFT, S, movetoworkspace, special:notes
 
     # Move focus with mainMod + vim arrow keys
     bind = $mainMod, h, movefocus, l
