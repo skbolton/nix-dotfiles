@@ -7,7 +7,7 @@
     ./dunst.nix
   ];
 
-  home.packages = with pkgs; [ playerctl swaybg wl-clipboard grim slurp inputs.hyprland-contrib.packages.x86_64-linux.grimblast neofetch ];
+  home.packages = with pkgs; [ playerctl swaybg wl-clipboard grim slurp inputs.hyprland-contrib.packages.x86_64-linux.grimblast neofetch wofi-emoji ];
 
   xdg.dataFile."wallpaper/1e1c31.png".source = ./1e1c31.png;
 
@@ -137,6 +137,7 @@
     bind = $mainMod, m, fullscreen, 1
     bind = $mainMod, t, togglefloating,
     bind = ALT, d, exec, wofi --show drun -I
+    bind = ALT, e, exec, wofi-emoji
     bind = $mainMod, e, exec, thunar
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, J, togglesplit, # dwindle
