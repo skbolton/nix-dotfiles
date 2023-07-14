@@ -31,6 +31,7 @@
     windowrulev2 = workspace 2,title:^(Mozilla Firefox)(.*)$
     windowrulev2 = workspace special:notes,title:^(Logseq)
     windowrulev2 = float,title:(GnuCash Tip Of The Day)
+    windowrulev2 = float,title:(Firefox — Sharing Indicator)
 
     exec-once = dunst
     exec-once = hyprctl setcursor Bibata-Modern-Ice 22
