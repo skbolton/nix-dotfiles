@@ -10,6 +10,7 @@
     asdf-vm
     (nerdfonts.override { fonts = [ "RobotoMono" ]; })
     ripgrep
+    unzip
   ];
 
   programs.zsh = {
