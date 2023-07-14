@@ -17,6 +17,7 @@
     lxappearance
     arandr
     gnucash
+    morgen
   ];
 
   dconf.settings = {
