@@ -17,9 +17,8 @@
       background_opacity = 1;
       cursor_shape = "beam";
 
-      font_family = "Iosevka";
+      font_family = "IBM Plex Mono";
       italic_font = "Operator Mono Book Italic";
-      bold_italic_font = "Operator Mono Bold Italic";
       font_size = "12.0";
 
       # Terminal Settings
@@ -144,4 +143,6 @@
       url_color #D4BFFF
     '';
   };
+
+  xdg.dataFile."/fonts/IBMPlexMono.ttf".source = ./IBMPlexMono.ttf;
 }
