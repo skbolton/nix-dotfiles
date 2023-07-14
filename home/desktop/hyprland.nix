@@ -30,6 +30,8 @@
     windowrulev2 = workspace 1,class:kitty
     windowrulev2 = workspace 2,title:^(Mozilla Firefox)(.*)$
     windowrulev2 = workspace special:notes,title:^(Logseq)
+    windowrulev2 = workspace 3,class:Slack
+    windowrulev2 = workspace 3,class:discord
     windowrulev2 = float,title:(GnuCash Tip Of The Day)
     windowrulev2 = float,title:(Firefox — Sharing Indicator)
 
