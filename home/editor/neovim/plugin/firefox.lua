@@ -5,7 +5,7 @@ if vim.g.started_by_firenvim then
   vim.opt.number = false
   vim.opt.relativenumber = false
 
-  vim.opt.guifont = "Operator Mono Lig Book:h14"
+  vim.opt.guifont = "Operator Mono Book:h22"
 end
 
 vim.g.firenvim_config = {
