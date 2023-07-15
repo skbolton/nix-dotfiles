@@ -1,4 +1,4 @@
-{ kb_variant ? "", kb_options ? "", ... }:
+{ kb_variant ? "", kb_options ? "", monitor_config ? "", ... }:
 ''
 # See https://wiki.hyprland.org/Configuring/Monitors/
 
@@ -104,7 +104,7 @@ master {
 
 gestures {
     # See https://wiki.hyprland.org/Configuring/Variables/ for more
-    workspace_swipe = false
+    workspace_swipe = true
 }
 
 misc {
