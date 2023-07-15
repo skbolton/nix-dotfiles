@@ -23,7 +23,7 @@ vim.g.firenvim_config = {
       priority = 1
     },
     [".*"] = {
-      takeover = 'always'
+      takeover = 'nonempty'
     }
   }
 }
