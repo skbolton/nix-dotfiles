@@ -8,6 +8,7 @@
 
   home.packages = with pkgs; [ 
     asdf-vm
+    bat
     (nerdfonts.override { fonts = [ "RobotoMono" ]; })
     ripgrep
     unzip
@@ -22,6 +23,7 @@
     defaultKeymap = "viins";
     dotDir = ".config/zsh";
     shellAliases = {
+      cat = "bat --paging=never";
       mux = "tmux";
       muxa = "tmux a";
       muxk = "tmux kill-server";
@@ -35,6 +37,7 @@
       ignoreSpace = true;
     };
     envExtra = ''
+    export PAGER=bat
     BLK="00" CHAR="00" DIR="0C" EXE="DE" REG="00" HLI="00" SLI="00" MIS="00" ORP="00" FIF="00" SOC="00" UNK="00"
     export NNN_FCOLORS="$BLK$CHAR$DIR$EXE$REG$HLI$SLI$MIS$ORP$FIF$SOC$UNK"
     export NNN_COLORS="6666"
