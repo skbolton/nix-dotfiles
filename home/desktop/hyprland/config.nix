@@ -1,4 +1,4 @@
-{ kb_layout ? "", kb_options ? "", ... }:
+{ kb_variant ? "", kb_options ? "", ... }:
 ''
 # See https://wiki.hyprland.org/Configuring/Monitors/
 
@@ -30,7 +30,7 @@ exec-once = kitty
 # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
 input {
     kb_layout = us
-    kb_variant = ${kb_layout}
+    kb_variant = ${kb_variant}
     kb_model =
     kb_options = ${kb_options}
     kb_rules =
