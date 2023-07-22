@@ -48,6 +48,7 @@
 
   # Enable the X11 windowing system.
   services.xserver = {
+    xkbVariant = "colemak";
     enable = true;
     videoDrivers = ["amdgpu"];
 
