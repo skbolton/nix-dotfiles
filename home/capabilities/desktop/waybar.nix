@@ -15,7 +15,7 @@
         layer = "top";
         modules-left = [ "custom/nix" "wlr/workspaces" "mpris" ];
         modules-center = [ "wlr/taskbar"];
-        modules-right = [ "pulseaudio" "network#interface" "network#speed" "cpu" "temperature" "clock" "custom/notification" "tray" ];
+        modules-right = [ "pulseaudio" "network#interface" "network#speed" "cpu" "temperature" "backlight" "battery" "clock" "custom/notification" "tray" ];
 
         persistent_workspaces = {
           "1" = [];
@@ -74,6 +74,17 @@
         temperature = {
           format = "<span foreground='#FFE6B3'>{icon} </span>{temperatureC} °C";
           format-icons = [ "" "" "" "󰈸"];
+        };
+
+        backlight = {
+          format = "<span foreground='#F2B482'>{icon}</span> {percent}%";
+          format-icons = [ "󰃜" "󰃛" "󰃚 " ];
+        };
+
+        battery = {
+          format-critical = "<span foreground='#100E23' background='#F48FB1'>{icon} {capacity}%</span>";
+          format = "<span foreground='#F48FB1'>{icon}</span> {capacity}%";
+          format-icons = [ "󰁺" "󰁾" "󰂀" "󱟢" ];
         };
 
         clock = {
