@@ -112,6 +112,8 @@
 
   programs.dconf.enable = true;
 
+  services.auto-cpufreq.enable = true;
+
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
 
