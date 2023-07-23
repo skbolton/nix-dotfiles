@@ -21,7 +21,7 @@
     enableSshSupport = true;
     enableExtraSocket = true;
     enableZshIntegration = true;
-    pinentryFlavor = "gtk2";
+    pinentryFlavor = "gnome3";
     defaultCacheTtl = 60;
     maxCacheTtl = 120;
     enableScDaemon = true;
