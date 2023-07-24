@@ -88,7 +88,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.orlando = import ./home/trinity.nix;
+            home-manager.users.orlando = import ./home/trinity;
           }
         ];
       };
@@ -127,7 +127,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
-            home-manager.users.orlando = import ./home/neo.nix;
+            home-manager.users.orlando = import ./home/neo;
           }
         ];
       };

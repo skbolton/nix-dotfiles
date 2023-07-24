@@ -3,14 +3,15 @@
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
-   ./capabilities/git.nix
-   ./capabilities/gpg.nix
-   ./capabilities/shell.nix
-   ./capabilities/terminal.nix
-   ./capabilities/passwords.nix
-   ./capabilities/editor
-   ./capabilities/tmux
-   ./capabilities/desktop
+    ../capabilities/git.nix
+    ../capabilities/gpg.nix
+    ../capabilities/shell.nix
+    ../capabilities/terminal.nix
+    ../capabilities/passwords.nix
+    ../capabilities/editor
+    ../capabilities/tmux
+    ../capabilities/desktop
+    ./pam.nix
   ];
 
   fonts.fontconfig.enable = true;
