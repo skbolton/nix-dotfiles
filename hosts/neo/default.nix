@@ -107,6 +107,8 @@
     };
   };
 
+  services.dbus.packages = [ pkgs.gcr ];
+
   programs.dconf.enable = true;
 
   services.auto-cpufreq.enable = true;
