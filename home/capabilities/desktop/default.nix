@@ -19,6 +19,7 @@
     arandr
     gnucash
     morgen
+    mpv
   ];
 
   dconf.settings = {
