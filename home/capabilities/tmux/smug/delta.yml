@@ -1,0 +1,16 @@
+session: DELTA
+root: ~/Documents
+
+windows:
+  - name: "Ares  "
+    root: "Ares"
+    commands:
+      - nvim
+  - name: "Athena 🧠"
+    root: "Athena"
+    commands:
+      - nvim
+  - name: "Demeter 󰢒 "
+    root: "Demeter"
+    commands:
+      - nnn

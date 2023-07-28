@@ -43,6 +43,7 @@
     export NNN_COLORS="6666"
     export NNN_OPTS=Hd
     export NNN_FIFO=/tmp/nnn.fifo
+    export ZK_NOTEBOOK_DIR=$HOME/Documents/Ares
     '';
 
     # how to see where a package ends up in the store

@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -9,6 +10,7 @@
       vim-elixir
       vim-lfe
       salt-vim
+      bullets-vim
 
       # editing support
       vim-tmux-navigator
@@ -25,6 +27,8 @@
       leap-nvim
       nvim-colorizer-lua
       { plugin = markdown-preview-nvim; optional = true; }
+      zk-nvim
+      todo-comments-nvim
 
       galaxyline-nvim
 

@@ -12,6 +12,7 @@
    ../capabilities/tmux
    ../capabilities/desktop
    ./pam.nix
+    ../capabilities/notes
   ];
 
   fonts.fontconfig.enable = true;
