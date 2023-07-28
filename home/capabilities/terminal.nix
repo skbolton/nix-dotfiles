@@ -17,7 +17,7 @@
       background_opacity = 1;
       cursor_shape = "beam";
 
-      font_family = "IBM Plex Mono";
+      font_family = "Lilex";
       italic_font = "Operator Mono Book Italic";
       font_size = "12.0";
 
@@ -144,5 +144,10 @@
     '';
   };
 
-  xdg.dataFile."/fonts/IBMPlexMono.ttf".source = ./IBMPlexMono.ttf;
+  xdg.dataFile."fonts/IBMPlexMono.ttf".source = ./IBMPlexMono.ttf;
+
+  xdg.dataFile."fonts/Lilex" = {
+    source = ./Lilex;
+    recursive = true;
+  };
 }
