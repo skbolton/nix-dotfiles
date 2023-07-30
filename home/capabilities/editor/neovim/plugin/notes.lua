@@ -25,5 +25,5 @@ commands.add("ZkSpells", function(options)
   zk.edit(options, { title = "Spellbook" })
 end)
 
-vim.keymap.set('n', '<leader>n*', ':e logs/<C-R>=strftime("%Y-%m-%d")<CR>.md<CR>', { buffer = true, silent = true })
+vim.keymap.set('n', '<leader>n^', ':e logs/<C-R>=strftime("%Y-%m-%d")<CR>.md<CR>', { buffer = true, silent = true })
 
