@@ -1,10 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, ...}:
+
 {
-
-  home.packages = with pkgs; [
-    iosevka
-  ];
-
   programs.kitty = {
     enable = true;
 
@@ -31,9 +27,9 @@
     };
 
     environment = {
-      THEME = "embark";
-      TMUX_STATUSLINE = "neoline-embark";
-      NVIM_STATUSLINE = "neoline";
+      THEME = "dawnfox";
+      TMUX_STATUSLINE = "cleanline";
+      NVIM_STATUSLINE = "rocket-line";
     };
 
     keybindings = {
@@ -53,7 +49,7 @@
     };
 
     extraConfig = ''
-    include ./themes/embark.conf
+    include ./themes/dawnfox.conf
     # Seti
     symbol_map U+E5FA-U+E631 RobotoMono Nerd Font
     # Devicons
@@ -86,63 +82,18 @@
 
   };
 
-  xdg.configFile."kitty/themes/embark.conf" = {
-    text = ''
-      background #1E1C31
-      foreground #CBE3E7
-
-      cursor #A1EFD3
-
-      selection_background  #3E3859
-      selection_foreground #CBE3E7
-
-      # black
-      color0 #1E1C31
-      color8  #585273
-
-      # red
-      color1 #F48FB1
-      color9 #F02E6E
-
-      # green
-      color2 #A1EFD3
-      color10 #7FE9C3
-
-      # yellow
-      color3       #FFE6B3
-      color11      #F2B482
-
-      # blue
-      color4 #91DDFF
-      color12 #78A8FF
-
-      # magenta
-      color5 #D4BFFF
-      color13 #7676FF
-
-      # cyan
-      color6       #ABF8F7
-      color14      #63F2F1
-
-      # white
-      color7 #CBE3E7
-      color15 #8A889D
-
-      active_border_color #A1EFD3
-      inactive_border_color #585273
-      bell_border_color #F56574
-
-      active_tab_foreground   #2D2B40
-      active_tab_background   #63F2F1
-      active_tab_font_style   bold
-
-      inactive_tab_foreground #CBE3E7
-      inactive_tab_background #585273
-      inactive_tab_font_style normal
-
-      url_color #D4BFFF
-    '';
+  xdg.configFile."kitty/themes" = {
+    source = ./themes;
+    recursive = true;
   };
+
+  xdg.configFile."kitty/kitty-light.conf".text = ''
+  include ./kitty.conf
+  env THEME=dawnfox
+  env TMUX_STATUSLINE=cleanline
+  env NVIM_STATUSLINE=rocket-line
+  include ./themes/dawnfox.conf
+  '';
 
   xdg.dataFile."fonts/IBMPlexMono.ttf".source = ./IBMPlexMono.ttf;
 

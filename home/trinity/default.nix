@@ -6,7 +6,7 @@
     ../capabilities/git.nix
     ../capabilities/gpg.nix
     ../capabilities/shell.nix
-    ../capabilities/terminal.nix
+    ../capabilities/kitty
     ../capabilities/passwords.nix
     ../capabilities/editor
     ../capabilities/tmux
