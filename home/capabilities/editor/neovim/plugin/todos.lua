@@ -1,7 +1,7 @@
 require 'todo-comments'.setup {
   highlight = {
     comments_only = false,
-    keyword = "fg",
+    keyword = "bg",
     after = "",
   },
   keywords = {
