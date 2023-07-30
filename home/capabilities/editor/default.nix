@@ -11,6 +11,7 @@
       vim-lfe
       salt-vim
       bullets-vim
+      venn-nvim
 
       # editing support
       vim-tmux-navigator
@@ -70,7 +71,9 @@
       telescope-symbols-nvim
       telescope-fzf-native-nvim
 
-      embark-vim
+      { plugin = embark-vim; optional = true; }
+      { plugin = rose-pine; optional = true; }
+      { plugin = nightfox-nvim; optional = true; }
     ];
   };
 
