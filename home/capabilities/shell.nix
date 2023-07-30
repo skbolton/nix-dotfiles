@@ -9,7 +9,9 @@
   home.packages = with pkgs; [ 
     asdf-vm
     bat
-    (nerdfonts.override { fonts = [ "RobotoMono" ]; })
+    (nerdfonts.override { fonts = [ "RobotoMono" "Iosevka" ]; })
+    ibm-plex
+    iosevka
     ripgrep
     unzip
   ];
