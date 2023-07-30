@@ -1,5 +1,7 @@
 local testing = require 'testing'
 local gl = require 'galaxyline'
+local file = require 'galaxyline.providers.fileinfo'
+local vcs = require 'galaxyline.providers.vcs'
 local condition = require 'galaxyline.condition'
 local gls = gl.section
 gl.short_line_list = {'NvimTree','vista_kind','dbui'}
@@ -126,7 +128,7 @@ gls.left[4] ={
   FileIcon = {
     provider = 'FileIcon',
     condition = condition.buffer_not_empty,
-    highlight = {require 'galaxyline.provider_fileinfo'.get_file_icon_color,'NONE'},
+    highlight = {function() file.get_file_icon_color() end,'NONE'},
   }
 }
 
@@ -196,7 +198,7 @@ gls.right[3] = {
 gls.right[4] = {
   GitBranch = {
     provider = 'GitBranch',
-    condition = require 'galaxyline.provider_vcs'.check_git_workspace,
+    condition =  vcs.check_git_workspace,
     highlight = "Type"
   }
 }
