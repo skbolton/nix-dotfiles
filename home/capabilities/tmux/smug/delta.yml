@@ -5,11 +5,11 @@ windows:
   - name: "Ares  "
     root: "Ares"
     commands:
-      - nvim
-  - name: "Athena 🧠"
+      - zk log
+  - name: "Athena 󰧑 "
     root: "Athena"
     commands:
-      - nvim
+      - nvim +ZkNotes
   - name: "Demeter 󰢒 "
     root: "Demeter"
     commands:
