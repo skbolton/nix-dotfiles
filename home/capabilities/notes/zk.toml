@@ -129,7 +129,7 @@ fzf-preview = "bat -p --color always {-1}"
 # Report titles of wiki-links as hints.
 #wiki-title = "hint"
 # Warn for dead links between notes.
-dead-link = "hint"
+dead-link = "warning"
 
 [lsp.completion]
 # Customize the completion pop-up of your LSP client.

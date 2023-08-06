@@ -13,7 +13,7 @@ map('n', ']d', vim.diagnostic.goto_next)
 map('n', '<C-g>', vim.diagnostic.open_float)
 
 -- Sign Icons
-local signs = { Error = '裂', Warn = ' ', Hint = ' ' }
+local signs = { Error = ' ', Warn = '󰒡 ', Hint = '󰋼 ' }
 
 -- Consigure signs
 for type, icon in pairs(signs) do

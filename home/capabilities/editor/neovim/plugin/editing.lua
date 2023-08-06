@@ -14,25 +14,25 @@ require 'colorizer'.setup({
   }
 })
 
-local linter = require('lint')
+-- local linter = require('lint')
 
-linter.linters_by_ft = {
-  elixir = { 'credo' }
-}
+-- linter.linters_by_ft = {
+--   elixir = { 'credo' }
+-- }
 
-local lint_group = api.nvim_create_augroup(
-  'MyLNinter',
-  {}
-)
+-- local lint_group = api.nvim_create_augroup(
+--   'MyLNinter',
+--   {}
+-- )
 
-api.nvim_create_autocmd(
-  { 'BufWritePost', 'BufEnter' },
-  { 
-    pattern = {'*.ex', '*.exs' },
-    callback = linter.try_lint,
-    group = lint_group
-  }
-)
+-- api.nvim_create_autocmd(
+--   { 'BufWritePost', 'BufEnter' },
+--   { 
+--     pattern = {'*.ex', '*.exs' },
+--     callback = linter.try_lint,
+--     group = lint_group
+--   }
+-- )
 
 vim.g.user_emmet_settings = {
   ['javascript.jsx'] = {

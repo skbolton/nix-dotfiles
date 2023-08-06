@@ -21,28 +21,35 @@ local toggle_todo = function()
   end
 end
 
+local todo_states = 'TODO|CANC|WAIT|DONE|BLOCK|NEXT'
+
 local undone = function()
-  vim.cmd('s/\\v(TODO|CANC|WAIT|DONE|BLOCK)\\:/TODO:')
+  vim.cmd('s/\\v(' .. todo_states ..  ')\\:/TODO:')
   vim.cmd('nohlsearch')
 end
 
 local done = function() 
-  vim.cmd('s/\\v(TODO|CANC|WAIT|DONE|BLOCK)\\:/DONE:')
+  vim.cmd('s/\\v(' .. todo_states .. ')\\:/DONE:')
+  vim.cmd('nohlsearch')
+end
+
+local next = function() 
+  vim.cmd('s/\\v(' .. todo_states .. ')\\:/NEXT:')
   vim.cmd('nohlsearch')
 end
 
 local wait = function() 
-  vim.cmd('s/\\v(TODO|CANC|WAIT|DONE|BLOCK)\\:/WAIT:')
+  vim.cmd('s/\\v(' .. todo_states .. ')\\:/WAIT:')
   vim.cmd('nohlsearch')
 end
 
 local canc = function() 
-  vim.cmd('s/\\v(TODO|CANC|WAIT|DONE|BLOCK)\\:/CANC:')
+  vim.cmd('s/\\v(' .. todo_states .. ')\\:/CANC:')
   vim.cmd('nohlsearch')
 end
 
 local block = function() 
-  vim.cmd('s/\\v(TODO|CANC|WAIT|DONE|BLOCK)\\:/BLOCK:')
+  vim.cmd('s/\\v(' .. todo_states .. ')\\:/BLOCK:')
   vim.cmd('nohlsearch')
 end
 
@@ -53,6 +60,7 @@ vim.keymap.set('n', '<localleader>td', done, { buffer = true })
 vim.keymap.set('n', '<localleader>tc', canc, { buffer = true })
 vim.keymap.set('n', '<localleader>tw', wait, { buffer = true })
 vim.keymap.set('n', '<localleader>tb', block, { buffer = true })
+vim.keymap.set('n', '<localleader>tn', next, { buffer = true })
 vim.keymap.set('i', '<C-t>t', '**<C-R>=strftime("%H:%M")<CR>** ', { buffer = true })
 vim.keymap.set('i', '<C-t>d', '**<C-R>=strftime("%Y-%m-%d")<CR>** ', { buffer = true })
 

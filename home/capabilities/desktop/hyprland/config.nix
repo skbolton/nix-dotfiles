@@ -56,7 +56,8 @@ general {
     gaps_in = 5
     gaps_out = 5
     border_size = 2
-    col.active_border = rgb(a1efd3) rgb(d4bfff) 45deg
+    # col.active_border = rgb(a1efd3) rgb(d4bfff) 45deg
+    col.active_border = rgb(78A8FF) rgb(7676FF) 45deg
     col.inactive_border = rgba(585272aa)
 
     layout = master
@@ -187,6 +188,6 @@ bind = , XF86AudioPrev, exec, playerctl previous
 bind = , XF86AudioNext, exec, playerctl next
 bind = , XF86AudioPlay, exec, playerctl play-pause
 
-exec-once = swaybg -i ~/.local/share/wallpaper/1e1c31.png -m fill
+exec-once = swaybg -i ~/.local/share/wallpaper/light.png -m fill
 ''
 

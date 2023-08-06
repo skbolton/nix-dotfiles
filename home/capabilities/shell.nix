@@ -3,7 +3,7 @@
 {
   home.sessionVariables = {
     BROWSER = "firefox";
-    GTK_THEME = "Catppuccin-Mocha-Standard-Blue-dark";
+    GTK_THEME = "Catppuccin-Frappe-Standard-Blue-light";
   };
 
   home.packages = with pkgs; [ 
@@ -26,10 +26,17 @@
     dotDir = ".config/zsh";
     shellAliases = {
       cat = "bat --paging=never";
+      mv = "mv -iv";
+      cp = "cp -iv";
+      rm = "rm -v";
       mux = "tmux";
       muxa = "tmux a";
       muxk = "tmux kill-server";
       v = "nvim";
+      m = "iex -S mix";
+      ms = "iex -S mix phx.server";
+      mdg = "mix deps.get";
+      mdc = "mix deps.clean --all";
     };
     history = {
       path = "${config.xdg.dataHome}/zsh/zsh_history";

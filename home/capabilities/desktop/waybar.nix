@@ -28,19 +28,19 @@
           on-click = "activate";
           sort-by-number = true;
           format-icons = {
-            "1" = "<span foreground=\"#A1EFD3\"></span>";
-            "2" = "<span foreground=\"#FFE6B3\">󰈹</span>";
-            "3" = "<span foreground=\"#91DDFF\">󰒱</span>";
-            "4" = "<span foreground=\"#D4BFFF\">󰧑</span>";
+            "1" = "";
+            "2" = "󰈹";
+            "3" = "󰒱";
+            "4" = "󰧑";
           };
         };
 
         mpris = {
           format = "{status_icon}<span weight='bold'>{artist}</span> | {title}";
           status-icons = {
-            playing = "<span foreground='#A1EFD3'>󰎈</span> ";
-            paused =  "<span foreground='#FFE6B3'>󰏤</span> ";
-            stopped = "<span foreground='#F48FB1'>󰓛</span> ";
+            playing = "󰎈 ";
+            paused =  "󰏤 ";
+            stopped = "󰓛 ";
           };
         };
 
@@ -53,43 +53,43 @@
         };
 
         pulseaudio = {
-          format = "<span foreground='#F48FB1'>󰓃</span> {volume}%";
+          format = "󰓃 {volume}%";
         };
 
         "network#interface" = {
-          format-ethernet = "<span foreground='#91DDFF'>󰣶 </span> {ifname}";
-          format-wifi = "<span foreground='#91DDFF'>󰖩 </span>{ifname}";
+          format-ethernet = "󰣶  {ifname}";
+          format-wifi = "󰖩 {ifname}";
           tooltip = true;
           tooltip-format = "{ipaddr}";
         };
 
         "network#speed" = {
-          format = "<span foreground='#78A8FF'>⇡</span>{bandwidthUpBits} <span foreground='#78A8FF'>⇣</span>{bandwidthDownBits}";
+          format = "⇡{bandwidthUpBits} ⇣{bandwidthDownBits}";
         };
 
         cpu = {
-          format = "<span foreground='#D4BFFF'>  </span>{usage}% <span foreground='#D4BFFF'>󱐌 </span>{avg_frequency}";
+          format = "  {usage}% 󱐌 {avg_frequency}";
         };
 
         temperature = {
-          format = "<span foreground='#FFE6B3'>{icon} </span>{temperatureC} °C";
+          format = "{icon} {temperatureC} °C";
           format-icons = [ "" "" "" "󰈸"];
         };
 
         backlight = {
-          format = "<span foreground='#F2B482'>{icon}</span> {percent}%";
+          format = "{icon} {percent}%";
           format-icons = [ "󰃜" "󰃛" "󰃚 " ];
         };
 
         battery = {
-          format-critical = "<span foreground='#100E23' background='#F48FB1'>{icon} {capacity}%</span>";
-          format = "<span foreground='#F48FB1'>{icon}</span> {capacity}%";
+          format-critical = "{icon} {capacity}%";
+          format = "{icon} {capacity}%";
           format-icons = [ "󰁺" "󰁾" "󰂀" "󱟢" ];
         };
 
         clock = {
-          format = "<span foreground='#A1EFD3'>  </span>{:%H:%M}";
-          format-alt = "<span foreground='#A1EFD3'󰃭  </span>{:%Y-%m-%d}";
+          format = "   {:%H:%M}";
+          format-alt = "󰃭  {:%Y-%m-%d}";
         };
 
         "custom/notification" = {
@@ -109,58 +109,40 @@
     style = ''
       * {
         min-height: 0;
-        color: #CBE3E7;
       }
 
       window#waybar {
-        border-bottom: solid 2px #2D2B40;
         font-family: 'Inter', 'RobotoMono Nerd Font';
-        font-size: 14px;
+        font-size: 12px;
       }
 
       tooltip {
-        background-color: #2D2B40;
-        color: #CBE3E7;
       }
 
       #custom-nix {
-        color: #91DDFF;
-        padding: 2px 8px;
+        padding: 2px 6px;
       }
 
       #workspaces button {
-        padding: 2px 8px;
-        margin: 0 8px 0 0;
-      }
-
-      #workspaces button.active {
-        background-color: #2D2B40;
-      }
-
-      #taskbar button.active {
-        background-color: #2D2B40;
+        padding: 2px 6px;
+        margin: 0 6px 0 0;
       }
 
       .modules-right * {
-        padding: 0 8px;
+        padding: 0 6px;
         margin: 0 0 0 4px;
       }
 
       #mpris {
-        background-color: #2D2B40;
-        padding: 0 8px;
-        color: #8A889D;
+        padding: 0 6px;
       }
 
       #custom-notification {
-        padding: 0 8px 0 8px;
-        background-color: #2D2B40;
-        color: #100E23;
+        padding: 0 6px 0 6px;
       }
 
       #tray {
-        background-color: #2D2B40;
-        padding: 0 8px 0 8px;
+        padding: 0 6px;
       }
       
       #tray * {
@@ -177,9 +159,9 @@
     DISABLED="󰂛 "
     if [ $COUNT != 0 ]; then DISABLED="󱅫 "; fi
     if dunstctl is-paused | grep -q "false"; then
-      echo "<span foreground='#A1EFD3'>$ENABLED</span>"
+      echo $ENABLED
     else
-      echo "<span foreground='#F48FB1'>$DISABLED</span>"
+      echo $DISABLED
     fi
     '';
     executable = true;

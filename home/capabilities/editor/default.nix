@@ -2,6 +2,11 @@
 
 {
 
+  home.packages = [
+    pkgs.elixir_1_15
+    pkgs.elixir_ls
+  ];
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;

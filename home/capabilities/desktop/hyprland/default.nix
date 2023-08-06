@@ -10,6 +10,7 @@
   home.packages = with pkgs; [ playerctl swaybg wl-clipboard grim slurp inputs.hyprland-contrib.packages.x86_64-linux.grimblast neofetch wofi-emoji ];
 
   xdg.dataFile."wallpaper/1e1c31.png".source = ../1e1c31.png;
+  xdg.dataFile."wallpaper/light.png".source = ../light.JPG;
 
   programs.wofi.enable = true;
 

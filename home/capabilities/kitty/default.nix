@@ -14,7 +14,9 @@
       cursor_shape = "beam";
 
       font_family = "Lilex";
-      italic_font = "Operator Mono Book Italic";
+      # Yep they spelled medium wrong
+      bold_font = "Lilex Meduim";
+      italic_font = "Lilex Italic";
       font_size = "12.0";
 
       # Terminal Settings
@@ -27,7 +29,7 @@
     };
 
     environment = {
-      THEME = "dawnfox";
+      THEME = "embark";
       TMUX_STATUSLINE = "cleanline";
       NVIM_STATUSLINE = "rocket-line";
     };
@@ -49,7 +51,7 @@
     };
 
     extraConfig = ''
-    include ./themes/dawnfox.conf
+    include ./themes/embark.conf
     # Seti
     symbol_map U+E5FA-U+E631 RobotoMono Nerd Font
     # Devicons
@@ -89,10 +91,10 @@
 
   xdg.configFile."kitty/kitty-light.conf".text = ''
   include ./kitty.conf
-  env THEME=dawnfox
+  env THEME=tantric
   env TMUX_STATUSLINE=cleanline
   env NVIM_STATUSLINE=rocket-line
-  include ./themes/dawnfox.conf
+  include ./themes/tantric.conf
   '';
 
   xdg.dataFile."fonts/IBMPlexMono.ttf".source = ./IBMPlexMono.ttf;

@@ -13,6 +13,7 @@ require 'todo-comments'.setup {
     CANC = { icon = " ", color = "test", alt = {"MAYBE"}}
   },
   colors = {
+    hint = { "CursorLineNr" },
     next = { "Keyword" },
     todo = { "Operator" },
     test = { "LineNr" }
