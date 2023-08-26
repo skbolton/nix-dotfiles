@@ -92,6 +92,7 @@
     yubikey-personalization
     yubikey-manager
     pavucontrol
+    pulseaudio
   ];
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
