@@ -196,6 +196,14 @@ bind = , XF86AudioPrev, exec, playerctl previous
 bind = , XF86AudioNext, exec, playerctl next
 bind = , XF86AudioPlay, exec, playerctl play-pause
 
+bind = $mainMod ALT CTRL, equal, exec, dunstctl set-paused toggle
+bind = $mainMod ALT CTRL, bracketright, exec, systemctl reboot
+
+bind = $mainMod ALT CTRL SHIFT, 1, exec, grimblast copy area
+bind = $mainMod ALT CTRL SHIFT, 2, exec, grimblast save area
+bind = $mainMod ALT CTRL SHIFT, 3, exec, grimblast copy active
+bind = $mainMod ALT CTRL SHIFT, 4, exec, grimblast copy output
+
 exec-once = swaybg -i ~/.local/share/wallpaper/light.png -m fill
 ''
 
