@@ -55,6 +55,7 @@
     export NNN_OPTS=Hd
     export NNN_FIFO=/tmp/nnn.fifo
     export ZK_NOTEBOOK_DIR=$HOME/Documents/Ares
+    export TIMEWARRIORDB="$HOME/Documents/Ares/Time"
     '';
 
     # how to see where a package ends up in the store

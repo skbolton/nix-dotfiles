@@ -13,6 +13,7 @@
     ../capabilities/desktop
     ./pam.nix
     ../capabilities/notes
+    ../capabilities/taskwarrior
   ];
 
   fonts.fontconfig.enable = true;
