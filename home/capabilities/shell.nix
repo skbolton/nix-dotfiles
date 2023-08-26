@@ -14,6 +14,7 @@
     iosevka
     ripgrep
     unzip
+    toilet
   ];
 
   programs.zsh = {
@@ -66,6 +67,10 @@
     setopt CORRECT              # Spelling Corrections
     setopt CDABLE_VARS          # Change directory to a path stored in a variable
     setopt EXTENDED_GLOB        # Use extended globbing syntax
+    '';
+    initExtra = ''
+    color=$(( ( RANDOM % 6 ) + 1 ))
+    tput setaf $color && toilet -F border -t -f pagga "Bit by Bit"
     '';
   };
 
