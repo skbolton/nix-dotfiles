@@ -83,6 +83,9 @@ xwayland {
   force_zero_scaling = true;
 }
 
+env = GDK_SCALE,2
+env = XCURSOR_SIZE,24
+
 animations {
     enabled = true
 
