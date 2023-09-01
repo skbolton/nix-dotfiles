@@ -3,7 +3,6 @@
 {
   home.sessionVariables = {
     BROWSER = "firefox";
-    GTK_THEME = "Catppuccin-Frappe-Standard-Blue-light";
   };
 
   home.packages = with pkgs; [ 
