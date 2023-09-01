@@ -14,6 +14,7 @@
    ./pam.nix
     ../capabilities/notes
     ../capabilities/taskwarrior
+    ../capabilities/networking
   ];
 
   fonts.fontconfig.enable = true;

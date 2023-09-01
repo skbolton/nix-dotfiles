@@ -78,7 +78,7 @@
   users.users.orlando = {
     isNormalUser = true;
     initialPassword = "temp-pass";
-    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 
