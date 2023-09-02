@@ -5,12 +5,17 @@
 
   services.dunst = {
     enable = true;
+    iconTheme = {
+      name = "Fluent-dark";
+      package = pkgs.fluent-icon-theme;
+    };
     settings = {
       global = {
         font = "Inter 12";
         frame_color = "#100E23";
         frame_width = "2";
-        origin = "top-center";
+        origin = "top-right";
+        offset = "8x4";
         width = "300";
         height = "200";
         padding = 16;
