@@ -15,7 +15,7 @@
         layer = "top";
         modules-left = [ "custom/nix" "wlr/workspaces" "mpris" ];
         modules-center = [ "wlr/taskbar"];
-        modules-right = [ "pulseaudio" "network#interface" "network#speed" "cpu" "temperature" "backlight" "battery" "clock" "custom/notification" "tray" ];
+        modules-right = [ "custom/task-context" "network#interface" "network#speed" "cpu" "temperature" "backlight" "battery" "clock" "custom/notification" "tray" ];
 
         persistent_workspaces = {
           "1" = [];
@@ -53,8 +53,11 @@
           on-click = "activate";
         };
 
-        pulseaudio = {
-          format = "󰓃 {volume}%";
+        "custom/task-context" = {
+          exec = "~/.config/waybar/scripts/task-context.sh";
+          tooltip = false;
+          on-click = "task @ none";
+          restart-interval = 1;
         };
 
         "network#interface" = {
@@ -164,6 +167,20 @@
     else
       echo $DISABLED
     fi
+    '';
+    executable = true;
+  };
+
+  xdg.configFile."waybar/scripts/task-context.sh" = {
+    text = ''
+    ICON=" "
+    CONTEXT=$(task context show)
+    NO_CONTEXT="No context is currently applied."
+
+    if [ "$CONTEXT" = "$NO_CONTEXT" ]; then
+      CONTEXT="NONE"
+    fi
+    echo "$ICON  $CONTEXT"
     '';
     executable = true;
   };

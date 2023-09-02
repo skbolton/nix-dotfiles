@@ -14,6 +14,10 @@
       alias = {
         "@" = "context";
       };
+      context = {
+        work = "project:PDQ or proj:OSS or proj:CAR";
+        personal = "-project:PDQ";
+      };
       urgency = {
         project.coefficient = 0;
       };
