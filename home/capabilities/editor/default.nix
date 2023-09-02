@@ -26,7 +26,7 @@
       firenvim
       vim-surround
       vim-slime
-      vim-commentary
+      comment-nvim
       vim-repeat
       vim-endwise
       vim-speeddating
