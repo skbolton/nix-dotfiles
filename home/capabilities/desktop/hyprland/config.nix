@@ -33,7 +33,6 @@ exec-once = [workspace special:notes silent] kitty --config ~/.config/kitty/kitt
 exec-once = kitty
 exec-once = [workspace 4 silent] tidal-hifi
 exec-once = nm-applet
-# exec-once = swaybg -i ~/.local/share/wallpaper/light.png -m fill
 exec-once = swaybg -i ~/wallpaper -m fill
 
 # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
