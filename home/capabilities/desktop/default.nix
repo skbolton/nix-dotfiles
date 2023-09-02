@@ -10,7 +10,7 @@
     logseq 
     obsidian
     slack
-    discord
+    webcord
     zoom-us
     xfce.thunar
     xfce.thunar-archive-plugin

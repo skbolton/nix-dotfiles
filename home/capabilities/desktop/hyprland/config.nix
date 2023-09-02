@@ -18,7 +18,7 @@ windowrulev2 = workspace 1,class:kitty
 windowrulev2 = workspace 2,title:^(Mozilla Firefox)(.*)$
 windowrulev2 = workspace special:notes,title:^(kitty-delta)
 windowrulev2 = workspace 3,class:Slack
-windowrulev2 = workspace 3,class:discord
+windowrulev2 = workspace 3,class:WebCord
 windowrulev2 = workspace 4,class:tidal-hifi
 windowrulev2 = float,title:(GnuCash Tip Of The Day)
 windowrulev2 = float,title:(Firefox — Sharing Indicator)
@@ -28,6 +28,7 @@ exec-once = hyprctl setcursor Bibata-Modern-Ice 22
 exec-once = synology-drive
 exec-once = waybar
 exec-once = [workspace 2 silent] firefox
+exec-once = webcord 
 exec-once = [workspace special:notes silent] kitty --config ~/.config/kitty/kitty-light.conf --title="kitty-delta" --hold smug start delta
 exec-once = kitty
 exec-once = [workspace 4 silent] flatpak run com.mastermindzh.tidal-hifi
