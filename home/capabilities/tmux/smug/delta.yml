@@ -4,8 +4,13 @@ root: ~/Documents
 windows:
   - name: "Ares  "
     root: "Ares"
+    layout: main-vertical
     commands:
       - zk log
+    panes:
+      - type: vertical
+        commands:
+          - task
   - name: "Athena 󰧑 "
     root: "Athena"
     commands:
