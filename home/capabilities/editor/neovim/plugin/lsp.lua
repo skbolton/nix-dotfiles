@@ -32,9 +32,9 @@ end
 local formatting_augrop = vim.api.nvim_create_augroup("LSPFORMATTING", {})
 
 vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(args)
-    local buffer = args.buffer
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
+  callback = function(env)
+    local buffer = env.buf
+    local client = vim.lsp.get_client_by_id(env.data.client_id)
 
     if client.supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({ group = formatting_augrop, buffer = buffer })
