@@ -17,6 +17,9 @@
       urgency = {
         project.coefficient = 0;
       };
+      color = {
+        alternate = "";
+      };
       taskd = {
         server = "app.wingtask.com:53589";
         key = "$HOME/Documents/Demeter/Computer/Taskwarrior/tasks@bitsonthemind.com.key.pem";
