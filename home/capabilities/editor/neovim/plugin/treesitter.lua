@@ -13,8 +13,8 @@ require "nvim-treesitter.configs".setup {
     enable = true,
     keymaps = {
       init_selection = "gnn",
-      node_incremental = "gn]",
-      node_decremental = "gn[",
+      node_incremental = "g]",
+      node_decremental = "g[",
     }
   },
   playground = {
