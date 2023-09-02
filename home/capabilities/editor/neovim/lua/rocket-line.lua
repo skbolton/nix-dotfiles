@@ -1,4 +1,5 @@
 local testing = require 'testing'
+local diagrams = require 'diagramming'
 local gl = require 'galaxyline'
 local file = require 'galaxyline.providers.fileinfo'
 local vcs = require 'galaxyline.providers.vcs'
@@ -156,12 +157,26 @@ gls.left[6] = {
 -----------------------------------------------------------
 
 gls.right[1] = {
+  VennEnabled = {
+    provider = function()
+      if diagrams.enabled then
+        return "   "
+      else
+        return ""
+      end
+    end,
+    highlight = "Keyword",
+    separator = ' ',
+  }
+}
+
+gls.right[2] = {
   TestResults = {
     provider = testing_results
   }
 }
 
-gls.right[2] = {
+gls.right[3] = {
   LanguageServer = {
     provider = function()
       active_client = vim.lsp.buf_get_clients()[1]
@@ -178,7 +193,7 @@ gls.right[2] = {
   }
 }
 
-gls.right[3] = {
+gls.right[4] = {
   GitIcon = {
     -- provider = function() return ' ' end,
     provider = function()
@@ -195,7 +210,7 @@ gls.right[3] = {
   }
 }
 
-gls.right[4] = {
+gls.right[5] = {
   GitBranch = {
     provider = 'GitBranch',
     condition =  vcs.check_git_workspace,
