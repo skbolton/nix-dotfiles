@@ -20,6 +20,7 @@
     gnucash
     morgen
     mpv
+    tidal-hifi
   ];
 
   dconf.settings = {

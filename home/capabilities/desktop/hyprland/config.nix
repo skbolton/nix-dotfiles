@@ -31,7 +31,7 @@ exec-once = [workspace 2 silent] firefox
 exec-once = webcord 
 exec-once = [workspace special:notes silent] kitty --config ~/.config/kitty/kitty-light.conf --title="kitty-delta" --hold smug start delta
 exec-once = kitty
-exec-once = [workspace 4 silent] flatpak run com.mastermindzh.tidal-hifi
+exec-once = [workspace 4 silent] tidal-hifi
 exec-once = nm-applet
 # exec-once = swaybg -i ~/.local/share/wallpaper/light.png -m fill
 exec-once = swaybg -i ~/wallpaper -m fill
