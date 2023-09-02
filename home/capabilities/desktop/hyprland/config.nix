@@ -34,6 +34,8 @@ exec-once = kitty
 exec-once = [workspace 4 silent] tidal-hifi
 exec-once = nm-applet
 exec-once = swaybg -i ~/wallpaper -m fill
+exec-once = [workspace 6 silent] firefox --new-window https://linear.app
+exec-once = [workspace 6 silent] morgen
 
 # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
 input {
