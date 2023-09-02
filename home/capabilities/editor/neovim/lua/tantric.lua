@@ -107,6 +107,7 @@ local theme = {
   ["@text.strong"] = { link = "Title" },
   ["@text.quote"] = { bg = c.G200, fg = c.G900, italic = true },
   ["@text.reference"] = { fg = c.P70, bold = true },
+  ["@text.todo.unchecked"] = { fg = c.P70, bold = true },
   ["@text.todo.checked"] = { fg = c.BG300 },
   ["@text.literal"] = { fg = c.BG400 },
   ["@label"] = { fg = c.P60 },
