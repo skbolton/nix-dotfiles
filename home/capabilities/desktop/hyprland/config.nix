@@ -3,19 +3,23 @@
 # See https://wiki.hyprland.org/Configuring/Monitors/
 
 # See https://wiki.hyprland.org/Configuring/Keywords/ for more
-monitor=DP-1,preferred,auto,1.25
-monitor=DP-2,preferred,auto,1.25
+monitor=DP-1,preferred,0x0,1.25
+monitor=DP-5,preferred,2048x0,2
+monitor=DP-2,preferred,4608x0,1.25
 
-workspace = 1, monitor:DP-2, default:true
+workspace = 1, monitor:DP-5, default:true
 workspace = 2, monitor:DP-1, default:true
-workspace = 3, monitor:DP-1
-workspace = 4, monitor:DP-2
+workspace = 3, monitor:DP-2
+workspace = 4, monitor:DP-5
+workspace = 5, monitor:DP-1
+workspace = 6, monitor:DP-2
 
 windowrulev2 = workspace 1,class:kitty
 windowrulev2 = workspace 2,title:^(Mozilla Firefox)(.*)$
 windowrulev2 = workspace special:notes,title:^(kitty-delta)
 windowrulev2 = workspace 3,class:Slack
 windowrulev2 = workspace 3,class:discord
+windowrulev2 = workspace 4,class:tidal-hifi
 windowrulev2 = float,title:(GnuCash Tip Of The Day)
 windowrulev2 = float,title:(Firefox — Sharing Indicator)
 
@@ -26,6 +30,10 @@ exec-once = waybar
 exec-once = [workspace 2 silent] firefox
 exec-once = [workspace special:notes silent] kitty --config ~/.config/kitty/kitty-light.conf --title="kitty-delta" --hold smug start delta
 exec-once = kitty
+exec-once = [workspace 4 silent] flatpak run com.mastermindzh.tidal-hifi
+exec-once = nm-applet
+# exec-once = swaybg -i ~/.local/share/wallpaper/light.png -m fill
+exec-once = swaybg -i ~/wallpaper -m fill
 
 # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
 input {
@@ -60,7 +68,8 @@ general {
     col.active_border = rgb(78A8FF) rgb(7676FF) 45deg
     col.inactive_border = rgba(585272aa)
 
-    layout = master
+    layout = dwindle
+    resize_on_border = true
 }
 
 decoration {
@@ -108,7 +117,8 @@ dwindle {
 master {
     # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
     new_is_master = true
-    orientation = top
+    # orientation = top
+    orientation = left
 }
 
 gestures {
@@ -135,7 +145,7 @@ bind = ALT, d, exec, wofi --show drun -I
 bind = ALT, e, exec, wofi-emoji
 bind = $mainMod, e, exec, thunar
 bind = $mainMod, P, pseudo, # dwindle
-bind = $mainMod, J, togglesplit, # dwindle
+# bind = $mainMod, J, togglesplit, # dwindle
 bind = $mainMod, s, togglespecialworkspace, notes
 bind = $mainMod SHIFT, S, movetoworkspace, special:notes
 
@@ -204,6 +214,5 @@ bind = $mainMod ALT CTRL SHIFT, 2, exec, grimblast save area
 bind = $mainMod ALT CTRL SHIFT, 3, exec, grimblast copy active
 bind = $mainMod ALT CTRL SHIFT, 4, exec, grimblast copy output
 
-exec-once = swaybg -i ~/.local/share/wallpaper/light.png -m fill
 ''
 
