@@ -174,10 +174,9 @@
   xdg.configFile."waybar/scripts/task-context.sh" = {
     text = ''
     ICON=" "
-    CONTEXT=$(task context show)
-    NO_CONTEXT="No context is currently applied."
+    CONTEXT=$(task _get rc.context)
 
-    if [ "$CONTEXT" = "$NO_CONTEXT" ]; then
+    if [ -z "$CONTEXT" ]; then
       CONTEXT="NONE"
     fi
     echo "$ICON  $CONTEXT"
