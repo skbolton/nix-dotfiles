@@ -17,6 +17,7 @@ workspace = 6, monitor:DP-2
 windowrulev2 = workspace 1,class:kitty
 windowrulev2 = workspace 2,title:^(Mozilla Firefox)(.*)$
 windowrulev2 = workspace special:notes,title:^(kitty-delta)
+windowrulev2 = workspace special:term,title:^(kitty-scratch)
 windowrulev2 = workspace 3,class:Slack
 windowrulev2 = workspace 3,class:WebCord
 windowrulev2 = workspace 4,class:tidal-hifi
@@ -30,6 +31,7 @@ exec-once = waybar
 exec-once = [workspace 2 silent] firefox
 exec-once = webcord 
 exec-once = [workspace special:notes silent] kitty --config ~/.config/kitty/kitty-light.conf --title="kitty-delta" --hold smug start delta
+exec-once = [workspace special:term silent] kitty --title="kitty-scratch" --hold
 exec-once = kitty
 exec-once = [workspace 4 silent] tidal-hifi
 exec-once = nm-applet
@@ -155,6 +157,7 @@ bind = $mainMod, P, pseudo, # dwindle
 # bind = $mainMod, J, togglesplit, # dwindle
 bind = $mainMod, s, togglespecialworkspace, notes
 bind = $mainMod SHIFT, S, movetoworkspace, special:notes
+bind = $mainMod CTRL, t, togglespecialworkspace, term
 
 # Move focus with mainMod + vim arrow keys
 bind = $mainMod, h, movefocus, l
