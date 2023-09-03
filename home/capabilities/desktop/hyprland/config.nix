@@ -105,14 +105,14 @@ animations {
   bezier = winOut, 0.3, -0.3, 0, 1
   bezier = liner, 1, 1, 1, 1
 
-  animation = windows, 1, 6, wind, slide
-  animation = windowsIn, 1, 6, winIn, slide
-  animation = windowsOut, 1, 5, winOut, slide
+  animation = windows, 1, 6, wind, popin
+  animation = windowsIn, 1, 6, winIn, popin
+  animation = windowsOut, 1, 5, winOut, popin
   animation = windowsMove, 1, 5, wind, slide
   animation = border, 1, 1, liner
   animation = borderangle, 1, 30, liner, loop
   animation = fade, 1, 10, default
-  animation = workspaces, 1, 5, wind
+  animation = workspaces, 1, 5, wind, slidevert
 }
 
 dwindle {
