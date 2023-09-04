@@ -16,7 +16,7 @@
       };
       context = {
         work = "project:PDQ or proj:OSS or proj:CAR";
-        personal = "-project:PDQ";
+        personal = "project.not:PDQ";
       };
       urgency = {
         project.coefficient = 0;
