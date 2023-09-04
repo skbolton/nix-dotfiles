@@ -20,6 +20,7 @@
       };
       urgency = {
         project.coefficient = 0;
+        blocking.coefficient = 0;
       };
       color = {
         alternate = "";
