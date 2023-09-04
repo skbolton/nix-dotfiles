@@ -25,6 +25,7 @@
     defaultKeymap = "viins";
     dotDir = ".config/zsh";
     shellAliases = {
+      t = "task";
       cat = "bat --paging=never";
       mv = "mv -iv";
       cp = "cp -iv";
