@@ -49,7 +49,7 @@ cmp.setup {
     format = function(entry, vim_item)
       -- Kind icons
       if entry.source.name == 'vim-dadbod-completion' then
-        vim_item.kind = "ﰩ"
+        vim_item.kind = ""
       else
         vim_item.kind = kind_icons[vim_item.kind]
       end
