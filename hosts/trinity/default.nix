@@ -2,12 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, ... }:
+{ config, outputs, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    outputs.nixosModules.openrgb
+    ./hardware-configuration.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -137,6 +138,11 @@
 
   services.flatpak.enable = true;
   services.hardware.bolt.enable = true;
+
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
+
+  hardware.openrgb.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
