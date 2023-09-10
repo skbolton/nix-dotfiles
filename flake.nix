@@ -25,6 +25,10 @@
 
     # Official NixOS package source, using nixos-unstable branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    NixOS-WSL = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
@@ -46,7 +50,7 @@
   # parameters in `outputs` are defined in `inputs` and can be referenced by their names.
   # However, `self` is an exception, This special parameter points to the `outputs` itself (self-reference)
   # The `@` syntax here is used to alias the attribute set of the inputs's parameter, making it convenient to use inside the function.
-  outputs = { self, nixpkgs, hyprland, home-manager, ... }@inputs: 
+  outputs = { self, nixpkgs, hyprland, home-manager, NixOS-WSL, ... }@inputs: 
     let
       inherit (self) outputs;
     in {
@@ -132,6 +136,22 @@
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.orlando = import ./home/neo;
+          }
+        ];
+      };
+
+      weasel = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          { nix.registry.nixpkgs.flake = nixpkgs; }
+          ./hosts/weasel
+          NixOS-WSL.nixosModules.wsl
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.users.orlando = import ./home/weasel;
           }
         ];
       };
