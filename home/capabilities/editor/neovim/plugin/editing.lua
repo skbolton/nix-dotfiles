@@ -4,7 +4,10 @@ vim.g.mkdp_theme = 'light'
 
 vim.g.AutoPairsMapSpace = false
 
-require 'leap'.add_default_mappings()
+local leap = require 'leap'
+leap.opts.safe_labels = {}
+leap.add_default_mappings()
+
 require 'neoscroll'.setup()
 
 require 'colorizer'.setup({
