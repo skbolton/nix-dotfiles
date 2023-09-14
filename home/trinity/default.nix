@@ -43,6 +43,40 @@
         hostname = "172.16.90.200";
         user = "adminarsenal/stephen.bolton";
       };
+
+      weasel = {
+        proxyJump = "openssh_win32";
+        hostname = "localhost";
+        user = "orlando";
+        port = 2242;
+        localForwards = [
+          {
+            # bind is the local 
+            bind.port = 4000;
+            # host is the remote
+            host.address = "localhost";
+            host.port = 4000;
+          }
+          {
+            bind.port = 54321;
+            host.address = "localhost";
+            host.port = 54321;
+          }
+        ];
+        remoteForwards = [
+          {
+            # host is the local client it this situation
+            host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
+            # bind is the remote
+            bind.address = "/run/user/1000/gnupg/S.gpg-agent";
+          }
+          {
+            host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+            bind.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+          }
+        ];
+      };
+
       arch_wsl = {
         proxyJump = "openssh_win32";
         hostname = "localhost";
