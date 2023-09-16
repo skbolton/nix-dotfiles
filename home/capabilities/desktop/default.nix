@@ -6,9 +6,6 @@
   ];
 
   home.packages = with pkgs; [ 
-    synology-drive-client
-    logseq 
-    obsidian
     slack
     webcord
     zoom-us

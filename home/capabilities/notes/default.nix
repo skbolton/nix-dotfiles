@@ -2,6 +2,9 @@
 
 {
   home.packages = [
+    synology-drive-client
+    logseq 
+    obsidian
     pkgs.zk
   ];
 
