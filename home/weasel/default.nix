@@ -7,6 +7,7 @@
     ../capabilities/editor
     ../capabilities/tmux
     ../capabilities/kitty
+    ../capabilities/lang/elixir.nix
   ];
 
   fonts.fontconfig.enable = true;

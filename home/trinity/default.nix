@@ -15,6 +15,7 @@
     ../capabilities/notes
     ../capabilities/taskwarrior
     ../capabilities/networking
+    ../capabilities/lang/elixir.nix
   ];
 
   fonts.fontconfig.enable = true;
