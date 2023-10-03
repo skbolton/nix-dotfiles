@@ -1,5 +1,15 @@
-{ ... }:
+{ pkgs, ... }:
+
 {
+  programs.gh = {
+    enable = true;
+    settings = {
+      git_protocol = "ssh";
+      editor = "nvim";
+    };
+    extensions = with pkgs; [ gh-dash ];
+  };
+
   programs.git = {
     enable = true;
     userName = "Stephen Bolton";
@@ -37,9 +47,9 @@
       enable = true;
       options = {
         navigate = true;
-	light = false;
-	side-by-side = true;
-	line-numbers = true;
+        light = false;
+        side-by-side = true;
+        line-numbers = true;
       };
     };
 
