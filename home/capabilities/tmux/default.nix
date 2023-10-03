@@ -1,7 +1,13 @@
 { pkgs, ... }:
 
+let 
+  rally = import ./rally.nix { inherit pkgs; };
+in
 {
-  home.packages = [ pkgs.smug ];
+  home.packages = [ 
+    pkgs.smug
+    rally
+  ];
 
   programs.tmux = {
     enable = true;
@@ -102,7 +108,7 @@
     #######################################################################
     # Tasks
     #######################################################################
-    bind s display-popup -E -w 80% -h 70% ~/.config/tmux/scripts/rally.sh
+    bind s display-popup -E -w 80% -h 70% ${rally}/bin/rally.sh
     bind S display-popup -E 'tmux switch-client -t "$(tmux list-sessions -F "#{session_name}"| fzf)"'
     bind C-l split-window -h -l 120 zk log
     
@@ -124,23 +130,5 @@
   xdg.configFile."tmux/neoline-embark.tmux".source = ./neoline-embark.tmux;
   xdg.configFile."tmux/neoline-gruvbox-light.tmux".source = ./neoline-gruvbox-light.tmux;
   xdg.configFile."tmux/cleanline.tmux".source = ./cleanline.tmux;
-
-  xdg.configFile."tmux/scripts/rally.sh" = {
-    text = ''
-    #!/bin/sh
-
-    set -eu
-
-    RALLY=rally
-    VERSION=0.0.1
-
-    TARGET=$(ls -d ~/Public/* ~/* | fzf --header-first --header="Launch Project" --prompt="🔮 " --preview "exa --tree --icons --level 3 --git-ignore {}")
-    NAME=$(basename $TARGET)
-    SESSION_NAME=$(echo $NAME | tr [:lower:] [:upper:])
-
-    smug start $NAME -a 2>/dev/null || smug start default name=$SESSION_NAME root=$TARGET -a
-    '';
-    executable = true;
-  };
 }
 

@@ -1,5 +1,8 @@
 { pkgs, ...}:
 
+let
+  rally = import ../tmux/rally.nix { inherit pkgs; };
+in
 {
   programs.kitty = {
     enable = true;
@@ -44,7 +47,7 @@
       "ctrl+alt+u" = "change_font_size current 12.0";
       "ctrl+alt+backspace" = "change_font_size all 0";
       "ctrl+alt+period" =  "send_text current pass fzf\r";
-      "ctrl+alt+p" = "send_text all ~/.config/tmux/scripts/rally.sh\\r";
+      "ctrl+alt+p" = "send_text all ${rally}/bin/rally.sh\\r";
       "ctrl+alt+t" = "send_text all titan-call\r";
       "ctrl+alt+r" = "send_text all zk runbooks\r";
       "ctrl+alt+c" = "send_text all zk cast\u0020";
