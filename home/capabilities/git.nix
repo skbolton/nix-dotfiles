@@ -22,7 +22,7 @@
 
     aliases = {
       l = "log --date=short --decorate --pretty=format:'%C(yellow)%h %C(green)%ad%C(magenta)%d %Creset%s%C(brightblue) [%cn]'";
-      branches = "!git --no-pager branch --format '%(refname:short)' --sort=committerdate | fzf-tmux $1 --preview 'git log --color=always --decorate {}'";
+      branches = "!git --no-pager branch --format '%(refname:short)' --sort=committerdate | ${pkgs.fzf}/bin/fzf-tmux $1 --preview 'git log --color=always --decorate {}'";
       dog = "log --all --decorate --oneline --graph";
       to = "!git checkout $(git branches --no-multi)";
       drop = "!git branch -d $(git branches --multi)";
