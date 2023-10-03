@@ -164,6 +164,7 @@
   };
 
   programs.exa = {
+    package = pkgs.eza;
     enable = true;
     enableAliases = true;
     icons = true;
