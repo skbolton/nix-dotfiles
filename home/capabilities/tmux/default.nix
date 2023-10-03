@@ -109,16 +109,16 @@ in
     # Tasks
     #######################################################################
     bind s display-popup -E -w 80% -h 70% ${rally}/bin/rally.sh
-    bind S display-popup -E 'tmux switch-client -t "$(tmux list-sessions -F "#{session_name}"| fzf)"'
+    bind S display-popup -E 'tmux switch-client -t "$(${pkgs.fzf}/bin/fzf list-sessions -F "#{session_name}"| ${pkgs.fzf}/bin/fzf)"'
     bind C-l split-window -h -l 120 zk log
     
     #######################################################################
     # Layers
     #######################################################################
     bind g switch-client -Ttable1
-    bind -Ttable1 x split-window -h -l 100 \; send-keys 'gh pr checks' C-m
-    bind -Ttable1 ? split-window -h -l 100 \; send-keys 'gh' C-m
-    bind -Ttable1 ! split-window -h -l 100 'gh pr view --web'
+    bind -Ttable1 x split-window -h -l 100 \; send-keys '${pkgs.gh}/bin/gh pr checks' C-m
+    bind -Ttable1 ? split-window -h -l 100 \; send-keys '${pkgs.gh}/bin/gh' C-m
+    bind -Ttable1 ! split-window -h -l 100 '${pkgs.gh}/bin/gh pr view --web'
     bind -Ttable1 t split-window -h 'clickup.sh'
   '';
 
