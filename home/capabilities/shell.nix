@@ -12,7 +12,6 @@
     iosevka
     ripgrep
     unzip
-    toilet
   ];
 
   programs.zsh = {
@@ -70,7 +69,7 @@
     '';
     initExtra = ''
     color=$(( ( RANDOM % 6 ) + 1 ))
-    tput setaf $color && toilet -F border -t -f pagga "Bit by Bit"
+    tput setaf $color && ${pkgs.toilet}/bin/toilet -F border -t -f pagga "Bit by Bit"
     '';
   };
 
