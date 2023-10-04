@@ -1,11 +1,11 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
+  home.packages = with pkgs; [
     synology-drive-client
     logseq 
     obsidian
-    pkgs.zk
+    zk
   ];
 
   xdg.configFile."zk/config.toml".source = ./zk.toml;

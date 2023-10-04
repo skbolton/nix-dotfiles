@@ -162,8 +162,7 @@
     defaultOptions = [ "--reverse" "--ansi" ];
   };
 
-  programs.exa = {
-    package = pkgs.eza;
+  programs.eza = {
     enable = true;
     enableAliases = true;
     icons = true;
