@@ -33,8 +33,8 @@ in
 
     environment = {
       THEME = "embark";
-      TMUX_STATUSLINE = "cleanline";
-      NVIM_STATUSLINE = "rocket-line";
+      TMUX_STATUSLINE = "neoline-embark";
+      NVIM_STATUSLINE = "neoline";
     };
 
     keybindings = {
