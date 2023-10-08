@@ -77,36 +77,33 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-      format = lib.concatStrings [
-        "$jobs"
-        "$hostname"
-        "$directory"
-        "$git_branch"
-        "$git_status"
-        "$line_break"
-        "$character"
-      ];
-      hostname = {
-        ssh_symbol = "󰐻 ";
-        style = "bold bright-yellow";
-      };
-      git_branch = {
-        symbol = "󰊢 ";
-        style = "purple";
-        format = "on [$symbol$branch]($style) ";
+      format = "$character$directory$git_branch ";
+      right_format = "$jobs$status$hostname";
+      character = {
+        format = "[ $symbol ](bold fg:bright-white bg:#19172C)";
+        error_symbol = "INSERT";
+        success_symbol = "INSERT";
+        vimcmd_symbol = "NORMAL";
       };
       directory = {
-        style = "italic cyan";
-        format = "[$path]($style) ";
+        format = "[   $path ](bg:#2D2B40 fg:bright-white)[](fg:#2D2B40)";
       };
-      character = {
-        success_symbol = "[󰇂 ](green)";
-        error_symbol = "[󰇂 ](yellow)";
-        vicmd_symbol = "[󰇂 ](green)";
+      git_branch = {
+        format = "[  $branch ](fg:bright-white)";
       };
       jobs = {
-        symbol = "󰠜";
-        style = "bold bright-black";
+        symbol = " 󰠜 ";
+        style = "bright-white";
+      };
+      status = {
+        format = "[](fg:#2D2B40)[ $symbol$status ](fg:bright-white bg:#2D2B40)";
+        disabled = false;
+        symbol = " ";
+        success_symbol = " ";
+      };
+      hostname = {
+        ssh_only = false;
+        format = "[ $hostname ](italic fg:bright-white bg:#19172C)";
       };
     };
   };
