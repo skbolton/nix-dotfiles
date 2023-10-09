@@ -15,6 +15,7 @@
 
       # editing support
       vim-tmux-navigator
+      nvim-hlslens
       neoscroll-nvim
       nvim-lint
       auto-pairs
