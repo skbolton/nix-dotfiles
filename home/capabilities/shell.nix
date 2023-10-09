@@ -22,6 +22,9 @@
     cdpath = [ "." "/home/orlando" "/home/orlando/Public" "/home/orlando/Documents" "/home/orlando/Notes" ];
     defaultKeymap = "viins";
     dotDir = ".config/zsh";
+    plugins = [
+      { name = "fzf-tab"; src = "${pkgs.zsh-fzf-tab}/share/fzf-tab"; }
+    ];
     shellAliases = {
       t = "task";
       cat = "bat --paging=never";
