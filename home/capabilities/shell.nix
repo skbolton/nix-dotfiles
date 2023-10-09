@@ -116,9 +116,9 @@
       right_format = "$jobs$status$hostname";
       character = {
         format = "[ $symbol ](bold fg:bright-white bg:#19172C)";
-        error_symbol = "INSERT";
-        success_symbol = "INSERT";
-        vimcmd_symbol = "NORMAL";
+        error_symbol = "INS";
+        success_symbol = "INS";
+        vimcmd_symbol = "NOR";
       };
       directory = {
         format = "[   $path ](bg:#2D2B40 fg:bright-white)[](fg:#2D2B40)";
