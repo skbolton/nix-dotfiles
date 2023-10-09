@@ -68,6 +68,11 @@
     setopt EXTENDED_GLOB        # Use extended globbing syntax
     '';
     initExtra = ''
+    autoload -Uz edit-command-line
+    zle -N edit-command-line
+    bindkey -M viins '^f' edit-command-line
+    bindkey -M vicmd '^i' edit-command-line
+    
     cursor_mode() {
       # See https://ttssh2.osdn.jp/manual/4/en/usage/tips/vim.html for cursors
       cursor_block='\e[2 q'
