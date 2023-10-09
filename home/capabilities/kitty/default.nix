@@ -43,7 +43,7 @@ in
       "ctrl+alt+enter" = "set_background_opacity default";
       "ctrl+alt+k" = "change_font_size current +2.0";
       "ctrl+alt+j" = "change_font_size current -2.0";
-      "ctrl+alt+z" = "change_font_size current 22.0";
+      "ctrl+alt+z" = "change_font_size current 18.0";
       "ctrl+alt+u" = "change_font_size current 12.0";
       "ctrl+alt+backspace" = "change_font_size all 0";
       "ctrl+alt+period" =  "send_text current pass fzf\r";
