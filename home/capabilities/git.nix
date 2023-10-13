@@ -50,6 +50,16 @@
         light = false;
         side-by-side = true;
         line-numbers = true;
+        decorations = {
+          syntax-theme = "catppuccin-mocha";
+          minus-style = "syntax #741827";
+          minus-emph-style = "syntax #a8113c";
+          line-numbers-minus-style = "#F38BA8";
+          line-numbers-plus-style = "#94E2D5";
+          plus-style = "syntax #154e45";
+          plus-emph-style = "syntax bold #146675";
+        };
+        features = "decorations";
       };
     };
 
