@@ -19,6 +19,8 @@ require 'colorizer'.setup({
   }
 })
 
+require 'nvim-nonicons'.setup {}
+
 -- local linter = require('lint')
 
 -- linter.linters_by_ft = {

@@ -14,6 +14,7 @@
       venn-nvim
 
       # editing support
+      nvim-nonicons
       vim-tmux-navigator
       nvim-hlslens
       neoscroll-nvim

@@ -105,13 +105,12 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-      format = "$character$directory$git_branch ";
-      right_format = "$jobs$status$hostname";
+      format = "$character$jobs$directory$git_branch ";
       character = {
-        format = "[ $symbol ](bold fg:bright-white bg:#19172C)";
-        error_symbol = "INS";
-        success_symbol = "INS";
-        vimcmd_symbol = "NOR";
+        format = "$symbol";
+        error_symbol = "[   ](bold fg:black bg:red)";
+        success_symbol = "[   ](bold fg:black bg:green)";
+        vimcmd_symbol = "[   ](bold fg:black bg:cyan)";
       };
       directory = {
         format = "[   $path ](bg:#2D2B40 fg:bright-white)[](fg:#2D2B40)";
@@ -124,10 +123,9 @@
         style = "bright-white";
       };
       status = {
-        format = "[](fg:#2D2B40)[ $symbol$status ](fg:bright-white bg:#2D2B40)";
+        format = "[ $symbol$status ](fg:bright-white bg:#2D2B40)";
         disabled = false;
         symbol = " ";
-        success_symbol = " ";
       };
       hostname = {
         ssh_only = false;
