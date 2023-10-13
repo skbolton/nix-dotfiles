@@ -21,6 +21,16 @@ require 'colorizer'.setup({
 
 require 'nvim-nonicons'.setup {}
 
+require 'ibl'.setup {
+  indent = {
+    char = "┊"
+  },
+  scope = {
+    char = "│";
+    -- highlight = "@type"
+  }
+}
+
 -- local linter = require('lint')
 
 -- linter.linters_by_ft = {

@@ -14,6 +14,7 @@
       venn-nvim
 
       # editing support
+      indent-blankline-nvim
       nvim-nonicons
       vim-tmux-navigator
       nvim-hlslens
