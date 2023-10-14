@@ -10,6 +10,10 @@
     ../capabilities/lang/elixir.nix
   ];
 
+  home.sessionVariables = {
+    USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
+  };
+
   fonts.fontconfig.enable = true;
 
   programs.gpg = {

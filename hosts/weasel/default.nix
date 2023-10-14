@@ -6,20 +6,21 @@
 
   wsl = {
     enable = true;
-    wslConf.automount.root = "/mnt";
+    wslConf = {
+      automount.root = "/mnt";
+      network.generateHosts = false;
+    };
     defaultUser = "orlando";
     startMenuLaunchers = true;
     nativeSystemd = false;
-
-    # Enable native Docker support
-    docker-native.enable = true;
-
-    # Enable integration with Docker Desktop (needs to be installed)
-    # docker-desktop.enable = true;
-
   };
 
-  networking.hostName = "weasel";
+  networking = {
+    hostName = "weasel";
+    hosts = {
+      "127.0.0.1" = [ "kubernetes" ];
+    };
+  };
 
   users.users.orlando = {
     isNormalUser = true;
@@ -30,6 +31,7 @@
     ];
   };
 
+  virtualisation.docker.enable = true;
   programs.zsh.enable = true;
 
   # Enable nix flakes
@@ -42,6 +44,7 @@
     git
     zsh
     neovim
+    (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.kubectl google-cloud-sdk.components.gke-gcloud-auth-plugin])
   ];
 
   services.openssh = {
