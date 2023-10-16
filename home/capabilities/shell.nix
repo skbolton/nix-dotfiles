@@ -108,9 +108,9 @@
       format = "$character$jobs$directory$git_branch ";
       character = {
         format = "$symbol";
-        error_symbol = "[   ](bold fg:black bg:red)";
-        success_symbol = "[   ](bold fg:black bg:green)";
-        vimcmd_symbol = "[   ](bold fg:black bg:cyan)";
+        error_symbol = "[   ](bold fg:red bg:#19172C)";
+        success_symbol = "[   ](bold fg:green bg:#19172C)";
+        vimcmd_symbol = "[   ](bold fg:yellow bg:#19172C)";
       };
       directory = {
         format = "[   $path ](bg:#2D2B40 fg:bright-white)[](fg:#2D2B40)";
