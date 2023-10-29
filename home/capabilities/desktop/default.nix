@@ -22,8 +22,9 @@
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      # color-scheme = "prefer-dark";
-      gtk-theme = "Catppuccin-Frappe-Standard-Blue-light";
+      color-scheme = "prefer-dark";
+      # gtk-theme = "Catppuccin-Frappe-Standard-Blue-light";
+      gtk-theme = "Catppuccin-Mocha-Standard-Blue-Dark";
       cursor-theme = "Bibata-Modern-Ice";
       icon-theme = "Fluent-dark";
     };
@@ -32,13 +33,13 @@
   gtk = {
     enable = true;
     theme = {
-      # name = "Catppuccin-Mocha-Standard-Blue-dark";
-      name = "Catppuccin-Frappe-Standard-Blue-light";
+      name = "Catppuccin-Mocha-Standard-Blue-Dark";
+      # name = "Catppuccin-Frappe-Standard-Blue-light";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
         size = "standard"; # compact
         tweaks = [];
-        variant = "frappe";
+        variant = "mocha";
       };
     };
 
@@ -53,5 +54,12 @@
     };
   };
 
-  home.sessionVariables.GTK_THEME = "Catppuccin-Frappe-Standard-Blue-light";
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+    style.name = "adwaita-gtk";
+  };
+
+  # home.sessionVariables.GTK_THEME = "Catppuccin-Frappe-Standard-Blue-light";
+  home.sessionVariables.GTK_THEME = "Catppuccin-Mocha-Standard-Blue-Dark";
 }
