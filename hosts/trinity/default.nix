@@ -16,7 +16,10 @@
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [ "electron-24.8.6" ];
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
