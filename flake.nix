@@ -50,7 +50,7 @@
   # parameters in `outputs` are defined in `inputs` and can be referenced by their names.
   # However, `self` is an exception, This special parameter points to the `outputs` itself (self-reference)
   # The `@` syntax here is used to alias the attribute set of the inputs's parameter, making it convenient to use inside the function.
-  outputs = { self, nixpkgs, hyprland, home-manager, NixOS-WSL, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, NixOS-WSL, ... }@inputs: 
     let
       inherit (self) outputs;
     in {
@@ -89,7 +89,6 @@
         specialArgs = { inherit inputs outputs; };  # pass custom arguments into sub module.
         modules = [
           ./hosts/trinity
-          hyprland.nixosModules.default
           { programs.hyprland.enable = true; }
           home-manager.nixosModules.home-manager
           {
@@ -128,7 +127,6 @@
         # specialArgs = {...}  # pass custom arguments into sub module.
         modules = [
           ./hosts/neo
-          hyprland.nixosModules.default
           { programs.hyprland.enable = true; }
           home-manager.nixosModules.home-manager
           {

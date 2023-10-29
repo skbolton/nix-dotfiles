@@ -29,8 +29,8 @@ exec-once = hyprctl setcursor Bibata-Modern-Ice 22
 exec-once = synology-drive
 exec-once = waybar
 exec-once = [workspace 2 silent] firefox
-exec-once = webcord 
-exec-once = [workspace special:notes silent] kitty --config ~/.config/kitty/kitty-light.conf --title="kitty-delta" --hold smug start delta
+exec-once = webcord
+exec-once = logseq
 exec-once = [workspace special:term silent] kitty --title="kitty-scratch" --hold
 exec-once = kitty
 exec-once = [workspace 4 silent] tidal-hifi

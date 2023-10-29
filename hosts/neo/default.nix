@@ -95,6 +95,8 @@
     pulseaudio
   ];
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
   services.udev.packages = [ pkgs.yubikey-personalization ];
   services.pcscd.enable = true;
   programs.ssh.startAgent = false;
