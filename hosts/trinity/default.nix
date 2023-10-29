@@ -98,6 +98,7 @@
     yubikey-manager
     pavucontrol
     pulseaudio
+    qmk
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

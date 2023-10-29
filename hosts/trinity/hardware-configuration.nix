@@ -77,4 +77,5 @@
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages = [ pkgs.amdvlk ];
+  hardware.keyboard.qmk.enable = true;
 }
