@@ -15,7 +15,7 @@
     lxappearance
     arandr
     gnucash
-    morgen
+    # morgen
     mpv
     tidal-hifi
   ];
