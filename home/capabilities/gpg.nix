@@ -12,6 +12,9 @@
     settings = {
       throw-keyids = true;
     };
+    scdaemonSettings = {
+      disable-ccid = true;
+    };
   };
 }
 
