@@ -1,5 +1,17 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
+let
+  embark-vim = pkgs.vimUtils.buildVimPlugin {
+    name = "embark-vim";
+    version = "2012-12-05";
+    src = pkgs.fetchFromGitHub {
+      owner = "embark-theme";
+      repo = "vim";
+      rev = "main";
+      sha256 = "sha256-jnmrFlNLSXF/SPmyf1RVkL0C8IFbNwGNxvymSKXp2F4=";
+    };
+  };
+in
 {
 
   programs.neovim = {
@@ -74,7 +86,7 @@
       telescope-symbols-nvim
       telescope-fzf-native-nvim
 
-      { plugin = embark-vim; optional = true; }
+      { plugin = embark-vim; }
       { plugin = rose-pine; optional = true; }
       { plugin = nightfox-nvim; optional = true; }
     ];

@@ -11,7 +11,6 @@ elseif theme == "dawnfox" then
   vim.cmd("colorscheme dawnfox")
 else
   vim.o.background = 'dark'
-  vim.cmd("packadd embark-vim")
   vim.g.embark_terminal_italics = true;
   vim.cmd("colorscheme embark")
 end
