@@ -81,12 +81,12 @@ in
     #######################################################################
     # Panes
     #######################################################################
-    bind | split-window -h
-    bind - split-window -v
-    bind H resize-pane -L 5
-    bind J resize-pane -D 5
-    bind K resize-pane -U 5
-    bind L resize-pane -R 5
+    bind | split-window -h -l 33%
+    bind - split-window -v -l 33%
+    bind H resize-pane -L 10
+    bind J resize-pane -D 10
+    bind K resize-pane -U 10
+    bind L resize-pane -R 10
     
     #######################################################################
     # Windows
