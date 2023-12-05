@@ -95,6 +95,7 @@ in
     bind -n S-Right next-window
     bind h previous-window
     bind l next-window
+    bind > display-popup -E -w 50% -h 50%
     
     #######################################################################
     # Clients
