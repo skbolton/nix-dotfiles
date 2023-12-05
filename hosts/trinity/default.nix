@@ -148,6 +148,13 @@
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  services.blueman.enable = true;
+
   hardware.openrgb = {
     package = pkgs.openrgb-with-all-plugins;
     enable = true;
