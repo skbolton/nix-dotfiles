@@ -22,6 +22,14 @@ vim.g.firenvim_config = {
       takeover = 'never',
       priority = 1
     },
+    ['docs.google.com'] = {
+      takeover = 'never',
+      priority = 1
+    },
+    ['outlook.office.com'] = {
+      takeover = 'never',
+      priority = 1
+    },
     [".*"] = {
       takeover = 'nonempty'
     }
