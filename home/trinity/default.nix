@@ -63,6 +63,16 @@
             host.address = "localhost";
             host.port = 54321;
           }
+          {
+            bind.port = 3333;
+            host.address = "localhost";
+            host.port = 3333;
+          }
+          {
+            bind.port = 9090;
+            host.address = "localhost";
+            host.port = 9090;
+          }
         ];
         remoteForwards = [
           {
