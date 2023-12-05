@@ -17,7 +17,6 @@
       indent-blankline-nvim
       nvim-nonicons
       vim-tmux-navigator
-      nvim-hlslens
       neoscroll-nvim
       nvim-lint
       auto-pairs
