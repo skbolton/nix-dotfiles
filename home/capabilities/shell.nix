@@ -11,6 +11,8 @@
     iosevka
     ripgrep
     unzip
+    jq
+    miller
   ];
 
   programs.bat = {
