@@ -18,6 +18,7 @@
     # morgen
     mpv
     tidal-hifi
+    font-manager
   ];
 
   dconf.settings = {
