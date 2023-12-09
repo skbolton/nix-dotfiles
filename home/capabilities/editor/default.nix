@@ -42,7 +42,6 @@ in
       leap-nvim
       nvim-colorizer-lua
       { plugin = markdown-preview-nvim; optional = true; }
-      headlines-nvim
       zk-nvim
       todo-comments-nvim
 

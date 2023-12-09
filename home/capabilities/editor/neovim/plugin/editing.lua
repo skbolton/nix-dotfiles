@@ -9,7 +9,6 @@ leap.opts.safe_labels = {}
 leap.add_default_mappings()
 
 require 'neoscroll'.setup()
-require 'headlines'.setup()
 
 require 'colorizer'.setup({
   user_default_options = {
