@@ -49,10 +49,6 @@ in
     set -g pane-base-index 1
     set -g automatic-rename off
     set -g renumber-windows
-    set -g bell-action other
-    set -g monitor-activity on
-    set -g visual-bell on
-    set -g activity-action other
 
     source ~/.config/tmux/bindings.tmux
     # statusbar theme
