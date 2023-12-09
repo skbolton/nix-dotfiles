@@ -2,7 +2,7 @@ session: BOTM
 root: ~/Public/bitsonthemind
 
 windows:
-  - name: " "
+  - name: " "
     commands:
       - nvim
   - name: "📔"

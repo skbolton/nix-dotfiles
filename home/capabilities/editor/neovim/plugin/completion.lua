@@ -11,7 +11,7 @@ local feedkey = function(key, mode)
 end
 
 local kind_icons = {
-  Text = '',
+  Text = ' ',
   Method = ' ',
   Function = '',
   Constructor = ' ',
@@ -26,7 +26,7 @@ local kind_icons = {
   Enum = ' ',
   Keyword = '',
   Snippet = ' ',
-  Color = ' ',
+  Color = ' ',
   file = ' ',
   Reference = ' ',
   Folder = ' ',

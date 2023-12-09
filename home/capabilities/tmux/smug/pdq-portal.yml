@@ -8,7 +8,7 @@ stop:
   - docker-compose stop
 
 windows:
-  - name: " "
+  - name: " "
     commands:
       - nvim
   - name: " "

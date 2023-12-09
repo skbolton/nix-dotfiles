@@ -2,7 +2,7 @@ session: ${name}
 root: ${root}
 
 windows:
-  - name: " "
+  - name: " "
     commands:
       - nvim
   - name: " "
