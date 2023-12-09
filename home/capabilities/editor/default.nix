@@ -26,6 +26,8 @@ in
       venn-nvim
 
       # editing support
+      noice-nvim
+      nvim-notify
       indent-blankline-nvim
       nvim-nonicons
       vim-tmux-navigator

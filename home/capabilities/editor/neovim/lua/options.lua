@@ -62,7 +62,6 @@ opt.cmdheight = 1
 -- how often to poll for updates
 -- affects things like gutter symbols
 opt.updatetime = 300
-opt.lazyredraw = true
 -- fix the crazy default behavior of how splits are created
 opt.splitbelow = true
 opt.splitright = true
