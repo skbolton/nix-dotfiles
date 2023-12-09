@@ -36,7 +36,6 @@ in
       auto-pairs
       firenvim
       vim-surround
-      vim-slime
       comment-nvim
       vim-repeat
       vim-speeddating

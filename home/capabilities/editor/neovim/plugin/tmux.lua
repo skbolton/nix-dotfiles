@@ -1,5 +1,12 @@
 vim.g.tmux_navigator_disable_when_zoomed = true
 
-vim.g.slime_target = "tmux"
-vim.g.slime_default_config = { socket_name = "default", target_pane = "{bottom}" }
-vim.g.slime_dont_ask_default = 1
+local send_to_tmux = function()
+  -- yank text into v register
+  vim.cmd('normal vip"vy')
+  -- construct command with v register as command to send
+  vim.cmd(string.format('call VimuxRunCommand("%s")', vim.trim(vim.fn.getreg('v'))))
+end
+
+vim.keymap.set('n', '<C-c><C-c>', send_to_tmux)
+
+
