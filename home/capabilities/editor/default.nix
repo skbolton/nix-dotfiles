@@ -39,7 +39,6 @@ in
       vim-slime
       comment-nvim
       vim-repeat
-      vim-endwise
       vim-speeddating
       leap-nvim
       nvim-colorizer-lua
@@ -81,6 +80,7 @@ in
       plenary-nvim
       nvim-treesitter.withAllGrammars
       nvim-treesitter-textobjects
+      nvim-treesitter-endwise
       playground
 
       telescope-nvim
