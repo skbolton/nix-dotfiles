@@ -13,6 +13,8 @@
     unzip
     jq
     miller
+    entr
+    fd
   ];
 
   programs.bat = {
@@ -44,6 +46,11 @@
     plugins = [
       { name = "fzf-tab"; src = "${pkgs.zsh-fzf-tab}/share/fzf-tab"; }
     ];
+    shellGlobalAliases = {
+      E = "| entr -c";
+      F = "| fzf";
+      R = "| rg";
+    };
     shellAliases = {
       t = "task";
       cat = "bat --paging=never";
@@ -100,6 +107,10 @@
     
     color=$(( ( RANDOM % 6 ) + 1 ))
     tput setaf $color && ${pkgs.toilet}/bin/toilet -F border -t -f pagga "Bit by Bit"
+
+    function watch() {
+      fd $1 | entr -c "''${@:2}"
+    }
     '';
   };
 
