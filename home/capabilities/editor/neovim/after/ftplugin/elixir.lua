@@ -6,11 +6,11 @@ bmap(0, 'n', '<localleader>d', ':silent !xdg-open https://hexdocs.pm/', {noremap
 
 blocal.foldmethod = 'indent'
 
-local executable = 'elixir-ls'
+local executable = 'lexical'
 
 if vim.fn.executable(executable) then
   vim.lsp.start {
-    name = 'elixirls',
+    name = 'lexical',
     cmd = { executable },
     capabilities = capabilities,
     root_dir = vim.fs.dirname(vim.fs.find({'mix.exs', '.git'}, { upward = true })[1]),

@@ -43,6 +43,7 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lexical-lsp.url = "github:lexical-lsp/lexical";
   };
 
   # `outputs` are all the build result of the flake.
