@@ -87,6 +87,7 @@ in
     bind J resize-pane -D 10
     bind K resize-pane -U 10
     bind L resize-pane -R 10
+    bind o kill-pane -a
     
     #######################################################################
     # Windows
