@@ -1,3 +1,5 @@
+local map = vim.keymap.set
+
 vim.g.tmux_navigator_disable_when_zoomed = true
 
 local send_to_tmux = function()
@@ -7,6 +9,12 @@ local send_to_tmux = function()
   vim.cmd(string.format('call VimuxRunCommand("%s")', vim.trim(vim.fn.getreg('v'))))
 end
 
-vim.keymap.set('n', '<C-c><C-c>', send_to_tmux)
+map('n', '<C-c><C-c>', send_to_tmux)
+map('n', '<leader>rr', '<CMD>VimuxPromptCommand<CR>')
+map('n', '<leader>r.', '<CMD>VimuxRunLastCommand<CR>')
+map('n', '<leader>rc', '<CMD>VimuxClearTerminalScreen<CR>')
+map('n', '<leader>rq', '<CMD>VimuxCloseRunner<CR>')
+map('n', '<leader>r?', '<CMD>VimuxInspectRunner<CR>')
+map('n', '<leader>rz', '<CMD>VimuxZoomRunner<CR>')
 
 
