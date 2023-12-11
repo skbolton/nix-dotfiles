@@ -5,6 +5,8 @@ set-option -g pane-active-border-style "bg=black,fg=magenta"
 set-option -g pane-border-style "fg=brightwhite"
 set-option -g message-style "bg=green,fg=black"
 set-option -g message-command-style "bg=green,fg=black"
+set -g popup-border-style "fg=#585273"
+set -g popup-border-lines "rounded"
 
 # Status line
 set -g status-style default
