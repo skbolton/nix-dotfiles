@@ -26,6 +26,13 @@ require 'notify'.setup {
 }
 
 require 'noice'.setup {
+  cmdline = {
+    format = {
+      cmdline = { pattern = "^:", icon = "λ", lang = "vim" },
+      search_down = { kind = "search", pattern = "^/", icon = "󱎸 ", lang = "regex" },
+      search_up = { kind = "search", pattern = "^%?", icon = "󱈇 ", lang = "regex" },
+    }
+  },
   lsp = {
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
     override = {
@@ -42,6 +49,22 @@ require 'noice'.setup {
     inc_rename = false, -- enables an input dialog for inc-rename.nvim
     lsp_doc_border = false, -- add a border to hover docs and signature help
   }
+  views = {
+    cmdline_popup = {
+      position = {
+        row = "10%";
+        col = "50%"
+      },
+      border = {
+        style = "none",
+        padding = { 1, 1 },
+      },
+      filter_options = {},
+      win_options = {
+        winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+      },
+    },
+  },
 }
 
 require 'nvim-nonicons'.setup {}

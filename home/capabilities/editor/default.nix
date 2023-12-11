@@ -27,6 +27,7 @@ in
 
       # editing support
       noice-nvim
+      nui-nvim
       nvim-notify
       indent-blankline-nvim
       nvim-nonicons
