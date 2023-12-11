@@ -15,6 +15,7 @@ map('n', '<leader>r.', '<CMD>VimuxRunLastCommand<CR>')
 map('n', '<leader>rc', '<CMD>VimuxClearTerminalScreen<CR>')
 map('n', '<leader>rq', '<CMD>VimuxCloseRunner<CR>')
 map('n', '<leader>r?', '<CMD>VimuxInspectRunner<CR>')
+map('n', '<leader>r!', '<CMD>VimuxInterruptRunner<CR>')
 map('n', '<leader>rz', '<CMD>VimuxZoomRunner<CR>')
 
 
