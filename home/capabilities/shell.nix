@@ -206,5 +206,18 @@
     git = true;
   };
 
-  programs.btop.enable = true;
+  programs.btop = {
+    enable = true;
+    settings = {
+      color_theme = "embark";
+      vim_keys = true;
+    };
+  };
+
+  xdg.configFile."btop/themes/embark.theme".source = pkgs.fetchFromGitHub {
+    owner = "embark-theme";
+    repo = "bashtop";
+    rev = "master";
+    sha256 = "sha256-HHoCVdCH4jCIK0JzoYagURcU722sBARtFkNeGPXuCNM=";
+  } + "/embark.theme";
 }
