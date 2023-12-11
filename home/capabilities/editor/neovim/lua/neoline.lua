@@ -136,7 +136,7 @@ gls.right[1] = {
     provider = function()
       active_client = vim.lsp.buf_get_clients()[1]
       if active_client ~= nil then
-        return '   '
+        return '   '
       else
         return '   '
       end
@@ -153,7 +153,7 @@ gls.right[2] = {
       if testing.TESTING_STATUS == 'init' then
         return '   '
       elseif testing.TESTING_STATUS == 'passing' then
-        return '   '
+        return '   '
       elseif testing.TESTING_STATUS == 'running' then
         return '   '
       elseif testing.TESTING_STATUS == 'failing' then
