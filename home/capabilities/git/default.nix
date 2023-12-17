@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  home.packages = [
+    (import ./git-get.nix { inherit pkgs; })
+  ];
+
   programs.gh = {
     enable = true;
     settings = {
