@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../capabilities/git.nix
+    ../capabilities/git
     ../capabilities/shell.nix
     ../capabilities/editor
     ../capabilities/tmux

@@ -3,7 +3,7 @@
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
-   ../capabilities/git.nix
+   ../capabilities/git
    ../capabilities/gpg.nix
    ../capabilities/shell.nix
    ../capabilities/kitty
