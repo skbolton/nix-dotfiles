@@ -3,6 +3,15 @@ local v = vim.v
 
 g.VimuxOrientation = "h"
 g.VimuxHeight = "30"
+g.VimuxCloseOnExit = true;
+
+g["test#custom_strategies"] = { 
+  vimux_watch = function(args) 
+    vim.cmd("call VimuxClearTerminalScreen()")
+    vim.cmd("call VimuxClearRunnerHistory()")
+    vim.cmd(string.format("call VimuxRunCommand('fd . | entr -c %s')", args))
+  end
+}
 
 g["test#preserve_screen"] = false
 g['test#javascript#jest#options'] = '--reporters jest-vim-reporter'

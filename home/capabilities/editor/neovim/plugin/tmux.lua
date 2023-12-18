@@ -2,14 +2,17 @@ local map = vim.keymap.set
 
 vim.g.tmux_navigator_disable_when_zoomed = true
 
-local send_to_tmux = function()
+map({'n', 'v'}, '<C-c><C-c>', function() 
   -- yank text into v register
-  vim.cmd('normal vip"vy')
+  if vim.api.nvim_get_mode()["mode"] == "n" then
+    vim.cmd('normal vip"vy')
+  else
+    vim.cmd('normal "vy')
+  end
   -- construct command with v register as command to send
-  vim.cmd(string.format('call VimuxRunCommand("%s")', vim.trim(vim.fn.getreg('v'))))
-end
-
-map('n', '<C-c><C-c>', send_to_tmux)
+  -- vim.cmd(string.format('call VimuxRunCommand("%s")', vim.trim(vim.fn.getreg('v'))))
+  vim.cmd("call VimuxRunCommand(@v)")
+end)
 map('n', '<leader>rr', '<CMD>VimuxPromptCommand<CR>')
 map('n', '<leader>r.', '<CMD>VimuxRunLastCommand<CR>')
 map('n', '<leader>rc', '<CMD>VimuxClearTerminalScreen<CR>')
