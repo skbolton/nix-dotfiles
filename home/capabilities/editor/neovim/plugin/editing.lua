@@ -28,66 +28,69 @@ notify.setup {
   stages = "fade_in_slide_out"
 }
 
-require 'noice'.setup {
-  cmdline = {
-    format = {
-      cmdline = { pattern = "^:", icon = "λ", lang = "vim" },
-      search_down = { kind = "search", pattern = "^/", icon = "󱎸 ", lang = "regex" },
-      search_up = { kind = "search", pattern = "^%?", icon = "󱈇 ", lang = "regex" },
-    }
-  },
-  lsp = {
-    -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-    override = {
-      ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-      ["vim.lsp.util.stylize_markdown"] = true,
-      ["cmp.entry.get_documentation"] = true,
+if not vim.g.started_by_firenvim then
+  require 'noice'.setup {
+    cmdline = {
+      format = {
+        cmdline = { pattern = "^:", icon = "λ", lang = "vim" },
+        search_down = { kind = "search", pattern = "^/", icon = "󱎸 ", lang = "regex" },
+        search_up = { kind = "search", pattern = "^%?", icon = "󱈇 ", lang = "regex" },
+      }
     },
-  },
-  -- you can enable a preset for easier configuration
-  presets = {
-    bottom_search = true, -- use a classic bottom cmdline for search
-    command_palette = true, -- position the cmdline and popupmenu together
-    long_message_to_split = true, -- long messages will be sent to a split
-    inc_rename = false, -- enables an input dialog for inc-rename.nvim
-    lsp_doc_border = false, -- add a border to hover docs and signature help
-  },
-  routes = {
-    {
-      view = "notify",
-      filter = { event = "msg_showmode" },
+    lsp = {
+      progress = { enabled = true },
+      -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+      override = {
+        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        ["vim.lsp.util.stylize_markdown"] = true,
+        ["cmp.entry.get_documentation"] = true,
+      },
     },
-    {
-      filter = {
-        event = 'msg_show',
-        any = {
-          { find = '%d+L, %d+B' },
-          { find = '; after #%d+' },
-          { find = '; before #%d+' },
-          { find = '%d fewer lines' },
-          { find = '%d more lines' },
+    -- you can enable a preset for easier configuration
+    presets = {
+      bottom_search = true, -- use a classic bottom cmdline for search
+      command_palette = true, -- position the cmdline and popupmenu together
+      long_message_to_split = true, -- long messages will be sent to a split
+      inc_rename = false, -- enables an input dialog for inc-rename.nvim
+      lsp_doc_border = false, -- add a border to hover docs and signature help
+    },
+    routes = {
+      {
+        view = "notify",
+        filter = { event = "msg_showmode" },
+      },
+      {
+        filter = {
+          event = 'msg_show',
+          any = {
+            { find = '%d+L, %d+B' },
+            { find = '; after #%d+' },
+            { find = '; before #%d+' },
+            { find = '%d fewer lines' },
+            { find = '%d more lines' },
+          },
+        },
+        opts = { skip = true },
+      }
+    },
+    views = {
+      cmdline_popup = {
+        position = {
+          row = "10%";
+          col = "50%"
+        },
+        border = {
+          style = "none",
+          padding = { 1, 1 },
+        },
+        filter_options = {},
+        win_options = {
+          winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
         },
       },
-      opts = { skip = true },
-    }
-  },
-  views = {
-    cmdline_popup = {
-      position = {
-        row = "10%";
-        col = "50%"
-      },
-      border = {
-        style = "none",
-        padding = { 1, 1 },
-      },
-      filter_options = {},
-      win_options = {
-        winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-      },
     },
-  },
-}
+  }
+end
 
 require 'nvim-nonicons'.setup {}
 
