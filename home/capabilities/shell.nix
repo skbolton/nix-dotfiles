@@ -108,8 +108,12 @@
     color=$(( ( RANDOM % 6 ) + 1 ))
     tput setaf $color && ${pkgs.toilet}/bin/toilet -F border -t -f pagga "Bit by Bit"
 
-    function watch() {
+    function w() {
       fd $1 | entr -c "''${@:2}"
+    }
+
+    function ew() {
+      fd "\.exs?$" | entr -c "$@"
     }
     '';
   };
