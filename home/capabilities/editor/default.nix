@@ -8,7 +8,7 @@ let
       owner = "embark-theme";
       repo = "vim";
       rev = "main";
-      sha256 = "sha256-jnmrFlNLSXF/SPmyf1RVkL0C8IFbNwGNxvymSKXp2F4=";
+      sha256 = "sha256-SRTa+hW9y3GJmMvZ2hpEg73FMhhbtCMkorRNxtbjaJc=";
     };
   };
 in
