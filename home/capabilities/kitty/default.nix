@@ -5,8 +5,8 @@ let
 in
 {
 
-  xdg.dataFile."/fonts/nonicons.ttf" = {
-    text = pkgs.fetchFromGitHub {
+  xdg.dataFile."fonts/nonicons.ttf" = {
+    source = pkgs.fetchFromGitHub {
       owner = "yamatsum";
       repo = "nonicons";
       rev = "master";
