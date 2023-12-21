@@ -38,7 +38,6 @@ in
       confirm_os_window_close = 0;
       copy_on_select = "clipboard";
       clipboard_control = "write-clipboard write-primary no-append";
-      enable_audio_bell = "no";
     };
 
     environment = {
