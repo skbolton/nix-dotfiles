@@ -7,6 +7,7 @@ in
   home.packages = [ 
     pkgs.smug
     rally
+    pkgs.imagemagick
   ];
 
   programs.tmux = {
@@ -41,6 +42,7 @@ in
     terminal = "tmux-256color";
 
     extraConfig = ''
+    set -g allow-passthrough on
     set -gw xterm-keys on
     set -g focus-events on
     set -as terminal-features ',xterm*:RGB'
