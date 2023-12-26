@@ -26,6 +26,32 @@ in
       venn-nvim
 
       # editing support
+      { 
+        plugin = (pkgs.vimUtils.buildVimPlugin {
+          name = "mdeval-nvim";
+          version = "2654caf";
+          src = pkgs.fetchFromGitHub {
+            owner = "jubnzv";
+            repo = "mdeval.nvim";
+            rev = "master";
+            sha256 = "sha256-z+xowZ2ulJB5YcAW0OKAwcEed2iMdHYTwBkzKp5MHmQ=";
+          };
+         });
+        optional = true;
+      }
+      { 
+        plugin = (pkgs.vimUtils.buildVimPlugin {
+          name = "edit-code-block.nvim";
+          version = "5e4e310";
+          src = pkgs.fetchFromGitHub {
+            owner = "dawsers";
+            repo = "edit-code-block.nvim";
+            rev = "main";
+            sha256 = "sha256-rB37XE0cvOCmFjSEVSHFl95KVJ+ScMFnGWYfYQiK5CQ=";
+          };
+         });
+        optional = true;
+      }
       noice-nvim
       nui-nvim
       nvim-notify

@@ -1,7 +1,34 @@
+
 local blocal = vim.opt_local
 vim.cmd("packadd markdown-preview.nvim")
+vim.cmd("packadd vimplugin-mdeval-nvim")
+vim.cmd("packadd vimplugin-edit-code-block.nvim")
+
+require 'mdeval'.setup {
+  results_label = "**RESULTS**",
+  require_confirmation = false,
+  eval_options = {}
+}
+
+require 'ecb'.setup {
+  wincmd = "vsplit"
+}
+
+local run_code_block = function()
+  if vim.api.nvim_get_mode()["mode"] == "n" then
+    vim.cmd('normal vib"vy')
+  else
+    vim.cmd('normal "vy')
+  end
+  vim.cmd("call VimuxRunCommand(@v)")
+end
 
 vim.keymap.set('n', '<localleader>r', '<CMD>MarkdownPreview<CR>', { buffer = true })
+vim.keymap.set('n', '<localleader>t', '<CMD>! md-tangle -f %<CR>', { buffer = true })
+vim.keymap.set('n', '<C-c><C-c>', run_code_block, { buffer = true })
+vim.keymap.set('n', '<C-c><C-x>', '<CMD>MdEval<CR>', { buffer = true })
+vim.keymap.set('n', '<C-c><C-e>', '<CMD>EditCodeBlock<CR>', { buffer = true })
+
 blocal.textwidth = 120
 blocal.softtabstop = 2
 blocal.shiftwidth = 2
@@ -21,46 +48,7 @@ local toggle_todo = function()
   end
 end
 
-local todo_states = 'TODO|CANC|WAIT|DONE|BLOCK|NEXT'
-
-local undone = function()
-  vim.cmd('s/\\v(' .. todo_states ..  ')\\:/TODO:')
-  vim.cmd('nohlsearch')
-end
-
-local done = function() 
-  vim.cmd('s/\\v(' .. todo_states .. ')\\:/DONE:')
-  vim.cmd('nohlsearch')
-end
-
-local next = function() 
-  vim.cmd('s/\\v(' .. todo_states .. ')\\:/NEXT:')
-  vim.cmd('nohlsearch')
-end
-
-local wait = function() 
-  vim.cmd('s/\\v(' .. todo_states .. ')\\:/WAIT:')
-  vim.cmd('nohlsearch')
-end
-
-local canc = function() 
-  vim.cmd('s/\\v(' .. todo_states .. ')\\:/CANC:')
-  vim.cmd('nohlsearch')
-end
-
-local block = function() 
-  vim.cmd('s/\\v(' .. todo_states .. ')\\:/BLOCK:')
-  vim.cmd('nohlsearch')
-end
-
-
 vim.keymap.set('n', '<C-SPACE>', toggle_todo, { buffer = true })
-vim.keymap.set('n', '<localleader>tu', undone, { buffer = true })
-vim.keymap.set('n', '<localleader>td', done, { buffer = true })
-vim.keymap.set('n', '<localleader>tc', canc, { buffer = true })
-vim.keymap.set('n', '<localleader>tw', wait, { buffer = true })
-vim.keymap.set('n', '<localleader>tb', block, { buffer = true })
-vim.keymap.set('n', '<localleader>tn', next, { buffer = true })
 vim.keymap.set('i', '<C-t>t', '**<C-R>=strftime("%H:%M")<CR>** ', { buffer = true })
 vim.keymap.set('i', '<C-t>d', '**<C-R>=strftime("%Y-%m-%d")<CR>** ', { buffer = true })
 

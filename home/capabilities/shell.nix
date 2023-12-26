@@ -15,6 +15,7 @@
     miller
     entr
     fd
+    md-tangle
   ];
 
   programs.bat = {
@@ -81,7 +82,7 @@
     export NNN_COLORS="6666"
     export NNN_OPTS=Hd
     export NNN_FIFO=/tmp/nnn.fifo
-    export ZK_NOTEBOOK_DIR=$HOME/Documents/Ares
+    export ZK_NOTEBOOK_DIR="$HOME/Life/00-09 System/02 Logs/"
     export TIMEWARRIORDB="$HOME/Documents/Ares/Time"
     '';
 
@@ -152,7 +153,7 @@
   };
 
   programs.nnn = {
-    package = pkgs.nnn.override ({ withEmojis = true; extraMakeFlags = ["O_NAMEFIRST=1"]; });
+    package = pkgs.nnn.override ({ withNerdIcons = true; extraMakeFlags = ["O_NAMEFIRST=1"]; });
     enable = true;
     bookmarks = {
       a = "~/Documents/Archive";
