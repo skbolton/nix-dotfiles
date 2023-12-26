@@ -58,9 +58,6 @@
       mv = "mv -iv";
       cp = "cp -iv";
       rm = "rm -v";
-      mux = "tmux";
-      muxa = "tmux a";
-      muxk = "tmux kill-server";
       v = "nvim";
       m = "iex -S mix";
       ms = "iex -S mix phx.server";

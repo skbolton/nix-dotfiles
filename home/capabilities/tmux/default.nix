@@ -2,8 +2,18 @@
 
 let 
   rally = import ./rally.nix { inherit pkgs; };
+  tmux = pkgs.tmux;
 in
 {
+
+  programs.zsh = {
+    shellAliases = {
+      mux = "${tmux}/bin/tmux";
+      muxa = "${tmux}/bin/tmux a";
+      muxk = "${tmux}/bin/tmux kill-server";
+    };
+  };
+
   home.packages = [ 
     pkgs.smug
     rally
