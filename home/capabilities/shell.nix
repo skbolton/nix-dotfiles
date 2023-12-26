@@ -79,8 +79,6 @@
     export NNN_COLORS="6666"
     export NNN_OPTS=Hd
     export NNN_FIFO=/tmp/nnn.fifo
-    export ZK_NOTEBOOK_DIR="$HOME/Life/00-09 System/02 Logs/"
-    export TIMEWARRIORDB="$HOME/Documents/Ares/Time"
     '';
 
     # how to see where a package ends up in the store
