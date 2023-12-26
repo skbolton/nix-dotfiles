@@ -1,12 +1,18 @@
+local nnn = require 'nnn'
 local map = vim.keymap.set
 
-vim.g["nnn#action"] = {
-  ['<c-t>'] = 'tab split',
-  ['<c-x>'] = 'split',
-  ['<c-v>'] = 'vsplit' 
+nnn.setup {
+  offset = true,
+  picker = {
+    cmd = "tmux new-session -s EXPLR nnn -Pp",
+    border = "rounded"
+  },
+  mappings = {
+    { "<C-t>", nnn.builtin.open_in_tab },       -- open file(s) in tab
+    { "<C-x>", nnn.builtin.open_in_split },     -- open file(s) in split
+    { "<C-v>", nnn.builtin.open_in_vsplit },    -- open file(s) in vertical split
+  }
 }
-
-vim.g["nnn#set_default_mappings"] = false
 
 map('n', '<leader>E', '<CMD>NnnExplorer<CR>')
 map('n', '<leader>e', '<CMD>NnnPicker %:p<CR>')

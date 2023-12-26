@@ -82,7 +82,17 @@ in
       cmp-nvim-lua
       luasnip
 
-      nnn-vim
+      # nnn-vim
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "nnn-nvim";
+        version = "2023-12-24";
+        src = pkgs.fetchFromGitHub {
+          owner = "luukvbaal";
+          repo = "nnn.nvim";
+          rev = "master";
+          sha256 = "sha256-iJTN1g5uoS6yj0CZ6Q5wsCAVYVim5zl4ObwVyLtJkQ0=";
+        };
+       })
 
       gitsigns-nvim
       diffview-nvim
