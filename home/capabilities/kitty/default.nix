@@ -26,11 +26,11 @@ in
       background_opacity = 1;
       cursor_shape = "beam";
 
-      font_family = "Lilex";
-      # Yep they spelled medium wrong
-      bold_font = "Lilex Meduim";
-      italic_font = "Lilex Italic";
-      font_size = "12.0";
+      font_family = "Berkeley Mono";
+      bold_font = "Berkeley Mono Bold";
+      bold_italic_font = "Berkeley Mono Bold Italic";
+      italic_font = "Operator Mono Book Italic";
+      font_size = "13.0";
 
       # Terminal Settings
       allow_remote_control = "yes";
