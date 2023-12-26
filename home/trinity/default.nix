@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ../../modules/home-manager/monitors.nix
+    ../../modules/home-manager/keyboard.nix
     inputs.hyprland.homeManagerModules.default
     ../capabilities/git
     ../capabilities/gpg.nix
@@ -135,6 +137,24 @@
       docker-compose
     ];
   };
+
+  monitors = [
+    {
+      name = "DP-5";
+      width = 5120;
+      height = 2880;
+      scale = "1.77778";
+      workspaces = ["1" "3"];
+    }
+    {
+      name = "DP-1";
+      width = 2560;
+      height = 2880;
+      scale = "1.25";
+      x = 2880;
+      workspaces = ["2" "4"];
+    }
+  ];
 
   programs.home-manager.enable = true;
   # Nicely reload system units when changing configs
