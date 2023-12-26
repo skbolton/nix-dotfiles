@@ -9,7 +9,7 @@
 
   programs.taskwarrior = {
     enable = true;
-    colorTheme = "dark-violets-256";
+    colorTheme = "dark-gray-blue-256";
     config = {
       verbose = 1;
       alias = {
