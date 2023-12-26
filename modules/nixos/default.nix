@@ -1,3 +1,1 @@
-{
-  openrgb = import ./openrgb.nix;
-}
+{ }

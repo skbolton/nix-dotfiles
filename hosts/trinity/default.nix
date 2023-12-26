@@ -7,7 +7,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-    outputs.nixosModules.openrgb
     ./hardware-configuration.nix
     ];
 
@@ -159,7 +158,7 @@
 
   services.blueman.enable = true;
 
-  hardware.openrgb = {
+  services.hardware.openrgb = {
     package = pkgs.openrgb-with-all-plugins;
     enable = true;
   };
