@@ -2,7 +2,7 @@
 
 {
   home.sessionVariables = {
-    TIMECARDS = "$HOME/Life/00-09-System/03-Quantified/03.10-Timecards/$(date +%Y)";
+    TIMECARDS = "$HOME/00-09-System/03-Quantified/03.10-Timecards/$(date +%Y)";
   };
 
   programs.zsh = {
