@@ -113,7 +113,7 @@
         workspace_swipe = true;
       };
 
-      "device:getech-hugh-trackball-1" = {
+      "device:getech-huge-trackball-1" = {
         "scroll_method" = "on_button_down";
         "scroll_button" = 279;
         "natural_scroll" = true;
