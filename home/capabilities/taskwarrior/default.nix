@@ -5,7 +5,6 @@
     enable = true;
     colorTheme = "dark-gray-blue-256";
     config = {
-      verbose = 1;
       alias = {
         "@" = "context";
       };
