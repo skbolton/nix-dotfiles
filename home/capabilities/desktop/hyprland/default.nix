@@ -16,6 +16,7 @@
     inputs.hyprland-contrib.packages.x86_64-linux.grimblast
     neofetch 
     rofi-emoji
+    libnotify
   ];
 
   programs.wofi.enable = true;
@@ -35,6 +36,7 @@
         "webcord"
         "[workspace special:term silent] kitty --title='kitty-scratch' --hold"
         "kitty"
+        "remind -z -k':notify-send \"Reminder!\" %s' ~/00-09-System/02-Logs/02.10-Journal/"
       ];
 
       workspace = lib.lists.flatten (map

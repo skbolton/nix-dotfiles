@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.inter ];
+  home.packages = with pkgs; [ inter mpv ];
 
   services.dunst = {
     enable = true;
@@ -39,6 +39,19 @@
         appname = "Discord";
         urgency = "low";
       };
+
+      beep = {
+        summary = "Remind*";
+        urgency = "critical";
+        script = "/home/orlando/.config/dunst/play_beep.sh";
+      };
     };
   };
+
+  xdg.configFile."dunst/play_beep.sh" = {
+    executable = true;
+    text = "${pkgs.mpv}/bin/mpv ~/.config/dunst/beep.mp3";
+  };
+
+  xdg.configFile."dunst/beep.mp3".source = ./beep.mp3;
 }

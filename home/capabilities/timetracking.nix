@@ -13,5 +13,6 @@
 
   home.packages = with pkgs; [
     hledger
+    remind
   ];
 }
