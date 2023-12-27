@@ -151,14 +151,11 @@
     package = pkgs.nnn.override ({ withNerdIcons = true; extraMakeFlags = ["O_NAMEFIRST=1"]; });
     enable = true;
     bookmarks = {
-      a = "~/Documents/Archive";
-      d = "~/Documents/Delta";
-      h = "~/Documents/Delta/Areas/Home";
-      D = "~/Documents";
-      n = "~/Documents/Notes";
+      d = "~/Documents";
       o = "~/Downloads";
-      f = "~/Documents/Delta/Areas/Finances/statements/$(date +%Y)";
-      w = "~/Pictures/Wallpapers";
+      n = "~/50-59-Reference/";
+      f = "~/10-19-Life/10-Finance/10.12-Statements/$(date +%Y)";
+      w = "~/80-89-Media/80-Pictures/80.10-Wallpapers";
     };
     plugins = {
         mappings = {
