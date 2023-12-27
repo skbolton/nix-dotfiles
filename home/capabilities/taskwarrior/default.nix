@@ -1,12 +1,6 @@
 { pkgs, ... }:
-{
-  home.packages = with pkgs; [
-    # TODO: Figure out how to make this part of the hook
-    # This isn't very nixy
-    python3
-    timewarrior
-  ];
 
+{
   programs.taskwarrior = {
     enable = true;
     colorTheme = "dark-gray-blue-256";
@@ -42,11 +36,6 @@
     extraConfig = ''
     include $HOME/Documents/Demeter/Computer/Taskwarrior/credentials
     '';
-  };
-
-  xdg.dataFile."task/hooks/on-modify.timewarrior" = {
-    source = "${pkgs.timewarrior}/share/doc/timew/ext/on-modify.timewarrior";
-    executable = true;
   };
 
   services.taskwarrior-sync = {
