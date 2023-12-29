@@ -13,7 +13,7 @@
       mainBar = {
         margin = "0";
         layer = "top";
-        modules-left = [ "custom/nix" "wlr/workspaces" "mpris" ];
+        modules-left = [ "custom/nix" "hyprland/workspaces" "mpris" ];
         modules-center = [ "wlr/taskbar"];
         modules-right = [ "custom/task-context" "network#interface" "network#speed" "cpu" "temperature" "backlight" "battery" "clock" "custom/notification" "tray" ];
 
@@ -24,7 +24,7 @@
           "4" = [];
         };
 
-        "wlr/workspaces" = {
+        "hyprland/workspaces" = {
           format = "{icon}";
           on-click = "activate";
           sort-by-number = true;
