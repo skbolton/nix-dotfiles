@@ -31,8 +31,9 @@
         background = "#2D2B40";
       };
 
-      urgency_high = {
-        background = "#2D2B40";
+      urgency_critical = {
+        foreground = "#2D2B40";
+        background = "#D4BFFF";
       };
 
       discord = {
