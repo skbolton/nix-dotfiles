@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ../../modules/home-manager/monitors.nix
+    ../../modules/home-manager/keyboard.nix
     inputs.hyprland.homeManagerModules.default
    ../capabilities/git
    ../capabilities/gpg.nix
@@ -77,6 +79,21 @@
         ];
       };
     };
+  };
+
+  monitors = [
+    {
+      name = "eDP-1";
+      width = 3072;
+      height = 1920;
+      scale = "1.5";
+      workspaces = ["1" "2" "3" "4" "5" "6"];
+    }
+  ];
+
+  keyboard = {
+    variant = "colemak";
+    options = "lv3:ralt_alt";
   };
 
   home = {
