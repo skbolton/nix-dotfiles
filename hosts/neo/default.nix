@@ -73,6 +73,10 @@
   # sound.enable = true;
   # hardware.pulseaudio.enable = true;
 
+  hardware = {
+    bluetooth.enable = true;
+  };
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -104,6 +108,7 @@
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
   services.pcscd.enable = true;
+  services.blueman.enable = true;
   programs.ssh.startAgent = false;
 
   services.openssh = {
