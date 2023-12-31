@@ -18,6 +18,8 @@
     ../capabilities/taskwarrior
     ../capabilities/networking
     ../capabilities/lang/elixir.nix
+    ../capabilities/habits.nix
+    ../capabilities/timetracking.nix
   ];
 
   fonts.fontconfig.enable = true;
