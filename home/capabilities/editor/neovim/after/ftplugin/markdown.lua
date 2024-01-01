@@ -23,11 +23,29 @@ local run_code_block = function()
   vim.cmd("call VimuxRunCommand(@v)")
 end
 
+local clock_in = function()
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  vim.fn.append(line, {
+    string.format("```ledger tangle:%s/%s.timeclock", os.getenv("$TIMECARDS"), os.date("%Y-%m-%d")),
+    "i " .. os.date("%Y/%m/%d") .. " " .. os.date("%H:%M:%S"),
+    "```"
+  })
+end
+
+local clock_out = function()
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  vim.fn.append(line, {
+    "o " .. os.date("%Y/%m/%d") .. " " .. os.date("%H:%M:%S"),
+  })
+end
+
 vim.keymap.set('n', '<localleader>r', '<CMD>MarkdownPreview<CR>', { buffer = true })
 vim.keymap.set('n', '<localleader>t', '<CMD>! md-tangle -f %<CR>', { buffer = true })
 vim.keymap.set('n', '<C-c><C-c>', run_code_block, { buffer = true })
 vim.keymap.set('n', '<C-c><C-x>', '<CMD>MdEval<CR>', { buffer = true })
 vim.keymap.set('n', '<C-c><C-e>', '<CMD>EditCodeBlock<CR>', { buffer = true })
+vim.keymap.set('n', '<localleader>ci', clock_in, { buffer = true })
+vim.keymap.set('n', '<localleader>co', clock_out, { buffer = true })
 
 blocal.textwidth = 120
 blocal.softtabstop = 2
