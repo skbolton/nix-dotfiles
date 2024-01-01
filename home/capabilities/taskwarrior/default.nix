@@ -10,7 +10,7 @@
       };
       report = {
         next = {
-          filter = "+READY limit:20";
+          filter = "-milestone +READY limit:20";
         };
       };
       context = {
