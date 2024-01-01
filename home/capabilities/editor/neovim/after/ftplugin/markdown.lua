@@ -26,7 +26,7 @@ end
 local clock_in = function()
   local line = vim.api.nvim_win_get_cursor(0)[1]
   vim.fn.append(line, {
-    string.format("```ledger tangle:%s/%s.timeclock", os.getenv("$TIMECARDS"), os.date("%Y-%m-%d")),
+    string.format("```ledger tangle:%s/%s.timeclock", os.getenv("TIMECARDS"), os.date("%Y-%m-%d")),
     "i " .. os.date("%Y/%m/%d") .. " " .. os.date("%H:%M:%S"),
     "```"
   })
