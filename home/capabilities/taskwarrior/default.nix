@@ -3,7 +3,7 @@
 {
   programs.taskwarrior = {
     enable = true;
-    colorTheme = "dark-gray-blue-256";
+    colorTheme = ./embark.theme;
     config = {
       alias = {
         "@" = "context";
