@@ -1,9 +1,9 @@
 session: DELTA
-root: ~/Documents
+root: ~/
 
 windows:
-  - name: "Ares  "
-    root: "Ares"
+  - name: "󰓥 "
+    root: "00-09-System"
     layout: main-vertical
     commands:
       - zk log
@@ -11,11 +11,11 @@ windows:
       - type: vertical
         commands:
           - task
-  - name: "Athena 󰧑 "
-    root: "Athena"
+  - name: "󰧑 "
+    root: "50-59-Reference"
     commands:
       - nvim +ZkNotes
-  - name: "Demeter 󰢒 "
-    root: "Demeter"
+  - name: "󱉟 "
+    root: "10-19-Life"
     commands:
       - nnn
