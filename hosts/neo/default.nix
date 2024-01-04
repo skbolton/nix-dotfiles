@@ -126,6 +126,10 @@
 
   services.auto-cpufreq.enable = true;
 
+  xdg.portal = {
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
 
