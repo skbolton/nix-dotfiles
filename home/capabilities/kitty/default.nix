@@ -110,8 +110,6 @@ in
   include ./themes/tantric.conf
   '';
 
-  xdg.dataFile."fonts/IBMPlexMono.ttf".source = ./IBMPlexMono.ttf;
-
   xdg.dataFile."fonts/Lilex" = {
     source = ./Lilex;
     recursive = true;
