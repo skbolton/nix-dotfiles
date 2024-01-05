@@ -9,7 +9,7 @@ in
     source = pkgs.fetchFromGitHub {
       owner = "yamatsum";
       repo = "nonicons";
-      rev = "master";
+      rev = "8454b3b";
       sha256 = "sha256-c2UUef5/l5ugKwWV8R3gijD6aorw9H4ca+mGjy+VyYE=";
     } + "/dist/nonicons.ttf";
   };
