@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./rgb.nix
     ../../modules/home-manager/monitors.nix
     ../../modules/home-manager/keyboard.nix
     inputs.hyprland.homeManagerModules.default
@@ -145,7 +146,7 @@
       width = 5120;
       height = 2880;
       scale = "1.77778";
-      workspaces = ["1" "3"];
+      workspaces = [ "1" "3" ];
     }
     {
       name = "DP-1";
@@ -153,7 +154,7 @@
       height = 2880;
       scale = "1.25";
       x = 2880;
-      workspaces = ["2" "4"];
+      workspaces = [ "2" "4" ];
     }
   ];
 
