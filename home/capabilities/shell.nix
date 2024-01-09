@@ -118,6 +118,7 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
+      add_newline = true;
       format = "$character$jobs$directory$git_branch ";
       character = {
         format = "$symbol";
