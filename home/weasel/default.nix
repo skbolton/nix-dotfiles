@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }: 
+{ pkgs, ... }:
 
 {
   imports = [
@@ -8,6 +8,7 @@
     ../capabilities/tmux
     ../capabilities/kitty
     ../capabilities/lang/elixir.nix
+    ../capabilities/lang/nix.nix
   ];
 
   home.sessionVariables = {
@@ -19,7 +20,7 @@
   programs.gpg = {
     enable = true;
     publicKeys = [
-      { 
+      {
         source = "/etc/nixos/my-key.asc";
         trust = 5;
       }

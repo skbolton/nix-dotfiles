@@ -1,23 +1,24 @@
-{ inputs, config, pkgs, ... }: 
+{ inputs, pkgs, ... }:
 
 {
   imports = [
     ../../modules/home-manager/monitors.nix
     ../../modules/home-manager/keyboard.nix
     inputs.hyprland.homeManagerModules.default
-   ../capabilities/git
-   ../capabilities/gpg.nix
-   ../capabilities/shell.nix
-   ../capabilities/kitty
-   ../capabilities/passwords.nix
-   ../capabilities/editor
-   ../capabilities/tmux
-   ../capabilities/desktop
-   ./pam.nix
+    ../capabilities/git
+    ../capabilities/gpg.nix
+    ../capabilities/shell.nix
+    ../capabilities/kitty
+    ../capabilities/passwords.nix
+    ../capabilities/editor
+    ../capabilities/tmux
+    ../capabilities/desktop
+    ./pam.nix
     ../capabilities/notes
     ../capabilities/taskwarrior
     ../capabilities/networking
     ../capabilities/lang/elixir.nix
+    ../capabilities/lang/nix.nix
     ../capabilities/habits.nix
     ../capabilities/timetracking.nix
   ];
@@ -89,7 +90,7 @@
       width = 3072;
       height = 1920;
       scale = "1.5";
-      workspaces = ["1" "2" "3" "4" "5" "6"];
+      workspaces = [ "1" "2" "3" "4" "5" "6" ];
     }
   ];
 
