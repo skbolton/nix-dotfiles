@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }: 
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -18,6 +18,7 @@
     ../capabilities/taskwarrior
     ../capabilities/networking
     ../capabilities/lang/elixir.nix
+    ../capabilities/lang/nix.nix
     ../capabilities/habits.nix
     ../capabilities/timetracking.nix
   ];
