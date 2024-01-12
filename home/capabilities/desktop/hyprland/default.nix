@@ -167,7 +167,6 @@
         "ALT, e, exec, wofi-emoji"
         "$mainMod, e, exec, thunar"
         "$mainMod, P, pseudo, # dwindle"
-        "= $mainMod, J, togglesplit, # dwindle"
         "$mainMod, s, togglespecialworkspace, notes"
         "$mainMod SHIFT, S, movetoworkspace, special:notes"
         "$mainMod CTRL, t, togglespecialworkspace, term"
