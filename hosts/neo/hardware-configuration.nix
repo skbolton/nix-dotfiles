@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
@@ -14,39 +15,45 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@" "compress=zstd" "ssd" "noatime" "space_cache=v2"];
+      options = [ "subvol=@" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   boot.initrd.luks.devices."system".device = "/dev/disk/by-partlabel/LENOVO-SYSTEM";
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@home" "compress=zstd" "ssd" "noatime" "space_cache=v2"];
+      options = [ "subvol=@home" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@nix" "compress=zstd" "ssd" "noatime" "space_cache=v2"];
+      options = [ "subvol=@nix" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/var/log" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@var/log" "compress=zstd" "ssd" "noatime" "space_cache=v2"];
+      options = [ "subvol=@var/log" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/var/lib/docker" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@var/lib/docker" "compress=zstd" "ssd" "noatime" "space_cache=v2"];
+      options = [ "subvol=@var/lib/docker" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-label/NIX-EFI";
+    {
+      device = "/dev/disk/by-label/NIX-EFI";
       fsType = "vfat";
     };
 

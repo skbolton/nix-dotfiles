@@ -8,7 +8,7 @@
 
   home.packages = with pkgs; [
     synology-drive-client
-    logseq 
+    logseq
     obsidian
     zk
   ];

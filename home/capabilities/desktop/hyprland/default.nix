@@ -7,14 +7,14 @@
     ../dunst.nix
   ];
 
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     playerctl
     swaybg
     wl-clipboard
     grim
     slurp
     inputs.hyprland-contrib.packages.x86_64-linux.grimblast
-    neofetch 
+    neofetch
     rofi-emoji
     libnotify
   ];
@@ -39,12 +39,12 @@
       ];
 
       workspace = lib.lists.flatten (map
-                (m: 
-                  map (w: "${w}, monitor:${m.name}") (m.workspaces)
-                )
-                (config.monitors));
+        (m:
+          map (w: "${w}, monitor:${m.name}") (m.workspaces)
+        )
+        (config.monitors));
 
-      env = ["XCURSOR_SIZE,24"];
+      env = [ "XCURSOR_SIZE,24" ];
 
       general = {
         gaps_in = 5;
@@ -79,7 +79,7 @@
         "col.shadow" = "rgba(1a1a1aee)";
       };
 
-      group  = {
+      group = {
         "col.border_active" = "rgba(63F2F1aa)";
         "col.border_inactive" = "rgba(585272aa)";
 
@@ -120,15 +120,15 @@
         "natural_scroll" = true;
       };
 
-      monitor = map 
-          (m:
-            let
-              resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-              position = "${toString m.x}x${toString m.y}";
-            in
-            "${m.name},${if m.enabled then "${resolution},${position},${toString m.scale}" else "disable"}"
-          )
-          (config.monitors);
+      monitor = map
+        (m:
+          let
+            resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+            position = "${toString m.x}x${toString m.y}";
+          in
+          "${m.name},${if m.enabled then "${resolution},${position},${toString m.scale}" else "disable"}"
+        )
+        (config.monitors);
 
       animations = {
         enabled = true;
@@ -145,14 +145,14 @@
       };
 
       windowrulev2 = [
-       "workspace 1,class:kitty"
-       "workspace 2,title:^(Mozilla Firefox)(.*)$"
-       "workspace special:notes,title:^(kitty-delta)"
-       "workspace special:term,title:^(kitty-scratch)"
-       "workspace 3,class:Slack"
-       "workspace 3,class:WebCord"
-       "float,title:(GnuCash Tip Of The Day)"
-       "float,title:(Firefox — Sharing Indicator)"
+        "workspace 1,class:kitty"
+        "workspace 2,title:^(Mozilla Firefox)(.*)$"
+        "workspace special:notes,title:^(kitty-delta)"
+        "workspace special:term,title:^(kitty-scratch)"
+        "workspace 3,class:Slack"
+        "workspace 3,class:WebCord"
+        "float,title:(GnuCash Tip Of The Day)"
+        "float,title:(Firefox — Sharing Indicator)"
       ];
 
       "$mainMod" = "SUPER";

@@ -33,7 +33,7 @@
     };
     # TODO: This is a secret that I could manage with nix if I figure out nix-sops
     extraConfig = ''
-    include $HOME/Documents/Demeter/Computer/Taskwarrior/credentials
+      include $HOME/Documents/Demeter/Computer/Taskwarrior/credentials
     '';
   };
 

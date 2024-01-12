@@ -1,11 +1,11 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, ... }:
 
 {
   home.sessionVariables = {
     BROWSER = "firefox";
   };
 
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "RobotoMono" "Iosevka" ]; })
     ibm-plex
     iosevka
@@ -81,45 +81,45 @@
       ignoreSpace = true;
     };
     envExtra = ''
-    export MANPAGER="nvim +Man!"
-    export PAGER=bat
-    BLK="00" CHAR="00" DIR="0C" EXE="DE" REG="00" HLI="00" SLI="00" MIS="00" ORP="00" FIF="00" SOC="00" UNK="00"
-    export NNN_FCOLORS="$BLK$CHAR$DIR$EXE$REG$HLI$SLI$MIS$ORP$FIF$SOC$UNK"
-    export NNN_COLORS="6666"
-    export NNN_OPTS=Hd
-    export NNN_FIFO=/tmp/nnn.fifo
+      export MANPAGER="nvim +Man!"
+      export PAGER=bat
+      BLK="00" CHAR="00" DIR="0C" EXE="DE" REG="00" HLI="00" SLI="00" MIS="00" ORP="00" FIF="00" SOC="00" UNK="00"
+      export NNN_FCOLORS="$BLK$CHAR$DIR$EXE$REG$HLI$SLI$MIS$ORP$FIF$SOC$UNK"
+      export NNN_COLORS="6666"
+      export NNN_OPTS=Hd
+      export NNN_FIFO=/tmp/nnn.fifo
     '';
 
     # how to see where a package ends up in the store
     # source ${pkgs.asdf-vm.outPath}/bin/asdf
 
     initExtraBeforeCompInit = ''
-    setopt AUTO_PUSHD           # Push the old directory onto the stack on cd
-    setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack
-    setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd
-    setopt CORRECT              # Spelling Corrections
-    setopt CDABLE_VARS          # Change directory to a path stored in a variable
-    setopt EXTENDED_GLOB        # Use extended globbing syntax
-    KEYTIMEOUT=5
+      setopt AUTO_PUSHD           # Push the old directory onto the stack on cd
+      setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack
+      setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd
+      setopt CORRECT              # Spelling Corrections
+      setopt CDABLE_VARS          # Change directory to a path stored in a variable
+      setopt EXTENDED_GLOB        # Use extended globbing syntax
+      KEYTIMEOUT=5
     '';
     initExtra = ''
-    autoload -Uz edit-command-line
-    zle -N edit-command-line
-    bindkey -M viins '^f' edit-command-line
-    bindkey -M vicmd '^i' edit-command-line
+      autoload -Uz edit-command-line
+      zle -N edit-command-line
+      bindkey -M viins '^f' edit-command-line
+      bindkey -M vicmd '^i' edit-command-line
 
-    source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     
-    color=$(( ( RANDOM % 6 ) + 1 ))
-    tput setaf $color && ${pkgs.toilet}/bin/toilet -F border -t -f pagga "Bit by Bit"
+      color=$(( ( RANDOM % 6 ) + 1 ))
+      tput setaf $color && ${pkgs.toilet}/bin/toilet -F border -t -f pagga "Bit by Bit"
 
-    function w() {
-      fd $1 | entr -c "''${@:2}"
-    }
+      function w() {
+        fd $1 | entr -c "''${@:2}"
+      }
 
-    function ew() {
-      fd "\.exs?$" | entr -c "$@"
-    }
+      function ew() {
+        fd "\.exs?$" | entr -c "$@"
+      }
     '';
   };
 
@@ -158,7 +158,7 @@
   };
 
   programs.nnn = {
-    package = pkgs.nnn.override ({ withNerdIcons = true; extraMakeFlags = ["O_NAMEFIRST=1"]; });
+    package = pkgs.nnn.override ({ withNerdIcons = true; extraMakeFlags = [ "O_NAMEFIRST=1" ]; });
     enable = true;
     bookmarks = {
       d = "~/Documents";
@@ -168,7 +168,7 @@
       w = "~/80-89-Media/80-Pictures/80.10-Wallpapers";
     };
     plugins = {
-        mappings = {
+      mappings = {
         p = "preview-tui";
       };
       src = (pkgs.fetchFromGitHub {
@@ -221,10 +221,11 @@
     };
   };
 
-  xdg.configFile."btop/themes/embark.theme".source = pkgs.fetchFromGitHub {
-    owner = "embark-theme";
-    repo = "bashtop";
-    rev = "master";
-    sha256 = "sha256-HHoCVdCH4jCIK0JzoYagURcU722sBARtFkNeGPXuCNM=";
-  } + "/embark.theme";
+  xdg.configFile."btop/themes/embark.theme".source = pkgs.fetchFromGitHub
+    {
+      owner = "embark-theme";
+      repo = "bashtop";
+      rev = "master";
+      sha256 = "sha256-HHoCVdCH4jCIK0JzoYagURcU722sBARtFkNeGPXuCNM=";
+    } + "/embark.theme";
 }

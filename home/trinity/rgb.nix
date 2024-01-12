@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   systemd.user.services.openrgb-profile = {
     Unit.Description = "Open RGB profile launcher";

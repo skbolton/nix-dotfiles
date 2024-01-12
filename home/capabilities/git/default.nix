@@ -41,7 +41,7 @@
       back = "reset HEAD~1";
       backk = "reset HEAD~1 --hard";
       files = "!git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")";
-      stat = "!git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")"; 
+      stat = "!git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")";
       what = "!git config --get-regexp alias";
     };
 

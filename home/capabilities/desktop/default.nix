@@ -5,7 +5,7 @@
     ./hyprland
   ];
 
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     slack
     webcord
     zoom-us
@@ -39,7 +39,7 @@
       package = pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
         size = "standard"; # compact
-        tweaks = [];
+        tweaks = [ ];
         variant = "mocha";
       };
     };

@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "thunderbolt" "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
@@ -14,7 +15,8 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
@@ -22,47 +24,54 @@
   boot.initrd.luks.devices."system".device = "/dev/disk/by-partlabel/SOLID-CRYPT";
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@home" "compress=zstd" "ssd" "noatime" "space_cache=v2"];
+      options = [ "subvol=@home" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@nix" "compress=zstd" "ssd" "noatime" "space_cache=v2"];
+      options = [ "subvol=@nix" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/swap" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@swap" ];
     };
 
   fileSystems."/.snapshots" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@snapshots" "compress=zstd" "ssd" "noatime" "space_cache=v2"];
+      options = [ "subvol=@snapshots" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/var/log" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@var/log" "compress=zstd" "ssd" "noatime" "space_cache=v2"];
+      options = [ "subvol=@var/log" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/var/lib/docker" =
-    { device = "/dev/disk/by-label/NIX-SYSTEM";
+    {
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
-      options = [ "subvol=@var/lib/docker" "compress=zstd" "ssd" "noatime" "space_cache=v2"];
+      options = [ "subvol=@var/lib/docker" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-label/NIX-EFI";
+    {
+      device = "/dev/disk/by-label/NIX-EFI";
       fsType = "vfat";
     };
 
-  swapDevices = [ { device = "/swap/swapfile"; } ];
+  swapDevices = [{ device = "/swap/swapfile"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

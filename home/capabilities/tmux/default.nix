@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }:
 
-let 
+let
   rally = import ./rally.nix { inherit pkgs; };
   tmux = pkgs.tmux;
 in
@@ -14,7 +14,7 @@ in
     };
   };
 
-  home.packages = [ 
+  home.packages = [
     pkgs.smug
     rally
     pkgs.imagemagick
@@ -27,7 +27,7 @@ in
     historyLimit = 10000;
     keyMode = "vi";
     mouse = true;
-    
+
     plugins = with pkgs.tmuxPlugins; [
       vim-tmux-navigator
       {
@@ -48,26 +48,26 @@ in
           set -g @fuzzback-popup-size '90%'
           set -g @fuzzback-fzf-colors '${lib.strings.concatStringsSep "," (lib.attrsets.mapAttrsToList (name: value: name + ":" + value) config.programs.fzf.colors)}'
         '';
-        }
+      }
     ];
     terminal = "tmux-256color";
 
     extraConfig = ''
-    set -g allow-passthrough on
-    set -gw xterm-keys on
-    set -g focus-events on
-    set -as terminal-features ',xterm*:RGB'
-    set -g status-interval 5
-    set set-clipboard on
-    set -g pane-base-index 1
-    set -g automatic-rename off
-    set -g renumber-windows
+      set -g allow-passthrough on
+      set -gw xterm-keys on
+      set -g focus-events on
+      set -as terminal-features ',xterm*:RGB'
+      set -g status-interval 5
+      set set-clipboard on
+      set -g pane-base-index 1
+      set -g automatic-rename off
+      set -g renumber-windows
 
-    source ~/.config/tmux/bindings.tmux
-    # statusbar theme
-    # source ~/.config/tmux/neoline-embark.tmux
-    # source ~/.config/tmux/cleanline.tmux
-    source "~/.config/tmux/$TMUX_STATUSLINE.tmux"
+      source ~/.config/tmux/bindings.tmux
+      # statusbar theme
+      # source ~/.config/tmux/neoline-embark.tmux
+      # source ~/.config/tmux/cleanline.tmux
+      source "~/.config/tmux/$TMUX_STATUSLINE.tmux"
     '';
   };
 

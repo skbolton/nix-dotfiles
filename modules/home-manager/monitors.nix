@@ -1,4 +1,4 @@
-{ lib, config, ...}:
+{ lib, config, ... }:
 
 let
   inherit (lib) mkOption types;
@@ -41,11 +41,11 @@ in
         };
         workspaces = mkOption {
           type = types.listOf types.str;
-          example = ["1" "4"];
-          default = [];
+          example = [ "1" "4" ];
+          default = [ ];
         };
       };
     });
-    default = [];
+    default = [ ];
   };
 }

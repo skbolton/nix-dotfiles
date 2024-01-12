@@ -8,20 +8,20 @@
 
   programs.waybar = {
     enable = true;
-    package = pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true"] ;} );
+    package = pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ]; });
     settings = {
       mainBar = {
         margin = "0";
         layer = "top";
         modules-left = [ "custom/nix" "hyprland/workspaces" "mpris" ];
-        modules-center = [ "wlr/taskbar"];
+        modules-center = [ "wlr/taskbar" ];
         modules-right = [ "custom/task-context" "network#interface" "network#speed" "cpu" "temperature" "backlight" "battery" "clock" "custom/notification" "tray" ];
 
         persistent_workspaces = {
-          "1" = [];
-          "2" = [];
-          "3" = [];
-          "4" = [];
+          "1" = [ ];
+          "2" = [ ];
+          "3" = [ ];
+          "4" = [ ];
         };
 
         "hyprland/workspaces" = {
@@ -40,7 +40,7 @@
           format = "{status_icon}<span weight='bold'>{artist}</span> | {title}";
           status-icons = {
             playing = "󰎈 ";
-            paused =  "󰏤 ";
+            paused = "󰏤 ";
             stopped = "󰓛 ";
           };
         };
@@ -77,7 +77,7 @@
 
         temperature = {
           format = "{icon} {temperatureC} °C";
-          format-icons = [ "" "" "" "󰈸"];
+          format-icons = [ "" "" "" "󰈸" ];
         };
 
         backlight = {
@@ -158,28 +158,28 @@
 
   xdg.configFile."waybar/scripts/dunst.sh" = {
     text = ''
-    COUNT=$(dunstctl count waiting)
-    ENABLED="󰂚 "
-    DISABLED="󰂛 "
-    if [ $COUNT != 0 ]; then DISABLED="󱅫 "; fi
-    if dunstctl is-paused | grep -q "false"; then
-      echo $ENABLED
-    else
-      echo $DISABLED
-    fi
+      COUNT=$(dunstctl count waiting)
+      ENABLED="󰂚 "
+      DISABLED="󰂛 "
+      if [ $COUNT != 0 ]; then DISABLED="󱅫 "; fi
+      if dunstctl is-paused | grep -q "false"; then
+        echo $ENABLED
+      else
+        echo $DISABLED
+      fi
     '';
     executable = true;
   };
 
   xdg.configFile."waybar/scripts/task-context.sh" = {
     text = ''
-    ICON=" "
-    CONTEXT=$(task _get rc.context)
+      ICON=" "
+      CONTEXT=$(task _get rc.context)
 
-    if [ -z "$CONTEXT" ]; then
-      CONTEXT="NONE"
-    fi
-    echo "$ICON  $CONTEXT"
+      if [ -z "$CONTEXT" ]; then
+        CONTEXT="NONE"
+      fi
+      echo "$ICON  $CONTEXT"
     '';
     executable = true;
   };

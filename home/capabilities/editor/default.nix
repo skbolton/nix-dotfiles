@@ -26,7 +26,7 @@ in
       venn-nvim
 
       # editing support
-      { 
+      {
         plugin = (pkgs.vimUtils.buildVimPlugin {
           name = "mdeval-nvim";
           version = " 2654caf";
@@ -36,10 +36,10 @@ in
             rev = "master";
             sha256 = "sha256-KYWs1/bywPni/MOogs/f+NfnaOakvHdNFh6v4Eyna40=";
           };
-         });
+        });
         optional = true;
       }
-      { 
+      {
         plugin = (pkgs.vimUtils.buildVimPlugin {
           name = "edit-code-block.nvim";
           version = "5e4e310";
@@ -49,7 +49,7 @@ in
             rev = "main";
             sha256 = "sha256-rB37XE0cvOCmFjSEVSHFl95KVJ+ScMFnGWYfYQiK5CQ=";
           };
-         });
+        });
         optional = true;
       }
       noice-nvim
@@ -92,7 +92,7 @@ in
           rev = "master";
           sha256 = "sha256-iJTN1g5uoS6yj0CZ6Q5wsCAVYVim5zl4ObwVyLtJkQ0=";
         };
-       })
+      })
 
       gitsigns-nvim
       diffview-nvim
@@ -129,10 +129,10 @@ in
     ];
   };
 
- xdg.configFile.nvim = {
-   source = ./neovim;
-   recursive = true;
- };
+  xdg.configFile.nvim = {
+    source = ./neovim;
+    recursive = true;
+  };
 
- xdg.dataFile."fonts/VictorMonoNerdFont".source = ./VictorMono_Nerd_Font_Regular.ttf;
+  xdg.dataFile."fonts/VictorMonoNerdFont".source = ./VictorMono_Nerd_Font_Regular.ttf;
 }
