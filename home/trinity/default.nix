@@ -145,7 +145,7 @@
       name = "DP-5";
       width = 5120;
       height = 2880;
-      scale = "1.77778";
+      scale = "1.666667";
       workspaces = [ "1" "3" ];
     }
     {
@@ -153,7 +153,7 @@
       width = 2560;
       height = 2880;
       scale = "1.25";
-      x = 2880;
+      x = 3072;
       workspaces = [ "2" "4" ];
     }
   ];
