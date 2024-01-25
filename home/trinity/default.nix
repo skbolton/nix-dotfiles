@@ -47,7 +47,7 @@
 
     matchBlocks = {
       openssh_win32 = {
-        hostname = "172.16.90.200";
+        hostname = "LT-STEVEB-HQ";
         user = "adminarsenal/stephen.bolton";
       };
 
