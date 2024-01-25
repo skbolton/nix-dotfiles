@@ -44,6 +44,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lexical-lsp.url = "github:lexical-lsp/lexical";
+    embark-vim = {
+      url = "github:embark-theme/vim";
+      flake = false;
+    };
   };
 
   # `outputs` are all the build result of the flake.
