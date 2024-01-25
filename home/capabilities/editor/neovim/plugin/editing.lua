@@ -25,7 +25,8 @@ notify.setup {
   timeout = 2500,
   level = vim.log.levels.INFO,
   render = "compact",
-  stages = "fade_in_slide_out"
+  stages = "fade_in_slide_out",
+  top_down = false
 }
 
 if not vim.g.started_by_firenvim then
