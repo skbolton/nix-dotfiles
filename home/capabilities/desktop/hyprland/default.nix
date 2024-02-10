@@ -31,7 +31,7 @@
         "swaybg -i ~/wallpaper -m fill"
         "synology-drive"
         "waybar"
-        "[workspace 2 silent] firefox"
+        "[workspace 2 silent] floorp"
         "webcord"
         "[workspace special:term silent] kitty --title='kitty-scratch' --hold"
         "kitty"
@@ -147,6 +147,7 @@
       windowrulev2 = [
         "workspace 1,class:kitty"
         "workspace 2,title:^(Mozilla Firefox)(.*)$"
+        "workspace 2,class:floorp"
         "workspace special:notes,title:^(kitty-delta)"
         "workspace special:term,title:^(kitty-scratch)"
         "workspace 3,class:Slack"

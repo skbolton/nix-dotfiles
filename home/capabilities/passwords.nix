@@ -1,10 +1,15 @@
 { pkgs, config, ... }:
 
 {
-  programs.firefox = {
-    enable = true;
+  home.sessionVariables = {
+    BROWSER = "floorp";
   };
 
+  # programs.firefox = {
+  #   enable = true;
+  # };
+  #
+  home.packages = [ pkgs.floorp ];
   programs.brave.enable = true;
 
   programs.browserpass.enable = true;

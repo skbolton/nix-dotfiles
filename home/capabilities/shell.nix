@@ -1,10 +1,6 @@
 { pkgs, config, ... }:
 
 {
-  home.sessionVariables = {
-    BROWSER = "firefox";
-  };
-
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "RobotoMono" "Iosevka" ]; })
     ibm-plex
