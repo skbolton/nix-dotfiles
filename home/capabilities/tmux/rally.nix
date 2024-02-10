@@ -6,5 +6,9 @@ pkgs.writeShellScriptBin "rally.sh" ''
   NAME=$(basename $TARGET)
   SESSION_NAME=$(echo $NAME | tr [:lower:] [:upper:])
 
-  ${pkgs.smug}/bin/smug start $NAME -a 2>/dev/null || ${pkgs.smug}/bin/smug start default name=$SESSION_NAME root=$TARGET -a
+  if [[ -f "$HOME/.config/smug/$NAME" ]]; then
+    ${pkgs.smug}/bin/smug start $NAME -a
+  else
+    ${pkgs.smug}/bin/smug start default name=$SESSION_NAME root=$TARGET -a
+  fi
 ''
