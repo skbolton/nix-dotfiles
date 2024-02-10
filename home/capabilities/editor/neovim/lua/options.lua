@@ -75,7 +75,7 @@ opt.laststatus = 3
 
 -- FOLDING
 -- ===================================================================
-opt.foldenable = true
+opt.foldenable = false
 opt.foldlevelstart = 10
 opt.foldnestmax = 10
 vim.opt.foldmethod = "expr"

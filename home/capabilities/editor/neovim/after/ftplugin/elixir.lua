@@ -1,10 +1,7 @@
 local bmap = vim.api.nvim_buf_set_keymap
-local blocal = vim.opt_local
 local capabilities = require 'lsp_capabilities'()
 
 bmap(0, 'n', '<localleader>d', ':silent !xdg-open https://hexdocs.pm/', {noremap = true})
-
-blocal.foldmethod = 'indent'
 
 local executable = 'lexical'
 
