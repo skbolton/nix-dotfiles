@@ -103,6 +103,7 @@
     pavucontrol
     pulseaudio
     qmk
+    obs-studio
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

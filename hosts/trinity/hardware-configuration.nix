@@ -10,9 +10,9 @@
     ];
 
   boot.initrd.availableKernelModules = [ "thunderbolt" "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.initrd.kernelModules = [ "amdgpu" "v4l2loopback" ];
   boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
   fileSystems."/" =
     {
