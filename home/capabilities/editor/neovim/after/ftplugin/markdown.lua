@@ -23,6 +23,16 @@ local run_code_block = function()
   vim.cmd("call VimuxRunCommand(@v)")
 end
 
+local run_sql_block = function()
+  if vim.api.nvim_get_mode()["mode"] == "n" then
+    vim.api.nvim_feedkeys(
+      vim.api.nvim_replace_termcodes('vib;DB $DBUI_URL<CR>', true, false, true),
+      'm',
+      false
+    )
+  end
+end
+
 local clock_in = function()
   local line = vim.api.nvim_win_get_cursor(0)[1]
   vim.fn.append(line, {
@@ -44,6 +54,7 @@ vim.keymap.set('n', '<localleader>t', '<CMD>! md-tangle -f %<CR>', { buffer = tr
 vim.keymap.set('n', '<C-c><C-c>', run_code_block, { buffer = true })
 vim.keymap.set('n', '<C-c><C-x>', '<CMD>MdEval<CR>', { buffer = true })
 vim.keymap.set('n', '<C-c><C-e>', '<CMD>EditCodeBlock<CR>', { buffer = true })
+vim.keymap.set('n', '<C-c><C-r>', run_sql_block, { buffer = true })
 vim.keymap.set('n', '<localleader>ci', clock_in, { buffer = true })
 vim.keymap.set('n', '<localleader>co', clock_out, { buffer = true })
 
