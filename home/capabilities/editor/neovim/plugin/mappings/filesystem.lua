@@ -3,6 +3,9 @@ local map = vim.keymap.set
 
 nnn.setup {
   offset = true,
+  explorer = {
+    width = 24
+  },
   picker = {
     cmd = "tmux new-session -s EXPLR nnn -Pp",
     border = "rounded"
