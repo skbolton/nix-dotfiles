@@ -210,9 +210,17 @@
         "$mainMod ALT, 8, movetoworkspace, 8"
         "$mainMod ALT, 9, movetoworkspace, 9"
         "$mainMod ALT, 0, movetoworkspace, 10"
+
+        ", XF86AudioLowerVolume, exec, pactl -- set-sink-volume 0 -10%"
+        ", XF86AudioRaiseVolume, exec, pactl -- set-sink-volume 0 +10%"
+        ", XF86AudioMute, exec, pactl -- set-sink-mute 0 toggle"
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPlay, exec, playerctl play-pause"
+
+        ", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10-"
+        ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10"
+        ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10"
 
         "$mainMod ALT CTRL, equal, exec, dunstctl set-paused toggle"
         "$mainMod ALT CTRL, bracketright, exec, systemctl reboot"
