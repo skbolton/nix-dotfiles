@@ -154,6 +154,7 @@
         "workspace 3,class:WebCord"
         "float,title:(GnuCash Tip Of The Day)"
         "float,title:(Firefox — Sharing Indicator)"
+        "float,title:(Floorp — Sharing Indicator)"
       ];
 
       "$mainMod" = "SUPER";
