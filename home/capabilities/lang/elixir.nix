@@ -15,6 +15,7 @@
   '';
 
   home.packages = with pkgs; [
+    inotify-tools
     postgresql
     elixir_1_15
     erlang_26
