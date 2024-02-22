@@ -90,7 +90,7 @@
       width = 3072;
       height = 1920;
       scale = "1.5";
-      refreshRate = 90;
+      refreshRate = 120;
       workspaces = [ "1" "2" "3" "4" "5" "6" ];
     }
   ];
