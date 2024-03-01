@@ -44,7 +44,6 @@
       nui-nvim
       nvim-notify
       indent-blankline-nvim
-      nvim-nonicons
       vim-tmux-navigator
       neoscroll-nvim
       nvim-lint

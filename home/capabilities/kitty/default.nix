@@ -5,16 +5,6 @@ let
 in
 {
 
-  xdg.dataFile."fonts/nonicons.ttf" = {
-    source = pkgs.fetchFromGitHub
-      {
-        owner = "yamatsum";
-        repo = "nonicons";
-        rev = "8454b3b";
-        sha256 = "sha256-c2UUef5/l5ugKwWV8R3gijD6aorw9H4ca+mGjy+VyYE=";
-      } + "/dist/nonicons.ttf";
-  };
-
   programs.kitty = {
     enable = true;
 
@@ -93,7 +83,6 @@ in
       symbol_map U+EA60-U+EBEB RobotoMono Nerd Font
 
       # symbol_map U+EA76 VictorMono Nerd Font
-      symbol_map U+f101-U+f25c nonicons
     '';
 
   };

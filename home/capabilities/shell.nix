@@ -127,9 +127,9 @@
       format = "$character$cmd_duration$jobs$directory$git_branch$git_status ";
       character = {
         format = "$symbol";
-        error_symbol = "[   ](bold fg:red bg:#19172C)";
-        success_symbol = "[   ](bold fg:green bg:#19172C)";
-        vimcmd_symbol = "[   ](bold fg:yellow bg:#19172C)";
+        error_symbol = "[  ](bold fg:red bg:#19172C)";
+        success_symbol = "[  ](bold fg:green bg:#19172C)";
+        vimcmd_symbol = "[  ](bold fg:purple bg:#19172C)";
       };
 
       directory = {

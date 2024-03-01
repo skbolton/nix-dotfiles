@@ -96,8 +96,6 @@ if not vim.g.started_by_firenvim then
   }
 end
 
-require 'nvim-nonicons'.setup {}
-
 require 'ibl'.setup {
   indent = {
     char = "┊"
