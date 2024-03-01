@@ -124,7 +124,7 @@
     enableZshIntegration = true;
     settings = {
       add_newline = true;
-      format = "$character$cmd_duration$jobs$directory$git_branch$git_status ";
+      format = "$character$jobs$directory$git_branch$git_status ";
       character = {
         format = "$symbol";
         error_symbol = "[  ](bold fg:red bg:#19172C)";
@@ -134,10 +134,6 @@
 
       directory = {
         format = "[   $path ](bg:#2D2B40 fg:bright-white)[](fg:#2D2B40)";
-      };
-
-      cmd_duration = {
-        format = "[$duration 󰔛 ]($style)";
       };
 
       git_branch = {
