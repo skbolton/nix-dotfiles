@@ -54,6 +54,8 @@ in
 
     extraConfig = ''
       set -g allow-passthrough on
+      set -ga update-environment TERM
+      set -ga update-environment TERM_PROGRAM
       set -gw xterm-keys on
       set -g focus-events on
       set -as terminal-features ',xterm*:RGB'

@@ -185,6 +185,31 @@
     };
   };
 
+  programs.yazi = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      manager = {
+        ratio = [ 1 3 4 ];
+        show_hidden = true;
+        linemode = "mtime";
+        sort_dir_first = true;
+      };
+    };
+    theme = {
+      manager = {
+        hovered = { bg = "green"; fg = "black"; };
+        tab_active = { bg = "green"; fg = "black"; };
+        tab_inactive = { bg = "black"; fg = "lightwhite"; };
+      };
+      status = {
+        separator_open = "";
+        separator_close = "";
+        mode_normal = { fg = "black"; bg = "green"; };
+      };
+    };
+  };
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
