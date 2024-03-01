@@ -65,6 +65,11 @@
             host.port = 4000;
           }
           {
+            bind.port = 4001;
+            host.address = "localhost";
+            host.port = 4001;
+          }
+          {
             bind.port = 54321;
             host.address = "localhost";
             host.port = 54321;
