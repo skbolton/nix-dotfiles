@@ -45,7 +45,7 @@
       what = "!git config --get-regexp alias";
     };
 
-    ignores = [ ".elixir-ls" "steve_queries" ".envrc" ".direnv" ".vim" "scratchpad.ex" ];
+    ignores = [ "steve_queries" ".envrc" ".direnv" ".vim" ];
 
     delta = {
       enable = true;

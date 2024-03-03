@@ -14,12 +14,14 @@
           )
   '';
 
+  programs.git.ignores = [ ".lexical" "scratchpad.ex" ".elixir-ls" ];
+
   home.packages = with pkgs; [
     inotify-tools
     postgresql
     elixir_1_15
     erlang_26
-    inputs.lexical-lsp.packages.${system}.lexical
+    (inputs.lexical-lsp.lib.mkLexical { erlang = beam.packages.erlang_26; })
   ];
 }
 
