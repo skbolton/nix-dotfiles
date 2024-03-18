@@ -1,10 +1,10 @@
 # vim: set ft=tmux:
 set -g status-interval 3
 set-option -g status-position top
-set-option -g pane-active-border-style "fg=green"
-set-option -g pane-border-style "fg=brightwhite"
-set-option -g message-style "bg=green,fg=black"
-set-option -g message-command-style "bg=green,fg=black"
+set-option -g pane-active-border-style "fg=#795DA3"
+set-option -g pane-border-style "fg=#E0E0E0"
+set-option -g message-style "bg=#CA1243,fg=#FFFFFF"
+set-option -g message-command-style "bg=#CA1243,fg=#FFFFFF"
 
 # Status line
 set -g status-style default
