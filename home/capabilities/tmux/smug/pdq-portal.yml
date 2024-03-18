@@ -23,3 +23,6 @@ windows:
   - name: " "
     commands:
       - nvim +DBUI
+  - name: "󱈫 "
+    commands:
+      - clear

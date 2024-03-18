@@ -2,6 +2,10 @@ local map = vim.keymap.set
 
 vim.g.tmux_navigator_disable_when_zoomed = true
 
+vim.g.VimuxRunnerQuery = {
+  window = "󱈫 ";
+};
+
 map({'n', 'v'}, '<C-c><C-c>', function() 
   -- yank text into v register
   if vim.api.nvim_get_mode()["mode"] == "n" then
@@ -21,4 +25,10 @@ map('n', '<leader>r?', '<CMD>VimuxInspectRunner<CR>')
 map('n', '<leader>r!', '<CMD>VimuxInterruptRunner<CR>')
 map('n', '<leader>rz', '<CMD>VimuxZoomRunner<CR>')
 
-
+map('n', '<leader>ru', function()
+  if vim.g.VimuxRunnerType == 'window' then
+    vim.g.VimuxRunnerType = 'pane'
+  else
+    vim.g.VimuxRunnerType = 'window'
+  end
+end)
