@@ -14,12 +14,12 @@ set -g window-status-separator "  "
 set -g status-bg "default"
 
 #Bars ---------------------------------
-set -g status-left "#[fg=blue]#S #[fg=black]⎥ "
+set -g status-left "#[fg=#795DA3]#S #[fg=#969896]⎥ "
 
-set -g status-right "#[fg=black] #[push-default]%Y-%m-%d#[fg=black] ⎥ #[fg=default]%I:%M #[fg=black]⎥ #[fg=blue italics]@#H"
+set -g status-right "#[fg=#969896] #[push-default]%Y-%m-%d#[fg=#969896] ⎥ #[fg=default]%I:%M #[fg=#969896]⎥ #[fg=#795DA3 italics]@#H"
 
 # Windows ------------------------------
 set -g status-justify centre
 
-set -g window-status-format "#[fg=black]#{?window_zoomed_flag,▪#W,#W}"
-set -g window-status-current-format "#[fg=red]#{?window_zoomed_flag,▪#W,#W}"
+set -g window-status-format "#[fg=#969896]#{?window_zoomed_flag,▪#W,#W}"
+set -g window-status-current-format "#[fg=#CA1243]#{?window_zoomed_flag,▪#W,#W}"

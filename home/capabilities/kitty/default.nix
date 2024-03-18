@@ -17,11 +17,11 @@ in
       background_opacity = 1;
       cursor_shape = "beam";
 
-      font_family = "Berkeley Mono";
+      font_family = "Lilex Medium";
       bold_font = "Berkeley Mono Bold";
       bold_italic_font = "Berkeley Mono Bold Italic";
       italic_font = "Operator Mono Book Italic";
-      font_size = "13.0";
+      font_size = "14.0";
 
       # Terminal Settings
       allow_remote_control = "yes";
@@ -54,7 +54,7 @@ in
     };
 
     extraConfig = ''
-      include ./themes/embark.conf
+      include ./themes/inspired-github.conf
       # Seti
       symbol_map U+E5FA-U+E6B1 RobotoMono Nerd Font
       # Devicons

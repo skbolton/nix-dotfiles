@@ -14,32 +14,7 @@
     md-tangle
   ];
 
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "embark";
-    };
-    themes = {
-      catppuccin-mocha = {
-        src = pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "bat";
-          rev = "main";
-          sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
-        };
-        file = "Catppuccin-mocha.tmTheme";
-      };
-      embark = {
-        src = pkgs.fetchFromGitHub {
-          owner = "embark-theme";
-          repo = "bat";
-          rev = "fae7e23";
-          sha256 = "sha256-7xKdf5IRwRQo7nVc9hXb+ziULBtwhAn3pbOy4FiRbiQ=";
-        };
-        file = "Embark.tmTheme";
-      };
-    };
-  };
+  programs.bat.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -122,44 +97,6 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    settings = {
-      add_newline = true;
-      format = "$character$jobs$directory$git_branch$git_status ";
-      character = {
-        format = "$symbol";
-        error_symbol = "[  ](bold fg:red bg:#19172C)";
-        success_symbol = "[  ](bold fg:green bg:#19172C)";
-        vimcmd_symbol = "[  ](bold fg:purple bg:#19172C)";
-      };
-
-      directory = {
-        format = "[   $path ](bg:#2D2B40 fg:bright-white)[](fg:#2D2B40)";
-      };
-
-      git_branch = {
-        format = "[  $branch ](fg:bright-white)";
-      };
-
-      git_status = {
-        style = "bold purple";
-      };
-
-      jobs = {
-        symbol = " 󰠜 ";
-        style = "bright-white";
-      };
-
-      status = {
-        format = "[ $symbol$status ](fg:bright-white bg:#2D2B40)";
-        disabled = false;
-        symbol = " ";
-      };
-
-      hostname = {
-        ssh_only = false;
-        format = "[ $hostname ](italic fg:bright-white bg:#19172C)";
-      };
-    };
   };
 
   programs.nnn = {
@@ -196,18 +133,6 @@
         sort_dir_first = true;
       };
     };
-    theme = {
-      manager = {
-        hovered = { bg = "green"; fg = "black"; };
-        tab_active = { bg = "green"; fg = "black"; };
-        tab_inactive = { bg = "black"; fg = "lightwhite"; };
-      };
-      status = {
-        separator_open = "";
-        separator_close = "";
-        mode_normal = { fg = "black"; bg = "green"; };
-      };
-    };
   };
 
   programs.direnv = {
@@ -218,22 +143,19 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    colors = {
-      "bg+" = "-1";
-      "fg" = "-1";
-      "fg+" = "-1";
-      "prompt" = "6";
-      "header" = "5";
-      "pointer" = "2";
-      "hl" = "2";
-      "hl+" = "2";
-      "spinner" = "05";
-      "info" = "15";
-      "border" = "15";
-    };
     defaultCommand = "rg --files --hidden -g !.git";
     defaultOptions = [ "--reverse" "--ansi" ];
   };
+
+  programs.skim = {
+    enable = true;
+    enableZshIntegration = true;
+    defaultCommand = "${pkgs.fd}/bin/fd --type f --exclude '.git'";
+    changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
+    fileWidgetCommand = "${pkgs.fd}/bin/fd --type f";
+    defaultOptions = [ "--reverse" "--ansi" ];
+  };
+
 
   programs.eza = {
     enable = true;
@@ -246,16 +168,7 @@
   programs.btop = {
     enable = true;
     settings = {
-      color_theme = "embark";
       vim_keys = true;
     };
   };
-
-  xdg.configFile."btop/themes/embark.theme".source = pkgs.fetchFromGitHub
-    {
-      owner = "embark-theme";
-      repo = "bashtop";
-      rev = "master";
-      sha256 = "sha256-HHoCVdCH4jCIK0JzoYagURcU722sBARtFkNeGPXuCNM=";
-    } + "/embark.theme";
 }

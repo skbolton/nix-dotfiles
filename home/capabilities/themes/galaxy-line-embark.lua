@@ -7,7 +7,7 @@ local file = require 'galaxyline.providers.fileinfo'
 local gls = gl.section
 gl.short_line_list = {'NvimTree','vista_kind','dbui'}
 
-local embark = {
+local colors = {
   bg_0 = "#19172C",
   bg_1 = "#2D2B40",
   bg_2 = "#37354A",
@@ -16,17 +16,6 @@ local embark = {
   fg = "#cbe3e7",
   fg_dark = "#8A889D"
 }
-
-local gruvbox_light = {
-  bg_0 = "#7C6F64",
-  bg_1 = "#928374",
-  bg_2 = "#A89984",
-  bg_dark = "#FAF2CF",
-  fg = "#FAF2CF",
-  fg_dark = "#FAF2CF"
-}
-
-local colors = embark
 
 -- Read from testing.lua module
 -- and adjust icon and color per testing state

@@ -66,10 +66,7 @@ in
       set -g renumber-windows
 
       source ~/.config/tmux/bindings.tmux
-      # statusbar theme
-      # source ~/.config/tmux/neoline-embark.tmux
-      # source ~/.config/tmux/cleanline.tmux
-      source "~/.config/tmux/$TMUX_STATUSLINE.tmux"
+      source "~/.config/tmux/statusline.tmux"
     '';
   };
 
@@ -139,9 +136,5 @@ in
     source = ./smug;
     recursive = true;
   };
-
-  xdg.configFile."tmux/neoline-embark.tmux".source = ./neoline-embark.tmux;
-  xdg.configFile."tmux/neoline-gruvbox-light.tmux".source = ./neoline-gruvbox-light.tmux;
-  xdg.configFile."tmux/cleanline.tmux".source = ./cleanline.tmux;
 }
 

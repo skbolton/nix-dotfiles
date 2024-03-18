@@ -15,7 +15,7 @@ require 'todo-comments'.setup {
   colors = {
     hint = { "CursorLineNr" },
     next = { "Keyword" },
-    todo = { "Operator" },
+    todo = { "Directory" },
     test = { "LineNr" }
   }
 }
