@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../capabilities/themes/inspired.theme.nix
     ./rgb.nix
     ../../modules/home-manager/monitors.nix
     ../../modules/home-manager/keyboard.nix
@@ -147,10 +148,19 @@
 
   monitors = [
     {
-      name = "DP-5";
-      width = 5120;
+      name = "DP-2";
+      width = 2560;
       height = 2880;
-      scale = "1.666667";
+      scale = "1.25";
+      workspaces = [ "2" "4" ];
+    }
+    {
+      name = "DP-5";
+      width = 3840;
+      height = 2160;
+      x = 2048;
+      y = 300;
+      scale = "1.066667,bitdepth,10";
       workspaces = [ "1" "3" ];
     }
     {
@@ -158,7 +168,7 @@
       width = 2560;
       height = 2880;
       scale = "1.25";
-      x = 3072;
+      x = 5648;
       workspaces = [ "2" "4" ];
     }
   ];
