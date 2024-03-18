@@ -33,7 +33,7 @@
     enableSshSupport = true;
     enableExtraSocket = true;
     enableZshIntegration = true;
-    pinentryFlavor = "gnome3";
+    pinentryPackage = pkgs.pinentry-gnome3;
     defaultCacheTtl = 60;
     maxCacheTtl = 120;
     enableScDaemon = true;
