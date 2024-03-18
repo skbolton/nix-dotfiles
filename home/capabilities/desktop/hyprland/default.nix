@@ -222,6 +222,9 @@
         ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10"
         ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10"
 
+        "$mainMod, bracketright, focusmonitor, r"
+        "$mainMod, bracketleft, focusmonitor, l"
+
         "$mainMod ALT CTRL, equal, exec, dunstctl set-paused toggle"
         "$mainMod ALT CTRL, bracketright, exec, systemctl reboot"
 
