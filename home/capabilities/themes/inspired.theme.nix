@@ -20,6 +20,7 @@
     vim.o.background = 'light'
     vim.cmd("colorscheme inspired-github")
     vim.cmd("hi! Visual guibg=#F4F4F4 guifg=black")
+    vim.cmd("hi! link CursorLineNr Keyword")
     -- vim.cmd("hi! Search guibg=#daf6ff guifg=black")
   '';
 
