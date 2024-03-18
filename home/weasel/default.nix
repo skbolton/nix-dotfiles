@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../capabilities/themes/inspired.theme.nix
     ../capabilities/git
     ../capabilities/shell.nix
     ../capabilities/editor
@@ -34,6 +35,7 @@
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 
   home = {
