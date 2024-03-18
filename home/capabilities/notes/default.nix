@@ -11,6 +11,7 @@
     logseq
     obsidian
     zk
+    (import ./note-search.nix { inherit pkgs; })
   ];
 
   xdg.configFile."zk/config.toml".source = ./zk.toml;
