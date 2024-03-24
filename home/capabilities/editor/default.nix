@@ -40,9 +40,7 @@
         });
         optional = true;
       }
-      noice-nvim
       nui-nvim
-      nvim-notify
       indent-blankline-nvim
       vim-tmux-navigator
       neoscroll-nvim
