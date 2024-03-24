@@ -26,14 +26,14 @@
       };
       taskd = {
         server = "app.wingtask.com:53589";
-        key = "$HOME/Documents/Demeter/Computer/Taskwarrior/tasks@bitsonthemind.com.key.pem";
-        certificate = "$HOME/Documents/Demeter/Computer/Taskwarrior/tasks@bitsonthemind.com.cert.pem";
-        ca = "$HOME/Documents/Demeter/Computer/Taskwarrior/tasks@bitsonthemind.com.root-cert.pem";
+        key = "$HOME/Documents/Logbook/Trackers/Tasks/tasks@bitsonthemind.com.key.pem";
+        certificate = "$HOME/Documents/Logbook/Trackers/Tasks/tasks@bitsonthemind.com.cert.pem";
+        ca = "$HOME/Documents/Logbook/Trackers/Tasks/tasks@bitsonthemind.com.root-cert.pem";
       };
     };
     # TODO: This is a secret that I could manage with nix if I figure out nix-sops
     extraConfig = ''
-      include $HOME/Documents/Demeter/Computer/Taskwarrior/credentials
+      include $HOME/Documents/Logbook/Trackers/Tasks/credentials
     '';
   };
 
