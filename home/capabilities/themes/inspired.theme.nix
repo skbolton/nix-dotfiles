@@ -19,8 +19,11 @@
   xdg.configFile."nvim/plugin/inspired.lua".text = ''
     vim.o.background = 'light'
     vim.cmd("colorscheme inspired-github")
-    vim.cmd("hi! Visual guibg=#F4F4F4 guifg=black")
+    vim.cmd("hi! Visual guibg=#EFEFEF")
     vim.cmd("hi! link CursorLineNr Keyword")
+    vim.cmd("hi! link @markup.link.label Keyword")
+    vim.api.nvim_set_hl(0, "@markup.strong", { bold = true })
+    vim.api.nvim_set_hl(0, "@markup.heading", { bold = true, sp = "#CA1243", underline = true })
     -- vim.cmd("hi! Search guibg=#daf6ff guifg=black")
   '';
 
