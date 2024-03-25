@@ -3,6 +3,7 @@ root: ~/Public/pdq-portal
 
 before_start: 
   - docker-compose up -d
+  - docker-compose --project-directory ../pdq-devops/scripts/local-dev up -d 
 
 stop:
   - docker-compose stop
