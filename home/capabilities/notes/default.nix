@@ -2,8 +2,8 @@
 
 {
   home.sessionVariables = {
-    JOURNALS = "$HOME/00-09-System/02-Logs";
-    ZK_NOTEBOOK_DIR = "$HOME/00-09-System/02-Logs/";
+    JOURNALS = "$HOME/Documents/Logbook";
+    ZK_NOTEBOOK_DIR = "$HOME/Documents/Reference";
   };
 
   home.packages = with pkgs; [
