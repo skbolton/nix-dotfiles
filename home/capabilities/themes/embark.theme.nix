@@ -13,6 +13,8 @@
 
   xdg.configFile."tmux/statusline.tmux".source = ./embark.tmux;
 
+  xdg.configFile."kitty/themes/theme.conf".source = ../kitty/themes/embark.conf;
+
   programs.yazi.theme = {
     manager = {
       hovered = { bg = "#3E3859"; };

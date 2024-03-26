@@ -54,7 +54,7 @@ in
     };
 
     extraConfig = ''
-      include ./themes/inspired-github.conf
+      include ./themes/theme.conf
       # Seti
       symbol_map U+E5FA-U+E6B1 RobotoMono Nerd Font
       # Devicons
@@ -94,10 +94,7 @@ in
 
   xdg.configFile."kitty/kitty-light.conf".text = ''
     include ./kitty.conf
-    env THEME=tantric
-    env TMUX_STATUSLINE=cleanline
-    env NVIM_STATUSLINE=rocket-line
-    include ./themes/tantric.conf
+    include ./themes/inspired-github.conf
   '';
 
   xdg.dataFile."fonts/Lilex" = {

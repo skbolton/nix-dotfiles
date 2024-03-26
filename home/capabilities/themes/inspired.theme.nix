@@ -29,6 +29,7 @@
 
   xdg.configFile."nvim/plugin/statusline.lua".source = ./galaxy-line-inspired.lua;
   xdg.configFile."tmux/statusline.tmux".source = ./inspired.tmux;
+  xdg.configFile."kitty/themes/theme.conf".source = ../kitty/themes/inspired-github.conf;
 
   programs.yazi.theme = {
     manager = {

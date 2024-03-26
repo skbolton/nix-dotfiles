@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../capabilities/themes/inspired.theme.nix
+    ../capabilities/themes/embark.theme.nix
     ./rgb.nix
     ../../modules/home-manager/monitors.nix
     ../../modules/home-manager/keyboard.nix
@@ -143,6 +143,13 @@
     packages = with pkgs; [
       mpv
       docker-compose
+      (pkgs.makeDesktopItem {
+        name = "Kitty - Weasel";
+        desktopName = "weasel";
+        icon = ../capabilities/kitty/kitty-light.png;
+        exec = "kitty --config /home/orlando/.config/kitty/kitty-light.conf ssh weasel";
+        terminal = false;
+      })
     ];
   };
 
