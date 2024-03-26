@@ -152,7 +152,7 @@
       width = 2560;
       height = 2880;
       scale = "1.25";
-      workspaces = [ "2" "4" ];
+      workspaces = [ "7" "8" "9" ];
     }
     {
       name = "DP-5";
@@ -161,7 +161,7 @@
       x = 2048;
       y = 300;
       scale = "1.066667,bitdepth,10";
-      workspaces = [ "1" "3" ];
+      workspaces = [ "1" "3" "5" ];
     }
     {
       name = "DP-1";
@@ -169,7 +169,7 @@
       height = 2880;
       scale = "1.25";
       x = 5648;
-      workspaces = [ "2" "4" ];
+      workspaces = [ "2" "4" "6" ];
     }
   ];
 
