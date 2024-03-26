@@ -25,8 +25,7 @@ map('n', '<leader>nN', ':ZkNotes { tags = {}}<left><left>')
 map('n', '<leader>nt', '<CMD>ZkTags<CR>')
 map('n', '<leader>ns', '<CMD>ZkSpells<CR>')
 map('n', '<leader>n.', '<CMD>ZkBacklinks<CR>')
-map('v', '<leader>nc', ":'<,'>ZkNewFromTitleSelection<CR>")
-map('v', '<leader>nC', ":'<,'>ZkNewFromTitleSelection { template = '' }<left><left><left>")
+map('n', '<leader>n<up>', '<CMD>ZkLinks<CR>')
 map('n', '<leader>fi', '<CMD>Telescope symbols<CR>')
 
 telescope.setup{
