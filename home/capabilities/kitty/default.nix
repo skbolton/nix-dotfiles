@@ -17,7 +17,7 @@ in
       background_opacity = 1;
       cursor_shape = "beam";
 
-      font_family = "Lilex Medium";
+      font_family = "Lilex Meduim";
       bold_font = "Berkeley Mono Bold";
       bold_italic_font = "Berkeley Mono Bold Italic";
       italic_font = "Operator Mono Book Italic";
