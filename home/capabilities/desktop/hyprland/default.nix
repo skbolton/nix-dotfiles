@@ -104,14 +104,18 @@
         kb_layout = "us";
         kb_variant = config.keyboard.variant;
         kb_options = config.keyboard.options;
+        sensitivity = 0.15;
         follow_mouse = 1;
         touchpad = {
           natural_scroll = true;
+          drag_lock = true;
         };
       };
 
       gestures = {
         workspace_swipe = true;
+        workspace_swipe_distance = 200;
+        workspace_swipe_forever = true;
       };
 
       device = {

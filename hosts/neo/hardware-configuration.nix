@@ -9,69 +9,65 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.kernelModules = [ "i915" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.initrd.luks.devices."system".device = "/dev/disk/by-partlabel/HYNIX-NIX";
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-label/NIX-SYSTEM";
+      device = "/dev/mapper/system";
       fsType = "btrfs";
       options = [ "subvol=@" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
-  boot.initrd.luks.devices."system".device = "/dev/disk/by-partlabel/LENOVO-SYSTEM";
-
   fileSystems."/home" =
     {
-      device = "/dev/disk/by-label/NIX-SYSTEM";
+      device = "/dev/mapper/system";
       fsType = "btrfs";
       options = [ "subvol=@home" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/nix" =
     {
-      device = "/dev/disk/by-label/NIX-SYSTEM";
+      device = "/dev/mapper/system";
       fsType = "btrfs";
       options = [ "subvol=@nix" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/var/log" =
     {
-      device = "/dev/disk/by-label/NIX-SYSTEM";
+      device = "/dev/mapper/system";
       fsType = "btrfs";
       options = [ "subvol=@var/log" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/var/lib/docker" =
     {
-      device = "/dev/disk/by-label/NIX-SYSTEM";
+      device = "/dev/mapper/system";
       fsType = "btrfs";
       options = [ "subvol=@var/lib/docker" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-label/NIX-EFI";
+      device = "/dev/disk/by-partlabel/HYNIX-EFI";
       fsType = "vfat";
     };
 
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16 * 1024;
-      randomEncryption.enable = true;
-    }
-  ];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp1s0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

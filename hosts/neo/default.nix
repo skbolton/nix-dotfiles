@@ -51,7 +51,7 @@
   services.xserver = {
     xkb.variant = "colemak";
     enable = true;
-    videoDrivers = [ "amdgpu" ];
+    videoDrivers = [ "i915" ];
 
     displayManager.gdm = {
       enable = true;
@@ -75,6 +75,7 @@
 
   hardware = {
     bluetooth.enable = true;
+    enableRedistributableFirmware = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -124,7 +125,7 @@
 
   programs.dconf.enable = true;
 
-  services.auto-cpufreq.enable = true;
+  # services.auto-cpufreq.enable = true;
 
   xdg.portal = {
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
