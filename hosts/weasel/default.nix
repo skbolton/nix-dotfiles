@@ -44,7 +44,11 @@
     git
     zsh
     neovim
-    (google-cloud-sdk.withExtraComponents [ google-cloud-sdk.components.kubectl google-cloud-sdk.components.gke-gcloud-auth-plugin ])
+    (google-cloud-sdk.withExtraComponents [
+      google-cloud-sdk.components.kubectl
+      google-cloud-sdk.components.gke-gcloud-auth-plugin
+      google-cloud-sdk.components.pubsub-emulator
+    ])
   ];
 
   services.openssh = {
