@@ -147,7 +147,7 @@
         name = "Kitty - Weasel";
         desktopName = "weasel";
         icon = ../capabilities/kitty/kitty-light.png;
-        exec = "kitty --config /home/orlando/.config/kitty/kitty-light.conf ssh weasel";
+        exec = "kitty --config /home/orlando/.config/kitty/kitty-light.conf";
         terminal = false;
       })
     ];
