@@ -111,7 +111,7 @@ in
     #######################################################################
     bind j switch-client -p
     bind k switch-client -n
-    bind Tab switch-client -l
+    bind BSpace switch-client -l
     bind C-d switch-client -t Delta
     bind C-h new-window -n  dijo
     
