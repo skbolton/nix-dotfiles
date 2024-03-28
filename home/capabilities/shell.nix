@@ -72,10 +72,7 @@
       autoload -Uz edit-command-line
       zle -N edit-command-line
       bindkey -M viins '^f' edit-command-line
-      bindkey -M vicmd '^i' edit-command-line
 
-      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-    
       color=$(( ( RANDOM % 6 ) + 1 ))
       tput setaf $color && ${pkgs.toilet}/bin/toilet -F border -t -f pagga "Bit by Bit"
 
