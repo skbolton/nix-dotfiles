@@ -57,6 +57,8 @@ vim.keymap.set('n', '<C-c><C-e>', '<CMD>EditCodeBlock<CR>', { buffer = true })
 vim.keymap.set('n', '<C-c><C-r>', run_sql_block, { buffer = true })
 vim.keymap.set('n', '<localleader>ci', clock_in, { buffer = true })
 vim.keymap.set('n', '<localleader>co', clock_out, { buffer = true })
+vim.keymap.set('n', '<localleader>tt', 'i**<C-R>=strftime("%H:%M")<CR>** ', { buffer = true })
+vim.keymap.set('n', '<localleader>td', 'i**<C-R>=strftime("%Y-%m-%d")<CR>** ', { buffer = true })
 
 blocal.textwidth = 120
 blocal.softtabstop = 2
@@ -78,8 +80,6 @@ local toggle_todo = function()
 end
 
 vim.keymap.set('n', '<C-SPACE>', toggle_todo, { buffer = true })
-vim.keymap.set('i', '<C-t>t', '**<C-R>=strftime("%H:%M")<CR>** ', { buffer = true })
-vim.keymap.set('i', '<C-t>d', '**<C-R>=strftime("%Y-%m-%d")<CR>** ', { buffer = true })
 
 vim.keymap.set("n", "]t", function()
   require("todo-comments").jump_next()
