@@ -177,6 +177,7 @@
         "$mainMod, TAB, changegroupactive, f"
         "$mainMod SHIFT, TAB, changegroupactive, b"
         "$mainMod, z, focuswindow, title:kitty-journal"
+        "$mainMod, period, exec, zsh -c 'wl-paste >> $JOURNALS/Journal/$(date +%Y-%m-%d).md && notify-send \"pasted into $(date +%Y-%m-%d).md!\"'"
 
         "$mainMod, h, movefocus, l"
         "$mainMod, l, movefocus, r"
