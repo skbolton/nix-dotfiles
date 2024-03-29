@@ -24,7 +24,8 @@
     vim.cmd("hi! link @markup.link.label Keyword")
     vim.api.nvim_set_hl(0, "@markup.strong", { bold = true })
     vim.api.nvim_set_hl(0, "@markup.heading", { bold = true, sp = "#CA1243", underline = true })
-    -- vim.cmd("hi! Search guibg=#daf6ff guifg=black")
+    vim.api.nvim_set_hl(0, "Todo", { bold = true, link = "Function"})
+    vim.api.nvim_set_hl(0, "@text.todo.checked", { link = "Comment"})
   '';
 
   xdg.configFile."nvim/plugin/statusline.lua".source = ./galaxy-line-inspired.lua;
