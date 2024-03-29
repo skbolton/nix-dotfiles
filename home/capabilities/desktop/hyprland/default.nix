@@ -35,8 +35,7 @@
         "kitty"
         "remind -z -k':notify-send -u critical \"Reminder!\" %s' ~/00-09-System/02-Logs/02.10-Journal/agenda.rem"
         "[workspace 7 silent] morgen"
-        "[workspace 7 silent] kitty"
-        "[workspace 7 silent] kitty"
+        "[workspace 7 silent] kitty --title='kitty-journal'"
       ];
 
       workspace = lib.lists.flatten (map
@@ -177,6 +176,7 @@
         "$mainMod, g, togglegroup"
         "$mainMod, TAB, changegroupactive, f"
         "$mainMod SHIFT, TAB, changegroupactive, b"
+        "$mainMod, z, focuswindow, title:kitty-journal"
 
         "$mainMod, h, movefocus, l"
         "$mainMod, l, movefocus, r"
