@@ -60,7 +60,7 @@ vim.keymap.set('n', '<localleader>tt', 'i**<C-R>=strftime("%H:%M")<CR>** ', { bu
 vim.keymap.set('n', '<localleader>td', 'i**<C-R>=strftime("%Y-%m-%d")<CR>** ', { buffer = true })
 
 vim.keymap.set('ia', '@@t', function()
-  return os.date("%H-%M")
+  return os.date("%H:%M")
 end, { buffer = true, expr = true })
 
 vim.keymap.set('ia', '@@d', function()
