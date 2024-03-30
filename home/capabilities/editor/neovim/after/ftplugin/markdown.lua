@@ -89,7 +89,10 @@ end
 local line_with_checkbox = function(line)
   -- return not line_contains_a_checked_checkbox(line) and not line_contains_an_unchecked_checkbox(line)
   return line:find("^%s*- " .. checked_checkbox)
+    or line:find("^%s*%* " .. checked_checkbox)
+    or line:find("^%s*%* " .. unchecked_checkbox)
     or line:find("^%s*- " .. unchecked_checkbox)
+    or line:find("^%s*%* " .. unchecked_checkbox)
     or line:find("^%s*%d%. " .. checked_checkbox)
     or line:find("^%s*%d%. " .. unchecked_checkbox)
 end
@@ -104,12 +107,13 @@ local checkbox = {
   end,
 
   make_checkbox = function(line)
-    if not line:match("^%s*-%s.*$") and not line:match("^%s*%d%s.*$") then
-      -- "xxx" -> "- [ ] xxx"
-      return line:gsub("(%S+)", "- [ ] %1", 1)
+    -- line isn't `- ...` and `1. ...`
+    if not line:match("^%s*%*%s.*$") and not line:match("^%s*%d%s.*$") then
+      -- "xxx" -> "* [ ] xxx"
+      return line:gsub("(%S+)", "* [ ] %1", 1)
     else
       -- "- xxx" -> "- [ ] xxx", "3. xxx" -> "3. [ ] xxx"
-      return line:gsub("(%s*- )(.*)", "%1[ ] %2", 1):gsub("(%s*%d%. )(.*)", "%1[ ] %2", 1)
+      return line:gsub("(%s*-?%*? )(.*)", "%1[ ] %2", 1):gsub("(%s*%d%. )(.*)", "%1[ ] %2", 1)
     end
   end,
 }
