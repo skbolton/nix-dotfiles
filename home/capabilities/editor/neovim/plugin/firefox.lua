@@ -10,6 +10,10 @@ end
 
 vim.g.firenvim_config = {
   localSettings = {
+    ['discord.com*'] = {
+      takeover = 'never',
+      priority = 1
+    },
     ['www.notion.so.*'] = {
       takeover = 'never',
       priority = 1

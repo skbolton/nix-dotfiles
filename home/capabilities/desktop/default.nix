@@ -7,7 +7,6 @@
 
   home.packages = with pkgs; [
     slack
-    webcord
     zoom-us
     xfce.thunar
     xfce.thunar-archive-plugin

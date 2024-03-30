@@ -30,7 +30,6 @@
         "synology-drive"
         "waybar"
         "[workspace 2 silent] floorp"
-        "webcord"
         "[workspace special:term silent] kitty --title='kitty-scratch' --hold"
         "kitty"
         "remind -z -k':notify-send -u critical \"Reminder!\" %s' ~/00-09-System/02-Logs/02.10-Journal/agenda.rem"
