@@ -1,4 +1,3 @@
-
 local blocal = vim.opt_local
 vim.cmd("packadd markdown-preview.nvim")
 vim.cmd("packadd vimplugin-mdeval-nvim")
@@ -60,7 +59,14 @@ vim.keymap.set('n', '<localleader>co', clock_out, { buffer = true })
 vim.keymap.set('n', '<localleader>tt', 'i**<C-R>=strftime("%H:%M")<CR>** ', { buffer = true })
 vim.keymap.set('n', '<localleader>td', 'i**<C-R>=strftime("%Y-%m-%d")<CR>** ', { buffer = true })
 
-blocal.textwidth = 120
+vim.keymap.set('ia', '@@t', function()
+  return os.date("%H-%M")
+end, { buffer = true, expr = true })
+
+vim.keymap.set('ia', '@@d', function()
+  return os.date("%Y-%m-%d")
+end, { buffer = true, expr = true })
+
 blocal.softtabstop = 2
 blocal.shiftwidth = 2
 
@@ -130,7 +136,7 @@ local toggle_checkbox = function()
   vim.api.nvim_win_set_cursor(0, cursor)
 end
 
-vim.keymap.set('n', '<c-space>', toggle_checkbox)
+vim.keymap.set('n', '<c-space>', toggle_checkbox, { buffer = true })
 
 vim.keymap.set("n", "]t", function()
   require("todo-comments").jump_next()

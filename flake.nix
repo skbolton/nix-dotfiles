@@ -48,6 +48,7 @@
       url = "github:embark-theme/vim";
       flake = false;
     };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   # `outputs` are all the build result of the flake.
@@ -95,6 +96,7 @@
           specialArgs = { inherit inputs outputs; }; # pass custom arguments into sub module.
           modules = [
             ./hosts/trinity
+            { nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ]; }
             { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
             {
