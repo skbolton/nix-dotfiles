@@ -17,7 +17,7 @@ in
       background_opacity = 1;
       cursor_shape = "beam";
 
-      font_family = "Lilex Meduim";
+      font_family = "Lilex";
       bold_font = "Berkeley Mono Bold";
       bold_italic_font = "Berkeley Mono Bold Italic";
       italic_font = "Operator Mono Book Italic";
@@ -95,6 +95,11 @@ in
   xdg.configFile."kitty/kitty-light.conf".text = ''
     include ./kitty.conf
     include ./themes/inspired-github.conf
+    font_family Lilex Medium
+    bold_font Berkeley Mono Bold
+    bold_italic_font Berkeley Mono Bold Italic
+    italic_font Operator Mono Book Italic
+    font_size 14.0
   '';
 
   xdg.dataFile."fonts/Lilex" = {
