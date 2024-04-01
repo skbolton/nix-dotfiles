@@ -135,6 +135,7 @@
           # specialArgs = {...}  # pass custom arguments into sub module.
           modules = [
             ./hosts/neo
+            { nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ]; }
             { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
             {
