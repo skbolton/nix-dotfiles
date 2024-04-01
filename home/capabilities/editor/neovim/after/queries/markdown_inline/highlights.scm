@@ -3,7 +3,7 @@
 ;; bullet journal extends
 ;; migration forward
 (shortcut_link
-  (link_text) @string (#eq? @string ">") (#offset! @string 0 -1 0 0) (#set! "priority" 110) (#set! conceal " "))
+  (link_text) @string.special (#eq? @string.special ">") (#offset! @string.special 0 -1 0 0) (#set! "priority" 110) (#set! conceal " "))
 
 ;; migration -> future log
 (shortcut_link
@@ -19,4 +19,4 @@
 
 ;; inspirational
 (shortcut_link
-  (link_text) @constant (#eq? @constant "!") (#offset! @constant 0 -1 0 0) (#set! "priority" 110) (#set! conceal " "))
+  (link_text) @string (#eq? @string "!") (#offset! @string 0 -1 0 0) (#set! "priority" 110) (#set! conceal " "))
