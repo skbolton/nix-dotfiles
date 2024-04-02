@@ -48,6 +48,10 @@ local clock_out = function()
   })
 end
 
+local open_tasks = function()
+  vim.cmd([[ silent grep '^\s*(-\|\*) \[ \]' ]])
+end
+
 vim.keymap.set('n', '<localleader>r', '<CMD>MarkdownPreview<CR>', { buffer = true })
 vim.keymap.set('n', '<localleader>t', '<CMD>! md-tangle -f %<CR>', { buffer = true })
 vim.keymap.set('n', '<C-c><C-c>', run_code_block, { buffer = true })
@@ -58,6 +62,7 @@ vim.keymap.set('n', '<localleader>ci', clock_in, { buffer = true })
 vim.keymap.set('n', '<localleader>co', clock_out, { buffer = true })
 vim.keymap.set('n', '<localleader>tt', 'i**<C-R>=strftime("%H:%M")<CR>** ', { buffer = true })
 vim.keymap.set('n', '<localleader>td', 'i**<C-R>=strftime("%Y-%m-%d")<CR>** ', { buffer = true })
+vim.keymap.set('n', '<localleader>ft', open_tasks, { buffer = true })
 
 vim.keymap.set('ia', '@@t', function()
   return os.date("%H:%M")
