@@ -150,7 +150,10 @@
         weasel = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            { nix.registry.nixpkgs.flake = nixpkgs; }
+            {
+              nix.registry.nixpkgs.flake = nixpkgs;
+              nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
+            }
             ./hosts/weasel
             NixOS-WSL.nixosModules.wsl
             home-manager.nixosModules.home-manager
