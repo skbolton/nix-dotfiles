@@ -49,7 +49,7 @@ local clock_out = function()
 end
 
 local open_tasks = function()
-  vim.cmd([[ silent grep '^\s*(-\|\*) \[ \]' ]])
+  vim.cmd([[ silent grep --sort path '^\s*(-\|\*) \[ \]' ]])
 end
 
 vim.keymap.set('n', '<localleader>r', '<CMD>MarkdownPreview<CR>', { buffer = true })
