@@ -52,6 +52,23 @@ local open_tasks = function()
   vim.cmd([[ silent grep --sort path '^\s*(-\|\*) \[ \]' ]])
 end
 
+function move_to_date(date, direction, depth)
+  date = date or vim.fn.expand('%:t:r')
+
+  if depth > 100 then
+    vim.print("Max depth reached at " .. date)
+    return
+  end
+
+  local next_day = vim.trim(vim.system({ 'dateadd', date, direction .. '1' }, { text = true }):wait().stdout)
+  local day_path = 'Journal/' .. next_day .. '.md'
+  if vim.fn.filereadable(day_path) == 1 then
+    return vim.cmd.edit(day_path)
+  else
+    return move_to_date(next_day, direction, depth + 1)
+  end
+end
+
 vim.keymap.set('n', '<localleader>r', '<CMD>MarkdownPreview<CR>', { buffer = true })
 vim.keymap.set('n', '<localleader>t', '<CMD>! md-tangle -f %<CR>', { buffer = true })
 vim.keymap.set('n', '<C-c><C-c>', run_code_block, { buffer = true })
@@ -63,6 +80,8 @@ vim.keymap.set('n', '<localleader>co', clock_out, { buffer = true })
 vim.keymap.set('n', '<localleader>tt', 'i**<C-R>=strftime("%H:%M")<CR>** ', { buffer = true })
 vim.keymap.set('n', '<localleader>td', 'i**<C-R>=strftime("%Y-%m-%d")<CR>** ', { buffer = true })
 vim.keymap.set('n', '<localleader>ft', open_tasks, { buffer = true })
+vim.keymap.set('n', '<localleader><left>', function() move_to_date(nil, '-', 0) end)
+vim.keymap.set('n', '<localleader><right>', function() move_to_date(nil, '+', 0) end)
 
 vim.keymap.set('ia', '@@t', function()
   return os.date("%H:%M")

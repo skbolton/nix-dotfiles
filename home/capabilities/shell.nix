@@ -12,6 +12,7 @@
     entr
     fd
     md-tangle
+    dateutils
   ];
 
   programs.bat.enable = true;
