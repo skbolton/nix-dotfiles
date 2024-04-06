@@ -87,7 +87,7 @@
   users.users.orlando = {
     isNormalUser = true;
     initialPassword = "temp-pass";
-    extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "docker" "networkmanager" "scanner" "lp" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 
@@ -104,6 +104,7 @@
     pulseaudio
     qmk
     obs-studio
+    gnome.simple-scan
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -160,6 +161,11 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+  };
+
+  hardware.sane = {
+    enable = true;
+    brscan4.enable = true;
   };
 
   services.blueman.enable = true;
