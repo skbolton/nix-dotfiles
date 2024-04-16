@@ -18,6 +18,9 @@
     mpv
     tidal-hifi
     font-manager
+    foliate
+    okular
+    galculator
   ];
 
   programs.wofi.enable = true;
