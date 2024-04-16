@@ -29,7 +29,7 @@
       # gtk-theme = "Catppuccin-Frappe-Standard-Blue-light";
       gtk-theme = "Catppuccin-Mocha-Standard-Blue-Dark";
       cursor-theme = "Bibata-Modern-Ice";
-      icon-theme = "Fluent-dark";
+      icon-theme = "Fluent-teal-dark";
     };
   };
 
@@ -52,8 +52,8 @@
     };
 
     iconTheme = {
-      name = "Fluent-dark";
-      package = pkgs.fluent-icon-theme;
+      name = "Fluent-teal-dark";
+      package = pkgs.fluent-icon-theme.override { roundedIcons = true; allColorVariants = true; };
     };
   };
 
