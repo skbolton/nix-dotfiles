@@ -224,6 +224,7 @@
         ", XF86AudioPrev, exec, playerctl previous"
         ", XF86AudioNext, exec, playerctl next"
         ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86Calculator, exec, galculator"
 
         ", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10-"
         ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10"
@@ -235,10 +236,10 @@
         "$mainMod ALT CTRL, equal, exec, dunstctl set-paused toggle"
         "$mainMod ALT CTRL, bracketright, exec, systemctl reboot"
 
-        "$mainMod ALT CTRL SHIFT, 1, exec, grimblast copy area"
-        "$mainMod ALT CTRL SHIFT, 2, exec, grimblast save area"
-        "$mainMod ALT CTRL SHIFT, 3, exec, grimblast copy active"
-        "$mainMod ALT CTRL SHIFT, 4, exec, grimblast copy output"
+        "CTRL, Print, exec, grimblast copy area"
+        "CTRL SHIFT, Print, exec, grimblast save area"
+        "ALT CTRL SHIFT, Print, exec, grimblast copy active"
+        ", Print, exec, grimblast copy output"
       ];
 
       bindm = [
