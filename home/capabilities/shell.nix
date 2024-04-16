@@ -13,6 +13,7 @@
     fd
     md-tangle
     dateutils
+    flyctl
   ];
 
   programs.bat.enable = true;
