@@ -8,11 +8,6 @@
       alias = {
         "@" = "context";
       };
-      report = {
-        next = {
-          filter = "-milestone +READY limit:20";
-        };
-      };
       context = {
         work = "project:PDQ or proj:OSS or proj:CAR";
         personal = "project.not:PDQ";
