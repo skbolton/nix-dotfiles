@@ -8,8 +8,6 @@
   home.packages = with pkgs; [
     slack
     zoom-us
-    xfce.thunar
-    xfce.thunar-archive-plugin
     gnome.nautilus
     lxappearance
     arandr

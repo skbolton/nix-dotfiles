@@ -171,7 +171,7 @@
         "$mainMod SHIFT, t, togglefloating,"
         "ALT, d, exec, wofi --show drun -I"
         "ALT, e, exec, wofi-emoji"
-        "$mainMod, e, exec, thunar"
+        "$mainMod, e, exec, nautilus"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, s, togglespecialworkspace, notes"
         "$mainMod SHIFT, S, movetoworkspace, special:notes"
