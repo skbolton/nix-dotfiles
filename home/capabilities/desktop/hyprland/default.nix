@@ -159,6 +159,7 @@
         "float,title:(GnuCash Tip Of The Day)"
         "float,title:(Firefox — Sharing Indicator)"
         "float,title:(Floorp — Sharing Indicator)"
+        "float,title:galculator"
       ];
 
       "$mainMod" = "SUPER";
