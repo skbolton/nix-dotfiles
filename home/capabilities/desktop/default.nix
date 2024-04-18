@@ -23,6 +23,8 @@
 
   programs.wofi.enable = true;
 
+  services.cliphist.enable = true;
+
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
