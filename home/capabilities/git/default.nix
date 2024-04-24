@@ -55,7 +55,7 @@
         side-by-side = true;
         line-numbers = true;
         decorations = {
-          syntax-theme = "catppuccin-mocha";
+          syntax-theme = "embark";
           minus-style = "syntax #741827";
           minus-emph-style = "syntax #a8113c";
           line-numbers-minus-style = "#F38BA8";
