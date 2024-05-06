@@ -20,7 +20,7 @@
 
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = true;
+    enableAutosuggestions = true;
     enableCompletion = true;
     autocd = true;
     cdpath = [ "." "/home/orlando" "/home/orlando/Public" "/home/orlando/Documents" "/home/orlando/Notes" ];
@@ -133,7 +133,6 @@
 
   programs.eza = {
     enable = true;
-    enableZshIntegration = true;
     icons = true;
     extraOptions = [ "--group-directories-first" "--header" ];
     git = true;

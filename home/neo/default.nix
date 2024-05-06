@@ -1,11 +1,10 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
     ../capabilities/themes/embark.theme.nix
     ../../modules/home-manager/monitors.nix
     ../../modules/home-manager/keyboard.nix
-    inputs.hyprland.homeManagerModules.default
     ../capabilities/git
     ../capabilities/gpg.nix
     ../capabilities/shell.nix

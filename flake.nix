@@ -24,21 +24,20 @@
     # which represents the GitHub repository URL + branch/commit-id/tag.
 
     # Official NixOS package source, using nixos-unstable branch here
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     NixOS-WSL = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # home-manager, used for managing user configuration
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with the `inputs.nixpkgs` of the current flake,
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,7 +47,6 @@
       url = "github:embark-theme/vim";
       flake = false;
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   # `outputs` are all the build result of the flake.
@@ -96,7 +94,6 @@
           specialArgs = { inherit inputs outputs; }; # pass custom arguments into sub module.
           modules = [
             ./hosts/trinity
-            { nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ]; }
             { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
             {
@@ -135,7 +132,6 @@
           # specialArgs = {...}  # pass custom arguments into sub module.
           modules = [
             ./hosts/neo
-            { nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ]; }
             { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
             {
@@ -152,7 +148,6 @@
           modules = [
             {
               nix.registry.nixpkgs.flake = nixpkgs;
-              nixpkgs.overlays = [ inputs.neovim-nightly-overlay.overlay ];
             }
             ./hosts/weasel
             NixOS-WSL.nixosModules.wsl

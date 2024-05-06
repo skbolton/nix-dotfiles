@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -6,7 +6,6 @@
     ./rgb.nix
     ../../modules/home-manager/monitors.nix
     ../../modules/home-manager/keyboard.nix
-    inputs.hyprland.homeManagerModules.default
     ../capabilities/git
     ../capabilities/gpg.nix
     ../capabilities/shell.nix
@@ -33,7 +32,7 @@
     enableSshSupport = true;
     enableExtraSocket = true;
     enableZshIntegration = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentryFlavor = "gnome3";
     defaultCacheTtl = 60;
     maxCacheTtl = 120;
     enableScDaemon = true;

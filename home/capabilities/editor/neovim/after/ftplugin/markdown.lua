@@ -83,13 +83,13 @@ vim.keymap.set('n', '<localleader>ft', open_tasks, { buffer = true })
 vim.keymap.set('n', '<localleader><left>', function() move_to_date(nil, '-', 0) end)
 vim.keymap.set('n', '<localleader><right>', function() move_to_date(nil, '+', 0) end)
 
-vim.keymap.set('ia', '@@t', function()
-  return os.date("%H:%M")
-end, { buffer = true, expr = true })
-
-vim.keymap.set('ia', '@@d', function()
-  return os.date("%Y-%m-%d")
-end, { buffer = true, expr = true })
+-- vim.keymap.set('ia', '@@t', function()
+--   return os.date("%H:%M")
+-- end, { buffer = true, expr = true })
+--
+-- vim.keymap.set('ia', '@@d', function()
+--   return os.date("%Y-%m-%d")
+-- end, { buffer = true, expr = true })
 
 blocal.softtabstop = 2
 blocal.shiftwidth = 2
