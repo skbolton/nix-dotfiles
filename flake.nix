@@ -29,6 +29,10 @@
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
@@ -93,6 +97,7 @@
           # If you need to pass other parameters, you must use `specialArgs` by uncomment the following line
           specialArgs = { inherit inputs outputs; }; # pass custom arguments into sub module.
           modules = [
+            ./hosts/sops.nix
             ./hosts/trinity
             { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
