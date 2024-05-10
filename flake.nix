@@ -134,8 +134,9 @@
           #
           # Only these parameters can be passed by default.
           # If you need to pass other parameters, you must use `specialArgs` by uncomment the following line
-          # specialArgs = {...}  # pass custom arguments into sub module.
+          specialArgs = { inherit inputs outputs; }; # pass custom arguments into sub module.
           modules = [
+            ./hosts/sops.nix
             ./hosts/neo
             { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager

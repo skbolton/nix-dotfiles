@@ -31,7 +31,7 @@
     enableSshSupport = true;
     enableExtraSocket = true;
     enableZshIntegration = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentryFlavor = "gnome3";
     defaultCacheTtl = 60;
     maxCacheTtl = 120;
     enableScDaemon = true;
@@ -89,7 +89,7 @@
       name = "eDP-1";
       width = 2560;
       height = 1600;
-      scale = "1";
+      scale = "1.06667";
       refreshRate = 120;
       workspaces = [ "1" "2" "3" "4" "5" "6" ];
     }
