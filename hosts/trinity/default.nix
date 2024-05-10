@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, outputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -151,6 +151,10 @@
     enable = true;
     cue = true;
   };
+
+  security.pki.certificateFiles = [
+    ../../self-signed.pem
+  ];
 
   services.flatpak.enable = true;
   services.hardware.bolt.enable = true;
