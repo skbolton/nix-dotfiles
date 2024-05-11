@@ -80,16 +80,6 @@
         };
       })
 
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "tfm-nvim";
-        src = pkgs.fetchFromGitHub {
-          owner = "Rolv-Apneseth";
-          repo = "tfm.nvim";
-          rev = "0fd23be";
-          sha256 = "sha256-jTKtPIXingJUUb5hloQshSz/qmv0CY3Cpac4t9WlKxI=";
-        };
-      })
-
       gitsigns-nvim
       diffview-nvim
       vim-fugitive

@@ -56,6 +56,11 @@
     envExtra = ''
       export MANPAGER="nvim +Man!"
       export PAGER=bat
+      BLK="00" CHAR="00" DIR="0C" EXE="DE" REG="00" HLI="00" SLI="00" MIS="00" ORP="00" FIF="00" SOC="00" UNK="00"
+      export NNN_FCOLORS="$BLK$CHAR$DIR$EXE$REG$HLI$SLI$MIS$ORP$FIF$SOC$UNK"
+      export NNN_COLORS="6666"
+      export NNN_OPTS=Hd
+      export NNN_FIFO=/tmp/nnn.fifo
     '';
 
     # how to see where a package ends up in the store
@@ -94,6 +99,26 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  programs.nnn = {
+    package = pkgs.nnn.override ({ withNerdIcons = true; extraMakeFlags = [ "O_NAMEFIRST=1" ]; });
+    enable = true;
+    bookmarks = {
+      d = "~/Documents";
+      o = "~/Downloads";
+    };
+    plugins = {
+      mappings = {
+        p = "preview-tui";
+      };
+      src = (pkgs.fetchFromGitHub {
+        owner = "jarun";
+        repo = "nnn";
+        rev = "9e95578c22bf76515a633723f6ec335469d4f000";
+        sha256 = "sha256-XM88ROUexwl26feNRik8pMzOcpiF84bC3l3F4RQnG34=";
+      }) + "/plugins";
+    };
   };
 
   programs.yazi = {
