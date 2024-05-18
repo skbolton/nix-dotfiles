@@ -146,6 +146,14 @@
     defaultOptions = [ "--reverse" "--ansi" ];
   };
 
+  xdg.dataFile."password-store/.extensions/fzf.bash".source = pkgs.fetchFromGitHub
+    {
+      owner = "ficoos";
+      repo = "pass-fzf";
+      rev = "4a703e72c0887f2012de8e791e725181d1ce18d8";
+      sha256 = "sha256-dKH7Tn0EFR5k/IH3b9GqpKmtbZ/Zc3e7gMDouUaJFRI=";
+    } + "/fzf.bash";
+
   programs.skim = {
     enable = true;
     enableZshIntegration = true;
