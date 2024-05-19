@@ -114,7 +114,8 @@ editor = "nvim"
 # bat is a great tool to render Markdown document with syntax highlighting.
 #https://github.com/sharkdp/bat
 fzf-preview = "bat -p --color always {-1}"
-
+fzf-line = "{{title-or-path}} {{#each tags}} {{style 'magenta' this}}{{/each}}"
+fzf-options = "--border=sharp --preview-window=up --prompt='🧠 '"
 
 # LSP
 #
