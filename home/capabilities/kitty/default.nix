@@ -106,4 +106,8 @@ in
     source = ./Lilex;
     recursive = true;
   };
+  xdg.dataFile."fonts/OneMono" = {
+    source = ./OneMono;
+    recursive = true;
+  };
 }
