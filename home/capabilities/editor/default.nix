@@ -13,6 +13,7 @@
       salt-vim
       bullets-vim
       venn-nvim
+      oil-nvim
 
       # editing support
       {
