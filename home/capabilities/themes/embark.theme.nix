@@ -76,7 +76,6 @@
     } + "/embark.theme";
 
   programs.starship.settings = {
-    add_newline = true;
     format = "$character$jobs$directory$git_branch$git_status ";
     character = {
       format = "$symbol";

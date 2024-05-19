@@ -74,7 +74,6 @@
   programs.btop.settings.color_theme = "flat-remix-light";
 
   programs.starship.settings = {
-    add_newline = true;
     format = "$character$jobs$directory$git_branch$git_status ";
     character = {
       format = "$symbol";
