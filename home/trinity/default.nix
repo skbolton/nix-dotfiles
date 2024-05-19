@@ -24,6 +24,10 @@
     ../capabilities/timetracking.nix
   ];
 
+  home.sessionVariables = {
+    USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
+  };
+
   fonts.fontconfig.enable = true;
 
   services.gpg-agent = {
@@ -56,35 +60,6 @@
         hostname = "localhost";
         user = "orlando";
         port = 2242;
-        localForwards = [
-          {
-            # bind is the local 
-            bind.port = 4000;
-            # host is the remote
-            host.address = "localhost";
-            host.port = 4000;
-          }
-          {
-            bind.port = 4001;
-            host.address = "localhost";
-            host.port = 4001;
-          }
-          {
-            bind.port = 54321;
-            host.address = "localhost";
-            host.port = 54321;
-          }
-          {
-            bind.port = 3333;
-            host.address = "localhost";
-            host.port = 3333;
-          }
-          {
-            bind.port = 9090;
-            host.address = "localhost";
-            host.port = 9090;
-          }
-        ];
         remoteForwards = [
           {
             # host is the local client it this situation
