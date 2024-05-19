@@ -20,6 +20,8 @@
     hosts = {
       "127.0.0.1" = [ "kubernetes" ];
     };
+
+    firewall.enable = false;
   };
 
   users.users.orlando = {
