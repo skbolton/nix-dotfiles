@@ -14,7 +14,7 @@
   boot.initrd.kernelModules = [ "i915" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_8;
 
   boot.initrd.luks.devices."system".device = "/dev/disk/by-partlabel/HYNIX-NIX";
 
