@@ -113,4 +113,20 @@
       format = "[ $hostname ](italic fg:bright-white bg:#19172C)";
     };
   };
+
+  programs.git.delta = {
+    options = {
+      light = false;
+      decorations = {
+        syntax-theme = "embark";
+        minus-style = "syntax #741827";
+        minus-emph-style = "syntax #a8113c";
+        line-numbers-minus-style = "#F38BA8";
+        line-numbers-plus-style = "#94E2D5";
+        plus-style = "syntax #154e45";
+        plus-emph-style = "syntax bold #146675";
+      };
+      features = "decorations";
+    };
+  };
 }

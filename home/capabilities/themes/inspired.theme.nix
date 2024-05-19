@@ -105,6 +105,16 @@
       symbol = " ";
     };
   };
+
+  programs.git.delta = {
+    options = {
+      light = true;
+      decorations = {
+        syntax-theme = "GitHub";
+      };
+      features = "decorations";
+    };
+  };
 }
 
 # hi Character                  guifg=#0086b3 guibg=None guisp=None gui=None ctermfg=31 ctermbg=None cterm=None
