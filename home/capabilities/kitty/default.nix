@@ -17,7 +17,7 @@ in
       background_opacity = 1;
       cursor_shape = "beam";
 
-      font_family = "Lilex";
+      font_family = "Intel One Mono";
       bold_font = "Berkeley Mono Bold";
       bold_italic_font = "Berkeley Mono Bold Italic";
       italic_font = "Operator Mono Book Italic";
@@ -44,7 +44,7 @@ in
       "ctrl+alt+k" = "change_font_size current +2.0";
       "ctrl+alt+j" = "change_font_size current -2.0";
       "ctrl+alt+z" = "change_font_size current 18.0";
-      "ctrl+alt+u" = "change_font_size current 12.0";
+      "ctrl+alt+u" = "change_font_size all 0";
       "ctrl+alt+backspace" = "change_font_size all 0";
       "ctrl+alt+period" = "send_text current pass fzf\r";
       "ctrl+alt+p" = "send_text all rally.sh\\r";
@@ -54,6 +54,7 @@ in
     };
 
     extraConfig = ''
+      modify_font cell_height +8px
       include ./themes/theme.conf
       # Seti
       symbol_map U+E5FA-U+E6B1 RobotoMono Nerd Font
@@ -95,7 +96,8 @@ in
   xdg.configFile."kitty/kitty-light.conf".text = ''
     include ./kitty.conf
     include ./themes/inspired-github.conf
-    font_family Lilex Medium
+    modify_font cell_height +8px
+    font_family Intel One Mono 
     bold_font Berkeley Mono Bold
     bold_italic_font Berkeley Mono Bold Italic
     italic_font Operator Mono Book Italic
@@ -106,6 +108,7 @@ in
     source = ./Lilex;
     recursive = true;
   };
+
   xdg.dataFile."fonts/OneMono" = {
     source = ./OneMono;
     recursive = true;
