@@ -13,7 +13,7 @@ local toggle_venn = function()
     -- draw a box by pressing "f" with visual selection
     vim.api.nvim_buf_set_keymap(0, "v", "f", ":VBox<CR>", {noremap = true})
 
-    vim.keymap.set('n', '<leader>V', function() vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-v>elohjok", true, false, true), 'm', false) end)
+    vim.keymap.set('n', '<leader>V', function() vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-v>Elohjok", true, false, true), 'm', false) end)
     vim.keymap.set('v', '<leader>V', function() vim.api.nvim_feedkeys("lohjok", 't', false) end)
   else
     _M.enabled = false
