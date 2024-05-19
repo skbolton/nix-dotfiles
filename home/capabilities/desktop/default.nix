@@ -19,6 +19,8 @@
     foliate
     okular
     galculator
+    wtype
+    wofi-emoji
   ];
 
   programs.wofi.enable = true;
