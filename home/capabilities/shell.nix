@@ -85,8 +85,7 @@
 
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     
-      color=$(( ( RANDOM % 6 ) + 1 ))
-      tput setaf $color && ${pkgs.toilet}/bin/toilet -F border -t -f pagga "Bit by Bit"
+      ${pkgs.dwt1-shell-color-scripts}/bin/colorscript -e panes
 
       function w() {
         fd $1 | entr -c "''${@:2}"
