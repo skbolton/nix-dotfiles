@@ -95,6 +95,12 @@
       function ew() {
         fd "\.exs?$" | entr -c "$@"
       }
+
+      function zvm_after_init() {
+        zvm_bindkey viins '^R' fzf-history-widget
+        bindkey -M viins '^f' edit-command-line
+      }
+
     '';
   };
 
