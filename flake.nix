@@ -151,10 +151,12 @@
 
         weasel = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs outputs; };
           modules = [
             {
               nix.registry.nixpkgs.flake = nixpkgs;
             }
+            ./hosts/sops.nix
             ./hosts/weasel
             NixOS-WSL.nixosModules.wsl
             home-manager.nixosModules.home-manager
