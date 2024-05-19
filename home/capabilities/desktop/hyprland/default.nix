@@ -165,6 +165,7 @@
         "float,title:(Firefox — Sharing Indicator)"
         "float,title:(Floorp — Sharing Indicator)"
         "float,title:galculator"
+        "float,title:kitty-float"
       ];
 
       "$mainMod" = "SUPER";
@@ -177,6 +178,10 @@
         "$mainMod SHIFT, t, togglefloating,"
         "ALT, d, exec, wofi --show drun -I"
         "ALT, e, exec, wofi-emoji"
+
+        "$mainMod, r, exec, kitty --title='kitty-float' --override initial_window_width=100c --override initial_window_height=1c --hold"
+        "$mainMod CTRL, r, exec, kitty --title='kitty-float' --override initial_window_width=100c --override initial_window_height=40c --hold"
+
         "$mainMod, e, exec, nautilus"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, s, togglespecialworkspace, notes"
