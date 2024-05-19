@@ -73,39 +73,6 @@
           }
         ];
       };
-
-      arch_wsl = {
-        proxyJump = "openssh_win32";
-        hostname = "localhost";
-        user = "orlando";
-        port = 2222;
-        localForwards = [
-          {
-            # bind is the local 
-            bind.port = 4000;
-            # host is the remote
-            host.address = "localhost";
-            host.port = 4000;
-          }
-          {
-            bind.port = 54321;
-            host.address = "localhost";
-            host.port = 54321;
-          }
-        ];
-        remoteForwards = [
-          {
-            # host is the local client it this situation
-            host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
-            # bind is the remote
-            bind.address = "/run/user/1000/gnupg/d.7scgtn5j3mmef4u1zfkxpb9z/S.gpg-agent";
-          }
-          {
-            host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
-            bind.address = "/run/user/1000/gnupg/d.7scgtn5j3mmef4u1zfkxpb9z/S.gpg-agent.ssh";
-          }
-        ];
-      };
     };
   };
 
