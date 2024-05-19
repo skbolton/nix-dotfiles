@@ -33,6 +33,8 @@
       E = "| entr -c";
       F = "| fzf";
       R = "| rg";
+      CCC = "| wl-copy";
+      PPP = "wl-paste";
     };
     shellAliases = {
       t = "task";
