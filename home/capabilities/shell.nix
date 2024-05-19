@@ -156,7 +156,13 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    defaultCommand = "rg --files --hidden -g !.git";
+    defaultCommand = "${pkgs.fd}/bin/fd --type f";
+    fileWidgetCommand = "${pkgs.fd}/bin/fd --type f --hidden";
+    fileWidgetOptions = [ "--preview '${pkgs.bat}/bin/bat --color=always {}'" ];
+    changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
+    changeDirWidgetOptions = [
+      "--preview '${pkgs.eza}/bin/eza --tree --icons --color=always --level 3 --git-ignore {}'"
+    ];
     defaultOptions = [ "--reverse" "--ansi" ];
   };
 
@@ -170,7 +176,7 @@
 
   programs.skim = {
     enable = true;
-    enableZshIntegration = true;
+    enableZshIntegration = false;
     defaultCommand = "${pkgs.fd}/bin/fd --type f --exclude '.git'";
     changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
     fileWidgetCommand = "${pkgs.fd}/bin/fd --type f";
