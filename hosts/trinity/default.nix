@@ -105,6 +105,12 @@
     qmk
     obs-studio
     gnome.simple-scan
+    sops
+    (google-cloud-sdk.withExtraComponents [
+      google-cloud-sdk.components.kubectl
+      google-cloud-sdk.components.gke-gcloud-auth-plugin
+      google-cloud-sdk.components.pubsub-emulator
+    ])
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
