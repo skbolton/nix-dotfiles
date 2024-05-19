@@ -110,4 +110,12 @@ in
     source = ./OneMono;
     recursive = true;
   };
+
+  xdg.dataFile."fonts/OxProto" = {
+    recursive = true;
+    source = (pkgs.fetchzip {
+      url = "https://github.com/0xType/0xProto/archive/refs/tags/2.001.zip";
+      sha256 = "sha256-MeblKXwxlVoHlx61W8YdLEXaeWE6TIXK3KmIiDZhdxQ=";
+    }) + "/fonts";
+  };
 }
