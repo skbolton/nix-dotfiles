@@ -2,7 +2,7 @@
 
 {
 
-  home.packages = [ pkgs.inter ];
+  home.packages = [ pkgs.noto-fonts pkgs.playerctl ];
 
   services.playerctld.enable = true;
 
@@ -33,6 +33,7 @@
             "2" = "󰈹";
             "3" = "󰒱";
             "4" = "󰴸";
+            "7" = "󰧑";
           };
         };
 
@@ -61,7 +62,7 @@
         };
 
         "network#interface" = {
-          format-ethernet = "󰣶  {ifname}";
+          format-ethernet = "󰣶 {ifname}";
           format-wifi = "󰖩 {ifname}";
           tooltip = true;
           tooltip-format = "{ipaddr}";
@@ -72,7 +73,7 @@
         };
 
         cpu = {
-          format = "  {usage}% 󱐌 {avg_frequency}";
+          format = " {usage}% 󱐌{avg_frequency}";
         };
 
         temperature = {
@@ -92,8 +93,8 @@
         };
 
         clock = {
-          format = "   {:%H:%M}";
-          format-alt = "󰃭  {:%Y-%m-%d}";
+          format = " {:%H:%M}";
+          format-alt = "󰃭 {:%Y-%m-%d}";
         };
 
         "custom/notification" = {
@@ -116,37 +117,38 @@
       }
 
       window#waybar {
-        font-family: 'Inter', 'RobotoMono Nerd Font';
+        font-family: 'Noto', 'RobotoMono Nerd Font';
         font-size: 12px;
       }
 
       tooltip {
+        background: @unfocused_borders;
       }
 
       #custom-nix {
-        padding: 2px 6px;
+        padding: 0px 4px;
       }
 
       #workspaces button {
-        padding: 2px 6px;
-        margin: 0 6px 0 0;
+        padding: 0px 4px;
+        margin: 0 4px 0 0;
       }
 
       .modules-right * {
-        padding: 0 6px;
+        padding: 0 4px;
         margin: 0 0 0 4px;
       }
 
       #mpris {
-        padding: 0 6px;
+        padding: 0 4px;
       }
 
       #custom-notification {
-        padding: 0 6px 0 6px;
+        padding: 0 4px 0 4px;
       }
 
       #tray {
-        padding: 0 6px;
+        padding: 0 4px;
       }
       
       #tray * {
@@ -179,7 +181,7 @@
       if [ -z "$CONTEXT" ]; then
         CONTEXT="NONE"
       fi
-      echo "$ICON  $CONTEXT"
+      echo "$ICON $CONTEXT"
     '';
     executable = true;
   };
