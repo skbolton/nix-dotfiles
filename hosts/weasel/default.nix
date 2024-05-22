@@ -12,7 +12,7 @@
     };
     defaultUser = "orlando";
     startMenuLaunchers = true;
-    nativeSystemd = false;
+    nativeSystemd = true;
   };
 
   networking = {
