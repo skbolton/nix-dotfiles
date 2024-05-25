@@ -167,6 +167,7 @@
         "ALT, Return, exec, kitty"
         "$mainMod, w, killactive,"
         "$mainMod SHIFT, q, exit,"
+        "$mainMod SHIFT, b, exec, ${pkgs.killall}/bin/killall -SIGUSR1 .waybar-wrapped"
         "$mainMod, f, fullscreen, 0"
         "$mainMod, m, fullscreen, 1"
         "$mainMod SHIFT, t, togglefloating,"

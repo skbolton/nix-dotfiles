@@ -11,6 +11,7 @@
     package = pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ]; });
     settings = {
       mainBar = {
+        start_hidden = true;
         margin = "0";
         layer = "top";
         modules-left = [ "custom/nix" "hyprland/workspaces" "mpris" ];
@@ -118,7 +119,7 @@
 
       window#waybar {
         font-family: 'Noto', 'RobotoMono Nerd Font';
-        font-size: 12px;
+        font-size: 10px;
       }
 
       tooltip {
