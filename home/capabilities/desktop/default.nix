@@ -63,7 +63,7 @@
 
   qt = {
     enable = true;
-    platformTheme = "gtk3";
+    platformTheme.name = "gtk3";
     style.name = "adwaita-gtk";
   };
 
