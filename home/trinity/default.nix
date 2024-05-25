@@ -99,24 +99,25 @@
       name = "DP-2";
       width = 2560;
       height = 2880;
-      scale = "1.25";
+      scale = "1.066667";
       workspaces = [ "7" "8" "9" ];
     }
     {
-      name = "DP-5";
-      width = 3840;
-      height = 2160;
-      x = 2048;
-      y = 300;
-      scale = "1.066667,bitdepth,10";
+      name = "DP-3";
+      width = 2560;
+      x = 2340;
+      y = 500;
+      refreshRate = 240;
+      height = 1440;
+      scale = "1";
       workspaces = [ "1" "3" "5" ];
     }
     {
       name = "DP-1";
       width = 2560;
       height = 2880;
-      scale = "1.25";
-      x = 5648;
+      scale = "1.066667";
+      x = 4900;
       workspaces = [ "2" "4" "6" ];
     }
   ];

@@ -21,7 +21,7 @@ in
       bold_font = "Berkeley Mono Bold";
       bold_italic_font = "Berkeley Mono Bold Italic";
       italic_font = "Operator Mono Book Italic";
-      font_size = "14.0";
+      font_size = "10.0";
 
       # Terminal Settings
       allow_remote_control = "yes";
@@ -29,6 +29,7 @@ in
       confirm_os_window_close = 0;
       copy_on_select = "clipboard";
       clipboard_control = "write-clipboard write-primary no-append";
+      sync_to_monitor = "no";
     };
 
     environment = {
@@ -54,7 +55,7 @@ in
     };
 
     extraConfig = ''
-      modify_font cell_height +8px
+      modify_font cell_height +4px
       include ./themes/theme.conf
       # Seti
       symbol_map U+E5FA-U+E6B1 RobotoMono Nerd Font
