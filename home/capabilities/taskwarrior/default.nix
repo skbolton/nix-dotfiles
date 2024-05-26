@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.taskwarrior = {
@@ -7,6 +7,13 @@
     config = {
       alias = {
         "@" = "context";
+      };
+      default.command = "ready";
+      report = {
+        ready = {
+          columns = "id,project,tags,due.countdown,until.remaining,description,urgency";
+          labels = "ID,Pr,Tags,Due,Until,Desc,Urg";
+        };
       };
       context = {
         work = "project:PDQ or proj:OSS or proj:CAR";
