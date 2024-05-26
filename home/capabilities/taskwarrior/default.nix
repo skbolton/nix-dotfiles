@@ -1,6 +1,18 @@
 { ... }:
 
 {
+  programs.zsh.shellAliases = {
+    t = "task";
+    chore = "task add proj:HOM";
+    chores = "task proj:HOM";
+    pdq = "task add proj:PDQ";
+    pdqs = "task proj:PDQ";
+    oss = "task add proj:OSS";
+    osss = "task proj:OSS";
+    cha = "task add proj:CHA";
+    chas = "task proj:CHA";
+  };
+
   programs.taskwarrior = {
     enable = true;
     colorTheme = ./embark.theme;
