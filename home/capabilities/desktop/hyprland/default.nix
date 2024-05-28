@@ -33,7 +33,7 @@
         "kitty"
         # "remind -z -k':notify-send -u critical \"Reminder!\" %s' ~/00-09-System/02-Logs/02.10-Journal/agenda.rem"
         "[workspace 7 silent] morgen"
-        "[workspace 7 silent] kitty --title='kitty-journal'"
+        "[workspace 7 silent] kitty --title='kitty-journal' --hold smug start delta -a"
       ];
 
       workspace = lib.lists.flatten (map

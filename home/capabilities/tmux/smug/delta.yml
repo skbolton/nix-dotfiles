@@ -1,21 +1,20 @@
 session: DELTA
-root: ~/
+root: ~/Documents
 
 windows:
   - name: "󰓥 "
-    root: "00-09-System"
+    root: "Logbook/Journal"
     layout: main-vertical
     commands:
       - zk log
     panes:
       - type: vertical
         commands:
-          - task
+          - clear
+      - type: horizontal
+        commands:
+          - t
   - name: "󰧑 "
-    root: "50-59-Reference"
+    root: "Reference"
     commands:
-      - nvim +ZkNotes
-  - name: "󱉟 "
-    root: "10-19-Life"
-    commands:
-      - nnn
+      - note-search
