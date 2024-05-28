@@ -23,8 +23,8 @@
       default.command = "ready";
       report = {
         ready = {
-          columns = "id,project,tags,due.countdown,until.remaining,description,urgency";
-          labels = "ID,Pr,Tags,Due,Until,Desc,Urg";
+          columns = "id,project,tags,due.relative,until.remaining,scheduled.formatted,description,urgency";
+          labels = "ID,Pr,Tags,Due,Until,Sched,Desc,Urg";
         };
       };
       context = {
