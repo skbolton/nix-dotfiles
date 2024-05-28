@@ -5,7 +5,6 @@
     (nerdfonts.override { fonts = [ "RobotoMono" "Iosevka" ]; })
     ibm-plex
     iosevka
-    ripgrep
     unzip
     jq
     miller
@@ -15,6 +14,14 @@
     dateutils
     flyctl
   ];
+
+  programs.ripgrep = {
+    enable = true;
+    arguments = [
+      "--colors=match:bg:yellow"
+      "--colors=match:fg:black"
+    ];
+  };
 
   programs.bat.enable = true;
 
