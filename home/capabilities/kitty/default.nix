@@ -21,7 +21,7 @@ in
       bold_font = "Berkeley Mono Bold";
       bold_italic_font = "Berkeley Mono Bold Italic";
       italic_font = "Operator Mono Book Italic";
-      font_size = "10.0";
+      font_size = "12.0";
 
       # Terminal Settings
       allow_remote_control = "yes";
@@ -97,7 +97,7 @@ in
   xdg.configFile."kitty/kitty-light.conf".text = ''
     include ./kitty.conf
     include ./themes/inspired-github.conf
-    modify_font cell_height +8px
+    modify_font cell_height +4px
     font_family Intel One Mono 
     bold_font Berkeley Mono Bold
     bold_italic_font Berkeley Mono Bold Italic
