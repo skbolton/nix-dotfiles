@@ -104,11 +104,11 @@
     }
     {
       name = "DP-3";
-      width = 2560;
+      width = 3840;
       x = 2400;
-      y = 500;
+      y = 0;
       refreshRate = 240;
-      height = 1440;
+      height = 2160;
       scale = "1";
       workspaces = [ "1" "3" "5" ];
     }
@@ -117,7 +117,7 @@
       width = 2560;
       height = 2880;
       scale = "1.066667";
-      x = 4960;
+      x = 6240;
       workspaces = [ "2" "4" "6" ];
     }
   ];
