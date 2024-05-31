@@ -48,6 +48,9 @@ cmp.setup {
       luasnip.lsp_expand(args.body)
     end
   },
+  view = {
+    docs = { auto_open = true }
+  },
   formatting = {
     fields = {"kind", "abbr", "menu"},
     format = function(entry, vim_item)
