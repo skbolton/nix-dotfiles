@@ -96,14 +96,14 @@
 
   monitors = [
     {
-      name = "DP-2";
+      name = "DP-1";
       width = 2560;
       height = 2880;
       scale = "1.066667";
       workspaces = [ "7" "8" "9" ];
     }
     {
-      name = "DP-3";
+      name = "DP-2";
       width = 3840;
       x = 2400;
       y = 0;
@@ -113,7 +113,7 @@
       workspaces = [ "1" "3" "5" ];
     }
     {
-      name = "DP-1";
+      name = "DP-3";
       width = 2560;
       height = 2880;
       scale = "1.066667";
