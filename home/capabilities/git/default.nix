@@ -2,7 +2,7 @@
 
 {
   home.packages = [
-    (import ./git-get.nix { inherit pkgs; })
+    (pkgs.callPackage ./git-get.nix { })
   ];
 
   programs.gh = {
