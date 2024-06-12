@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 local gitsigns = require 'gitsigns'
+local Job = require 'plenary.job'
 
 function next_hunk()
   -- Move to next hunk
@@ -59,6 +60,10 @@ local read_default_branch = function()
   return vim.api.nvim_command("Gread origin/" .. get_default_branch() .. ":%")
 end
 
+local view_default_branch = function()
+  return vim.api.nvim_command("Gvsplit origin/" .. get_default_branch() .. ":%")
+end
+
 map('n', '<leader>gg', '<CMD>G<CR>')
 map('n', '<leader>go', '<CMD>Git difftool --name-only<CR>')
 map('n', '<leader>gO', '<CMD>Git difftool<CR>')
@@ -68,6 +73,7 @@ map('n', '<leader>gb', '<CMD>Git blame<CR>')
 map('n', '<leader>gw', '<CMD>Gwrite<CR>')
 map('n', '<leader>gr', '<CMD>Gread<CR>')
 map('n', '<leader>grd', read_default_branch)
+map('n', '<leader>ged', view_default_branch)
 map('n', '<leader>gl', '<CMD>Gclog<CR>')
 map('n', '<leader>gh', '<CMD>0Gclog<CR>')
 map('n', '<leader>gm', '<CMD>GitMessenger<CR>')

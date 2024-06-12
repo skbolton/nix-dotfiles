@@ -37,7 +37,7 @@
       cm = "commit -m";
       can = "commit --amend --no-edit";
       co = "checkout";
-      default = "!git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5";
+      default-branch = "!git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5";
       back = "reset HEAD~1";
       backk = "reset HEAD~1 --hard";
       files = "!git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")";
