@@ -1,7 +1,7 @@
 { pkgs, config, lib, ... }:
 
 let
-  rally = import ./rally.nix { inherit pkgs; };
+  rally = pkgs.callPackage ./rally.nix { };
   tmux = pkgs.tmux;
 in
 {
