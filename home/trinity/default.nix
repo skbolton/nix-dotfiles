@@ -20,6 +20,7 @@
     ../capabilities/networking
     ../capabilities/lang/elixir.nix
     ../capabilities/lang/nix.nix
+    ../capabilities/lang/node.nix
     ../capabilities/habits.nix
     ../capabilities/timetracking.nix
   ];
