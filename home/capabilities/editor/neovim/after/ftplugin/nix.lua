@@ -6,7 +6,8 @@ if vim.fn.executable("nil") then
     root_dir = vim.fs.dirname(vim.fs.find({'flake.nix', '.git'}, { upward = true })[1]),
     settings = {
       ["nil"] = {
-        formatting = { command = { "nixpkgs-fmt" } }
+        formatting = { command = { "nixpkgs-fmt" } },
+        nix = { flake = { autoArchive = true } }
       }
     }
   }
