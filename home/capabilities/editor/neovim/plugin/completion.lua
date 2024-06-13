@@ -20,7 +20,7 @@ end
 local kind_icons = {
   Text = ' ',
   Method = ' ',
-  Function = '',
+  Function = ' ',
   Constructor = ' ',
   Field = ' ',
   Variable = ' ',
@@ -46,6 +46,9 @@ local kind_icons = {
 }
 
 cmp.setup {
+  view = {
+    docs = { auto_open = true }
+  },
   window = {
     completion = cmp.config.window.bordered({ border = "single", winhighlight = "Normal:Normal,FloatBorder:LineNr,CursorLine:Visual,Search:None"}),
     documentation = cmp.config.window.bordered({ border = "single", winhighlight = "Normal:Normal,FloatBorder:LineNr,CursorLine:Visual,Search:None"}),
