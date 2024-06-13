@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 local gitsigns = require 'gitsigns'
 local Job = require 'plenary.job'
+local wk = require 'which-key'
 
 function next_hunk()
   -- Move to next hunk
@@ -29,12 +30,19 @@ gitsigns.setup {
     local map = vim.keymap.set
     local opts = {silent = true}
 
-    map('n', ']g', next_hunk, opts)
-    map('n', '[g', prev_hunk, opts)
-    map('n', '<leader>g+', gitsigns.stage_hunk, opts)
-    map('n', '<leader>g-', gitsigns.undo_stage_hunk, opts)
-    map('n', '<leader>g=', gitsigns.reset_hunk, opts)
-    map('n', '<leader>gp', gitsigns.preview_hunk, opts)
+    wk.register({
+      ["]g"] = { next_hunk, "Next hunk" },
+      ["[g"] = { next_hunk, "Prev hunk" },
+      ["<leader>"] = {
+        g = {
+          name = "+git",
+          ["+"] = { gitsigns.stage_hunk, "Stage hunk" },
+          ["-"] = { gitsigns.undo_stage_hunk, "Unstage hunk" },
+          ["="] = { gitsigns.reset_hunk, "Reset hunk" },
+          ["p"] = { gitsigns.preview_hunk, "Preview hunk" },
+        }
+      }
+    }, { buffer = bufnr })
   end
 }
 
@@ -64,30 +72,37 @@ local view_default_branch = function()
   return vim.api.nvim_command("Gvsplit origin/" .. get_default_branch() .. ":%")
 end
 
-map('n', '<leader>gg', '<CMD>G<CR>')
-map('n', '<leader>go', '<CMD>Git difftool --name-only<CR>')
-map('n', '<leader>gO', '<CMD>Git difftool<CR>')
-map('n', '<leader>gd', '<CMD>Gdiff<CR>')
-map('n', '<leader>gdd', diff_against_default_branch)
-map('n', '<leader>gb', '<CMD>Git blame<CR>')
-map('n', '<leader>gw', '<CMD>Gwrite<CR>')
-map('n', '<leader>gr', '<CMD>Gread<CR>')
-map('n', '<leader>grd', read_default_branch)
-map('n', '<leader>ged', view_default_branch)
-map('n', '<leader>gl', '<CMD>Gclog<CR>')
-map('n', '<leader>gh', '<CMD>0Gclog<CR>')
-map('n', '<leader>gm', '<CMD>GitMessenger<CR>')
-map('n', '<leader>g<down>', '<CMD>Git pull<CR>')
-map('n', '<leader>g<up>', '<CMD>Git push<CR>')
+wk.register({
+  g = {
+    name = "+git",
+    g = { "<CMD>G<CR>", "status" },
+    o = { "<CMD>Git difftool --name-only<CR>", "qf changed file names" },
+    O = { "<CMD>Git difftool<CR>", "qf all changes" },
+    d = { "<CMD>Gdiff<CR>", "diff file" },
+    D = { diff_against_default_branch, "diff default branch" },
+    E = { view_default_branch, "diff default branch" },
+    b = { "<CMD>Git blame<CR>", "blame" },
+    w = { "<CMD>Gwrite<CR>", "write" },
+    r = { "<CMD>Gread<CR>", "read" },
+    R = { read_default_branch, "reset to default" },
+    l = { "<CMD>Gclog<CR>", "log" },
+    h = { "<CMD>0Gclog<CR>", "file history" },
+    m = { "<CMD>GitMessenger<CR>", "commit under cursor" },
+    ["<up>"] = { "<CMD>Git push<CR>", "push" },
+    ["<left>"] = { "<CMD>diffget<CR>", "diff get" },
+    ["<right>"] = { "<CMD>diffget<CR>", "diff get" },
+    ["<down>"] = { "<CMD>diffput<CR>", "diff put" },
+  }
+}, { prefix = "<leader>" })
 
-map('n', '<leader>g<left>', '<CMD>diffget<CR>')
-map('n', '<leader>g<right>', '<CMD>diffget<CR>')
-map('n', '<leader>g<down>', '<CMD>diffput<CR>')
-map('v', '<leader>g<down>', '<CMD>diffput<CR><ESC>')
-
-map('v', '<leader>gv', '<CMD>GBrowse<CR>')
-map('v', '<leader>gV', '<CMD>GBrowse!<CR>')
-map('v', '<leader>gh', '<CMD>diffget<CR>')
-map('v', '<leader>gl', '<CMD>diffget<CR>')
-map('v', '<leader>gj', '<CMD>diffput<CR>')
-
+wk.register({
+  g = {
+    name = "+git",
+    ["<down>"] = { "<CMD>diffput<CR><ESC>", "diff put" },
+    v = {'<CMD>GBrowse<CR>', "webview" },
+    V = {'<CMD>GBrowse!<CR>', "webview copy" },
+    ["<left>"] = {'<CMD>diffget<CR>', "diff get"},
+    ["<right>"] = {'<CMD>diffget<CR>', "diff get"},
+    ["<down>"] = {'<CMD>diffput<CR>', "diff get"}
+  }
+}, { prefix = "<leader>", mode = "v" })

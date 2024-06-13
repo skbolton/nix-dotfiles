@@ -58,11 +58,13 @@
       { plugin = markdown-preview-nvim; optional = true; }
       zk-nvim
       todo-comments-nvim
+      which-key-nvim
 
       galaxyline-nvim
 
       nvim-cmp
       cmp-nvim-lsp
+      { plugin = vista-vim; optional = true; }
       cmp-buffer
       cmp-path
       cmp-cmdline
@@ -110,7 +112,6 @@
       telescope-symbols-nvim
       telescope-fzf-native-nvim
 
-      { plugin = pkgs.vimUtils.buildVimPlugin { name = "embark-vim"; src = inputs.embark-vim; }; }
       { plugin = rose-pine; optional = true; }
       { plugin = nightfox-nvim; optional = true; }
     ];

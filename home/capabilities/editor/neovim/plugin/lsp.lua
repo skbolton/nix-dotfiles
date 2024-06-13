@@ -1,5 +1,6 @@
 local lsp = vim.lsp
 local map = vim.keymap.set
+local wk = require 'which-key'
 
 -- Vista Sidebar
 -- ===================================================================
@@ -33,6 +34,7 @@ local formatting_augrop = vim.api.nvim_create_augroup("LSPFORMATTING", {})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(env)
+    vim.cmd("packadd vista.vim")
     local buffer = env.buf
     local client = vim.lsp.get_client_by_id(env.data.client_id)
 
@@ -45,16 +47,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
       })
     end
 
-    local opts = { buffer = buffer }
-
-    map('n', '<CR>', vim.lsp.buf.definition, opts)
-    map('n', '<C-CR>', definition_in_split, opts)
-    map('n', '<leader>ls', vim.lsp.buf.signature_help, opts)
-    map('n', 'K', vim.lsp.buf.hover, opts)
-    map('n', '<leader>lo', '<CMD>Telescope lsp_document_symbols<cr>', opts)
-    map('n', '<leader>li', vim.diagnostic.setloclist, opts)
-    map('n', '<leader>lO', '<CMD>Vista<CR>', opts)
-    map('n', '<leader>l?', '<CMD>LspInfo<CR>', opts)
-    map('n', '<leader>lr', '<CMD>LspRestart<CR>', opts)
+    wk.register({
+      ["<CR>"] = { vim.lsp.buf.definition, "definition" },
+      K = { vim.lsp.buf.hover, "hover" },
+      l = {
+        name = "+lsp",
+        s = { vim.lsp.buf.signature_help, "signature" },
+        o = { "<CMD>Telescope lsp_document_symbols<CR>", "fuzzy symbol" },
+        O = { "<CMD>Vista<CR>", "sidebar" },
+        i = {vim.diagnostic.setloclist, "qf diagnostics" }
+      }
+    }, { buffer = buffer })
   end
 })

@@ -1,32 +1,35 @@
 local telescope = require 'telescope'
 local builtin = require 'telescope.builtin'
 local actions = require 'telescope.actions'
+local wk = require 'which-key'
 
 local map = vim.keymap.set
 
-map('n', '<leader>/', builtin.live_grep)
-map('n', '<leader><leader>', builtin.find_files)
-map('n', '<leader><Backspace>', builtin.buffers)
-map('n', '<leader>ff', builtin.find_files)
-map('n', '<leader>fr', builtin.buffers)
-map('n', '<leader>gf', builtin.git_status)
-map('n', '<leader>gB', builtin.git_branches)
-map('n', '<leader><leader>', builtin.find_files)
-map('n', '<leader><Backspace>', builtin.buffers)
-map('n', '<leader>ff', builtin.find_files)
-map('n', '<leader>fr', builtin.buffers)
-map('n', '<leader>fm', builtin.man_pages)
-map('n', '<leader>f?', builtin.help_tags)
-map('n', '<leader>f.', builtin.resume)
-map('n', '<leader>ft', '<CMD>TodoTelescope keywords=TODO,BLOCK,NEXT<CR>')
-map('n', '<leader>fT', '<CMD>TodoTelescope<CR>')
-map('n', '<leader>nn', '<CMD>ZkNotes<CR>')
-map('n', '<leader>nN', ':ZkNotes { tags = {}}<left><left>')
-map('n', '<leader>nt', '<CMD>ZkTags<CR>')
-map('n', '<leader>ns', '<CMD>ZkSpells<CR>')
-map('n', '<leader>n.', '<CMD>ZkBacklinks<CR>')
-map('n', '<leader>n<up>', '<CMD>ZkLinks<CR>')
-map('n', '<leader>fi', '<CMD>Telescope symbols<CR>')
+wk.register({
+  ["/"] = { builtin.live_grep, "fuzzy grep", },
+  ["<leader>"] = { builtin.find_files, "find files" },
+  ["<Backspace>"] = { builtin.buffers, "recent" },
+  f = {
+    name = "+fuzzy",
+    f = { builtin.find_files, "files" },
+    m = { builtin.man_pages, "manual" },
+    ["?"] = { builtin.help_tags, "help" },
+    ["."] = { builtin.resume, "resume last" },
+    i = { "<CMD>Telescope symbols<CR>", "symbols"}
+  },
+  n = {
+    name = "+notes",
+    n = { "<CMD>ZkNotes<CR>", "find note" },
+    N = { ":ZkNotes { tags = {}}<left><left>", "note with tag" },
+    t = { "<CMD>ZkTags<CR>", "tag search" },
+    ["."] = { "<CMD>ZkBacklinks<CR>", "backlinks" },
+    ["<up>"] = { "<CMD>ZkLinks<CR>", "outword links" },
+  },
+  g = {
+    name = "+git",
+    f = { builtin.git_status, "fuzzy files" },
+  }
+}, { prefix = "<leader>" })
 
 telescope.setup{
   defaults = {
