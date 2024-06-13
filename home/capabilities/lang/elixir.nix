@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.sessionVariables = {
@@ -21,7 +21,7 @@
     postgresql
     elixir_1_15
     erlang_26
-    # (inputs.lexical-lsp.lib.mkLexical { erlang = beam.packages.erlang_26; })
+    lexical
   ];
 }
 
