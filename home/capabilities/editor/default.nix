@@ -1,7 +1,7 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
-
+  home.packages = [ pkgs.nodejs_20 ];
   programs.neovim = {
     # package = pkgs.neovim-nightly;
     enable = true;
@@ -42,6 +42,9 @@
         });
         optional = true;
       }
+      copilot-lua
+      copilot-cmp
+
       nui-nvim
       indent-blankline-nvim
       vim-tmux-navigator

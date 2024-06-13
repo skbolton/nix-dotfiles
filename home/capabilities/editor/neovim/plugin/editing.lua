@@ -10,6 +10,8 @@ leap.add_default_mappings()
 
 require 'neoscroll'.setup()
 
+require 'copilot'.setup {}
+
 require 'colorizer'.setup({
   user_default_options = {
     mode = 'virtualtext',
