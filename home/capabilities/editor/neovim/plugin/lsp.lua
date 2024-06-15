@@ -62,6 +62,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         O = { "<CMD>Vista<CR>", "sidebar" },
         i = {vim.diagnostic.setloclist, "qf diagnostics" }
       }
-    }, { buffer = buffer })
+    }, { buffer = buffer, prefix = "<leader>" })
   end
 })
