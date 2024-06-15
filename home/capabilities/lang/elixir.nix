@@ -21,7 +21,18 @@
     postgresql
     elixir_1_15
     erlang_26
-    lexical
   ];
+
+  xdg.configFile."nvim/after/ftplugin/elixir.lua".text = ''
+    local bmap = vim.api.nvim_buf_set_keymap
+    local capabilities = require 'lsp_capabilities'()
+
+    vim.lsp.start {
+      name = 'lexical',
+      cmd = { "${pkgs.lexical}/bin/lexical" },
+      capabilities = capabilities,
+      root_dir = vim.fs.dirname(vim.fs.find({'mix.exs', '.git'}, { upward = true })[1]),
+    }
+  '';
 }
 
