@@ -24,7 +24,6 @@
   ];
 
   xdg.configFile."nvim/after/ftplugin/elixir.lua".text = ''
-    local bmap = vim.api.nvim_buf_set_keymap
     local capabilities = require 'lsp_capabilities'()
 
     vim.lsp.start {
