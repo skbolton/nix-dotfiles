@@ -1,11 +1,10 @@
 local testing = require 'testing'
 local diagrams = require 'diagramming'
 local gl = require 'galaxyline'
-local condition = require 'galaxyline.condition'
 local vcs = require 'galaxyline.providers.vcs'
 local file = require 'galaxyline.providers.fileinfo'
 local gls = gl.section
-gl.short_line_list = {'NvimTree','vista_kind','dbui'}
+gl.short_line_list = { 'NvimTree', 'vista_kind', 'dbui' }
 
 local colors = {
   bg_0 = "#19172C",
@@ -16,22 +15,6 @@ local colors = {
   fg = "#cbe3e7",
   fg_dark = "#8A889D"
 }
-
--- Read from testing.lua module
--- and adjust icon and color per testing state
-local testing_results = function ()
-  if testing.TESTING_STATUS == 'init' then
-    return " "
-  elseif testing.TESTING_STATUS == 'passing' then
-    return " "
-  elseif testing.TESTING_STATUS == 'running' then
-    return " "
-  elseif testing.TESTING_STATUS == 'failing' then
-    return " "
-  end
-
-end
-
 
 -----------------------------------------------------------
 -- Bar Sections
@@ -54,7 +37,7 @@ gls.left[1] = {
     end,
     highlight = { colors.fg_dark, colors.bg_0 },
     separator = '',
-    separator_highlight = {colors.bg_0, colors.bg_1}
+    separator_highlight = { colors.bg_0, colors.bg_1 }
   }
 }
 
@@ -70,7 +53,7 @@ gls.left[2] = {
     icon = ' 󰊢  ',
     highlight = { colors.fg_dark, colors.bg_1 },
     separator = '',
-    separator_highlight = {colors.bg_1, colors.bg_2 }
+    separator_highlight = { colors.bg_1, colors.bg_2 }
   }
 }
 
@@ -138,7 +121,7 @@ gls.right[1] = {
 gls.right[2] = {
   LanguageServer = {
     provider = function()
-      active_client = vim.lsp.buf_get_clients()[1]
+      local active_client = vim.lsp.buf_get_clients()[1]
       if active_client ~= nil then
         return '   '
       else
@@ -166,7 +149,7 @@ gls.right[3] = {
     end,
     highlight = { colors.fg_dark, colors.bg_1 },
     separator = '',
-    separator_highlight = {  colors.bg_1, colors.bg_2 }
+    separator_highlight = { colors.bg_1, colors.bg_2 }
   }
 }
 
@@ -179,7 +162,7 @@ gls.right[4] = {
     end,
     highlight = { colors.fg_dark, colors.bg_0 },
     separator = '',
-    separator_highlight = {colors.bg_0, colors.bg_1}
+    separator_highlight = { colors.bg_0, colors.bg_1 }
   }
 }
 

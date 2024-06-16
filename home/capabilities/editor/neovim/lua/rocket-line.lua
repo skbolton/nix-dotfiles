@@ -5,7 +5,7 @@ local file = require 'galaxyline.providers.fileinfo'
 local vcs = require 'galaxyline.providers.vcs'
 local condition = require 'galaxyline.condition'
 local gls = gl.section
-gl.short_line_list = {'NvimTree','vista_kind','dbui'}
+gl.short_line_list = { 'NvimTree', 'vista_kind', 'dbui' }
 
 local function file_readonly()
   if vim.bo.filetype == 'help' then
@@ -18,10 +18,10 @@ local function file_readonly()
 end
 
 local file_name = function()
-  local file = vim.fn.expand('%:t')
+  local current_file = vim.fn.expand('%:t')
   if vim.fn.empty(file) == 1 then return '' end
   if string.len(file_readonly()) ~= 0 then
-    return file .. file_readonly(readonly_icon)
+    return current_file .. file_readonly()
   end
   if vim.bo.modified then
     return file .. '  '
@@ -31,19 +31,19 @@ end
 
 -- Customize editor mode name
 -- and color per mode
-local editor_mode = function ()
+local editor_mode = function()
   local alias = {
-    n      = 'NORMAL',
-    i      = 'INSERT',
-    v      = 'VISUAL',
+    n     = 'NORMAL',
+    i     = 'INSERT',
+    v     = 'VISUAL',
     [""] = 'V-BLOCK',
-    V      = 'V·LINE',
-    c      = 'COMMAND',
-    r      = 'REPLACE',
-    R      = 'REPLACE',
-    Rv     = 'V·REPLACE',
-    t      = 'TERM',
-    ['!']  = 'SHELL',
+    V     = 'V·LINE',
+    c     = 'COMMAND',
+    r     = 'REPLACE',
+    R     = 'REPLACE',
+    Rv    = 'V·REPLACE',
+    t     = 'TERM',
+    ['!'] = 'SHELL',
   }
 
   local mode_color = {
@@ -67,14 +67,14 @@ local editor_mode = function ()
   }
 
   local mode = vim.fn.mode()
-  vim.api.nvim_command('hi link GalaxyEditorMode ' ..mode_color[mode])
+  vim.api.nvim_command('hi link GalaxyEditorMode ' .. mode_color[mode])
 
   return alias[mode]
 end
 
 -- Read from testing.lua module
 -- and adjust icon and color per testing state
-local testing_results = function ()
+local testing_results = function()
   local test_colors = {
     init = 'Comment',
     passing = 'Type',
@@ -82,7 +82,7 @@ local testing_results = function ()
     failing = 'Keyword'
   }
 
-  vim.api.nvim_command('hi link GalaxyTestResults ' ..test_colors[testing.TESTING_STATUS])
+  vim.api.nvim_command('hi link GalaxyTestResults ' .. test_colors[testing.TESTING_STATUS])
 
   if testing.TESTING_STATUS == 'init' then
     return " "
@@ -93,7 +93,6 @@ local testing_results = function ()
   elseif testing.TESTING_STATUS == 'failing' then
     return " "
   end
-
 end
 
 -----------------------------------------------------------
@@ -125,11 +124,11 @@ gls.left[3] = {
   }
 }
 
-gls.left[4] ={
+gls.left[4] = {
   FileIcon = {
     provider = 'FileIcon',
     condition = condition.buffer_not_empty,
-    highlight = {function() file.get_file_icon_color() end,'NONE'},
+    highlight = { function() file.get_file_icon_color() end, 'NONE' },
   }
 }
 
@@ -143,7 +142,7 @@ gls.left[5] = {
 
 gls.left[6] = {
   LineInfo = {
-    provider = function ()
+    provider = function()
       local line = vim.fn.line('.')
       local column = vim.fn.col('.')
       return string.format("%d:%d", line, column)
@@ -179,7 +178,7 @@ gls.right[2] = {
 gls.right[3] = {
   LanguageServer = {
     provider = function()
-      active_client = vim.lsp.buf_get_clients()[1]
+      local active_client = vim.lsp.buf_get_clients()[1]
       if active_client ~= nil then
         vim.api.nvim_command('hi link GalaxyLanguageServer PreProc')
       else
@@ -213,7 +212,7 @@ gls.right[4] = {
 gls.right[5] = {
   GitBranch = {
     provider = 'GitBranch',
-    condition =  vcs.check_git_workspace,
+    condition = vcs.check_git_workspace,
     highlight = "Type"
   }
 }

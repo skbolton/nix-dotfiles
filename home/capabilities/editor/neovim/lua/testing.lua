@@ -1,12 +1,11 @@
 local g = vim.g
-local v = vim.v
 
 g.VimuxOrientation = "h"
 g.VimuxHeight = "30"
 g.VimuxCloseOnExit = true;
 
-g["test#custom_strategies"] = { 
-  vimux_watch = function(args) 
+g["test#custom_strategies"] = {
+  vimux_watch = function(args)
     vim.cmd("call VimuxClearTerminalScreen()")
     vim.cmd("call VimuxClearRunnerHistory()")
     vim.cmd(string.format("call VimuxRunCommand('fd . | entr -c %s')", args))
@@ -29,16 +28,16 @@ g.neomake_error_sign = {
   text = '∙'
 }
 
-g.dispatch_compilers = {elixir = 'exunit'}
+g.dispatch_compilers = { elixir = 'exunit' }
 
 local M = {}
 M.TESTING_STATUS = 'init'
 
-M.neomake_on_job_started = function ()
+M.neomake_on_job_started = function()
   M.TESTING_STATUS = 'running'
 end
 
-M.neomake_on_job_ended = function ()
+M.neomake_on_job_ended = function()
   local context = g.neomake_hook_context
 
   if context.jobinfo.exit_code == 0 then
@@ -51,7 +50,9 @@ end
 -- AUTOCOMMANDS
 local neomake_hooks = vim.api.nvim_create_augroup("MyNeomakeHooks", { clear = true })
 
-vim.api.nvim_create_autocmd("User", { pattern = "NeomakeJobStarted", callback = M.neomake_on_job_started, group = neomake_hooks })
-vim.api.nvim_create_autocmd("User", { pattern = "NeomakeJobFinished", callback = M.neomake_on_job_ended, group = neomake_hooks })
+vim.api.nvim_create_autocmd("User",
+  { pattern = "NeomakeJobStarted", callback = M.neomake_on_job_started, group = neomake_hooks })
+vim.api.nvim_create_autocmd("User",
+  { pattern = "NeomakeJobFinished", callback = M.neomake_on_job_ended, group = neomake_hooks })
 
 return M

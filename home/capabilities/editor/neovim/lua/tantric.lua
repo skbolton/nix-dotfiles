@@ -71,10 +71,10 @@ vim.cmd('hi clear')
 local theme = {
   Normal = { fg = c.fg, bg = c.bg },
   Comment = { fg = c.BG300, italic = true },
-  ["@comment"] = { link = "Comment"},
+  ["@comment"] = { link = "Comment" },
   Visual = { bg = c.G200 },
   -- Search = { bg = c.BG900, fg = c.G50, bold = true},
-  Search = { bg = c.P60, fg = c.G50, bold = true},
+  Search = { bg = c.P60, fg = c.G50, bold = true },
   CursorLine = { bg = c.G200 },
   CursorColumn = { link = "CursorLine" },
   -- Language Constructs
@@ -88,8 +88,8 @@ local theme = {
   -- ["@punctuation.bracket"] = { fg = c.BG700 },
   ["@punctuation.bracket"] = { fg = c.P80 },
   ["@punctuation.special"] = { fg = c.P80 },
-  -- String = { fg = c.BG900 }, 
-  String = { fg = c.T50 }, 
+  -- String = { fg = c.BG900 },
+  String = { fg = c.T50 },
   Constant = { fg = c.BG800 },
   ["@symbol"] = { fg = c.P70 },
   Boolean = { fg = c.BG800, bold = true },
@@ -122,9 +122,9 @@ local theme = {
   PmenuSbar = { bg = c.BG200 },
   PmenuThumb = { bg = c.BG600 },
   PmenuSel = { bg = c.BG200 },
-  Error = { fg = c.O700, bold = true},
-  ErrorMsg = { fg = c.O700, bold = true},
-  WarningMsg = { link = "ErrorMsg"},
+  Error = { fg = c.O700, bold = true },
+  ErrorMsg = { fg = c.O700, bold = true },
+  WarningMsg = { link = "ErrorMsg" },
   Question = { fg = c.BG600 },
   Directory = { fg = c.G800, bold = true },
   Special = { link = "Identifier" },
@@ -133,7 +133,7 @@ local theme = {
   SpecialComment = { link = "SpecialKey" },
   Debug = { link = "SpecialKey" },
   NonText = { fg = c.GB600 },
-  Tag = { fg = c.GB600 }, 
+  Tag = { fg = c.GB600 },
   Delimiter = { link = "Tag" },
   DiagnosticError = { fg = c.O200, bg = c.O700 },
   DiagnosticErrorSign = { fg = c.R30 },
@@ -155,11 +155,9 @@ local theme = {
 }
 
 function load()
-  for group, colors in pairs(theme) do
-    vim.api.nvim_set_hl(0, group, colors)
+  for group, highlights in pairs(theme) do
+    vim.api.nvim_set_hl(0, group, highlights)
   end
 end
 
-
 return { load = load }
-

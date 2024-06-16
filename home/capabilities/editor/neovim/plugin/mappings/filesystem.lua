@@ -1,5 +1,4 @@
 local map = vim.keymap.set
-local nnn = require 'nnn'
 local oil = require 'oil'
 
 oil.setup {

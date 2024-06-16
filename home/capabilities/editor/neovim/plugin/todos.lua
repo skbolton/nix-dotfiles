@@ -5,12 +5,12 @@ require 'todo-comments'.setup {
     after = "",
   },
   keywords = {
-    NEXT = { icon = " ", color = "next"},
+    NEXT = { icon = " ", color = "next" },
     TODO = { icon = " ", color = "todo" },
     DONE = { icon = " ", color = "hint" },
     WAIT = { icon = " ", color = "warning" },
-    BLOCK = { icon = "󰒡 ", color = "error"},
-    CANC = { icon = " ", color = "test", alt = {"MAYBE"}}
+    BLOCK = { icon = "󰒡 ", color = "error" },
+    CANC = { icon = " ", color = "test", alt = { "MAYBE" } }
   },
   colors = {
     hint = { "CursorLineNr" },

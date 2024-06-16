@@ -13,10 +13,6 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local feedkey = function(key, mode)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-end
-
 local kind_icons = {
   Text = ' ',
   Method = ' ',
@@ -50,19 +46,16 @@ cmp.setup {
     docs = { auto_open = true }
   },
   window = {
-    completion = cmp.config.window.bordered({ border = "single", winhighlight = "Normal:Normal,FloatBorder:LineNr,CursorLine:Visual,Search:None"}),
-    documentation = cmp.config.window.bordered({ border = "single", winhighlight = "Normal:Normal,FloatBorder:LineNr,CursorLine:Visual,Search:None"}),
+    completion = cmp.config.window.bordered({ border = "single", winhighlight = "Normal:Normal,FloatBorder:LineNr,CursorLine:Visual,Search:None" }),
+    documentation = cmp.config.window.bordered({ border = "single", winhighlight = "Normal:Normal,FloatBorder:LineNr,CursorLine:Visual,Search:None" }),
   },
   snippet = {
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end
   },
-  view = {
-    docs = { auto_open = true }
-  },
   formatting = {
-    fields = {"kind", "abbr", "menu"},
+    fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       -- Kind icons
       if entry.source.name == 'vim-dadbod-completion' then
@@ -103,7 +96,7 @@ cmp.setup {
     end, { "i", "s" }),
 
     -- shift tab to move backwards
-    ["<S-Tab>"] = cmp.mapping(function()
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
       elseif luasnip.jumpable(-1) then
@@ -118,7 +111,7 @@ cmp.setup {
     { name = 'luasnip' },
     { name = 'copilot' },
     { name = 'path' },
-    { name = 'buffer', keyword_length = 3 }
+    { name = 'buffer',  keyword_length = 3 }
   },
   experimental = {
     native_menu = false,

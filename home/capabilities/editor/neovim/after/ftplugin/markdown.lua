@@ -80,8 +80,10 @@ vim.keymap.set('n', '<localleader>co', clock_out, { buffer = true, desc = "clock
 vim.keymap.set('n', '<localleader>tt', 'i**<C-R>=strftime("%H:%M")<CR>** ', { buffer = true, desc = "insert time" })
 vim.keymap.set('n', '<localleader>td', 'i**<C-R>=strftime("%Y-%m-%d")<CR>** ', { buffer = true, desc = "insert date" })
 vim.keymap.set('n', '<localleader>ft', open_tasks, { buffer = true, desc = "qf tasks" })
-vim.keymap.set('n', '<localleader><left>', function() move_to_date(nil, '-', 0) end, { buffer = true, desc = "previous day" })
-vim.keymap.set('n', '<localleader><right>', function() move_to_date(nil, '+', 0) end, { buffer = true, desc = "next day" })
+vim.keymap.set('n', '<localleader><left>', function() move_to_date(nil, '-', 0) end,
+  { buffer = true, desc = "previous day" })
+vim.keymap.set('n', '<localleader><right>', function() move_to_date(nil, '+', 0) end,
+  { buffer = true, desc = "next day" })
 
 -- vim.keymap.set('ia', '@@t', function()
 --   return os.date("%H:%M")
@@ -94,7 +96,7 @@ vim.keymap.set('n', '<localleader><right>', function() move_to_date(nil, '+', 0)
 blocal.softtabstop = 2
 blocal.shiftwidth = 2
 
-vim.g.bullets_outline_levels = {'num', 'abc', 'std*'}
+vim.g.bullets_outline_levels = { 'num', 'abc', 'std*' }
 
 -- copied from https://github.com/opdavies/toggle-checkbox.nvim/blob/main/lua/toggle-checkbox.lua
 local checked_character = "x"
@@ -113,12 +115,12 @@ end
 local line_with_checkbox = function(line)
   -- return not line_contains_a_checked_checkbox(line) and not line_contains_an_unchecked_checkbox(line)
   return line:find("^%s*- " .. checked_checkbox)
-    or line:find("^%s*%* " .. checked_checkbox)
-    or line:find("^%s*%* " .. unchecked_checkbox)
-    or line:find("^%s*- " .. unchecked_checkbox)
-    or line:find("^%s*%* " .. unchecked_checkbox)
-    or line:find("^%s*%d%. " .. checked_checkbox)
-    or line:find("^%s*%d%. " .. unchecked_checkbox)
+      or line:find("^%s*%* " .. checked_checkbox)
+      or line:find("^%s*%* " .. unchecked_checkbox)
+      or line:find("^%s*- " .. unchecked_checkbox)
+      or line:find("^%s*%* " .. unchecked_checkbox)
+      or line:find("^%s*%d%. " .. checked_checkbox)
+      or line:find("^%s*%d%. " .. unchecked_checkbox)
 end
 
 local checkbox = {
@@ -173,4 +175,3 @@ end, { desc = "Next todo comment" })
 vim.keymap.set("n", "[t", function()
   require("todo-comments").jump_prev()
 end, { desc = "Previous todo comment" })
-

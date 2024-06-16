@@ -3,10 +3,10 @@ local map = vim.keymap.set
 vim.g.tmux_navigator_disable_when_zoomed = true
 
 vim.g.VimuxRunnerQuery = {
-  window = "󱈫 ";
+  window = "󱈫 ",
 };
 
-map({'n', 'v'}, '<C-c><C-c>', function() 
+map({ 'n', 'v' }, '<C-c><C-c>', function()
   -- yank text into v register
   if vim.api.nvim_get_mode()["mode"] == "n" then
     vim.cmd('normal vip"vy')

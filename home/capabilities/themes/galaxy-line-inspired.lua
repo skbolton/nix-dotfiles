@@ -5,21 +5,11 @@ local condition = require 'galaxyline.condition'
 local vcs = require 'galaxyline.providers.vcs'
 local file = require 'galaxyline.providers.fileinfo'
 local gls = gl.section
-gl.short_line_list = {'NvimTree','vista_kind','dbui'}
-
-local colors = {
-  bg_0 = "#19172C",
-  bg_1 = "#F4F4F4",
-  bg_2 = "#37354A",
-  bg_dark = "#100E23",
-  bg = "#1e1c31",
-  fg = "#cbe3e7",
-  fg_dark = "#8A889D"
-}
+gl.short_line_list = { 'NvimTree', 'vista_kind', 'dbui' }
 
 -- Read from testing.lua module
 -- and adjust icon and color per testing state
-local testing_results = function ()
+local testing_results = function()
   if testing.TESTING_STATUS == 'init' then
     return " "
   elseif testing.TESTING_STATUS == 'passing' then
@@ -29,7 +19,6 @@ local testing_results = function ()
   elseif testing.TESTING_STATUS == 'failing' then
     return " "
   end
-
 end
 
 
@@ -54,7 +43,7 @@ gls.left[1] = {
     end,
     highlight = { "#FFFFFF", "#CA1243" },
     separator = '',
-    separator_highlight = {"#CA1243", "#EAEAEA"}
+    separator_highlight = { "#CA1243", "#EAEAEA" }
   }
 }
 
@@ -70,7 +59,7 @@ gls.left[2] = {
     icon = ' 󰊢  ',
     highlight = { "#000000", "#EAEAEA" },
     separator = '',
-    separator_highlight = {"#EAEAEA", "#F5F5F5" }
+    separator_highlight = { "#EAEAEA", "#F5F5F5" }
   }
 }
 
@@ -165,7 +154,7 @@ gls.right[3] = {
       end
     end,
     highlight = { "#000000", "#EAEAEA" },
-    separator_highlight = {"#EAEAEA", "#F5F5F5" },
+    separator_highlight = { "#EAEAEA", "#F5F5F5" },
     separator = '',
   }
 }
@@ -179,7 +168,7 @@ gls.right[4] = {
     end,
     highlight = { "#FFFFFF", "#CA1243" },
     separator = '',
-    separator_highlight = {"#CA1243", "#EAEAEA"}
+    separator_highlight = { "#CA1243", "#EAEAEA" }
   }
 }
 

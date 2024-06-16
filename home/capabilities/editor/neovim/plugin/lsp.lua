@@ -1,5 +1,4 @@
 local lsp = vim.lsp
-local map = vim.keymap.set
 local wk = require 'which-key'
 
 -- Vista Sidebar
@@ -8,7 +7,7 @@ vim.g.vista_sidebar_width = 45;
 vim.g.vista_default_executive = 'nvim_lsp';
 vim.g.vista_disable_statusline = true;
 vim.g['vista#renderer#enable_icon'] = 1;
-vim.g.vista_icon_indent = {"▸ ", ""};
+vim.g.vista_icon_indent = { "▸ ", "" };
 vim.g['vista#renderer#icons'] = {
   ['function'] = ' ',
   module = '  ',
@@ -16,17 +15,6 @@ vim.g['vista#renderer#icons'] = {
   constant = ' ',
   event = ' '
 }
-
--- Helper Functions
--- ===================================================================
-local definition_in_split = function()
-  -- open a split, this will carry the current buffer over
-  vim.api.nvim_command('vsp')
-  -- go to definition
-  lsp.buf.definition()
-  -- center cursor
-  vim.api.nvim_command('normal zz')
-end
 
 -- LSP Attaching
 -- ===================================================================
@@ -60,7 +48,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         s = { vim.lsp.buf.signature_help, "signature" },
         o = { "<CMD>Telescope lsp_document_symbols<CR>", "fuzzy symbol" },
         O = { "<CMD>Vista<CR>", "sidebar" },
-        i = {vim.diagnostic.setloclist, "qf diagnostics" }
+        i = { vim.diagnostic.setloclist, "qf diagnostics" }
       }
     }, { buffer = buffer, prefix = "<leader>" })
   end

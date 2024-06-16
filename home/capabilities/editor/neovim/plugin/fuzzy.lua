@@ -1,9 +1,6 @@
 local telescope = require 'telescope'
 local builtin = require 'telescope.builtin'
-local actions = require 'telescope.actions'
 local wk = require 'which-key'
-
-local map = vim.keymap.set
 
 wk.register({
   ["/"] = { builtin.live_grep, "fuzzy grep", },
@@ -15,7 +12,7 @@ wk.register({
     m = { builtin.man_pages, "manual" },
     ["?"] = { builtin.help_tags, "help" },
     ["."] = { builtin.resume, "resume last" },
-    i = { "<CMD>Telescope symbols<CR>", "symbols"}
+    i = { "<CMD>Telescope symbols<CR>", "symbols" }
   },
   n = {
     name = "+notes",
@@ -31,7 +28,7 @@ wk.register({
   }
 }, { prefix = "<leader>" })
 
-telescope.setup{
+telescope.setup {
   defaults = {
     layout_config = {
       prompt_position = 'top',
@@ -39,15 +36,15 @@ telescope.setup{
     prompt_prefix = '  ',
     sorting_strategy = 'ascending',
     borderchars = {
-      { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
-      prompt = {"─", "│", " ", "│", '┌', '┐', "│", "│"},
-      results = {"─", "│", "─", "│", "├", "┤", "┘", "└"},
-      preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
+      { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+      prompt = { "─", "│", " ", "│", '┌', '┐', "│", "│" },
+      results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+      preview = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
     }
   },
   pickers = {
     find_files = {
-      find_command = {'rg', '--files', '--hidden', '-g', '!.git'},
+      find_command = { 'rg', '--files', '--hidden', '-g', '!.git' },
       layout_config = {
         height = 0.70
       }
@@ -67,12 +64,12 @@ telescope.setup{
       },
       theme = "ivy"
     }
-},
-extensions = {
-  bibtex = {
-    global_files = { os.getenv("HOME") .. "/Documents/Notes/Resources/global.bib" }
+  },
+  extensions = {
+    bibtex = {
+      global_files = { os.getenv("HOME") .. "/Documents/Notes/Resources/global.bib" }
+    }
   }
-}
 }
 
 telescope.load_extension('fzf')

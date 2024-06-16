@@ -1,4 +1,4 @@
-local capabilities = require 'lsp_capabilities'()
+local capabilities = require 'lsp_capabilities' ()
 
 local executable = 'beancount-language-server'
 

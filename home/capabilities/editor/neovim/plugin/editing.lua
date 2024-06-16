@@ -1,5 +1,3 @@
-local api = vim.api
-
 vim.g.mkdp_theme = 'light'
 
 vim.g.AutoPairsMapSpace = false
@@ -24,7 +22,7 @@ require 'ibl'.setup {
     char = "┊"
   },
   scope = {
-    char = "│";
+    char = "│",
     -- highlight = "@type"
   }
 }
@@ -42,7 +40,7 @@ require 'ibl'.setup {
 
 -- api.nvim_create_autocmd(
 --   { 'BufWritePost', 'BufEnter' },
---   { 
+--   {
 --     pattern = {'*.ex', '*.exs' },
 --     callback = linter.try_lint,
 --     group = lint_group
@@ -64,5 +62,3 @@ vim.g.user_emmet_settings = {
   }
 }
 vim.g.user_emmet_mode = 'inv'
-
-
