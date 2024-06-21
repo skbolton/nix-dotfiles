@@ -1,6 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+
+  home.packages = with pkgs; [ todoist todoist-electron ];
+
   programs.zsh.shellAliases = {
     t = "task";
     chore = "task add proj:HOM";
@@ -15,7 +18,7 @@
 
   programs.taskwarrior = {
     enable = true;
-    colorTheme = ./embark.theme;
+    colorTheme = ./embark-taskwarrior.theme;
     config = {
       alias = {
         "@" = "context";

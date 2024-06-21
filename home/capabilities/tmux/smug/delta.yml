@@ -4,16 +4,8 @@ root: ~/Documents
 windows:
   - name: "󰓥 "
     root: "Logbook/Journal"
-    layout: main-vertical
     commands:
       - zk log
-    panes:
-      - type: vertical
-        commands:
-          - clear
-      - type: horizontal
-        commands:
-          - t
   - name: "󰧑 "
     root: "Reference"
     commands:

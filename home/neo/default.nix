@@ -15,7 +15,7 @@
     ../capabilities/desktop
     ./pam.nix
     ../capabilities/notes
-    ../capabilities/taskwarrior
+    ../capabilities/tasks
     ../capabilities/networking
     ../capabilities/lang/elixir.nix
     ../capabilities/lang/nix.nix
