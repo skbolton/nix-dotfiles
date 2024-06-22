@@ -190,6 +190,41 @@
     daemon.enable = true;
   };
 
+  # Personal dashboard config
+
+  services.grafana = {
+    enable = true;
+    settings = {
+      server.http_port = 2333;
+      server.http_addr = "0.0.0.0";
+    };
+  };
+
+  services.prometheus = {
+    enable = true;
+    port = 9001;
+    scrapeConfigs = [
+      {
+        job_name = "wakatime-exporter";
+        static_configs = [{
+          # TODO: Stop hardcoding port - env of docker container?
+          targets = [ "127.0.0.1:9212" ];
+        }];
+      }
+    ];
+  };
+
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
+      wakatime-exporter = {
+        image = "macropower/wakatime-exporter";
+        environmentFiles = [ config.sops.secrets.wakatime-api-key.path ];
+        ports = [ "9212:9212" ];
+      };
+    };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
