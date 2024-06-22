@@ -62,6 +62,7 @@
       zk-nvim
       todo-comments-nvim
       which-key-nvim
+      vim-wakatime
 
       galaxyline-nvim
 
