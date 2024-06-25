@@ -1,4 +1,3 @@
-local map = vim.keymap.set
 local gitsigns = require 'gitsigns'
 local Job = require 'plenary.job'
 local wk = require 'which-key'
@@ -17,19 +16,15 @@ function prev_hunk()
   vim.cmd('normal zz')
 end
 
-
 gitsigns.setup {
   signs = {
-    add          = {hl = 'GitGutterAdd'   , text = '│'},
-    change       = {hl = 'GitGutterChange', text = '│'},
-    delete       = {hl = 'GitGutterDelete', text = '│'},
-    topdelete    = {hl = 'GitGutterDelete', text = '│'},
-    changedelete = {hl = 'GitGutterDelete', text = '│'},
+    add          = { text = '│' },
+    change       = { text = '│' },
+    delete       = { text = '│' },
+    topdelete    = { text = '│' },
+    changedelete = { text = '│' },
   },
   on_attach = function(bufnr)
-    local map = vim.keymap.set
-    local opts = {silent = true}
-
     wk.register({
       ["]g"] = { next_hunk, "Next hunk" },
       ["[g"] = { next_hunk, "Prev hunk" },
@@ -99,10 +94,10 @@ wk.register({
   g = {
     name = "+git",
     ["<down>"] = { "<CMD>diffput<CR><ESC>", "diff put" },
-    v = {'<CMD>GBrowse<CR>', "webview" },
-    V = {'<CMD>GBrowse!<CR>', "webview copy" },
-    ["<left>"] = {'<CMD>diffget<CR>', "diff get"},
-    ["<right>"] = {'<CMD>diffget<CR>', "diff get"},
-    ["<down>"] = {'<CMD>diffput<CR>', "diff get"}
+    v = { '<CMD>GBrowse<CR>', "webview" },
+    V = { '<CMD>GBrowse!<CR>', "webview copy" },
+    ["<left>"] = { '<CMD>diffget<CR>', "diff get" },
+    ["<right>"] = { '<CMD>diffget<CR>', "diff get" },
+    ["<down>"] = { '<CMD>diffput<CR>', "diff get" }
   }
 }, { prefix = "<leader>", mode = "v" })
