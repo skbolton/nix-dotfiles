@@ -28,7 +28,7 @@
 
     vim.lsp.start {
       name = 'lexical',
-      cmd = { "${pkgs.lexical}/bin/lexical" },
+      cmd = { 'lexical' },
       capabilities = capabilities,
       root_dir = vim.fs.dirname(vim.fs.find({'mix.exs', '.git'}, { upward = true })[1]),
     }

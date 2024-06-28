@@ -7,7 +7,7 @@
 
     vim.lsp.start {
       name = 'lua_ls',
-      cmd = { "${pkgs.lua-language-server}/bin/lua-language-server" },
+      cmd = { "lua-language-server" },
       capabilities = capabilities,
       root_dir = vim.fs.dirname(vim.fs.find({'.luarc.json', '.git'}, { upward = true })[1]),
       on_init = function(client)

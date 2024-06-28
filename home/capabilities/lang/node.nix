@@ -10,7 +10,7 @@
 
     vim.lsp.start {
       name = 'tsserver',
-      cmd = { ${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server, '--stdio' },
+      cmd = { 'typescript-language-server', '--stdio' },
       capabilities = capabilities,
       root_dir = vim.fs.dirname(vim.fs.find({'tsconfig.json', 'package.json', 'jsconfig.json', '.git'}, { upward = true })[1])
     }
@@ -21,7 +21,7 @@
 
     vim.lsp.start {
       name = 'tsserver',
-      cmd = { ${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server, '--stdio' },
+      cmd = { 'typescript-language-server', '--stdio' },
       capabilities = capabilities,
       root_dir = vim.fs.dirname(vim.fs.find({'tsconfig.json', 'package.json', 'jsconfig.json', '.git'}, { upward = true })[1])
     }
