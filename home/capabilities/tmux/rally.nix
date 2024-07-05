@@ -10,7 +10,9 @@ writeShellScriptBin "rally.sh" ''
   NAME=$(basename $TARGET)
   SESSION_NAME=$(echo $NAME | tr [:lower:] [:upper:])
 
-  if [[ -f "$HOME/.config/smug/$NAME.yml" ]]; then
+  if [[ -f "$TARGET/.steve-smug.yml" ]]; then
+    ${smug}/bin/smug start -f "$TARGET/.steve-smug.yml"
+  elif [[ -f "$HOME/.config/smug/$NAME.yml" ]]; then
     ${smug}/bin/smug start $NAME -a
   else
     ${smug}/bin/smug start default name=$SESSION_NAME root=$TARGET -a

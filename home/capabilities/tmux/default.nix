@@ -14,6 +14,8 @@ in
     };
   };
 
+  programs.git.ignores = [ ".steve-smug.yml" ];
+
   home.packages = [
     pkgs.smug
     rally

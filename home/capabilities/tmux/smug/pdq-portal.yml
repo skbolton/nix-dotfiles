@@ -1,4 +1,4 @@
-session: PORTAL
+session:  PORTAL
 root: ~/Public/pdq-portal
 
 before_start: 
