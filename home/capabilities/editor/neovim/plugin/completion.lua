@@ -160,3 +160,10 @@ cmp.setup.filetype('lua', {
     { name = 'nvim_lua' }
   })
 })
+
+cmp.setup.filetype('beancount', {
+  sources = cmp.config.sources({
+    { name = "beancount", option = { account = vim.loop.os_homedir() .. "/Ledger/main.beancount" } },
+    { name = 'buffer' }
+  })
+})

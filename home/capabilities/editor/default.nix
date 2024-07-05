@@ -6,6 +6,7 @@
     # package = pkgs.neovim-nightly;
     enable = true;
     defaultEditor = true;
+    extraPython3Packages = pyPkgs: with pyPkgs; [ beancount ];
     plugins = with pkgs.vimPlugins; [
       # syntax
       vim-elixir
@@ -73,6 +74,7 @@
       cmp-path
       cmp-cmdline
       cmp-nvim-lua
+      cmp-beancount
       luasnip
 
       # nnn-vim

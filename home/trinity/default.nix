@@ -14,6 +14,7 @@
     ../capabilities/editor
     ../capabilities/tmux
     ../capabilities/desktop
+    ../capabilities/finances.nix
     ./pam.nix
     ../capabilities/notes
     ../capabilities/tasks
