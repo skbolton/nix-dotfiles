@@ -5,7 +5,7 @@
     ERL_AFLAGS = "-kernel shell_history enabled";
   };
 
-  home.file.".iex.exs".text = ''
+  home.file.".iex.exs".text = /* elixir */ ''
     IEx.configure(
             default_prompt:
               "#{IO.ANSI.magenta} #{IO.ANSI.reset}(%counter) |",
@@ -21,9 +21,10 @@
     postgresql
     elixir_1_15
     erlang_26
+    lexical
   ];
 
-  xdg.configFile."nvim/after/ftplugin/elixir.lua".text = ''
+  xdg.configFile."nvim/after/ftplugin/elixir.lua".text = /* lua */ ''
     local capabilities = require 'lsp_capabilities'()
 
     vim.lsp.start {
