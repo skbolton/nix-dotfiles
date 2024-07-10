@@ -16,8 +16,8 @@ pkgs.writeShellScriptBin "note-search" ''
       --bind "ctrl-y:unbind(change,ctrl-f)+change-prompt(  )+enable-search+rebind(ctrl-r)+transform-query(echo {q} > /tmp/rg-fzf-r; cat /tmp/rg-fzf-f)" \
       --bind "ctrl-r:unbind(ctrl-r)+change-prompt(  )+disable-search+reload($RG_PREFIX {q} || true)+rebind(change,ctrl-f)+transform-query(echo {q} > /tmp/rg-fzf-f; cat /tmp/rg-fzf-r)" \
       --prompt '  ' \
-      --header '| CTRL-R (rg) | CTRL-F (fzf) |' \
-      --preview "${bat}/bin/bat --color=always '{1}' | ${rg}/bin/rg --pretty --no-line-number --ignore-case --context 20 {q}" \
+      --header '| CTRL-R   | CTRL-Y   |' \
+      --preview "${bat}/bin/bat --color=always --style=grid,numbers '{1}' | ${rg}/bin/rg --pretty --no-line-number --ignore-case --context 20 {q}" \
       --bind 'enter:become(nvim {1})+abort' \
       --bind 'ctrl-d:preview-down' \
       --bind 'ctrl-u:preview-up' \
