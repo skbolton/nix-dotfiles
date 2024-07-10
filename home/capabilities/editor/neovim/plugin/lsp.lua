@@ -43,6 +43,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     wk.register({
       K = { vim.lsp.buf.hover, "hover" },
+    })
+
+    wk.register({
       l = {
         name = "+lsp",
         s = { vim.lsp.buf.signature_help, "signature" },
