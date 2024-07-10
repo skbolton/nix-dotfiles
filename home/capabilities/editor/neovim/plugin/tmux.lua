@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 
 vim.g.tmux_navigator_disable_when_zoomed = true
+vim.g.VimuxCloseOnExit = true;
 
 vim.g.VimuxRunnerQuery = {
   window = "󱈫 ",
@@ -28,7 +29,9 @@ map('n', '<leader>rz', '<CMD>VimuxZoomRunner<CR>')
 map('n', '<leader>ru', function()
   if vim.g.VimuxRunnerType == 'window' then
     vim.g.VimuxRunnerType = 'pane'
+    vim.g.VimuxCloseOnExit = true;
   else
     vim.g.VimuxRunnerType = 'window'
+    vim.g.VimuxCloseOnExit = false;
   end
 end)

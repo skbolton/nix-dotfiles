@@ -2,7 +2,6 @@ local g = vim.g
 
 g.VimuxOrientation = "h"
 g.VimuxHeight = "30"
-g.VimuxCloseOnExit = true;
 
 g["test#custom_strategies"] = {
   vimux_watch = function(args)
