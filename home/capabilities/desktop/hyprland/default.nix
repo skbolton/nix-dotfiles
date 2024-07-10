@@ -46,9 +46,9 @@
 
       general = {
         gaps_in = 5;
-        gaps_out = 5;
-        border_size = 2;
-        "col.active_border" = "rgb(78A8FF) rgb(7676FF) 45deg";
+        gaps_out = 8;
+        border_size = 3;
+        "col.active_border" = "rgb(F48FB1) rgb(78A8FF) 45deg";
         "col.inactive_border" = "rgba(585272aa)";
         layout = "dwindle";
         resize_on_border = true;
@@ -64,7 +64,7 @@
       };
 
       decoration = {
-        rounding = 0;
+        rounding = 5;
         blur = {
           enabled = true;
           size = 3;
