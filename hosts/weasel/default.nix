@@ -24,6 +24,12 @@
     firewall.enable = false;
   };
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   users.users.orlando = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" ];
