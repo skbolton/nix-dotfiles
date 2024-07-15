@@ -30,17 +30,17 @@
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-      gtk-theme = "Tokyonight-Storm-BL";
-      cursor-theme = "Bibata-Modern-Ice";
-      icon-theme = "Fluent-teal-dark";
     };
   };
 
   gtk = {
     enable = true;
     theme = {
-      name = "Tokyonight-Storm-BL";
-      package = pkgs.tokyonight-gtk-theme;
+      name = "Colloid-Teal-Dark-Dracula";
+      package = pkgs.colloid-gtk-theme.override {
+        themeVariants = [ "purple" "teal" "grey" "green" ];
+        tweaks = [ "dracula" ];
+      };
     };
 
     cursorTheme = {
@@ -49,7 +49,7 @@
     };
 
     iconTheme = {
-      name = "Fluent-teal-dark";
+      name = "Fluent-dark";
       package = pkgs.fluent-icon-theme.override { roundedIcons = true; allColorVariants = true; };
     };
   };
@@ -59,6 +59,4 @@
     platformTheme.name = "gtk3";
     style.name = "adwaita-gtk";
   };
-
-  home.sessionVariables.GTK_THEME = "Tokyonight-Storm-BL";
 }
