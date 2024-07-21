@@ -84,8 +84,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "luukvbaal";
           repo = "nnn.nvim";
-          rev = "master";
-          sha256 = "sha256-iJTN1g5uoS6yj0CZ6Q5wsCAVYVim5zl4ObwVyLtJkQ0=";
+          rev = "662034c73718885ee599ad9fb193ab1ede70fbcb";
+          sha256 = "sha256-8+ax8n1fA4jgJugvWtRXkad4YM7TmAAsAopzalmGu/4=";
         };
       })
 
