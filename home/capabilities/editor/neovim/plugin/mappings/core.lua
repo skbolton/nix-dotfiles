@@ -2,7 +2,7 @@ local map = vim.keymap.set
 
 map({ 'n', 'v' }, ';', ':')
 map({ 'n', 'v' }, ':', ';', { silent = true })
-map('n', 'gy', '"+y')
+map({ 'n', 'v' }, 'gy', '"+y')
 map('n', '<UP>', '<CMD>cope<CR>')
 map('n', '<DOWN>', '<CMD>cclose<CR>')
 map('n', '<RIGHT>', '<CMD>cnext<CR>zz')
