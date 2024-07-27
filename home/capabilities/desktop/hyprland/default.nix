@@ -176,7 +176,7 @@
 
         "$mainMod, r, exec, kitty --title='kitty-float' --override initial_window_width=100c --override initial_window_height=1c --hold"
         "$mainMod CTRL, r, exec, kitty --title='kitty-float' --override initial_window_width=100c --override initial_window_height=40c --hold"
-        "$mainMod, o, exec, kitty --title='kitty-float' --override initial_window_width=140c --override initial_window_height=42c zsh -ic 'zk edit --interactive'"
+        "$mainMod, o, exec, kitty --title='kitty-float' --override initial_window_width=150c --override initial_window_height=42c zsh -ic 'zk edit --interactive'"
 
         "$mainMod, e, exec, nautilus"
         "$mainMod, P, pseudo, # dwindle"
