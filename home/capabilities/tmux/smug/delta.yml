@@ -2,11 +2,11 @@ session:  DELTA
 root: ~/Documents
 
 windows:
-  - name: "󰓥 "
+  - name: "󰓥 journal"
     root: "Logbook/Journal"
     commands:
       - zk log
-  - name: "󰧑 "
+  - name: "󰧑 reference"
     root: "Reference"
     commands:
       - note-search

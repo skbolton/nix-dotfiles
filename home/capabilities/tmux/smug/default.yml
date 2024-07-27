@@ -2,10 +2,10 @@ session:  ${name}
 root: ${root}
 
 windows:
-  - name: " "
+  - name: " neovim"
     commands:
       - nvim
-  - name: " "
+  - name: " console"
     commands:
       - tmux link-window -s Notes -d
 

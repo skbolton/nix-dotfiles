@@ -10,10 +10,10 @@ stop:
   - docker-compose stop
 
 windows:
-  - name: " "
+  - name: " neovim"
     commands:
       - nvim
-  - name: " "
+  - name: " scratchpad"
     commands: 
       - nvim scratchpad.ex
     layout: main-horizontal
@@ -22,9 +22,9 @@ windows:
         commands:
           - iex -S mix
       
-  - name: " "
+  - name: " db"
     commands:
       - nvim +DBUI
-  - name: "󱈫 "
+  - name: "󱈫 test"
     commands:
       - clear

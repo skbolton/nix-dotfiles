@@ -10,7 +10,7 @@ in
 
     settings = {
       # UI and Window Behavior
-      window_padding_width = "4 8";
+      window_padding_width = "0 8";
       remember_window_size = "no";
       hide_window_decorations = "yes";
       dynamic_background_opacity = "yes";

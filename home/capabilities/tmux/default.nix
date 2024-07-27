@@ -67,6 +67,7 @@ in
       set -g pane-border-indicators both
       set -g automatic-rename off
       set -g renumber-windows
+      set -g clock-mode-style 24
 
       source ~/.config/tmux/bindings.tmux
       source "~/.config/tmux/statusline.tmux"

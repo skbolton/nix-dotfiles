@@ -32,16 +32,14 @@ gls.left[1] = {
       if name == '' then
         return 'SCRATCH '
       else
-        return name .. ' '
+        return vim.fn.expand('%:p:h:t') .. '/' .. vim.fn.expand('%:t') .. ' '
       end
     end,
     highlight = { colors.fg_dark, colors.bg_0 },
-    separator = '',
-    separator_highlight = { colors.bg_0, colors.bg_1 }
   }
 }
 
-gls.left[2] = {
+gls.right[1] = {
   GitBranch = {
     provider = function()
       if vcs.get_git_branch() then
@@ -51,13 +49,11 @@ gls.left[2] = {
       end
     end,
     icon = ' 󰊢  ',
-    highlight = { colors.fg_dark, colors.bg_1 },
-    separator = '',
-    separator_highlight = { colors.bg_1, colors.bg_2 }
+    highlight = { colors.fg_dark, colors.bg_0 },
   }
 }
 
-gls.left[3] = {
+gls.right[2] = {
   GitDiffAdded = {
     icon = ' + ',
     provider = function()
@@ -67,11 +63,13 @@ gls.left[3] = {
         return '∅ '
       end
     end,
-    highlight = { colors.fg_dark, colors.bg_2 }
+    separator = '|',
+    separator_highlight = { colors.fg_dark },
+    highlight = { colors.fg_dark, colors.bg_0 },
   }
 }
 
-gls.left[4] = {
+gls.right[3] = {
   GitDiffChanged = {
     icon = '~ ',
     provider = function()
@@ -81,11 +79,11 @@ gls.left[4] = {
         return '∅ '
       end
     end,
-    highlight = { colors.fg_dark, colors.bg_2 }
+    highlight = { colors.fg_dark, colors.bg_0 },
   }
 }
 
-gls.left[5] = {
+gls.right[4] = {
   GitDiffRemoved = {
     icon = '- ',
     provider = function()
@@ -95,74 +93,23 @@ gls.left[5] = {
         return '∅ '
       end
     end,
-    highlight = { colors.fg_dark, colors.bg_2 },
-    separator = '',
-    separator_highlight = { colors.bg_2, colors.bg_dark }
+    highlight = { colors.fg_dark, colors.bg_0 },
   }
 }
 
 -- RIGHT
 -----------------------------------------------------------
 
-gls.right[1] = {
-  VennEnabled = {
-    provider = function()
-      if diagrams.enabled then
-        return " "
-      else
-        return ""
-      end
-    end,
-    highlight = { "#d4bfff", colors.bg_dark },
-    separator = '',
-  }
-}
-
-gls.right[2] = {
-  LanguageServer = {
-    provider = function()
-      local active_client = vim.lsp.buf_get_clients()[1]
-      if active_client ~= nil then
-        return '   '
-      else
-        return '   '
-      end
-    end,
-    highlight = { colors.fg_dark, colors.bg_2 },
-    separator = '',
-    separator_highlight = { colors.bg_2, colors.bg_dark }
-  }
-}
-
-gls.right[3] = {
-  TestResults = {
-    provider = function()
-      if testing.TESTING_STATUS == 'init' then
-        return '   '
-      elseif testing.TESTING_STATUS == 'passing' then
-        return '   '
-      elseif testing.TESTING_STATUS == 'running' then
-        return '   '
-      elseif testing.TESTING_STATUS == 'failing' then
-        return '   '
-      end
-    end,
-    highlight = { colors.fg_dark, colors.bg_1 },
-    separator = '',
-    separator_highlight = { colors.bg_1, colors.bg_2 }
-  }
-}
-
-gls.right[4] = {
+gls.right[5] = {
   Position = {
     provider = function()
       local line = vim.fn.line('.')
       local col = vim.fn.col('.')
       return ' ' .. line .. ':' .. col .. ' '
     end,
+    separator = '|',
+    separator_highlight = { colors.fg_dark },
     highlight = { colors.fg_dark, colors.bg_0 },
-    separator = '',
-    separator_highlight = { colors.bg_0, colors.bg_1 }
   }
 }
 
