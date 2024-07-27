@@ -10,6 +10,7 @@
     ../capabilities/shell.nix
     ../capabilities/kitty
     ../capabilities/passwords.nix
+    ../capabilities/finances.nix
     ../capabilities/editor
     ../capabilities/tmux
     ../capabilities/desktop
