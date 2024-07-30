@@ -29,7 +29,6 @@
         "synology-drive"
         "waybar"
         "[workspace 2 silent] floorp"
-        "[workspace special:term silent] kitty --title='kitty-scratch' --hold"
         "kitty"
         # "remind -z -k':notify-send -u critical \"Reminder!\" %s' ~/00-09-System/02-Logs/02.10-Journal/agenda.rem"
         "[workspace 7 silent] morgen"
@@ -177,8 +176,9 @@
         "$mainMod, r, exec, kitty --title='kitty-float' --override initial_window_width=100c --override initial_window_height=1c --hold"
         "$mainMod CTRL, r, exec, kitty --title='kitty-float' --override initial_window_width=100c --override initial_window_height=40c --hold"
         "$mainMod, o, exec, kitty --title='kitty-float' --override initial_window_width=150c --override initial_window_height=42c zsh -ic 'zk edit --interactive'"
+        "$mainMod, e, exec, kitty --title='kitty-float' --override initial_window_width=80c --override initial_window_height=20c qke"
 
-        "$mainMod, e, exec, nautilus"
+        "$mainMod, n, exec, nautilus"
         "$mainMod, P, pseudo, # dwindle"
         "$mainMod, s, togglespecialworkspace, notes"
         "$mainMod SHIFT, S, movetoworkspace, special:notes"

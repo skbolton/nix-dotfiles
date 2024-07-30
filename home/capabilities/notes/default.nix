@@ -12,6 +12,7 @@
     obsidian
     zk
     (import ./note-search.nix { inherit pkgs; })
+    (pkgs.callPackage ./qke.nix { })
   ];
 
   xdg.configFile."zk/config.toml".source = ./zk.toml;
