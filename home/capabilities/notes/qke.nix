@@ -2,6 +2,6 @@
 
 writeShellScriptBin "qke" ''
   file=$(mktemp)
-  nvim +startinsert $file
+  nvim +startinsert +"set ft=markdown" $file
   wl-copy -n < $file
 ''
