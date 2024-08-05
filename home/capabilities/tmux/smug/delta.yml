@@ -5,7 +5,7 @@ windows:
   - name: "󰓥 journal"
     root: "Logbook/Journal"
     commands:
-      - zk log
+      - dweek
   - name: "󰧑 reference"
     root: "Reference"
     commands:
