@@ -14,6 +14,8 @@
     (import ./note-search.nix { inherit pkgs; })
     (pkgs.callPackage ./qke.nix { })
     (pkgs.callPackage ./week.nix { })
+    (pkgs.callPackage ./week.nix { })
+    (pkgs.callPackage ./weekp.nix { })
     (pkgs.callPackage ./month.nix { })
     (pkgs.callPackage ./year.nix { })
   ];

@@ -11,13 +11,12 @@ writeShellScriptBin "dweek" ''
   title: $(date '+Week %V %Y' --date $DATE)
   ---
 
+  [$(date '+%B' --date $DATE)](./$(date '+%Y-%m').md)
+
   \`\`\`
   $(cal --week $DATE | head -n -1)
   \`\`\`
 
-  ---
-
-  [$(date '+%B' --date $DATE)](./$(date '+%Y-%m').md)
   EOF
 
   }
