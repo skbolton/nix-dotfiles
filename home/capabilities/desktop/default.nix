@@ -36,10 +36,9 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Colloid-Teal-Dark-Dracula";
-      package = pkgs.colloid-gtk-theme.override {
-        themeVariants = [ "purple" "teal" "grey" "green" ];
-        tweaks = [ "dracula" ];
+      name = "Orchis-Purple-Dark-Compact";
+      package = pkgs.orchis-theme.override {
+        tweaks = [ "black" "compact" ];
       };
     };
 
@@ -49,8 +48,8 @@
     };
 
     iconTheme = {
-      name = "Fluent-dark";
-      package = pkgs.fluent-icon-theme.override { roundedIcons = true; allColorVariants = true; };
+      name = "candy-icons";
+      package = pkgs.candy-icons;
     };
   };
 

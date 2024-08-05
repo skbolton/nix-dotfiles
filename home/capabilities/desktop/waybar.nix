@@ -11,12 +11,12 @@
     package = pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ]; });
     settings = {
       mainBar = {
-        start_hidden = true;
+        start_hidden = false;
         margin = "0";
         layer = "top";
-        modules-left = [ "custom/nix" "hyprland/workspaces" "mpris" ];
+        modules-left = [ "hyprland/workspaces" "mpris" ];
         modules-center = [ "wlr/taskbar" ];
-        modules-right = [ "custom/task-context" "network#interface" "network#speed" "cpu" "temperature" "backlight" "battery" "clock" "custom/notification" "tray" ];
+        modules-right = [ "network#interface" "network#speed" "cpu" "temperature" "backlight" "battery" "clock" "custom/notification" "tray" ];
 
         persistent_workspaces = {
           "1" = [ ];
@@ -30,11 +30,8 @@
           on-click = "activate";
           sort-by-number = true;
           format-icons = {
-            "1" = "";
-            "2" = "󰈹";
-            "3" = "󰒱";
-            "4" = "󰴸";
-            "7" = "󰧑";
+            "default" = "";
+            "active" = "";
           };
         };
 
@@ -47,19 +44,8 @@
           };
         };
 
-        "custom/nix" = {
-          format = "󱄅 ";
-        };
-
         "wlr/taskbar" = {
           on-click = "activate";
-        };
-
-        "custom/task-context" = {
-          exec = "~/.config/waybar/scripts/task-context.sh";
-          tooltip = false;
-          on-click = "task @ none";
-          restart-interval = 1;
         };
 
         "network#interface" = {
