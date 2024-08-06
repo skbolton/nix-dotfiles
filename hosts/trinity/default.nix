@@ -147,6 +147,12 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
+    extraConfig.pipewire.adjust-sample-rate = {
+      "context.properties" = {
+        "default.clock.rate" = 192000;
+        "defautlt.allowed-rates" = [ 192000 48000 44100 ];
+      };
+    };
   };
 
   security.pam.services = {
