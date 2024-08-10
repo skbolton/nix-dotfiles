@@ -16,7 +16,7 @@
     ../capabilities/desktop
     ./pam.nix
     ../capabilities/notes
-    ../capabilities/tasks
+    # ../capabilities/tasks
     ../capabilities/networking
     ../capabilities/lang/elixir.nix
     ../capabilities/lang/nix.nix
@@ -88,8 +88,8 @@
   monitors = [
     {
       name = "eDP-1";
-      width = 2560;
-      height = 1600;
+      width = 2880;
+      height = 1800;
       scale = "1.25";
       refreshRate = 120;
       workspaces = [ "1" "2" "3" "4" "5" "6" ];

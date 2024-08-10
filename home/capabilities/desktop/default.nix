@@ -48,8 +48,8 @@
     };
 
     iconTheme = {
-      name = "candy-icons";
-      package = pkgs.candy-icons;
+      name = "kora";
+      package = pkgs.kora-icon-theme;
     };
   };
 

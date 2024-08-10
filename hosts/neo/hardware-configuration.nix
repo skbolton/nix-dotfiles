@@ -9,65 +9,66 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ "i915" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelModules = [ "kvm-amd" "amd-pstate" ];
   boot.extraModulePackages = [ ];
-  boot.kernelPackages = pkgs.linuxPackages_6_8;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.resumeDevice = "/dev/mapper/system";
+  boot.kernelParams = [ "initcall_blacklist=acpi_cpufreq_inti" "amd_pstate=active" "mem_sleep_default=deep" "pcie_aspm.policy=powersupersave" "amdgpu.gpu_recovery=1" ];
 
-  boot.initrd.luks.devices."system".device = "/dev/disk/by-partlabel/HYNIX-NIX";
+  boot.initrd.luks.devices.system.device = "/dev/disk/by-partlabel/SYSTEM";
 
   fileSystems."/" =
     {
-      device = "/dev/mapper/system";
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/home" =
     {
-      device = "/dev/mapper/system";
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@home" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/nix" =
     {
-      device = "/dev/mapper/system";
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@nix" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/var/log" =
     {
-      device = "/dev/mapper/system";
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@var/log" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/var/lib/docker" =
     {
-      device = "/dev/mapper/system";
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@var/lib/docker" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-partlabel/HYNIX-EFI";
+      device = "/dev/disk/by-label/NIX-EFI";
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices = [{ device = "/swap/swapfile"; size = 24 * 1024; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp195s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

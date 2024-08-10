@@ -42,6 +42,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    auto-cpufreq = {
+      url = "github:AdnanHodzic/auto-cpufreq";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -135,7 +140,7 @@
           # If you need to pass other parameters, you must use `specialArgs` by uncomment the following line
           specialArgs = { inherit inputs outputs; }; # pass custom arguments into sub module.
           modules = [
-            ./hosts/sops.nix
+            # ./hosts/sops.nix
             ./hosts/neo
             { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager

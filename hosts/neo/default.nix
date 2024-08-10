@@ -2,13 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports =
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.auto-cpufreq.nixosModules.default
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -20,6 +21,7 @@
     allowUnfree = true;
     permittedInsecurePackages = [
       "electron-25.9.0"
+      "electron-27.3.11"
     ];
   };
 
@@ -35,7 +37,6 @@
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-  networking.networkmanager.wifi.backend = "iwd";
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -87,7 +88,8 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.orlando = {
     isNormalUser = true;
-    hashedPasswordFile = config.sops.secrets.orlando-password.path;
+    # hashedPasswordFile = config.sops.secrets.orlando-password.path;
+    initialPassword = "temp";
     extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
@@ -103,6 +105,7 @@
     yubikey-manager
     pavucontrol
     pulseaudio
+    brightnessctl
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -124,8 +127,6 @@
   services.dbus.packages = [ pkgs.gcr ];
 
   programs.dconf.enable = true;
-
-  # services.auto-cpufreq.enable = true;
 
   xdg.portal = {
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -158,6 +159,25 @@
     enable = true;
     brightnessKeys.step = 5;
     brightnessKeys.enable = true;
+  };
+
+  services.fwupd.enable = true;
+
+  programs.auto-cpufreq.enable = true;
+  programs.auto-cpufreq.settings = {
+    battery = {
+      governor = "powersave";
+      turbo = "auto";
+    };
+    charger = {
+      governor = "performance";
+      turbo = "auto";
+    };
+  };
+
+  services. asusd = {
+    enable = true;
+    enableUserService = true;
   };
 
   # This value determines the NixOS release from which the default
