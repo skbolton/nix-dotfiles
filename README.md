@@ -63,4 +63,8 @@ Run installer
 nixos-install --flake .#$HOSTNAME
 ```
 
+## Building custom iso
 
+```bash
+nix build '.#nixosConfigurations.iso.config.system.build.isoImage'
+```
