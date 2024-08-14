@@ -115,12 +115,18 @@
         workspace_swipe_forever = true;
       };
 
-      device = {
-        name = "getech-huge-trackball-1";
-        "scroll_method" = "on_button_down";
-        "scroll_button" = 279;
-        "natural_scroll" = true;
-      };
+      device = [
+        {
+          name = "getech-huge-trackball-1";
+          "scroll_method" = "on_button_down";
+          "scroll_button" = 279;
+          "natural_scroll" = true;
+        }
+        {
+          name = "ploopy-corporation-ploopy-adept-trackball-mouse";
+          natural_scroll = true;
+        }
+      ];
 
       monitor = map
         (m:
