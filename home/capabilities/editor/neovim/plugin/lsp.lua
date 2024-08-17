@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       })
     end
 
-    if client.supports_method("textDocument/formatting") then
+    if client.supports_method("textDocument/definition") then
       wk.register({
         ["<CR>"] = { vim.lsp.buf.definition, "definition" }
       }, { buffer = buffer })
@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     wk.register({
       K = { vim.lsp.buf.hover, "hover" },
-    })
+    }, { buffer = buffer })
 
     wk.register({
       l = {
