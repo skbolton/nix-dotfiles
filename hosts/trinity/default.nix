@@ -59,12 +59,14 @@
   services.xserver = {
     enable = true;
     videoDrivers = [ "amdgpu" ];
-
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
     windowManager.awesome.enable = true;
+  };
+
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+    theme = "catppuccin-mocha";
+    package = pkgs.kdePackages.sddm;
   };
 
   # Configure keymap in X11
@@ -112,6 +114,13 @@
       google-cloud-sdk.components.gke-gcloud-auth-plugin
       google-cloud-sdk.components.pubsub-emulator
     ])
+    (catppuccin-sddm.override {
+      flavor = "mocha";
+      font = "Noto Sans";
+      fontSize = "10";
+      background = "${../../login-wallpaper}";
+      loginBackground = true;
+    })
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
