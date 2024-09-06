@@ -2,6 +2,57 @@ local zk = require('zk')
 local util = require('zk.util')
 local commands = require('zk.commands')
 
+require("neorg").setup {
+  load = {
+    ["core.defaults"] = {},
+    ["core.dirman"] = {
+      config = {
+        config = {
+          workspaces = {
+            logbook = "~/Documents/Logbook",
+            reference = "~/Documents/Reference"
+          },
+          default_workspace = "logbook"
+        }
+      }
+    },
+    ["core.tangle"] = {
+      config = {
+        tangle_on_write = true,
+      }
+    },
+    ["core.todo-introspector"] = {
+      config = {
+        highlight_group = "Comment"
+      }
+    },
+    ["core.completion"] = {
+      config = {
+        engine = "nvim-cmp"
+      }
+    },
+    ["core.concealer"] = {
+      config = {
+        icon_preset = "diamond",
+        icons = {
+          code_block = { conceal = true },
+          todo = { undone = { icon = " " } },
+          -- heading = {
+          --   icons = {
+          --     "󰎦",
+          --     "󰎩",
+          --     "󰎬",
+          --     "󰎮",
+          --     "󰎰",
+          --     "󰎵"
+          --   }
+          -- }
+        }
+      }
+    }
+  }
+}
+
 zk.setup {
   picker = "telescope",
   lsp = {

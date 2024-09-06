@@ -25,6 +25,7 @@
 
     # Official NixOS package source, using nixos-unstable branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     NixOS-WSL = {
       url = "github:nix-community/NixOS-WSL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +51,8 @@
       url = "github:embark-theme/vim";
       flake = false;
     };
+
+    neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
   };
 
   # `outputs` are all the build result of the flake.
@@ -60,6 +63,7 @@
   outputs = { self, nixpkgs, home-manager, NixOS-WSL, ... }@inputs:
     let
       inherit (self) outputs;
+      unstable = import inputs.nixpkgs-unstable { system = "x86_64-linux"; config.allowUnfree = true; };
     in
     {
       nixosModules = import ./modules/nixos;
@@ -101,6 +105,13 @@
             { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
             {
+              nixpkgs.overlays = [
+                inputs.neorg-overlay.overlays.default
+                (final: prev: {
+                  neovim-unwrapped = unstable.neovim-unwrapped;
+                })
+              ];
+
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };
@@ -140,6 +151,12 @@
             { programs.hyprland.enable = true; }
             home-manager.nixosModules.home-manager
             {
+              nixpkgs.overlays = [
+                inputs.neorg-overlay.overlays.default
+                (final: prev: {
+                  neovim-unwrapped = unstable.neovim-unwrapped;
+                })
+              ];
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit inputs; };

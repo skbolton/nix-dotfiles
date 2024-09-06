@@ -100,7 +100,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " m"
 
 -- abbreviations
-vim.cmd('abb ::t <C-r>=strftime("%H:%M:%S")<CR>')
-vim.cmd('abb ::c <C-r>=strftime("%Y/%m/%d %H:%M:%S")<CR>')
-vim.cmd('abb ::d <C-r>=strftime("%Y-%m-%d")<CR>')
-vim.cmd('abb ::D <C-r>=strftime("%Y/%m/%d")<CR>')
+vim.cmd('abb ::t <C-r>=strftime("%T")<CR>')
+vim.cmd('abb ::T <C-r>=strftime("%F %T")<CR>')
+vim.cmd('abb ::c <C-r>=strftime("%Y/%m/%d %T")<CR>')
+vim.cmd('abb ::d <C-r>=strftime("%F")<CR>')
+vim.cmd('abb ::D <C-r>=strftime("%A, %B %-d %Y")<CR>')

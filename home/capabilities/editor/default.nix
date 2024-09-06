@@ -45,6 +45,7 @@
       }
       copilot-lua
       copilot-cmp
+      neorg
 
       nui-nvim
       indent-blankline-nvim
@@ -117,6 +118,16 @@
       telescope-nvim
       telescope-symbols-nvim
       telescope-fzf-native-nvim
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "telescope-headings";
+        version = "e85c0f6";
+        src = pkgs.fetchFromGitHub {
+          owner = "crispgm";
+          repo = "telescope-heading.nvim";
+          rev = "e85c0f6";
+          sha256 = "sha256-29nSqK4sWI3m5hHviGBfiSN/GPh8oXGiYrrTmN2okRk=";
+        };
+      })
 
       { plugin = rose-pine; optional = true; }
       { plugin = nightfox-nvim; optional = true; }

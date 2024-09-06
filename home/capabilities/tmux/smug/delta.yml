@@ -3,9 +3,9 @@ root: ~/Documents
 
 windows:
   - name: "󰓥 journal"
-    root: "Logbook/Journal"
+    root: "Logbook"
     commands:
-      - dweek
+      - nvim 2024-log.norg
   - name: "󰧑 reference"
     root: "Reference"
     commands:
