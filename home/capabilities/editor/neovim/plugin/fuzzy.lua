@@ -68,9 +68,13 @@ telescope.setup {
   extensions = {
     bibtex = {
       global_files = { os.getenv("HOME") .. "/Documents/Notes/Resources/global.bib" }
+    },
+    heading = {
+      treesitter = true,
     }
   }
 }
 
 telescope.load_extension('fzf')
+telescope.load_extension('heading')
 -- telescope.load_extension('bibtex')
