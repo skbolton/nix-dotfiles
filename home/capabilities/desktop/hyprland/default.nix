@@ -25,7 +25,6 @@
       exec-once = [
         "hyprctl setcursor Bibata-Modern-Ice 22"
         "nm-applet"
-        "swaybg -i ~/wallpaper -m fill"
         "synology-drive"
         "waybar"
         "[workspace 2 silent] floorp"
@@ -33,7 +32,7 @@
         # "remind -z -k':notify-send -u critical \"Reminder!\" %s' ~/00-09-System/02-Logs/02.10-Journal/agenda.rem"
         "[workspace 7 silent] morgen"
         "[workspace 7 silent] kitty --title='kitty-journal' --hold smug start delta -a"
-      ];
+      ] ++ (map (m: "swaybg --output ${m.name} --image ${m.wallpaper} --mode fill") config.monitors);
 
       workspace = lib.lists.flatten (map
         (m:

@@ -102,26 +102,29 @@
       name = "DP-1";
       width = 2560;
       height = 2880;
-      scale = "1.066667";
+      scale = "1";
       workspaces = [ "7" "8" "9" ];
+      wallpaper = "~/Media/Pictures/Wallpapers/KENSHI.jpg";
     }
     {
       name = "DP-2";
       width = 3840;
-      x = 2400;
+      x = 2560;
       y = 0;
       refreshRate = 240;
       height = 2160;
       scale = "1";
       workspaces = [ "1" "3" "5" ];
+      wallpaper = "~/Media/Pictures/Wallpapers/wallhaven-p91ve3.jpg";
     }
     {
       name = "DP-3";
       width = 2560;
       height = 2880;
-      scale = "1.066667";
-      x = 6240;
+      scale = "1";
+      x = 6400;
       workspaces = [ "2" "4" "6" ];
+      wallpaper = "~/Media/Pictures/Wallpapers/GHOSTEYESred.jpg";
     }
   ];
 

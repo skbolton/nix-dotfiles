@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, ... }:
 
 let
   inherit (lib) mkOption types;
@@ -43,6 +43,9 @@ in
           type = types.listOf types.str;
           example = [ "1" "4" ];
           default = [ ];
+        };
+        wallpaper = mkOption {
+          type = types.str;
         };
       };
     });
