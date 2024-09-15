@@ -19,6 +19,7 @@ require("neorg").setup {
     ["core.tangle"] = {
       config = {
         tangle_on_write = true,
+        report_on_empty = false
       }
     },
     ["core.todo-introspector"] = {

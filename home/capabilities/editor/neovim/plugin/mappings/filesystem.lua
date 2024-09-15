@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 local oil = require 'oil'
+local nnn = require 'nnn'
 
 oil.setup {
   default_file_explorer = true,
@@ -25,5 +26,21 @@ oil.setup {
   }
 }
 
+nnn.setup {
+  offset = true,
+  explorer = {
+    width = 24
+  },
+  picker = {
+    border = "rounded"
+  },
+  mappings = {
+    { "<C-t>", nnn.builtin.open_in_tab },    -- open file(s) in tab
+    { "<C-x>", nnn.builtin.open_in_split },  -- open file(s) in split
+    { "<C-v>", nnn.builtin.open_in_vsplit }, -- open file(s) in vertical split
+  }
+}
+
 map('n', '<leader>_', ':silent grep ', { silent = false })
 map('n', '<leader>e', '<CMD>Oil<CR>')
+map('n', '<leader>E', '<CMD>NnnPicker %:p<CR>')
