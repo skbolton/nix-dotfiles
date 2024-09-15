@@ -21,6 +21,7 @@
         padding = 16;
         horizontal_padding = 16;
         separator_color = "#585273";
+        follow = "mouse";
       };
 
       urgency_low = {
@@ -29,11 +30,14 @@
 
       urgency_normal = {
         background = "#2D2B40";
+        script = "/home/orlando/.config/dunst/play_normal.sh";
       };
 
       urgency_critical = {
-        foreground = "#2D2B40";
-        background = "#D4BFFF";
+        background = "#2D2B40";
+        foreground = "#CBE3E7";
+        frame_color = "#F48FB1";
+        script = "/home/orlando/.config/dunst/play_critical.sh";
       };
 
       discord = {
@@ -47,6 +51,16 @@
         script = "/home/orlando/.config/dunst/play_beep.sh";
       };
     };
+  };
+
+  xdg.configFile."dunst/play_critical.sh" = {
+    executable = true;
+    text = "${pkgs.mpv}/bin/mpv ${pkgs.kdePackages.ocean-sound-theme}/share/sounds/ocean/stereo/dialog-question.oga";
+  };
+
+  xdg.configFile."dunst/play_normal.sh" = {
+    executable = true;
+    text = "${pkgs.mpv}/bin/mpv ${pkgs.kdePackages.ocean-sound-theme}/share/sounds/ocean/stereo/desktop-login.oga";
   };
 
   xdg.configFile."dunst/play_beep.sh" = {
