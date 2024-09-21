@@ -25,11 +25,11 @@
     "embark-vim": {
       "flake": false,
       "locked": {
-        "lastModified": 1719349319,
-        "narHash": "sha256-YSWWxRjYhPBJJcg5WlvnV06Mmlh+G8+hTYMVRlRZtCg=",
+        "lastModified": 1726880119,
+        "narHash": "sha256-8FJYEZTzcQn5rSLXGuF/zXneTSSuE9Onn+QxFEXM0rs=",
         "owner": "embark-theme",
         "repo": "vim",
-        "rev": "dcc90e04ac9c9392bf32c1e5f701353d8c5290c7",
+        "rev": "530e361aa81a8665c3a909a787b918aaf7d702e2",
         "type": "github"
       },
       "original": {

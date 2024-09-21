@@ -58,7 +58,7 @@
       comment-nvim
       vim-repeat
       vim-speeddating
-      leap-nvim
+      flash-nvim
       nvim-colorizer-lua
       { plugin = markdown-preview-nvim; optional = true; }
       zk-nvim

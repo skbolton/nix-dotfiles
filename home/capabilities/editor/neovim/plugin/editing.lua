@@ -2,9 +2,11 @@ vim.g.mkdp_theme = 'light'
 
 vim.g.AutoPairsMapSpace = false
 
-local leap = require 'leap'
-leap.opts.safe_labels = {}
-leap.add_default_mappings()
+local flash = require 'flash'
+
+flash.setup {}
+
+vim.keymap.set({ 'n', 'x', 'o' }, 's', flash.jump, { desc = "Jump to location" })
 
 require 'neoscroll'.setup()
 
