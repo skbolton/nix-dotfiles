@@ -158,6 +158,9 @@
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    stdlib = ''
+      source_env_if_exists .envrc.private
+    '';
   };
 
   programs.fzf = {
