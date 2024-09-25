@@ -5,6 +5,43 @@ let
 in
 {
 
+  home.packages = [
+    (pkgs.iosevka.override {
+      privateBuildPlan = ''
+        [buildPlans.IosevkaIOCollins]
+        family = "IOCollins"
+        spacing = "term"
+        serifs = "sans"
+        noCvSs = true
+        exportGlyphNames = true
+
+        [buildPlans.IosevkaIOCollins.variants]
+        inherits = "ss15"
+
+        [buildPlans.IosevkaIOCollins.variants.design]
+        asterisk = "hex-low"
+        number-sign = "upright-open"
+        percent = "rings-continuous-slash-also-connected"
+        lig-single-arrow-bar = "without-notch"
+        caret = "low"
+
+        [buildPlans.IosevkaIOCollins.ligations]
+        inherits = "dlig"
+
+        [buildPlans.IosevkaIOCollins.widgths.Condensed]
+        shape = 500
+        menu = 3
+        css = "condensed"
+
+        [buildPlans.IosevkaIOCollins.widths.Normal]
+        shape = 600
+        menu = 5
+        css = "normal"
+      '';
+      set = "IOCollins";
+    })
+  ];
+
   programs.kitty = {
     enable = true;
 
@@ -17,11 +54,11 @@ in
       background_opacity = 1;
       cursor_shape = "beam";
 
-      font_family = "Intel One Mono";
+      font_family = "IOCollins Light";
       bold_font = "Berkeley Mono Bold";
       bold_italic_font = "Berkeley Mono Bold Italic";
-      italic_font = "Operator Mono Book Italic";
-      font_size = "12.0";
+      italic_font = "IOCollins Italic";
+      font_size = "13.0";
 
       # Terminal Settings
       allow_remote_control = "yes";
@@ -55,7 +92,7 @@ in
     };
 
     extraConfig = ''
-      modify_font cell_height +4px
+      modify_font cell_height 120%
       include ./themes/theme.conf
       # Seti
       symbol_map U+E5FA-U+E6B1 RobotoMono Nerd Font
