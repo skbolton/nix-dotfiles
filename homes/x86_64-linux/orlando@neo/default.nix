@@ -6,7 +6,6 @@
     ../../modules/home-manager/monitors.nix
     ../../modules/home-manager/keyboard.nix
     ../capabilities/git
-    ../capabilities/gpg.nix
     ../capabilities/shell.nix
     ../capabilities/kitty
     ../capabilities/passwords.nix
@@ -26,20 +25,8 @@
 
   fonts.fontconfig.enable = true;
 
-  services.gpg-agent = {
-    enable = true;
-    verbose = true;
-    enableSshSupport = true;
-    enableExtraSocket = true;
-    enableZshIntegration = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
-    defaultCacheTtl = 60;
-    maxCacheTtl = 120;
-    enableScDaemon = true;
-    grabKeyboardAndMouse = false;
-    sshKeys = [
-      "B189B794F1B984F63BAFA6785F3B2EE2F3458934"
-    ];
+  delta = {
+    gpg.enable = true;
   };
 
   programs.ssh = {

@@ -19,24 +19,11 @@
 
   fonts.fontconfig.enable = true;
 
-  programs.gpg = {
-    enable = true;
-    publicKeys = [
-      {
-        source = "/etc/nixos/my-key.asc";
-        trust = 5;
-      }
-    ];
-    settings = {
-      no-autostart = true;
-      throw-keyids = true;
+  delta = {
+    gpg = {
+      enable = true;
+      autostart = false;
     };
-  };
-
-  services.gpg-agent = {
-    enable = true;
-    enableSshSupport = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
   };
 
   home = {
