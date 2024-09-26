@@ -3,8 +3,6 @@
 {
   imports = [
     ../capabilities/themes/embark.theme.nix
-    ../../modules/home-manager/monitors.nix
-    ../../modules/home-manager/keyboard.nix
     ../capabilities/git
     ../capabilities/shell.nix
     ../capabilities/kitty
