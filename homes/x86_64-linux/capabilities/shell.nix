@@ -173,7 +173,7 @@
     changeDirWidgetOptions = [
       "--preview '${pkgs.eza}/bin/eza --tree --icons --color=always --level 3 --git-ignore {}'"
     ];
-    defaultOptions = [ "--reverse" "--ansi" ];
+    defaultOptions = [ "--reverse" "--ansi" "--pointer '▌'" ];
   };
 
   xdg.dataFile."password-store/.extensions/fzf.bash".source = pkgs.fetchFromGitHub
