@@ -1,7 +1,6 @@
 { pkgs, config, lib, ... }:
 
 let
-  rally = pkgs.callPackage ./rally.nix { };
   tmux = pkgs.tmux;
 in
 {
@@ -18,7 +17,7 @@ in
 
   home.packages = [
     pkgs.smug
-    rally
+    pkgs.delta.rally
     pkgs.imagemagick
   ];
 
@@ -122,7 +121,7 @@ in
     #######################################################################
     # Tasks
     #######################################################################
-    bind s display-popup -E -w 80% -h 70% ${rally}/bin/rally.sh
+    bind s display-popup -E -w 80% -h 70% ${pkgs.delta.rally}/bin/rally.sh
     bind S display-popup -E 'tmux switch-client -t "$(${pkgs.fzf}/bin/fzf list-sessions -F "#{session_name}"| ${pkgs.fzf}/bin/fzf)"'
     bind C-l split-window -h -l 120 zk log
     
