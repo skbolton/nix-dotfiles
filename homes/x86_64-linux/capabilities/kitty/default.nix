@@ -1,46 +1,7 @@
 { pkgs, ... }:
 
-let
-  rally = import ../tmux/rally.nix { inherit pkgs; };
-in
 {
-
-  home.packages = [
-    (pkgs.iosevka.override {
-      privateBuildPlan = ''
-        [buildPlans.IosevkaIOCollins]
-        family = "IOCollins"
-        spacing = "term"
-        serifs = "sans"
-        noCvSs = true
-        exportGlyphNames = true
-
-        [buildPlans.IosevkaIOCollins.variants]
-        inherits = "ss15"
-
-        [buildPlans.IosevkaIOCollins.variants.design]
-        asterisk = "hex-low"
-        number-sign = "upright-open"
-        percent = "rings-continuous-slash-also-connected"
-        lig-single-arrow-bar = "without-notch"
-        caret = "low"
-
-        [buildPlans.IosevkaIOCollins.ligations]
-        inherits = "dlig"
-
-        [buildPlans.IosevkaIOCollins.widgths.Condensed]
-        shape = 500
-        menu = 3
-        css = "condensed"
-
-        [buildPlans.IosevkaIOCollins.widths.Normal]
-        shape = 600
-        menu = 5
-        css = "normal"
-      '';
-      set = "IOCollins";
-    })
-  ];
+  home.packages = with pkgs; [ delta.io-collins ];
 
   programs.kitty = {
     enable = true;
@@ -85,7 +46,7 @@ in
       "ctrl+alt+u" = "change_font_size all 0";
       "ctrl+alt+backspace" = "change_font_size all 0";
       "ctrl+alt+period" = "send_text current pass fzf\r";
-      "ctrl+alt+p" = "send_text all rally.sh\\r";
+      "ctrl+alt+p" = "send_text all ${pkgs.delta.rally}/bin/rally.sh\\r";
       "ctrl+alt+t" = "send_text all sudo nixos-rebuild switch\\r";
       "ctrl+alt+r" = "send_text all zk runbooks\r";
       "ctrl+alt+c" = "send_text all zk cast\u0020";
