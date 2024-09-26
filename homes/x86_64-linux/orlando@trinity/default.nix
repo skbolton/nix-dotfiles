@@ -73,6 +73,7 @@
       mpv
       docker-compose
       floorp
+      pkgs.delta.weasel
     ];
   };
 
