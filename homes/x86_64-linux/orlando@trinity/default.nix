@@ -4,8 +4,6 @@
   imports = [
     ../capabilities/themes/embark.theme.nix
     ./rgb.nix
-    ../../modules/home-manager/monitors.nix
-    ../../modules/home-manager/keyboard.nix
     ../capabilities/git
     ../capabilities/gpg.nix
     ../capabilities/shell.nix
@@ -87,13 +85,6 @@
     packages = with pkgs; [
       mpv
       docker-compose
-      (pkgs.makeDesktopItem {
-        name = "Kitty - Weasel";
-        desktopName = "weasel";
-        icon = ../capabilities/kitty/kitty-light.png;
-        exec = "kitty --config /home/orlando/.config/kitty/kitty-light.conf";
-        terminal = false;
-      })
     ];
   };
 

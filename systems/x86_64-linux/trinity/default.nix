@@ -16,13 +16,6 @@
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    permittedInsecurePackages = [
-      "electron-27.3.11"
-    ];
-  };
-
   fonts.fontDir.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -131,6 +124,8 @@
 
   programs.dconf.enable = true;
 
+  programs.hyprland.enable = true;
+
   xdg.portal = {
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
@@ -164,7 +159,7 @@
   };
 
   security.pki.certificateFiles = [
-    ../../self-signed.pem
+    ./self-signed.pem
   ];
 
   services.flatpak.enable = true;

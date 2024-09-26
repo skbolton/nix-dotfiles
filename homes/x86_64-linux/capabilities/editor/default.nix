@@ -20,12 +20,12 @@
       {
         plugin = (pkgs.vimUtils.buildVimPlugin {
           name = "mdeval-nvim";
-          version = " 2654caf";
+          version = "2654caf";
           src = pkgs.fetchFromGitHub {
             owner = "jubnzv";
             repo = "mdeval.nvim";
-            rev = "master";
-            sha256 = "sha256-KYWs1/bywPni/MOogs/f+NfnaOakvHdNFh6v4Eyna40=";
+            rev = "2654caf";
+            sha256 = "sha256-z+xowZ2ulJB5YcAW0OKAwcEed2iMdHYTwBkzKp5MHmQ=";
           };
         });
         optional = true;
