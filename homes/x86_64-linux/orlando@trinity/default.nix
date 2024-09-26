@@ -7,7 +7,6 @@
     ../capabilities/git
     ../capabilities/shell.nix
     ../capabilities/kitty
-    ../capabilities/passwords.nix
     ../capabilities/editor
     ../capabilities/tmux
     ../capabilities/desktop
@@ -32,6 +31,7 @@
 
   delta = {
     gpg.enable = true;
+    passwords.enable = true;
   };
 
   programs.ssh = {
@@ -72,6 +72,7 @@
     packages = with pkgs; [
       mpv
       docker-compose
+      floorp
     ];
   };
 
