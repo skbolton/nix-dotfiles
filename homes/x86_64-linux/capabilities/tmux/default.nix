@@ -1,21 +1,25 @@
 { pkgs, config, lib, ... }:
 
+let
+  rally = pkgs.callPackage ./rally.nix { };
+  tmux = pkgs.tmux;
+in
 {
 
   programs.zsh = {
     shellAliases = {
-      mux = "${pkgs.tmux}/bin/tmux";
-      muxa = "${pkgs.tmux}/bin/tmux a";
-      muxk = "${pkgs.tmux}/bin/tmux kill-server";
+      mux = "${tmux}/bin/tmux";
+      muxa = "${tmux}/bin/tmux a";
+      muxk = "${tmux}/bin/tmux kill-server";
     };
   };
 
   programs.git.ignores = [ ".steve-smug.yml" ];
 
-  home.packages = with pkgs; [
-    smug
-    delta.rally
-    imagemagick
+  home.packages = [
+    pkgs.smug
+    rally
+    pkgs.imagemagick
   ];
 
   programs.tmux = {
@@ -118,7 +122,7 @@
     #######################################################################
     # Tasks
     #######################################################################
-    bind s display-popup -E -w 80% -h 70% ${pkgs.delta.rally}/bin/rally.sh
+    bind s display-popup -E -w 80% -h 70% ${rally}/bin/rally.sh
     bind S display-popup -E 'tmux switch-client -t "$(${pkgs.fzf}/bin/fzf list-sessions -F "#{session_name}"| ${pkgs.fzf}/bin/fzf)"'
     bind C-l split-window -h -l 120 zk log
     

@@ -1,0 +1,30 @@
+session:  PORTAL
+root: ~/Public/pdq-portal
+
+before_start: 
+  - docker-compose --project-directory ../pdq-devops/local-dev --profile portal up -d 
+  - docker-compose up -d
+
+stop:
+  - docker-compose --project-directory ../pdq-devops/local-dev stop
+  - docker-compose stop
+
+windows:
+  - name: " neovim"
+    commands:
+      - nvim
+  - name: " scratchpad"
+    commands: 
+      - nvim scratchpad.ex
+    layout: main-horizontal
+    panes:
+      - type: horizontal
+        commands:
+          - iex -S mix
+      
+  - name: " db"
+    commands:
+      - nvim +DBUI
+  - name: "󱈫 test"
+    commands:
+      - clear

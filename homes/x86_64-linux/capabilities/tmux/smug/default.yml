@@ -1,0 +1,11 @@
+session:  ${name}
+root: ${root}
+
+windows:
+  - name: " neovim"
+    commands:
+      - nvim
+  - name: " console"
+    commands:
+      - tmux link-window -s Notes -d
+
