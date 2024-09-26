@@ -226,26 +226,6 @@
         "type": "github"
       }
     },
-    "hyprland-contrib": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1725551787,
-        "narHash": "sha256-6LgsZHz8w3g4c9bRUwRAR+WIMwFGGf3P1VZQcKNRf2o=",
-        "owner": "hyprwm",
-        "repo": "contrib",
-        "rev": "1e531dc49ad36c88b45bf836081a7a2c8927e072",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hyprwm",
-        "repo": "contrib",
-        "type": "github"
-      }
-    },
     "neorg": {
       "flake": false,
       "locked": {
@@ -427,7 +407,6 @@
         "NixOS-WSL": "NixOS-WSL",
         "embark-vim": "embark-vim",
         "home-manager": "home-manager",
-        "hyprland-contrib": "hyprland-contrib",
         "neorg-overlay": "neorg-overlay",
         "nixpkgs": "nixpkgs_4",
         "snowfall-lib": "snowfall-lib",

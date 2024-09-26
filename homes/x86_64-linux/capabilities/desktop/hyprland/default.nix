@@ -1,4 +1,4 @@
-{ lib, pkgs, config, inputs, ... }:
+{ lib, pkgs, config, ... }:
 
 {
 
@@ -13,7 +13,7 @@
     wl-clipboard
     grim
     slurp
-    inputs.hyprland-contrib.packages.x86_64-linux.grimblast
+    grimblast
     neofetch
     libnotify
   ];

@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-  ];
-
   wsl = {
     enable = true;
     wslConf = {
