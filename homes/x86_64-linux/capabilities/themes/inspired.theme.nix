@@ -26,6 +26,9 @@
     vim.api.nvim_set_hl(0, "@markup.heading", { bold = true, sp = "#CA1243", underline = true })
     vim.api.nvim_set_hl(0, "Todo", { bold = true, link = "Function"})
     vim.api.nvim_set_hl(0, "@text.todo.checked", { link = "Comment"})
+    vim.api.nvim_set_hl(0, "DiffChange", { bg = "#DDFFDD"})
+    vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#DDFFDD"})
+    vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#FFDDDD"})
   '';
 
   xdg.configFile."nvim/plugin/statusline.lua".source = ./galaxy-line-inspired.lua;
