@@ -19,6 +19,7 @@
   fonts.fontDir.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ "@wheel" ];
 
   nix.gc = {
     automatic = true;
