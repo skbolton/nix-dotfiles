@@ -7,7 +7,6 @@
     ../capabilities/shell.nix
     ../capabilities/editor
     ../capabilities/tmux
-    ../capabilities/kitty
     ../capabilities/lang/elixir.nix
     ../capabilities/lang/nix.nix
     ../capabilities/lang/node.nix
