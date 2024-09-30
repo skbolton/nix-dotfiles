@@ -25,6 +25,12 @@
   delta = {
     gpg.enable = true;
     passwords.enable = true;
+    desktop.wayland.hyprland = {
+      enable = true;
+      autostart = [ ];
+    };
+    desktop.wayland.waybar.enable = true;
+    desktop.dunst.enable = true;
   };
 
   programs.ssh = {
