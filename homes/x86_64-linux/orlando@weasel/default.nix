@@ -3,7 +3,6 @@
 {
   imports = [
     ../capabilities/themes/inspired.theme.nix
-    ../capabilities/git
     ../capabilities/shell.nix
     ../capabilities/editor
     ../capabilities/tmux

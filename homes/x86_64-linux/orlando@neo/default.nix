@@ -3,7 +3,6 @@
 {
   imports = [
     ../capabilities/themes/embark.theme.nix
-    ../capabilities/git
     ../capabilities/shell.nix
     ../capabilities/kitty
     ../capabilities/finances.nix

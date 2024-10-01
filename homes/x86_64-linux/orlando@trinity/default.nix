@@ -4,7 +4,6 @@
   imports = [
     ../capabilities/themes/embark.theme.nix
     ./rgb.nix
-    ../capabilities/git
     ../capabilities/shell.nix
     ../capabilities/kitty
     ../capabilities/editor

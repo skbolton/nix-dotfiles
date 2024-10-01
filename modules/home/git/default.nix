@@ -2,7 +2,7 @@
 
 {
   home.packages = [
-    (pkgs.callPackage ./git-get.nix { })
+    pkgs.delta.git-get
   ];
 
   programs.gh = {
