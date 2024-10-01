@@ -13,6 +13,7 @@ pkgs.iosevka.override {
     inherits = "ss15"
 
     [buildPlans.IosevkaIOCollins.variants.design]
+    at = "fourfold"
     asterisk = "hex-low"
     number-sign = "upright-open"
     percent = "rings-continuous-slash-also-connected"
