@@ -21,10 +21,6 @@
     ../capabilities/timetracking.nix
   ];
 
-  home.sessionVariables = {
-    USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
-  };
-
   fonts.fontconfig.enable = true;
 
   delta = {
@@ -42,6 +38,7 @@
     desktop.dunst.enable = true;
     desktop.nm-applet.enable = true;
     synology.enable = true;
+    cloud.gcloud.enable = true;
   };
 
   programs.ssh = {

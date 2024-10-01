@@ -11,10 +11,6 @@
     ../capabilities/lang/node.nix
   ];
 
-  home.sessionVariables = {
-    USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
-  };
-
   fonts.fontconfig.enable = true;
 
   delta = {
@@ -22,6 +18,7 @@
       enable = true;
       autostart = false;
     };
+    cloud.gcloud.enable = true;
   };
 
   home = {
