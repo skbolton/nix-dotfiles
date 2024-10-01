@@ -14,7 +14,6 @@
     ../capabilities/tasks
     ../capabilities/lang/elixir.nix
     ../capabilities/lang/nix.nix
-    ../capabilities/habits.nix
     ../capabilities/timetracking.nix
   ];
 

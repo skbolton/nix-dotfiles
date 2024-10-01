@@ -17,7 +17,6 @@
     ../capabilities/lang/nix.nix
     ../capabilities/lang/node.nix
     ../capabilities/lang/lua.nix
-    ../capabilities/habits.nix
     ../capabilities/timetracking.nix
   ];
 
