@@ -95,12 +95,11 @@
   xdg.configFile."kitty/kitty-light.conf".text = ''
     include ./kitty.conf
     include ./themes/inspired-github.conf
-    modify_font cell_height +4px
-    font_family Intel One Mono 
+    font_family IOCollins Semibold
     bold_font Berkeley Mono Bold
     bold_italic_font Berkeley Mono Bold Italic
-    italic_font Operator Mono Book Italic
-    font_size 14.0
+    italic_font IOCollins Italic
+    font_size 13.0
   '';
 
   xdg.dataFile."fonts/Lilex" = {
