@@ -33,7 +33,6 @@ in
       settings = {
         exec-once = [
           "hyprctl setcursor Bibata-Modern-Ice 22"
-          "nm-applet"
           "[workspace 2 silent] floorp"
           "kitty"
         ] ++ (map (m: "swaybg --output ${m.name} --image ${m.wallpaper} --mode fill") config.monitors)

@@ -13,7 +13,6 @@
     ./pam.nix
     ../capabilities/notes
     ../capabilities/tasks
-    ../capabilities/networking
     ../capabilities/lang/elixir.nix
     ../capabilities/lang/nix.nix
     ../capabilities/habits.nix
@@ -31,6 +30,7 @@
     };
     desktop.wayland.waybar.enable = true;
     desktop.dunst.enable = true;
+    desktop.nm-applet.enable = true;
     synology.enable = true;
   };
 
