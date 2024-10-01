@@ -7,7 +7,6 @@
   };
 
   home.packages = with pkgs; [
-    synology-drive-client
     logseq
     obsidian
     zk

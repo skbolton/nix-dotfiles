@@ -34,10 +34,11 @@ in
         exec-once = [
           "hyprctl setcursor Bibata-Modern-Ice 22"
           "nm-applet"
-          "synology-drive"
           "[workspace 2 silent] floorp"
           "kitty"
-        ] ++ (map (m: "swaybg --output ${m.name} --image ${m.wallpaper} --mode fill") config.monitors) ++ cfg.autostart;
+        ] ++ (map (m: "swaybg --output ${m.name} --image ${m.wallpaper} --mode fill") config.monitors)
+        ++ cfg.autostart
+        ++ optional config.delta.synology.enable "synology-drive";
 
         workspace = lib.lists.flatten (map
           (m:

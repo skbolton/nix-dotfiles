@@ -31,6 +31,7 @@
     };
     desktop.wayland.waybar.enable = true;
     desktop.dunst.enable = true;
+    synology.enable = true;
   };
 
   programs.ssh = {
