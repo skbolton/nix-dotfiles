@@ -36,6 +36,7 @@
     desktop.wayland.waybar.enable = true;
     desktop.dunst.enable = true;
     desktop.nm-applet.enable = true;
+    desktop.gtk.enable = true;
     synology.enable = true;
     cloud.gcloud.enable = true;
   };

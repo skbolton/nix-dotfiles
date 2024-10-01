@@ -23,36 +23,6 @@
 
   services.cliphist.enable = true;
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Colloid-Teal-Dark";
-      package = pkgs.colloid-gtk-theme.override {
-        themeVariants = [ "purple" "teal" "grey" "green" ];
-        tweaks = [ "black" ];
-      };
-    };
-
-    cursorTheme = {
-      name = "Bibata-Modern-Ice";
-      package = pkgs.bibata-cursors;
-    };
-
-    iconTheme = {
-      name = "Colloid-dracula-dark";
-      package = pkgs.colloid-icon-theme.override {
-        colorVariants = [ "default" "purple" "teal" "grey" "green" "pink" ];
-        schemeVariants = [ "dracula" ];
-      };
-    };
-  };
-
   qt = {
     enable = true;
     platformTheme.name = "gtk3";
