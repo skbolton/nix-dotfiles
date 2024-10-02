@@ -29,6 +29,7 @@
     vim.api.nvim_set_hl(0, "DiffChange", { bg = "#DDFFDD"})
     vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#DDFFDD"})
     vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#FFDDDD"})
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#F7F7F7"})
   '';
 
   xdg.configFile."nvim/plugin/statusline.lua".source = ./galaxy-line-inspired.lua;
