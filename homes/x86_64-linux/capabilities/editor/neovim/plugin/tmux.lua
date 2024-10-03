@@ -11,7 +11,7 @@ vim.g.VimuxRunnerQuery = {
   window = "󱈫 ",
 };
 
-local function get_files_paths()
+local function get_file_paths()
   local picker = pickers.new {
     finder = finders.new_oneshot_job(
       { "tmux-file-paths" },
