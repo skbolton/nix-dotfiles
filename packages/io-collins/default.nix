@@ -21,6 +21,9 @@ pkgs.iosevka.override {
     lig-single-arrow-bar = "without-notch"
     caret = "low"
 
+    [buildPlans.IosevkaIOCollins.variants.italic]
+    x = "straight-serifless"
+
     [buildPlans.IosevkaIOCollins.ligations]
     inherits = "dlig"
 
