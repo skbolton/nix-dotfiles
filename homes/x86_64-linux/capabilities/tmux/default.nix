@@ -18,6 +18,7 @@ in
   home.packages = [
     pkgs.smug
     pkgs.delta.rally
+    pkgs.delta.tmux-file-paths
     pkgs.imagemagick
   ];
 
