@@ -8,8 +8,6 @@ flash.setup {}
 
 vim.keymap.set({ 'n', 'x', 'o' }, 's', flash.jump, { desc = "Jump to location" })
 
-require 'neoscroll'.setup()
-
 require 'copilot'.setup {}
 
 require 'colorizer'.setup({

@@ -50,7 +50,6 @@
       nui-nvim
       indent-blankline-nvim
       vim-tmux-navigator
-      neoscroll-nvim
       nvim-lint
       auto-pairs
       firenvim
