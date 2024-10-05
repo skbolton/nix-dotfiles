@@ -35,7 +35,6 @@
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-  networking.networkmanager.wifi.backend = "iwd";
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -51,7 +50,7 @@
   services.xserver = {
     xkb.variant = "colemak";
     enable = true;
-    videoDrivers = [ "i915" ];
+    videoDrivers = [ "amdgpu" ];
 
     displayManager.gdm = {
       enable = true;
@@ -90,6 +89,9 @@
     hashedPasswordFile = config.sops.secrets.orlando-password.path;
     extraGroups = [ "wheel" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOsUvi/j/2Gs8QkZ5S0/bGsK/BhmU8n24eDFCc7GZx9 cardno:13_494_293"
+    ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -125,6 +127,8 @@
 
   programs.dconf.enable = true;
 
+  programs.hyprland.enable = true;
+
   # services.auto-cpufreq.enable = true;
 
   xdg.portal = {
@@ -159,6 +163,8 @@
     brightnessKeys.step = 5;
     brightnessKeys.enable = true;
   };
+
+  services.fwupd.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -13,55 +13,49 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" "amd-pstate" ];
   boot.extraModulePackages = [ ];
-  boot.kernelPackages = pkgs.linuxPackages_6_8;
+  boot.kernelPackages = pkgs.linuxPackages_testing;
   boot.kernelParams = [ "amd_pstate=active" ];
 
-  boot.initrd.luks.devices."system".device = "/dev/disk/by-partlabel/HYNIX-NIX";
+  boot.initrd.luks.devices.system.device = "/dev/disk/by-partlabel/HYNIX-SYSTEM";
 
   fileSystems."/" =
     {
-      device = "/dev/mapper/system";
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/home" =
     {
-      device = "/dev/mapper/system";
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@home" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/nix" =
     {
-      device = "/dev/mapper/system";
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@nix" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/var/log" =
     {
-      device = "/dev/mapper/system";
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@var/log" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
   fileSystems."/var/lib/docker" =
     {
-      device = "/dev/mapper/system";
+      device = "/dev/disk/by-label/NIX-SYSTEM";
       fsType = "btrfs";
       options = [ "subvol=@var/lib/docker" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
-  fileSystems."/swap" = {
-    device = "/dev/disk/by-label/NIX-SYSTEM";
-    fstype = "btrfs";
-    options = [ "subvol=@swap" ];
-  };
-
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-partlabel/HYNIX-EFI";
+      device = "/dev/disk/by-label/NIX-EFI";
       fsType = "vfat";
     };
 
