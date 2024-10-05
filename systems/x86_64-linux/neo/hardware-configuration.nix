@@ -9,12 +9,12 @@
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.blacklistedKernelModules = [ "nouveau" "nvidia" "nvidia_drm" "nvidia_modeset" ];
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
-  boot.initrd.kernelModules = [ "i915" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" "sdhci_pci" ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelModules = [ "kvm-amd" "amd-pstate" ];
   boot.extraModulePackages = [ ];
   boot.kernelPackages = pkgs.linuxPackages_6_8;
+  boot.kernelParams = [ "amd_pstate=active" ];
 
   boot.initrd.luks.devices."system".device = "/dev/disk/by-partlabel/HYNIX-NIX";
 
@@ -53,13 +53,19 @@
       options = [ "subvol=@var/lib/docker" "compress=zstd" "ssd" "noatime" "space_cache=v2" ];
     };
 
+  fileSystems."/swap" = {
+    device = "/dev/disk/by-label/NIX-SYSTEM";
+    fstype = "btrfs";
+    options = [ "subvol=@swap" ];
+  };
+
   fileSystems."/boot" =
     {
       device = "/dev/disk/by-partlabel/HYNIX-EFI";
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices = [{ device = "/swap/swapfile"; size = 24 * 1024; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -69,5 +75,5 @@
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
