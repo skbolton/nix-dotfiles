@@ -37,7 +37,7 @@ local function get_file_paths()
   picker:find()
 end
 
-map({ 'n', 'v' }, '<C-c><C-c>', function()
+local function send_to_tmux()
   -- yank text into v register
   if vim.api.nvim_get_mode()["mode"] == "n" then
     vim.cmd('normal vip"vy')
@@ -45,9 +45,16 @@ map({ 'n', 'v' }, '<C-c><C-c>', function()
     vim.cmd('normal "vy')
   end
   -- construct command with v register as command to send
-  -- vim.cmd(string.format('call VimuxRunCommand("%s")', vim.trim(vim.fn.getreg('v'))))
   vim.cmd("call VimuxRunCommand(@v)")
+end
+
+map({ 'n', 'v' }, '<C-c><C-c>', send_to_tmux)
+
+map({ 'n', 'v' }, '<C-c><M-c>', function()
+  vim.cmd('call VimuxRunCommand("clear")')
+  send_to_tmux()
 end)
+
 map('n', '<leader>rr', '<CMD>VimuxPromptCommand<CR>')
 map('n', '<leader>r.', '<CMD>VimuxRunLastCommand<CR>')
 map('n', '<leader>rc', '<CMD>VimuxClearTerminalScreen<CR>')
