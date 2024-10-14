@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.nodejs_20 ];
+  home.packages = [ pkgs.nodejs_20 pkgs.nodePackages.poor-mans-t-sql-formatter-cli ];
   programs.neovim = {
     # package = pkgs.neovim-nightly;
     enable = true;
