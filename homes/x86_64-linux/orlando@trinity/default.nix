@@ -41,6 +41,8 @@
     cloud.gcloud.enable = true;
   };
 
+  programs.man.generateCaches = true;
+
   programs.ssh = {
     enable = true;
 
@@ -81,6 +83,7 @@
       docker-compose
       floorp
       pkgs.delta.weasel
+      pkgs.delta.fman
     ];
   };
 

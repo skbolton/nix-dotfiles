@@ -21,6 +21,8 @@
     cloud.gcloud.enable = true;
   };
 
+  programs.man.generateCaches = true;
+
   home = {
     username = "orlando";
     homeDirectory = "/home/orlando";
@@ -28,6 +30,7 @@
     stateVersion = "23.05";
     packages = with pkgs; [
       docker-compose
+      delta.fman
     ];
   };
 

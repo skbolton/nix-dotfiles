@@ -33,6 +33,8 @@
     synology.enable = true;
   };
 
+  programs.man.generateCaches = true;
+
   programs.ssh = {
     enable = true;
 
@@ -102,6 +104,7 @@
       mpv
       docker-compose
       floorp
+      delta.fman
     ];
   };
 
