@@ -2,14 +2,14 @@ local gitsigns = require 'gitsigns'
 local Job = require 'plenary.job'
 local wk = require 'which-key'
 
-function next_hunk()
+local next_hunk = function()
   -- Move to next hunk
   gitsigns.next_hunk()
   -- center cursor
   vim.cmd('normal zz')
 end
 
-function prev_hunk()
+local prev_hunk = function()
   -- Move to prev hunk
   gitsigns.prev_hunk()
   -- center cursor
@@ -27,7 +27,7 @@ gitsigns.setup {
   on_attach = function(bufnr)
     wk.register({
       ["]g"] = { next_hunk, "Next hunk" },
-      ["[g"] = { next_hunk, "Prev hunk" },
+      ["[g"] = { prev_hunk, "Prev hunk" },
       ["<leader>"] = {
         g = {
           name = "+git",
