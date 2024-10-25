@@ -65,6 +65,7 @@
       rebase = { autosquash = true; };
       merge = { conflictStyle = "diff3"; };
       pull = { ff = "only"; };
+      checkout = { defaultRemote = "origin"; };
       commit = {
         verbose = true;
         template = "~/.config/git/commit-template";
