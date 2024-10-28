@@ -98,6 +98,5 @@ wk.register({
     V = { '<CMD>GBrowse!<CR>', "webview copy" },
     ["<left>"] = { '<CMD>diffget<CR>', "diff get" },
     ["<right>"] = { '<CMD>diffget<CR>', "diff get" },
-    ["<down>"] = { '<CMD>diffput<CR>', "diff get" }
   }
 }, { prefix = "<leader>", mode = "v" })
