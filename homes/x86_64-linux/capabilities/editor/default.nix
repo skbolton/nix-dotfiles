@@ -55,6 +55,19 @@
           };
         });
       }
+      {
+        plugin = (pkgs.vimUtils.buildVimPlugin {
+          name = "tide.nvim";
+          version = "de64acfadcedec03f526ba79d95523cea6630b2d";
+          src = pkgs.fetchFromGitHub {
+            owner = "skbolton";
+            repo = "tide.nvim";
+            rev = "de64acfadcedec03f526ba79d95523cea6630b2d";
+            sha256 = "sha256-W6zaaSPiEn6aIv28q91saQMDTK4VeGIZr/BHlXCfr/I=";
+          };
+        });
+      }
+      lsp_lines-nvim
       copilot-lua
       copilot-cmp
       neorg
