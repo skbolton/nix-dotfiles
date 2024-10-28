@@ -68,6 +68,7 @@
         });
       }
       lsp_lines-nvim
+      dial-nvim
       copilot-lua
       copilot-cmp
       neorg
@@ -81,7 +82,6 @@
       vim-surround
       comment-nvim
       vim-repeat
-      vim-speeddating
       flash-nvim
       nvim-colorizer-lua
       { plugin = markdown-preview-nvim; optional = true; }
