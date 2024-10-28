@@ -61,7 +61,6 @@
       nvim-colorizer-lua
       { plugin = markdown-preview-nvim; optional = true; }
       zk-nvim
-      todo-comments-nvim
       which-key-nvim
       vim-wakatime
 
