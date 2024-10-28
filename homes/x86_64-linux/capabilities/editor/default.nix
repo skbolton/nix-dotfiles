@@ -43,6 +43,18 @@
         });
         optional = true;
       }
+      {
+        plugin = (pkgs.vimUtils.buildVimPlugin {
+          name = "quicker.nvim";
+          version = "11f9eb0c803bb9ced8c6043805de89c62bd04515";
+          src = pkgs.fetchFromGitHub {
+            owner = "stevearc";
+            repo = "quicker.nvim";
+            rev = "11f9eb0c803bb9ced8c6043805de89c62bd04515";
+            sha256 = "sha256-sTjDmfQacpvhGdKPyoMxqmoOSw5ceXi6Td48gYaDotE=";
+          };
+        });
+      }
       copilot-lua
       copilot-cmp
       neorg
