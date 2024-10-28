@@ -51,7 +51,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         s = { vim.lsp.buf.signature_help, "signature" },
         o = { "<CMD>Telescope lsp_document_symbols<CR>", "fuzzy symbol" },
         O = { "<CMD>Vista<CR>", "sidebar" },
-        i = { vim.diagnostic.setloclist, "qf diagnostics" }
+        i = { vim.diagnostic.setloclist, "qf diagnostics" },
+        r = { vim.lsp.buf.references, "references" }
       }
     }, { buffer = buffer, prefix = "<leader>" })
   end
