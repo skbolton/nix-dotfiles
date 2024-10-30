@@ -9,10 +9,6 @@ writeShellScriptBin "tmux-file-paths" ''
   PREVIEWER="print"
   FILEPATHREGEX='(([.\w\\-~\$@]+)?(/[.\w\-@]+)+\.\w+/?(:\d+))'
 
-  # Empty/create file to hold pane contents
-  PANEFILE=$HOME/.cache/tmux-find-file-paths
-  truncate -s 0 $PANEFILE
-
   # Procuss arguments
   while [[ $# -gt 0 ]]; do
     case $1 in
@@ -37,11 +33,6 @@ writeShellScriptBin "tmux-file-paths" ''
   DEFAULT_FILTER=".*"
   ADDITIONAL_FILTER="''${1:-$DEFAULT_FILTER}"
 
-  # Capture all panes into panefile
-  for id in $(tmux list-panes -s -F '#D'); do
-    tmux capture -p -t $id >> $PANEFILE
-  done
-
   preview() {
     if [[ $PREVIEWER = "fuzzy" ]]; then
       ${fzf}/bin/fzf --delimiter ':' --preview '${bat}/bin/bat {1} --color=always --highlight-line {2} --line-range {2}:'
@@ -50,7 +41,9 @@ writeShellScriptBin "tmux-file-paths" ''
     fi
   }
 
-  ${ripgrep}/bin/rg --no-line-number --only-matching $FILEPATHREGEX $PANEFILE \
+  for id in $(tmux list-panes -s -F '#D'); do
+    tmux capture -p -t $id
+  done | ${ripgrep}/bin/rg --no-line-number --only-matching $FILEPATHREGEX \
     | sort -u \
     | ${ripgrep}/bin/rg --color=never --null "$ADDITIONAL_FILTER" \
     | preview
