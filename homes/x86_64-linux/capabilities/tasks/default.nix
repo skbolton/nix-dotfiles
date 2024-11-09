@@ -18,6 +18,7 @@
 
   programs.taskwarrior = {
     enable = true;
+    package = pkgs.taskwarrior3;
     colorTheme = ./embark-taskwarrior.theme;
     config = {
       alias = {
@@ -41,21 +42,30 @@
       color = {
         alternate = "";
       };
-      taskd = {
-        server = "app.wingtask.com:53589";
-        key = "$HOME/Documents/Logbook/Trackers/Tasks/tasks@bitsonthemind.com.key.pem";
-        certificate = "$HOME/Documents/Logbook/Trackers/Tasks/tasks@bitsonthemind.com.cert.pem";
-        ca = "$HOME/Documents/Logbook/Trackers/Tasks/tasks@bitsonthemind.com.root-cert.pem";
-      };
+      sync.server.origin = "https://tasks.zionlab.online";
     };
+
     # TODO: This is a secret that I could manage with nix if I figure out nix-sops
     extraConfig = ''
       include $HOME/Documents/Logbook/Trackers/Tasks/credentials
     '';
   };
 
-  services.taskwarrior-sync = {
-    enable = true;
-    frequency = "*:0/15";
+  systemd.user.services.taskwarrior-sync = {
+    Unit = { Description = "Taskwarrior sync"; };
+    Service = {
+      CPUSchedulingPolicy = "idle";
+      IOSchedulingClass = "idle";
+      ExecStart = "${pkgs.taskwarrior3}/bin/task synchronize";
+    };
+  };
+
+  systemd.user.timers.taskwarrior-sync = {
+    Unit = { Description = "Taskwarrior periodic sync"; };
+    Timer = {
+      Unit = "taskwarrior-sync.service";
+      OnCalendar = "*:0/15";
+    };
+    Install = { WantedBy = [ "timers.target" ]; };
   };
 }
