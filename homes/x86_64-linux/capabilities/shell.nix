@@ -29,6 +29,8 @@
     enable = true;
     autosuggestion.enable = true;
     enableCompletion = true;
+    syntaxHighlighting.enable = true;
+    historySubstringSearch.enable = true;
     autocd = true;
     cdpath = [ "." "/home/orlando" "/home/orlando/Public" "/home/orlando/Documents" "/home/orlando/Notes" ];
     defaultKeymap = "viins";

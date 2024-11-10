@@ -107,6 +107,7 @@
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.pathsToLink = [ "/share/zsh" ];
 
   services.udev.packages = [ pkgs.yubikey-personalization ];
   services.pcscd.enable = true;
