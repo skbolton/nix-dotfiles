@@ -4,7 +4,7 @@ keys:
   - hosts:
     - &trinity age1xx7wq5gugwsjjxwv4gc0d6sgmq3q0h8qk3crn7erp33fsg2fn93sqlf3e0
     - &weasel age1573tkxh4k6rg4vzaw3x9wuy9addv4ff607xk73rf20vpmc60jv3qpxwatd
-    - &neo  age1vn6hfe2e0kwkkvpu30y9j8u8kjpzrqaa774dl6vzt88xypauv4ysrkmxze
+    - &neo  age1lze5jczgmqtgmes6tl43gk29rc2fc05qj0tmdq60dkjjvlw5g45swhuymz
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
