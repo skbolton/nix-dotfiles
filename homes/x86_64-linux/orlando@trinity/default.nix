@@ -45,32 +45,6 @@
 
   programs.ssh = {
     enable = true;
-
-    matchBlocks = {
-      openssh_win32 = {
-        hostname = "LT-STEVEB-HQ";
-        user = "adminarsenal/stephen.bolton";
-      };
-
-      weasel = {
-        proxyJump = "openssh_win32";
-        hostname = "localhost";
-        user = "orlando";
-        port = 2242;
-        remoteForwards = [
-          {
-            # host is the local client it this situation
-            host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
-            # bind is the remote
-            bind.address = "/run/user/1000/gnupg/S.gpg-agent";
-          }
-          {
-            host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
-            bind.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
-          }
-        ];
-      };
-    };
   };
 
   home = {
@@ -82,7 +56,6 @@
       mpv
       docker-compose
       floorp
-      pkgs.delta.weasel
       pkgs.delta.fman
     ];
   };

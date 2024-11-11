@@ -26,11 +26,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    NixOS-WSL = {
-      url = "github:nix-community/NixOS-WSL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     snowfall-lib = {
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -71,10 +66,6 @@
 
       overlays = with inputs; [
         neorg-overlay.overlays.default
-      ];
-
-      systems.hosts.weasel.modules = with inputs; [
-        NixOS-WSL.nixosModules.wsl
       ];
 
       systems.modules.nixos = with inputs; [

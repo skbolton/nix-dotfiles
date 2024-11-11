@@ -160,10 +160,6 @@
     cue = true;
   };
 
-  security.pki.certificateFiles = [
-    ./self-signed.pem
-  ];
-
   services.flatpak.enable = true;
   services.hardware.bolt.enable = true;
 
