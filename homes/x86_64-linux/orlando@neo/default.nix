@@ -5,7 +5,6 @@
     ../capabilities/themes/embark.theme.nix
     ../capabilities/kitty
     ./pam.nix
-    ../capabilities/notes
   ];
 
   fonts.fontconfig.enable = true;
@@ -24,6 +23,7 @@
       lua.enable = true;
       nix.enable = true;
     };
+    notes.enable = true;
     desktop.wayland.hyprland = {
       enable = true;
       autostart = [ ];
