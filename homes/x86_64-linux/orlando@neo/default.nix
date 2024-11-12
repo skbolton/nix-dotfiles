@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../capabilities/kitty
     ./pam.nix
   ];
 

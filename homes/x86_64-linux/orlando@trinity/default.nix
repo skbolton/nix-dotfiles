@@ -3,7 +3,6 @@
 {
   imports = [
     ./rgb.nix
-    ../capabilities/kitty
     ./pam.nix
   ];
 

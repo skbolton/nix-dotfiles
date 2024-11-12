@@ -6,7 +6,7 @@ let
 in
 {
   options.delta.kitty = with types; {
-    enable = mkEnableOption "Kitty";
+    enable = mkEnableOption "Elixir Language support";
   };
 
   config = mkIf cfg.enable {
@@ -69,6 +69,7 @@ in
 
       extraConfig = ''
         modify_font cell_height 120%
+        include ./themes/theme.conf
         # Seti
         symbol_map U+E5FA-U+E6B1 RobotoMono Nerd Font
         # Devicons
