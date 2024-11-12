@@ -5,7 +5,6 @@
     ../capabilities/themes/embark.theme.nix
     ../capabilities/kitty
     ../capabilities/editor
-    ../capabilities/tmux
     ../capabilities/desktop
     ./pam.nix
     ../capabilities/notes
@@ -20,6 +19,7 @@
     gpg.enable = true;
     zsh.enable = true;
     cli_apps.enable = true;
+    tmux.enable = true;
     finance.enable = true;
     passwords.enable = true;
     tasks.enable = true;
