@@ -10,7 +10,6 @@
     ../capabilities/desktop
     ./pam.nix
     ../capabilities/notes
-    ../capabilities/tasks
     ../capabilities/lang/elixir.nix
     ../capabilities/lang/nix.nix
     ../capabilities/lang/node.nix
@@ -26,6 +25,7 @@
     cli_apps.enable = true;
     finance.enable = true;
     passwords.enable = true;
+    tasks.enable = true;
     desktop.wayland.hyprland = {
       enable = true;
       autostart = [
