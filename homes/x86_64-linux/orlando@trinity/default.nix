@@ -8,7 +8,6 @@
     ../capabilities/editor
     ../capabilities/tmux
     ../capabilities/desktop
-    ../capabilities/finances.nix
     ./pam.nix
     ../capabilities/notes
     ../capabilities/tasks
@@ -25,6 +24,7 @@
     gpg.enable = true;
     zsh.enable = true;
     cli_apps.enable = true;
+    finance.enable = true;
     passwords.enable = true;
     desktop.wayland.hyprland = {
       enable = true;

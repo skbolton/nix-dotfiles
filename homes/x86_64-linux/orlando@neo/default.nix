@@ -4,7 +4,6 @@
   imports = [
     ../capabilities/themes/embark.theme.nix
     ../capabilities/kitty
-    ../capabilities/finances.nix
     ../capabilities/editor
     ../capabilities/tmux
     ../capabilities/desktop
@@ -22,6 +21,7 @@
     gpg.enable = true;
     zsh.enable = true;
     cli_apps.enable = true;
+    finance.enable = true;
     passwords.enable = true;
     desktop.wayland.hyprland = {
       enable = true;
