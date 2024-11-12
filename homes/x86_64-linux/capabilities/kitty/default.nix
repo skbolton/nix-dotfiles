@@ -81,8 +81,6 @@
       symbol_map U+E000-U+E00A RobotoMono Nerd Font
       # Codeicons
       symbol_map U+EA60-U+EBEB RobotoMono Nerd Font
-
-      # symbol_map U+EA76 VictorMono Nerd Font
     '';
 
   };
