@@ -82,7 +82,7 @@ in
 
         source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     
-        ${pkgs.dwt1-shell-color-scripts}/bin/colorscript -e panes
+        ${pkgs.dwt1-shell-color-scripts}/bin/colorscript -e blocks1
 
         function w() {
           fd $1 | entr -c "''${@:2}"

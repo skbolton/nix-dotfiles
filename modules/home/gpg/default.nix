@@ -40,7 +40,7 @@ in
     };
 
     services.gpg-agent = {
-      enable = true;
+      enable = pkgs.stdenv.isLinux;
       verbose = true;
       enableSshSupport = true;
       enableExtraSocket = cfg.enableExtraSocket;
