@@ -10,7 +10,6 @@
     ../capabilities/notes
     ../capabilities/lang/elixir.nix
     ../capabilities/lang/nix.nix
-    ../capabilities/timetracking.nix
   ];
 
   fonts.fontconfig.enable = true;
@@ -23,6 +22,7 @@
     finance.enable = true;
     passwords.enable = true;
     tasks.enable = true;
+    timetracking.enable = true;
     desktop.wayland.hyprland = {
       enable = true;
       autostart = [ ];
