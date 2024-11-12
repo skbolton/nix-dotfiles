@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   home.sessionVariables = {
@@ -17,12 +17,16 @@
   programs.git.ignores = [ ".lexical" "scratchpad.ex" ".elixir-ls" ];
 
   home.packages = with pkgs; [
-    inotify-tools
     postgresql
     elixir_1_15
     erlang_26
     lexical
-  ];
+  ] ++ lib.optional stdenv.isLinux inotify-tools
+  ++ lib.optional stdenv.isDarwin terminal-notifier
+  ++ lib.optionals stdenv.isDarwin (with darwin.apple_sdk.frameworks; [
+    CoreFoundation
+    CoreServices
+  ]);
 
   xdg.configFile."nvim/after/ftplugin/elixir.lua".text = /* lua */ ''
     local capabilities = require 'lsp_capabilities'()
