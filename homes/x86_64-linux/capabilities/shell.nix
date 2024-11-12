@@ -2,28 +2,8 @@
 
 {
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "RobotoMono" "Iosevka" ]; })
-    ibm-plex
-    iosevka
-    unzip
-    jq
-    miller
-    entr
-    fd
-    md-tangle
-    dateutils
     flyctl
   ];
-
-  programs.ripgrep = {
-    enable = true;
-    arguments = [
-      "--colors=match:bg:yellow"
-      "--colors=match:fg:black"
-    ];
-  };
-
-  programs.bat.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -124,81 +104,4 @@
     enableZshIntegration = true;
   };
 
-  programs.nnn = {
-    package = pkgs.nnn.override ({ withNerdIcons = true; extraMakeFlags = [ "O_NAMEFIRST=1" ]; });
-    enable = true;
-    bookmarks = {
-      d = "~/Documents";
-      o = "~/Downloads";
-    };
-    plugins = {
-      mappings = {
-        p = "preview-tui";
-      };
-      src = (pkgs.fetchFromGitHub {
-        owner = "jarun";
-        repo = "nnn";
-        rev = "9e95578c22bf76515a633723f6ec335469d4f000";
-        sha256 = "sha256-XM88ROUexwl26feNRik8pMzOcpiF84bC3l3F4RQnG34=";
-      }) + "/plugins";
-    };
-  };
-
-  programs.yazi = {
-    enable = true;
-    enableZshIntegration = true;
-    settings = {
-      manager = {
-        ratio = [ 1 3 4 ];
-        show_hidden = true;
-        linemode = "mtime";
-        sort_dir_first = true;
-      };
-    };
-  };
-
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    stdlib = ''
-      source_env_if_exists .envrc.private
-    '';
-  };
-
-  programs.fzf = {
-    enable = true;
-    enableZshIntegration = true;
-    defaultCommand = "${pkgs.fd}/bin/fd --type f";
-    fileWidgetCommand = "${pkgs.fd}/bin/fd --type f --hidden";
-    fileWidgetOptions = [ "--preview '${pkgs.bat}/bin/bat --color=always {}'" ];
-    changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
-    changeDirWidgetOptions = [
-      "--preview '${pkgs.eza}/bin/eza --tree --icons --color=always --level 3 --git-ignore {}'"
-    ];
-    defaultOptions = [ "--reverse" "--ansi" "--pointer '▌'" ];
-  };
-
-  programs.skim = {
-    enable = true;
-    enableZshIntegration = false;
-    defaultCommand = "${pkgs.fd}/bin/fd --type f --exclude '.git'";
-    changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
-    fileWidgetCommand = "${pkgs.fd}/bin/fd --type f";
-    defaultOptions = [ "--reverse" "--ansi" ];
-  };
-
-
-  programs.eza = {
-    enable = true;
-    icons = true;
-    extraOptions = [ "--group-directories-first" "--header" ];
-    git = true;
-  };
-
-  programs.btop = {
-    enable = true;
-    settings = {
-      vim_keys = true;
-    };
-  };
 }

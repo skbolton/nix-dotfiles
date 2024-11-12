@@ -24,6 +24,7 @@
 
   delta = {
     gpg.enable = true;
+    cli_apps.enable = true;
     passwords.enable = true;
     desktop.wayland.hyprland = {
       enable = true;

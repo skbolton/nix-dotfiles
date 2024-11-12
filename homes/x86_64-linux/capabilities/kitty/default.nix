@@ -1,7 +1,12 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ delta.io-collins ];
+  home.packages = with pkgs; [
+    delta.io-collins
+    (nerdfonts.override { fonts = [ "RobotoMono" "Iosevka" ]; })
+    ibm-plex
+    iosevka
+  ];
 
   programs.kitty = {
     enable = true;
