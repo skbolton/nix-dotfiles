@@ -10,7 +10,7 @@
       # UI and Window Behavior
       window_padding_width = "0 8";
       remember_window_size = "no";
-      hide_window_decorations = "yes";
+      hide_window_decorations = if pkgs.stdenv.isLinux then "yes" else "no";
       dynamic_background_opacity = "yes";
       background_opacity = 1;
       cursor_shape = "beam";
@@ -28,6 +28,7 @@
       copy_on_select = "clipboard";
       clipboard_control = "write-clipboard write-primary no-append";
       sync_to_monitor = "no";
+      macos_titlebar_color = "background";
     };
 
     environment = {
