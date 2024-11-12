@@ -115,11 +115,6 @@ in
       font_size 13.0
     '';
 
-    xdg.dataFile."fonts/Lilex" = {
-      source = ./Lilex;
-      recursive = true;
-    };
-
     xdg.dataFile."fonts/OxProto" = {
       recursive = true;
       source = (pkgs.fetchzip {
