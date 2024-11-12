@@ -4,7 +4,6 @@
   imports = [
     ../capabilities/themes/embark.theme.nix
     ../capabilities/kitty
-    ../capabilities/desktop
     ./pam.nix
     ../capabilities/notes
   ];
@@ -30,6 +29,7 @@
       autostart = [ ];
     };
     desktop.gtk.enable = true;
+    desktop.qt.enable = true;
     desktop.wayland.waybar.enable = true;
     desktop.dunst.enable = true;
     desktop.nm-applet.enable = true;

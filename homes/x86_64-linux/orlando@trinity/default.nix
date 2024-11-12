@@ -5,7 +5,6 @@
     ../capabilities/themes/embark.theme.nix
     ./rgb.nix
     ../capabilities/kitty
-    ../capabilities/desktop
     ./pam.nix
     ../capabilities/notes
   ];
@@ -40,6 +39,7 @@
     desktop.dunst.enable = true;
     desktop.nm-applet.enable = true;
     desktop.gtk.enable = true;
+    desktop.qt.enable = true;
     synology.enable = true;
     cloud.gcloud.enable = true;
   };
