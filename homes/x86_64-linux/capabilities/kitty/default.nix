@@ -111,11 +111,6 @@
     recursive = true;
   };
 
-  xdg.dataFile."fonts/OneMono" = {
-    source = ./OneMono;
-    recursive = true;
-  };
-
   xdg.dataFile."fonts/OxProto" = {
     recursive = true;
     source = (pkgs.fetchzip {
