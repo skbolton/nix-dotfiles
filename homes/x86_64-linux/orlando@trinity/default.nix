@@ -8,10 +8,6 @@
     ../capabilities/desktop
     ./pam.nix
     ../capabilities/notes
-    ../capabilities/lang/elixir.nix
-    ../capabilities/lang/nix.nix
-    ../capabilities/lang/node.nix
-    ../capabilities/lang/lua.nix
   ];
 
   fonts.fontconfig.enable = true;
@@ -26,6 +22,12 @@
     tasks.enable = true;
     timetracking.enable = true;
     neovim.enable = true;
+    lang = {
+      elixir.enable = true;
+      nodejs.enable = true;
+      lua.enable = true;
+      nix.enable = true;
+    };
     desktop.wayland.hyprland = {
       enable = true;
       autostart = [
