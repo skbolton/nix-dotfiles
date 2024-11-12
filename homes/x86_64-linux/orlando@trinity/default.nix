@@ -5,7 +5,6 @@
     ../capabilities/themes/embark.theme.nix
     ./rgb.nix
     ../capabilities/kitty
-    ../capabilities/editor
     ../capabilities/desktop
     ./pam.nix
     ../capabilities/notes
@@ -26,6 +25,7 @@
     passwords.enable = true;
     tasks.enable = true;
     timetracking.enable = true;
+    neovim.enable = true;
     desktop.wayland.hyprland = {
       enable = true;
       autostart = [
