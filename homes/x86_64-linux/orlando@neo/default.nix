@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../capabilities/themes/embark.theme.nix
     ../capabilities/kitty
     ./pam.nix
   ];
@@ -19,6 +18,7 @@
     tasks.enable = true;
     timetracking.enable = true;
     neovim.enable = true;
+    terminal_theme.embark.enable = true;
     lang = {
       lua.enable = true;
       nix.enable = true;

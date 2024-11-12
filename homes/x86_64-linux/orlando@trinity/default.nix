@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../capabilities/themes/embark.theme.nix
     ./rgb.nix
     ../capabilities/kitty
     ./pam.nix
@@ -20,6 +19,7 @@
     tasks.enable = true;
     timetracking.enable = true;
     neovim.enable = true;
+    terminal_theme.embark.enable = true;
     lang = {
       elixir.enable = true;
       nodejs.enable = true;
