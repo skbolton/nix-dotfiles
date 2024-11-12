@@ -4,7 +4,6 @@
   imports = [
     ../capabilities/themes/embark.theme.nix
     ./rgb.nix
-    ../capabilities/shell.nix
     ../capabilities/kitty
     ../capabilities/editor
     ../capabilities/tmux
@@ -24,6 +23,7 @@
 
   delta = {
     gpg.enable = true;
+    zsh.enable = true;
     cli_apps.enable = true;
     passwords.enable = true;
     desktop.wayland.hyprland = {

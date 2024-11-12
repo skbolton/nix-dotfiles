@@ -3,7 +3,6 @@
 {
   imports = [
     ../capabilities/themes/embark.theme.nix
-    ../capabilities/shell.nix
     ../capabilities/kitty
     ../capabilities/finances.nix
     ../capabilities/editor
@@ -21,6 +20,7 @@
 
   delta = {
     gpg.enable = true;
+    zsh.enable = true;
     cli_apps.enable = true;
     passwords.enable = true;
     desktop.wayland.hyprland = {
