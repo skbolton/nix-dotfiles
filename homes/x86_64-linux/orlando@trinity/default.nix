@@ -19,6 +19,7 @@
     timetracking.enable = true;
     neovim.enable = true;
     terminal_theme.embark.enable = true;
+    kitty.enable = true;
     lang = {
       elixir.enable = true;
       nodejs.enable = true;
@@ -39,6 +40,7 @@
     desktop.nm-applet.enable = true;
     desktop.gtk.enable = true;
     desktop.qt.enable = true;
+    desktop.ui_applications.enable = true;
     synology.enable = true;
     cloud.gcloud.enable = true;
   };

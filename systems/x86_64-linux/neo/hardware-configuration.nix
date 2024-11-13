@@ -13,7 +13,7 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" "amd-pstate" ];
   boot.extraModulePackages = [ ];
-  boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.kernelPackages = pkgs.linuxPackages_6_11;
   boot.kernelParams = [ "amd_pstate=active" ];
 
   boot.initrd.luks.devices.system.device = "/dev/disk/by-partlabel/HYNIX-SYSTEM";

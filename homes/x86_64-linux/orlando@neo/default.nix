@@ -18,6 +18,7 @@
     timetracking.enable = true;
     neovim.enable = true;
     terminal_theme.embark.enable = true;
+    kitty.enable = true;
     lang = {
       lua.enable = true;
       nix.enable = true;
@@ -32,6 +33,7 @@
     desktop.wayland.waybar.enable = true;
     desktop.dunst.enable = true;
     desktop.nm-applet.enable = true;
+    desktop.ui_applications.enable = true;
     synology.enable = true;
   };
 
