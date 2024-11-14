@@ -37,7 +37,7 @@ in
 
         # Terminal Settings
         allow_remote_control = "yes";
-        listen_on = if pkgs.stdenv.isLinux then "unix:@mykitty" else "unix:$${TMPDIR}/mykitty";
+        listen_on = if pkgs.stdenv.isLinux then "unix:@mykitty" else "tcp:localhost:12345";
         confirm_os_window_close = 0;
         copy_on_select = "clipboard";
         clipboard_control = "write-clipboard write-primary no-append";
