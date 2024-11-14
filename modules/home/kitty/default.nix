@@ -43,6 +43,7 @@ in
         clipboard_control = "write-clipboard write-primary no-append";
         sync_to_monitor = "no";
         macos_titlebar_color = "background";
+        macos_show_window_title_in = "none";
       };
 
       environment = {
