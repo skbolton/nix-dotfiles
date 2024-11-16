@@ -16,6 +16,8 @@
   boot.kernelPackages = pkgs.linuxPackages_6_11;
   boot.kernelParams = [ "amd_pstate=active" ];
 
+  services.asusd.enable = true;
+
   boot.initrd.luks.devices.system.device = "/dev/disk/by-partlabel/HYNIX-SYSTEM";
 
   fileSystems."/" =
