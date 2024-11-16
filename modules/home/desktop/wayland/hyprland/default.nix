@@ -33,7 +33,7 @@ in
       settings = {
         exec-once = [
           "hyprctl setcursor Bibata-Modern-Ice 22"
-          "[workspace 2 silent] floorp"
+          "[workspace 2 silent] firefox"
           "kitty"
         ] ++ (map (m: "swaybg --output ${m.name} --image ${m.wallpaper} --mode fill") config.monitors)
         ++ cfg.autostart
@@ -159,7 +159,7 @@ in
         windowrulev2 = [
           "workspace 1,class:kitty"
           "workspace 2,title:^(Mozilla Firefox)(.*)$"
-          "workspace 2,class:floorp"
+          "workspace 2,class:firefox"
           "workspace special:notes,title:^(kitty-delta)"
           "workspace special:term,title:^(kitty-scratch)"
           "workspace 3,class:Slack"

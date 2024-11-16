@@ -74,7 +74,7 @@ in
         setopt EXTENDED_GLOB        # Use extended globbing syntax
         KEYTIMEOUT=5
       '';
-      initExtra = ''
+      initExtra = /* bash */ ''
         autoload -Uz edit-command-line
         zle -N edit-command-line
         bindkey -M viins '^f' edit-command-line
@@ -90,6 +90,10 @@ in
 
         function ew() {
           fd "\.exs?$" | entr -c "$@"
+        }
+
+        function take() {
+          mkdir -p $1 && cd $1
         }
 
         function zvm_after_init() {

@@ -68,7 +68,7 @@
     packages = with pkgs; [
       mpv
       docker-compose
-      floorp
+      firefox
       delta.fman
     ];
   };
