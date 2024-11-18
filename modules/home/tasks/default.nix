@@ -59,6 +59,8 @@ in
         urgency = {
           project.coefficient = 0;
           blocking.coefficient = 0;
+          tags.coefficient = 0;
+          annotations.coefficient = 0;
         };
         color = {
           alternate = "";
