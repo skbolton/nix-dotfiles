@@ -1,0 +1,27 @@
+session: 👊FIST
+root: ~/Public/fist
+
+before_start: 
+  - docker-compose up -d
+
+stop:
+  - docker-compose stop
+
+windows:
+  - name: " neovim"
+    commands:
+      - nvim
+  - name: " scratchpad"
+    commands: 
+      - nvim scratchpad.ex
+    layout: main-horizontal
+    panes:
+      - type: horizontal
+        commands:
+          - mix ecto.create && iex -S mix phx.server
+  - name: " db"
+    commands:
+      - nvim +DBUI
+  - name: "󱈫 test"
+    commands:
+      - clear
