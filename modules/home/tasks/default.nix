@@ -14,14 +14,7 @@ in
 
     programs.zsh.shellAliases = {
       t = "task";
-      chore = "task add proj:HOM";
-      chores = "task proj:HOM";
-      pdq = "task add proj:PDQ";
-      pdqs = "task proj:PDQ";
-      oss = "task add proj:OSS";
-      osss = "task proj:OSS";
-      cha = "task add proj:CHA";
-      chas = "task proj:CHA";
+      "in" = "task add +in";
     };
 
     programs.taskwarrior = {
@@ -40,8 +33,8 @@ in
           };
         };
         context = {
-          work = "project:PDQ or proj:OSS or proj:CAR";
-          personal = "project.not:PDQ";
+          work = "+dk or +car";
+          personal = "-dk";
         };
         urgency = {
           project.coefficient = 0;
