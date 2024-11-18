@@ -17,6 +17,19 @@ in
       "in" = "task add +in";
     };
 
+    programs.zsh.initExtra = /* bash */ ''
+        function twait() {
+          wait_til=$(date --iso-8601=minutes --date $2)
+          task $1 modify wait:$wait_til
+        }
+
+      function tsnooze() {
+        snooze=''${2:-"10 minutes"}
+        twait $1 $snooze
+      }
+    '';
+
+
     programs.taskwarrior = {
       enable = true;
       package = pkgs.taskwarrior3;
