@@ -14,6 +14,7 @@ in
 
     programs.zsh.shellAliases = {
       t = "task";
+      dk = "task add +dk";
       "in" = "task add +in";
     };
 
