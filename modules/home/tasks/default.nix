@@ -10,7 +10,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ todoist todoist-electron ];
+    home.packages = with pkgs; [ todoist todoist-electron taskwarrior-tui ];
 
     programs.zsh.shellAliases = {
       t = "task";
