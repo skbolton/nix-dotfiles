@@ -19,10 +19,10 @@ in
     gtk = {
       enable = true;
       theme = {
-        name = "Colloid-Teal-Dark";
+        name = "Colloid-Dark";
         package = pkgs.colloid-gtk-theme.override {
-          themeVariants = [ "purple" "teal" "grey" "green" ];
-          tweaks = [ "black" ];
+          themeVariants = [ "default" "purple" "teal" "grey" "green" ];
+          tweaks = [ "black" "rimless" "normal" ];
         };
       };
 
@@ -32,10 +32,9 @@ in
       };
 
       iconTheme = {
-        name = "Colloid-dracula-dark";
+        name = "Colloid-dark";
         package = pkgs.colloid-icon-theme.override {
           colorVariants = [ "default" "purple" "teal" "grey" "green" "pink" ];
-          schemeVariants = [ "dracula" ];
         };
       };
     };
