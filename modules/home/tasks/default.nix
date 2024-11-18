@@ -40,6 +40,8 @@ in
         };
         default.command = "next";
         report = {
+          next.filter = "+READY limit:15";
+          next.columns = "id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency";
           ready = {
             columns = "id,project,tags,due.relative,until.remaining,scheduled.formatted,description,urgency";
             labels = "ID,Pr,Tags,Due,Until,Sched,Desc,Urg";
