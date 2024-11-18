@@ -25,12 +25,16 @@ in
         alias = {
           "@" = "context";
         };
-        default.command = "ready";
+        default.command = "next";
         report = {
           ready = {
             columns = "id,project,tags,due.relative,until.remaining,scheduled.formatted,description,urgency";
             labels = "ID,Pr,Tags,Due,Until,Sched,Desc,Urg";
           };
+          "in".columns = "id,description";
+          "in".description = "Inbox";
+          "in".filter = "status:pending limit:10 (+in)";
+          "in".labels = "ID,Description";
         };
         context = {
           work = "+dk or +car";
