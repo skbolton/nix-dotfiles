@@ -20,13 +20,17 @@ in
 
     programs.zsh.initExtra = /* bash */ ''
         function twait() {
-          wait_til=$(date --iso-8601=minutes --date $2)
-          task $1 modify wait:$wait_til
+          task_id=$1
+          shift
+          wait_til=$(date --iso-8601=minutes --date "$*")
+          task $task_id modify wait:$wait_til
         }
 
       function tsnooze() {
-        snooze=''${2:-"10 minutes"}
-        twait $1 $snooze
+        tasks=$1
+        shift
+        snooze=''${*:-"10 minutes"}
+        twait $tasks $snooze
       }
     '';
 
