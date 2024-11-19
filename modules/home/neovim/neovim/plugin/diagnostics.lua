@@ -4,16 +4,30 @@ local map = vim.keymap.set
 
 lsp_lines.setup()
 
-vim.diagnostic.config {
+local default_diagnostic_config = {
   underline = true,
-  virtual_lines = true,
-  virtual_text = false,
+  virtual_lines = false,
+  virtual_text = true,
   signs = true,
 }
 
+vim.diagnostic.config(default_diagnostic_config)
+
 map('n', '[d', vim.diagnostic.goto_prev)
 map('n', ']d', vim.diagnostic.goto_next)
-map('n', '<C-g>', vim.diagnostic.open_float)
+map('n', '<C-g>', function()
+  vim.diagnostic.config { virtual_lines = true, virtual_text = false }
+
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    pattern = "*",
+    callback = function()
+      vim.diagnostic.config(default_diagnostic_config)
+
+      -- detach handler after first use
+      return true
+    end
+  })
+end)
 
 -- Sign Icons
 local signs = { Error = '🯀', Warn = '🯀', Hint = '⌕', Info = '🞔' }
@@ -23,17 +37,3 @@ for type, icon in pairs(signs) do
   local highlight = "DiagnosticSign" .. type
   vim.fn.sign_define(highlight, { text = icon, texthl = highlight })
 end
-
-local diagnostic_group = vim.api.nvim_create_augroup("DiagnosticVisibility", { clear = true })
-
-vim.api.nvim_create_autocmd("InsertEnter", {
-  pattern = "*",
-  group = diagnostic_group,
-  callback = function() vim.diagnostic.config { virtual_lines = false } end
-})
-
-vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = "*",
-  group = diagnostic_group,
-  callback = function() vim.diagnostic.config { virtual_lines = true } end
-})
