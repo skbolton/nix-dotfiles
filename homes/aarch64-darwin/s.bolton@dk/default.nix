@@ -22,6 +22,8 @@
     };
   };
 
+  programs.zsh.shellAliases.rebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+
   programs.ssh = {
     enable = true;
   };

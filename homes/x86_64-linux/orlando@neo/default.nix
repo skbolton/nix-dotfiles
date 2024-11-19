@@ -37,6 +37,8 @@
     synology.enable = true;
   };
 
+  programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch";
+
   programs.man.generateCaches = true;
 
   programs.ssh = {
