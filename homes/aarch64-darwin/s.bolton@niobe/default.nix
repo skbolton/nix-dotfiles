@@ -3,6 +3,8 @@
 {
   programs.home-manager.enable = true;
 
+  home.packages = with pkgs; [ docker docker-compose zk ];
+
   delta = {
     gpg = {
       enable = true;

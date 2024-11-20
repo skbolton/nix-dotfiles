@@ -14,7 +14,7 @@
     hostPlatform = "aarch64-darwin";
   };
 
-  networking.hostName = "dk";
+  networking.hostName = "niobe";
 
   programs.zsh.enable = true;
 
