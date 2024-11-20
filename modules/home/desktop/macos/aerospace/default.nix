@@ -52,6 +52,7 @@ in
       # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
       # Fallback value (if you omit the key): on-focused-monitor-changed = []
       on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+      on-focus-changed = ['move-mouse window-lazy-center']
 
       # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
       # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -112,11 +113,13 @@ in
       alt-slash = 'layout tiles horizontal vertical'
       alt-comma = 'layout accordion horizontal vertical'
 
+      alt-f = 'fullscreen'
+
       # See: https://nikitabobko.github.io/AeroSpace/commands#focus
-      cmd-h = 'focus left'
-      cmd-j = 'focus down'
-      cmd-k = 'focus up'
-      cmd-l = 'focus right'
+      alt-h = 'focus left'
+      alt-j = 'focus down'
+      alt-k = 'focus up'
+      alt-l = 'focus right'
 
       # See: https://nikitabobko.github.io/AeroSpace/commands#move
       cmd-ctrl-h = 'move left'
@@ -175,43 +178,56 @@ in
       cmd-alt-k = ['join-with up', 'mode main']
       cmd-alt-l = ['join-with right', 'mode main']
 
-      [key-mapping.key-notation-to-key-code]
-      q = 'q'
-      w = 'w'
-      f = 'e'
-      p = 'r'
-      g = 't'
-      j = 'y'
-      l = 'u'
-      u = 'i'
-      y = 'o'
-      semicolon = 'p'
-      leftSquareBracket = 'leftSquareBracket'
-      rightSquareBracket = 'rightSquareBracket'
-      backslash = 'backslash'
+      [[on-window-detected]]
+      if.app-id = 'net.kovidgoyal.kitty'
+      run = ['move-node-to-workspace 1']
 
-      a = 'a'
-      r = 's'
-      s = 'd'
-      t = 'f'
-      d = 'g'
-      h = 'h'
-      n = 'j'
-      e = 'k'
-      i = 'l'
-      o = 'semicolon'
-      quote = 'quote'
+      [[on-window-detected]]
+      if.app-id = 'org.mozilla.firefox'
+      run = ['move-node-to-workspace 2']
 
-      z = 'z'
-      x = 'x'
-      c = 'c'
-      v = 'v'
-      b = 'b'
-      k = 'n'
-      m = 'm'
-      comma = 'comma'
-      period = 'period'
-      slash = 'slash'
+      [[on-window-detected]]
+      if.app-id = 'com.tinyspeck.slackmacgap'
+      run = ['move-node-to-workspace 3']
+
+      # Colemak binds. Uncomment and rebuild when using laptop keyboard
+      # [key-mapping.key-notation-to-key-code]
+      # q = 'q'
+      # w = 'w'
+      # f = 'e'
+      # p = 'r'
+      # g = 't'
+      # j = 'y'
+      # l = 'u'
+      # u = 'i'
+      # y = 'o'
+      # semicolon = 'p'
+      # leftSquareBracket = 'leftSquareBracket'
+      # rightSquareBracket = 'rightSquareBracket'
+      # backslash = 'backslash'
+      #
+      # a = 'a'
+      # r = 's'
+      # s = 'd'
+      # t = 'f'
+      # d = 'g'
+      # h = 'h'
+      # n = 'j'
+      # e = 'k'
+      # i = 'l'
+      # o = 'semicolon'
+      # quote = 'quote'
+      #
+      # z = 'z'
+      # x = 'x'
+      # c = 'c'
+      # v = 'v'
+      # b = 'b'
+      # k = 'n'
+      # m = 'm'
+      # comma = 'comma'
+      # period = 'period'
+      # slash = 'slash'
     '';
   };
 }
