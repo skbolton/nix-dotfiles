@@ -2,7 +2,7 @@
 
 {
   home.packages = [
-    pkgs.delta.git-get
+    pkgs.git-extras
   ];
 
   programs.gh = {
@@ -45,7 +45,7 @@
       what = "!git config --get-regexp alias";
     };
 
-    ignores = [ "steve_queries" ".envrc.private" ".direnv" ".vim" ];
+    ignores = [ "steve_queries" ".envrc" ".envrc.private" ".direnv" ".vim" ];
 
     delta = {
       enable = true;
@@ -70,6 +70,7 @@
         verbose = true;
         template = "~/.config/git/commit-template";
       };
+      git-extras.get.clone-path = "$HOME/Public";
     };
   };
 
