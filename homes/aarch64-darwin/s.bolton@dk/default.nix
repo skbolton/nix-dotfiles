@@ -22,7 +22,7 @@
     };
   };
 
-  programs.zsh.shellAliases.rebuild = "darwin-rebuild switch --flake ~/.config/nix-darwin";
+  programs.zsh.shellAliases.rebuild = "darwin-rebuild switch --flake ~/nix-dotfiles";
 
   programs.ssh = {
     enable = true;
