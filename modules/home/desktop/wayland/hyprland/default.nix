@@ -74,10 +74,11 @@ in
             passes = 1;
             new_optimizations = true;
           };
-          drop_shadow = true;
-          shadow_range = 4;
-          shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+          shadow = {
+            enabled = true;
+            range = 4;
+            render_power = 3;
+          };
         };
 
         group = {

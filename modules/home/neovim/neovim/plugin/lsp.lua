@@ -36,24 +36,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if client.supports_method("textDocument/definition") then
-      wk.register({
-        ["<CR>"] = { vim.lsp.buf.definition, "definition" }
-      }, { buffer = buffer })
+      wk.add {
+        { "<CR>", vim.lsp.buf.definition, "Definition", group = "+lsp", buffer = buffer }
+      }
     end
 
-    wk.register({
-      K = { vim.lsp.buf.hover, "hover" },
-    }, { buffer = buffer })
-
-    wk.register({
-      l = {
-        name = "+lsp",
-        s = { vim.lsp.buf.signature_help, "signature" },
-        o = { "<CMD>Telescope lsp_document_symbols<CR>", "fuzzy symbol" },
-        O = { "<CMD>Vista<CR>", "sidebar" },
-        i = { vim.diagnostic.setloclist, "qf diagnostics" },
-        r = { vim.lsp.buf.references, "references" }
-      }
-    }, { buffer = buffer, prefix = "<leader>" })
+    wk.add {
+      { "K", vim.lsp.buf.hover, desc = "Hover", group = "+lsp", buffer = buffer },
+      { "<leader>ls", vim.lsp.buf.signature_help, desc = "Signature", group = "+lsp", buffer = buffer },
+      { "<leader>lo", "<CMD>Telescope lsp_document_symbols<CR>", desc = "Fuzzy symbols", group = "+lsp", buffer = buffer },
+      { "<leader>lO", "<CMD>Vista<CR>", desc = "Symbol sidebar", group = "+lsp", buffer = buffer },
+      { "<leader>li", vim.diagnostic.setloclist, desc = "qf diagnostic", group = "+lsp"},
+      { "<leader>lr", vim.lsp.buf.references, desc = "qf diagnostic", group = "+lsp", buffer = buffer }
+    }
   end
 })

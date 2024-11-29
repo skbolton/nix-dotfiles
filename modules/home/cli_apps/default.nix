@@ -96,7 +96,7 @@ in
 
     programs.eza = {
       enable = cfg.enable;
-      icons = true;
+      icons = "auto";
       extraOptions = [ "--group-directories-first" "--header" ];
       git = true;
     };

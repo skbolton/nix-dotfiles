@@ -148,15 +148,15 @@
     wireplumber.enable = true;
   };
 
-  security.pam.services = {
-    login.u2fAuth = false;
-    sudo.u2fAuth = true;
-  };
-
-
-  security.pam.u2f = {
-    enable = true;
-    cue = true;
+  security.pam = {
+    services = {
+      login.u2fAuth = false;
+      sudo.u2fAuth = true;
+    };
+    u2f = {
+      enable = true;
+      settings.cue = true;
+    };
   };
 
   programs.light = {

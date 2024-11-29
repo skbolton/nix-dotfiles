@@ -14,7 +14,7 @@ in
     home.packages = with pkgs; [
       slack
       zoom-us
-      gnome.nautilus
+      nautilus
       lxappearance
       arandr
       gnucash
