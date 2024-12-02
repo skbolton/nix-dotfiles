@@ -37,7 +37,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     if client.supports_method("textDocument/definition") then
       wk.add {
-        { "<CR>", vim.lsp.buf.definition, "Definition", group = "+lsp", buffer = buffer }
+        { "<CR>", vim.lsp.buf.definition, desc = "Definition", group = "+lsp", buffer = buffer }
       }
     end
 
