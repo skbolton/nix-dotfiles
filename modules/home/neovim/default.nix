@@ -19,8 +19,6 @@ in
       plugins = with pkgs.vimPlugins; [
         # syntax
         vim-elixir
-        vim-lfe
-        salt-vim
         bullets-vim
         venn-nvim
         oil-nvim
@@ -159,9 +157,6 @@ in
             sha256 = "sha256-29nSqK4sWI3m5hHviGBfiSN/GPh8oXGiYrrTmN2okRk=";
           };
         })
-
-        { plugin = rose-pine; optional = true; }
-        { plugin = nightfox-nvim; optional = true; }
       ];
     };
 
