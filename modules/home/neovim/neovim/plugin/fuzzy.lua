@@ -3,19 +3,20 @@ local builtin = require 'telescope.builtin'
 local wk = require 'which-key'
 
 wk.add {
-  { "<leader>/", builtin.live_grep, desc = "Grep", group = "+fuzzy" },
-  { "<leader><leader>", builtin.find_files, desc = "Files", group = "+fuzzy" },
-  { "<leader><Backspace>", builtin.buffers, desc = "Recent", group = "+fuzzy" },
-  { "<leader>fm", builtin.man_pages, desc = "Manpages", group = "+fuzzy" },
-  { "<leader>f?", builtin.help_tags, desc = "Help", group = "+fuzzy" },
-  { "<leader>f.", builtin.resume, desc = "Resume last", group = "+fuzzy" },
-  { "<leader>fi", "<CMD>Telescope symbols<CR>", desc = "Symbols", group = "+fuzzy" },
-  { "<leader>fg", builtin.git_status, desc = "Git changes", group = "+fuzzy" },
-  { "<leader>nn", "<CMD>ZkNotes<CR>", desc = "Find note", group = "+notes" },
-  { "<leader>nN", ":ZkNotes { tags = {}}<left><left>", desc = "Notes with tag", group = "+notes" },
-  { "<leader>nt", "<CMD>ZkTags<CR>", desc = "Tag search", group = "+notes" },
-  { "<leader>n.", "<CMD>ZkBacklinks<CR>", desc = "Backlinks", group = "+notes" },
-  { "<leader>n<up>", "<CMD>ZkLinks<CR>", desc = "Outbound links", group = "+notes" },
+  { "<leader>/",           builtin.live_grep,                   desc = "Grep",           group = "+fuzzy" },
+  { "<leader><leader>",    builtin.find_files,                  desc = "Files",          group = "+fuzzy" },
+  { "<leader><Backspace>", builtin.buffers,                     desc = "Recent",         group = "+fuzzy" },
+  { "<leader>fm",          builtin.man_pages,                   desc = "Manpages",       group = "+fuzzy" },
+  { "<leader>f?",          builtin.help_tags,                   desc = "Help",           group = "+fuzzy" },
+  { "<leader>f.",          builtin.resume,                      desc = "Resume last",    group = "+fuzzy" },
+  { "<leader>fi",          "<CMD>Telescope symbols<CR>",        desc = "Symbols",        group = "+fuzzy" },
+  { "<leader>fg",          builtin.git_status,                  desc = "Git changes",    group = "+fuzzy" },
+  { "<leader>fb",          builtin.current_buffer_fuzzy_find,   desc = "Current buffer", group = "+fuzzy" },
+  { "<leader>nn",          "<CMD>ZkNotes<CR>",                  desc = "Find note",      group = "+notes" },
+  { "<leader>nN",          ":ZkNotes { tags = {}}<left><left>", desc = "Notes with tag", group = "+notes" },
+  { "<leader>nt",          "<CMD>ZkTags<CR>",                   desc = "Tag search",     group = "+notes" },
+  { "<leader>n.",          "<CMD>ZkBacklinks<CR>",              desc = "Backlinks",      group = "+notes" },
+  { "<leader>n<up>",       "<CMD>ZkLinks<CR>",                  desc = "Outbound links", group = "+notes" },
 }
 
 telescope.setup {

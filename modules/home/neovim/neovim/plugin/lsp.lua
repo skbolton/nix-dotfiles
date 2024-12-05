@@ -16,6 +16,11 @@ vim.g['vista#renderer#icons'] = {
   event = ' '
 }
 
+local function on_list(options)
+  vim.fn.setqflist({}, ' ', options)
+  vim.cmd.cfirst()
+end
+
 -- LSP Attaching
 -- ===================================================================
 local formatting_augrop = vim.api.nvim_create_augroup("LSPFORMATTING", {})
@@ -37,17 +42,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     if client.supports_method("textDocument/definition") then
       wk.add {
-        { "<CR>", vim.lsp.buf.definition, desc = "Definition", group = "+lsp", buffer = buffer }
+        { "<CR>", function() vim.lsp.buf.definition({ on_list = on_list }) end, desc = "Definition", group = "+lsp", buffer = buffer }
       }
     end
 
     wk.add {
-      { "K", vim.lsp.buf.hover, desc = "Hover", group = "+lsp", buffer = buffer },
-      { "<leader>ls", vim.lsp.buf.signature_help, desc = "Signature", group = "+lsp", buffer = buffer },
-      { "<leader>lo", "<CMD>Telescope lsp_document_symbols<CR>", desc = "Fuzzy symbols", group = "+lsp", buffer = buffer },
-      { "<leader>lO", "<CMD>Vista<CR>", desc = "Symbol sidebar", group = "+lsp", buffer = buffer },
-      { "<leader>li", vim.diagnostic.setloclist, desc = "qf diagnostic", group = "+lsp"},
-      { "<leader>lr", vim.lsp.buf.references, desc = "qf diagnostic", group = "+lsp", buffer = buffer }
+      { "K",          vim.lsp.buf.hover,                                                 desc = "Hover",          group = "+lsp", buffer = buffer },
+      { "<leader>ls", vim.lsp.buf.signature_help,                                        desc = "Signature",      group = "+lsp", buffer = buffer },
+      { "<leader>lo", "<CMD>Telescope lsp_document_symbols<CR>",                         desc = "Fuzzy symbols",  group = "+lsp", buffer = buffer },
+      { "<leader>lO", "<CMD>Vista<CR>",                                                  desc = "Symbol sidebar", group = "+lsp", buffer = buffer },
+      { "<leader>li", vim.diagnostic.setloclist,                                         desc = "qf diagnostic",  group = "+lsp" },
+      { "<leader>lr", function() vim.lsp.buf.references(nil, { on_list = on_list }) end, desc = "Calls",          group = "+lsp", buffer = buffer }
     }
   end
 })
