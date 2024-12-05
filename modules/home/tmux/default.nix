@@ -60,6 +60,7 @@ in
       terminal = "tmux-256color";
 
       extraConfig = ''
+        set -g default-command $SHELL
         set -g allow-passthrough on
         set -ga update-environment TERM
         set -ga update-environment TERM_PROGRAM
