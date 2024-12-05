@@ -136,7 +136,6 @@ in
         # testing
         vim-test
         vim-dispatch
-        neomake
         vimux
 
         nvim-web-devicons
