@@ -5,11 +5,6 @@ local finders = require 'telescope.finders'
 local map = vim.keymap.set
 
 vim.g.tmux_navigator_disable_when_zoomed = true
-vim.g.VimuxCloseOnExit = true;
-
-vim.g.VimuxRunnerQuery = {
-  window = "󱈫 ",
-};
 
 local function get_file_paths()
   local picker = pickers.new {
@@ -37,39 +32,4 @@ local function get_file_paths()
   picker:find()
 end
 
-local function send_to_tmux()
-  -- yank text into v register
-  if vim.api.nvim_get_mode()["mode"] == "n" then
-    vim.cmd('normal vip"vy')
-  else
-    vim.cmd('normal "vy')
-  end
-  -- construct command with v register as command to send
-  vim.cmd("call VimuxRunCommand(@v)")
-end
-
-map({ 'n', 'v' }, '<C-c><C-c>', send_to_tmux)
-
-map({ 'n', 'v' }, '<C-c><M-c>', function()
-  vim.cmd('call VimuxRunCommand("clear")')
-  send_to_tmux()
-end)
-
-map('n', '<leader>rr', '<CMD>VimuxPromptCommand<CR>')
-map('n', '<leader>r.', '<CMD>VimuxRunLastCommand<CR>')
-map('n', '<leader>rc', '<CMD>VimuxClearTerminalScreen<CR>')
-map('n', '<leader>rq', '<CMD>VimuxCloseRunner<CR>')
-map('n', '<leader>r?', '<CMD>VimuxInspectRunner<CR>')
-map('n', '<leader>r!', '<CMD>VimuxInterruptRunner<CR>')
-map('n', '<leader>rz', '<CMD>VimuxZoomRunner<CR>')
 map('n', '<leader>rf', get_file_paths)
-
-map('n', '<leader>ru', function()
-  if vim.g.VimuxRunnerType == 'window' then
-    vim.g.VimuxRunnerType = 'pane'
-    vim.g.VimuxCloseOnExit = true;
-  else
-    vim.g.VimuxRunnerType = 'window'
-    vim.g.VimuxCloseOnExit = false;
-  end
-end)

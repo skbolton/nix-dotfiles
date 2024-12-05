@@ -52,6 +52,11 @@
     };
 
     neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+
+    lz-n = {
+      url = "github:nvim-neorocks/lz.n";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

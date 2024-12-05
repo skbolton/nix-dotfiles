@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, inputs, ... }:
 
 with lib;
 let
@@ -16,7 +16,12 @@ in
       enable = true;
       defaultEditor = true;
       extraPython3Packages = pyPkgs: with pyPkgs; [ beancount ];
+      extraLuaConfig = /* lua */ ''
+        require 'options'
+        require 'plugins'
+      '';
       plugins = with pkgs.vimPlugins; [
+        inputs.lz-n.packages.${pkgs.system}.default
         # syntax
         vim-elixir
         bullets-vim
@@ -132,9 +137,109 @@ in
         vim-dadbod-completion
 
         # testing
-        vim-test
-        vim-dispatch
-        vimux
+        {
+          plugin = vim-test;
+          config = /* lua */ ''
+            local lz = require 'lz.n'
+            lz.load {
+              "vim-test",
+              before = function()
+                lz.trigger_load("vim-dispatch")
+
+                local g = vim.g
+
+                g["test#custom_strategies"] = {
+                  vimux_watch = function(args)
+                    vim.cmd("call VimuxClearTerminalScreen()")
+                    vim.cmd("call VimuxClearRunnerHistory()")
+                    vim.cmd(string.format("call VimuxRunCommand('fd . | entr -c %s')", args))
+                  end
+                }
+
+                g["test#preserve_screen"] = false
+                g['test#javascript#jest#options'] = '--reporters jest-vim-reporter'
+                g['test#strategy'] = {
+                  nearest = 'vimux',
+                  file = 'vimux',
+                  suite = 'vimux'
+                }
+                g['test#neovim#term_position'] = 'vert'
+
+                g.dispatch_compilers = { elixir = 'exunit' }
+              end,
+              after = function()
+                local map = vim.keymap.set
+
+                map('n', '<leader>tT', '<CMD>TestFile<CR>')
+                map('n', '<leader>tt', '<CMD>TestFile -strategy=vimux_watch<CR>')
+                map('n', '<leader>tN', '<CMD>TestNearest<CR>')
+                map('n', '<leader>tn', '<CMD>TestNearest -strategy=vimux_watch<CR>')
+                map('n', '<leader>t.', '<CMD>TestLast<CR>')
+                map('n', '<leader>tv', '<CMD>TestVisit<CR>zz')
+                map('n', '<leader>ts', '<CMD>TestSuite -strategy=vimux_watch<CR>')
+                map('n', '<leader>tS', '<CMD>TestSuite<CR>')
+              end
+            }
+          '';
+          type = "lua";
+          optional = true;
+        }
+        { plugin = vim-dispatch; optional = true; }
+        {
+          plugin = vimux;
+          config = /* lua */ ''
+            require 'lz.n'.load {
+              "vimux",
+              event = "User DeferredUIEnter",
+              before = function()
+                vim.g.VimuxOrientation = "h"
+                vim.g.VimuxHeight = "120"
+                vim.g.VimuxCloseOnExit = true;
+
+                vim.g.VimuxRunnerQuery = {
+                  window = "󱈫 ",
+                };
+              end,
+              after = function()
+                local function send_to_tmux()
+                  -- yank text into v register
+                  if vim.api.nvim_get_mode()["mode"] == "n" then
+                    vim.cmd('normal vip"vy')
+                  else
+                    vim.cmd('normal "vy')
+                  end
+                  -- construct command with v register as command to send
+                  vim.cmd("call VimuxRunCommand(@v)")
+                end
+
+                vim.keymap.set('n', '<leader>ru', function()
+                  if vim.g.VimuxRunnerType == 'window' then
+                    vim.g.VimuxRunnerType = 'pane'
+                    vim.g.VimuxCloseOnExit = true;
+                  else
+                    vim.g.VimuxRunnerType = 'window'
+                    vim.g.VimuxCloseOnExit = false;
+                  end
+                end)
+                vim.keymap.set('n', '<leader>rr', '<CMD>VimuxPromptCommand<CR>')
+                vim.keymap.set('n', '<leader>r.', '<CMD>VimuxRunLastCommand<CR>')
+                vim.keymap.set('n', '<leader>rc', '<CMD>VimuxClearTerminalScreen<CR>')
+                vim.keymap.set('n', '<leader>rq', '<CMD>VimuxCloseRunner<CR>')
+                vim.keymap.set('n', '<leader>r?', '<CMD>VimuxInspectRunner<CR>')
+                vim.keymap.set('n', '<leader>r!', '<CMD>VimuxInterruptRunner<CR>')
+                vim.keymap.set('n', '<leader>rz', '<CMD>VimuxZoomRunner<CR>')
+
+                vim.keymap.set({ 'n', 'v' }, '<C-c><C-c>', send_to_tmux)
+                vim.keymap.set({ 'n', 'v' }, '<C-c><M-c>', function()
+                  vim.cmd('call VimuxRunCommand("clear")')
+                  send_to_tmux()
+                end)
+              end
+            }
+          '';
+          type = "lua";
+          optional = true;
+        }
 
         nvim-web-devicons
         popup-nvim

@@ -1,4 +1,3 @@
-local testing = require 'testing'
 local diagrams = require 'diagramming'
 local gl = require 'galaxyline'
 local condition = require 'galaxyline.condition'
@@ -6,21 +5,6 @@ local vcs = require 'galaxyline.providers.vcs'
 local file = require 'galaxyline.providers.fileinfo'
 local gls = gl.section
 gl.short_line_list = { 'NvimTree', 'vista_kind', 'dbui' }
-
--- Read from testing.lua module
--- and adjust icon and color per testing state
-local testing_results = function()
-  if testing.TESTING_STATUS == 'init' then
-    return " "
-  elseif testing.TESTING_STATUS == 'passing' then
-    return " "
-  elseif testing.TESTING_STATUS == 'running' then
-    return " "
-  elseif testing.TESTING_STATUS == 'failing' then
-    return " "
-  end
-end
-
 
 -----------------------------------------------------------
 -- Bar Sections
