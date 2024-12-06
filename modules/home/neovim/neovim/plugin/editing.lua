@@ -27,8 +27,6 @@ vim.keymap.set("v", "g<C-x>", function()
   require("dial.map").manipulate("decrement", "gvisual")
 end)
 
-require 'copilot'.setup {}
-
 vim.g.user_emmet_settings = {
   ['javascript.jsx'] = {
     extends = 'jsx',

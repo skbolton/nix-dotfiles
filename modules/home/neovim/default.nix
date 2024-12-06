@@ -159,8 +159,6 @@ in
         }
         lsp_lines-nvim
         dial-nvim
-        copilot-lua
-        copilot-cmp
         neorg
 
         nui-nvim
