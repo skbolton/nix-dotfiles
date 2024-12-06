@@ -75,7 +75,6 @@ wk.add {
   { "<leader>gr",       "<CMD>Gread<CR>",                    desc = "Read",                         group = "+git" },
   { "<leader>gl",       "<CMD>Gclog<CR>",                    desc = "Log",                          group = "+git" },
   { "<leader>gh",       "<CMD>0Gclog<CR>",                   desc = "File history",                 group = "+git" },
-  { "<leader>gm",       "<CMD>GitMessenger<CR>",             desc = "Commit under cursor",          group = "+git" },
   { "<leader>g<up>",    "<CMD>Git push<CR>",                 desc = "push",                         group = "+git" },
   { "<leader>g<left>",  "<CMD>diffget<CR>",                  desc = "Diff get",                     group = "+git" },
   { "<leader>g<right>", "<CMD>diffget<CR>",                  desc = "Diff get",                     group = "+git" },

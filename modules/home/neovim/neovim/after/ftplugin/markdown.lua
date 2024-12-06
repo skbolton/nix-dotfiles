@@ -96,8 +96,6 @@ vim.keymap.set('n', '<localleader><right>', function() move_to_date(nil, '+', 0)
 blocal.softtabstop = 2
 blocal.shiftwidth = 2
 
-vim.g.bullets_outline_levels = { 'num', 'abc', 'std*' }
-
 -- copied from https://github.com/opdavies/toggle-checkbox.nvim/blob/main/lua/toggle-checkbox.lua
 local checked_character = "x"
 
