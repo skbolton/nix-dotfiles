@@ -23,10 +23,10 @@ in
       tidal-hifi
       font-manager
       foliate
-      okular
       galculator
       wtype
       wofi-emoji
+      wdisplays
     ];
 
     programs.wofi.enable = true;
