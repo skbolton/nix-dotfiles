@@ -1,5 +1,19 @@
 ;; extends
 
+;; wikilink conceal
+(wiki_link
+  [
+    "["
+    "["
+    "|"
+    "]"
+    "]"
+    (link_destination)
+  ] @markup.link
+  (#set! conceal ""))
+
+(tag) @function.call
+
 ;; bullet journal extends
 ;; migration forward
 (shortcut_link

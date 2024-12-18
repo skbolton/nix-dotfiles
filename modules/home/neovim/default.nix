@@ -620,7 +620,26 @@ in
         nvim-web-devicons
         popup-nvim
         plenary-nvim
-        nvim-treesitter.withAllGrammars
+        (nvim-treesitter.withPlugins (p: nvim-treesitter.allGrammars ++ [
+          (p.markdown.overrideAttrs {
+            env.EXTENSION_WIKI_LINK = "1";
+            env.EXTENSION_TAGS = "1";
+            nativeBuildInputs = [ pkgs.nodejs pkgs.tree-sitter ];
+            configurePhase = ''
+              cd tree-sitter-markdown
+              tree-sitter generate
+            '';
+          })
+          (p.markdown_inline.overrideAttrs {
+            env.EXTENSION_WIKI_LINK = "1";
+            env.EXTENSION_TAGS = "1";
+            nativeBuildInputs = [ pkgs.nodejs pkgs.tree-sitter ];
+            configurePhase = ''
+              cd tree-sitter-markdown-inline
+              tree-sitter generate
+            '';
+          })
+        ]))
         nvim-treesitter-textobjects
         nvim-treesitter-endwise
         {
