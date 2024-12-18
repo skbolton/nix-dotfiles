@@ -25,6 +25,7 @@ in
       delta.dweek
       delta.dyear
       delta.dmonth
+      delta.cosma
     ];
 
     xdg.configFile."zk/config.toml".source = ./zk.toml;
