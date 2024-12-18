@@ -28,6 +28,9 @@ in
         dynamic_background_opacity = "yes";
         background_opacity = 1;
         cursor_shape = "beam";
+        cursor_trail = 400;
+        cursor_trail_decay = "0.1 0.3";
+        cursor_trail_start_threshold = 5;
 
         font_family = "IOCollins Light";
         bold_font = "Berkeley Mono Bold";
