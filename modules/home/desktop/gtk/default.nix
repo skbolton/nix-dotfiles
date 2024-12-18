@@ -32,10 +32,8 @@ in
       };
 
       iconTheme = {
-        name = "Colloid-dark";
-        package = pkgs.colloid-icon-theme.override {
-          colorVariants = [ "default" "purple" "teal" "grey" "green" "pink" ];
-        };
+        name = "Fluent-dark";
+        package = pkgs.fluent-icon-theme;
       };
     };
   };
