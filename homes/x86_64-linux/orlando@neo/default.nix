@@ -20,6 +20,7 @@
     terminal_theme.embark.enable = true;
     kitty.enable = true;
     lang = {
+      elixir.enable = true;
       lua.enable = true;
       nix.enable = true;
     };
