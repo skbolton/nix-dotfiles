@@ -265,6 +265,12 @@ in
           "$mainMod, mouse:272, movewindow"
           "$mainMod, mouse:273, resizewindow"
         ];
+
+        bindl = [
+          ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, disable\""
+          # TODO: Find a good way to reference monitor without hard codigin
+          ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, 2880x1800@60, 0x0, 1.25\""
+        ];
       };
     };
   };

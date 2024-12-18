@@ -51,7 +51,7 @@
       width = 2880;
       height = 1800;
       scale = "1.25";
-      refreshRate = 120;
+      refreshRate = 60;
       workspaces = [ "1" "2" "3" "4" "5" "6" ];
       wallpaper = "~/Media/Pictures/Wallpapers/wallhaven-3l1z6v.jpg";
     }
