@@ -25,7 +25,7 @@ in
           layer = "top";
           modules-left = [ "hyprland/workspaces" "mpris" ];
           modules-center = [ "wlr/taskbar" ];
-          modules-right = [ "network#interface" "network#speed" "cpu" "temperature" "backlight" "battery" "clock" "custom/notification" "tray" ];
+          modules-right = [ "network#interface" "network#speed" "pulseaudio" "cpu" "temperature" "backlight" "battery" "clock" "custom/notification" "tray" ];
 
           persistent_workspaces = {
             "1" = [ ];
@@ -66,6 +66,11 @@ in
 
           "network#speed" = {
             format = "⇡{bandwidthUpBits} ⇣{bandwidthDownBits}";
+          };
+
+          pulseaudio = {
+            format = "󰓃 {volume}%";
+            on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
           };
 
           cpu = {
