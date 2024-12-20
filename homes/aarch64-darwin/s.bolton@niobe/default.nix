@@ -3,7 +3,7 @@
 {
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ docker docker-compose zk ];
+  home.packages = with pkgs; [ docker-compose zk rancher docker-credential-helpers ];
 
   delta = {
     gpg = {
