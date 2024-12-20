@@ -117,18 +117,6 @@ in
         }
         {
           plugin = (pkgs.vimUtils.buildVimPlugin {
-            name = "quicker.nvim";
-            version = "11f9eb0c803bb9ced8c6043805de89c62bd04515";
-            src = pkgs.fetchFromGitHub {
-              owner = "stevearc";
-              repo = "quicker.nvim";
-              rev = "11f9eb0c803bb9ced8c6043805de89c62bd04515";
-              sha256 = "sha256-sTjDmfQacpvhGdKPyoMxqmoOSw5ceXi6Td48gYaDotE=";
-            };
-          });
-        }
-        {
-          plugin = (pkgs.vimUtils.buildVimPlugin {
             name = "tide.nvim";
             version = "de64acfadcedec03f526ba79d95523cea6630b2d";
             src = pkgs.fetchFromGitHub {

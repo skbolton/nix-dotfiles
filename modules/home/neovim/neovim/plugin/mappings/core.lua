@@ -1,30 +1,10 @@
-local quicker = require 'quicker'
 local map = vim.keymap.set
-
-quicker.setup {
-  keys = {
-    {
-      ">",
-      function()
-        require("quicker").expand({ before = 2, after = 2, add_to_existing = true })
-      end,
-      desc = "Expand quickfix context",
-    },
-    {
-      "<",
-      function()
-        require("quicker").collapse()
-      end,
-      desc = "Collapse quickfix context",
-    },
-  }
-}
 
 map({ 'n', 'v' }, ';', ':')
 map({ 'n', 'v' }, ':', ';', { silent = true })
 map({ 'n', 'v' }, 'gy', '"+y')
-map('n', '<UP>', function() quicker.open() end)
-map('n', '<DOWN>', function() quicker.close() end)
+map('n', '<UP>', '<CMD>copen<CR>')
+map('n', '<DOWN>', '<CMD>cclose<CR>')
 map('n', '<RIGHT>', '<CMD>cnext<CR>zz')
 map('n', '<LEFT>', '<CMD>cprev<CR>zz')
 
