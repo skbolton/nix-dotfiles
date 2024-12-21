@@ -165,6 +165,28 @@
     brightnessKeys.enable = true;
   };
 
+  systemd.services.unbind-wifi-before-suspend = {
+    description = "Unbind Wi-Fi PCI device before suspend";
+    before = [ "suspend.target" ];
+    wantedBy = [ "sleep.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/bash -c 'echo 0000:c3:00.0 > /sys/bus/pci/drivers/mt7925e/unbind'";
+      RemainAfterExit = false;
+    };
+  };
+
+  systemd.services.bind-wifi-after-resume = {
+    description = "Bind Wi-Fi PCI device after resume";
+    after = [ "suspend.target" ];
+    wantedBy = [ "suspend.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/bash -c 'echo 0000:c3:00.0 > /sys/bus/pci/drivers/mt7925e/bind'";
+      RemainAfterExit = false;
+    };
+  };
+
   services.fwupd.enable = true;
 
   # This value determines the NixOS release from which the default
