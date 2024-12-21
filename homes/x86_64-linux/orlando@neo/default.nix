@@ -73,6 +73,7 @@
       docker-compose
       firefox
       delta.fman
+      delta.zen-fan-control
     ];
   };
 
