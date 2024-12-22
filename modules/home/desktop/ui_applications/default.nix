@@ -27,6 +27,7 @@ in
       wtype
       wofi-emoji
       wdisplays
+      mission-center
     ];
 
     programs.wofi.enable = true;
