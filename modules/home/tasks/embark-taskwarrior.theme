@@ -15,7 +15,7 @@ color.completed=
 color.deleted=
 color.active=color0 on color2
 color.recurring=
-color.scheduled=green
+color.scheduled=on color8
 color.until=
 color.blocked=
 color.blocking=
@@ -32,11 +32,12 @@ color.uda.priority.M=
 color.tag.next=
 color.tag.none=
 color.tagged=
+color.tag.SCHEDULED=color5
 
 # Due
-color.due=
+color.due=color3
 color.due.today=color1
-color.overdue=color0 on color1
+color.overdue=color9
 
 # Report: burndown
 color.burndown.pending=on color13
