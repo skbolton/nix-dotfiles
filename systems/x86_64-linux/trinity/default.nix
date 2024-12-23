@@ -51,6 +51,7 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
+    xkb.variant = "colemak";
     videoDrivers = [ "amdgpu" ];
     windowManager.awesome.enable = true;
     displayManager.gdm = {
@@ -58,6 +59,7 @@
       wayland = true;
     };
   };
+  console.useXkbConfig = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
