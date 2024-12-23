@@ -5,6 +5,7 @@
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [
       "https://cache.nixos.org"
+      "https://cosmic.cachix.org/" 
     ];
 
     extraSubstituters = [
@@ -13,6 +14,7 @@
 
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
     ];
   };
 
@@ -57,6 +59,8 @@
       url = "github:nvim-neorocks/lz.n";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
   };
 
   outputs = inputs:
@@ -80,6 +84,7 @@
 
       systems.modules.nixos = with inputs; [
         sops-nix.nixosModules.sops
+	nixos-cosmic.nixosModules.default
       ];
     };
 }
