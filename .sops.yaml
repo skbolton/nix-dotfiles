@@ -4,6 +4,7 @@ keys:
   - hosts:
     - &trinity age1xx7wq5gugwsjjxwv4gc0d6sgmq3q0h8qk3crn7erp33fsg2fn93sqlf3e0
     - &neo  age1lze5jczgmqtgmes6tl43gk29rc2fc05qj0tmdq60dkjjvlw5g45swhuymz
+    - &mouse age1jffchwjy3a5c0ugzjuzjd0m37gfxtpv4sgrmksvxafxawusegdjsl7x2vk
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
@@ -11,3 +12,4 @@ creation_rules:
       - *orlando
       - *trinity
       - *neo
+      - *mouse
