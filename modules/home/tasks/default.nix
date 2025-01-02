@@ -19,12 +19,42 @@ in
     };
 
     programs.zsh.initExtra = /* bash */ ''
-        function twait() {
-          task_id=$1
-          shift
-          wait_til=$(date --iso-8601=minutes --date "$*")
-          task $task_id modify wait:$wait_til
-        }
+      function twait() {
+        task_id=$1
+        shift
+        wait_til=$(date --iso-8601=minutes --date "$*")
+        task $task_id modify wait:$wait_til
+      }
+
+      function tmod() {
+        task_id=$1
+        shift
+        task $task_id modify $@
+      }
+
+      function ttoday() {
+        task sched.before:tom or +TODAY sched
+      }
+
+      function tweek() {
+        task sched.before:eow-1d or +WEEK sched
+      }
+      
+      function tnweek() {
+        task sched.after:eow-1d sched.before:eow+6d or due.after:eow-1d due.before:eow+6d sched
+      }
+
+      function tquarter() {
+        task sched.before:$(${pkgs.delta.next-q}/bin/nextq)-1d or due.before:$(${pkgs.delta.next-q}/bin/nextq)-1d sched
+      }
+
+      function tnquarter() {
+        task sched.after:$(${pkgs.delta.next-q}/bin/nextq)-1d \
+          sched.before:$(${pkgs.delta.next-q}/bin/nextq)+12w-1d \
+          or due.after:$(${pkgs.delta.next-q}/bin/nextq)-1d \
+          due.before:$(${pkgs.delta.next-q}/bin/nextq)+12w-1d \
+          sched
+      }
 
       function tsnooze() {
         tasks=$1
@@ -33,7 +63,6 @@ in
         twait $tasks $snooze
       }
     '';
-
 
     programs.taskwarrior = {
       enable = true;
@@ -56,6 +85,12 @@ in
           "in".description = "Inbox";
           "in".filter = "status:pending limit:10 (+in)";
           "in".labels = "ID,Description";
+
+          "sched".columns = "id,scheduled.formatted,scheduled.countdown,description,tags,due.relative";
+          "sched".description = "Scheduled Tasks";
+          "sched".filter = "status:pending (+SCHEDULED or due.any:'')";
+          "sched".labels = "ID,Sched,Starts,Desc,Tags,Due";
+          "sched".sort = "scheduled";
         };
         context = {
           work = "+dk or +car";
@@ -70,7 +105,7 @@ in
         color = {
           alternate = "";
         };
-        sync.server.origin = "https://tasks.zionlab.online";
+        sync.server.url = "https://tasks.zionlab.online";
       };
 
       # TODO: This is a secret that I could manage with nix if I figure out nix-sops

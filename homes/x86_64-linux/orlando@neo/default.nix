@@ -74,6 +74,8 @@
       firefox
       delta.fman
       delta.zen-fan-control
+      delta.next-m
+      delta.next-q
     ];
   };
 
