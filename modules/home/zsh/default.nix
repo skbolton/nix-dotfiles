@@ -44,6 +44,7 @@ in
         ms = "iex -S mix phx.server";
         mdg = "mix deps.get";
         mdc = "mix deps.clean --all";
+        reload = "source ~/.config/zsh/.zshrc";
       };
       history = {
         path = "${config.xdg.dataHome}/zsh/zsh_history";
