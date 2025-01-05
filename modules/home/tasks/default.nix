@@ -37,7 +37,7 @@ in
       }
 
       function tweek() {
-        task sched.before:eow-1d or +WEEK sched
+        if [[ $(date +%w) == "0" ]] && task sched.before:eow+6d or +WEEK sched || task sched.before:eow-1d or +WEEK sched
       }
       
       function tnweek() {
