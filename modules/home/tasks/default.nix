@@ -44,6 +44,10 @@ in
         task sched.after:eow-1d sched.before:eow+6d or due.after:eow-1d due.before:eow+6d sched
       }
 
+      function tmonth() {
+        task sched.before:$(nextm) sched
+      }
+
       function tquarter() {
         task sched.before:$(${pkgs.delta.next-q}/bin/nextq)-1d or due.before:$(${pkgs.delta.next-q}/bin/nextq)-1d sched
       }
