@@ -14,5 +14,6 @@
     secrets.orlando-password = { neededForUsers = true; };
     secrets.beevey-password = { neededForUsers = true; };
     secrets.wakatime-api-key = { };
+    secrets.cloudflared-tunnel-creds = { };
   };
 }
