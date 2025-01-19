@@ -124,11 +124,71 @@
   services.pcscd.enable = true;
   programs.ssh.startAgent = false;
 
+  virtualisation.docker = {
+    enable = true;
+    storageDriver = "btrfs";
+  };
+
+  services.taskchampion-sync-server = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
+      cloudflared = {
+        image = "cloudflare/cloudflared:latest";
+        environmentFiles = [
+          config.sops.secrets.cloudflared-tunnel-creds.path
+        ];
+        cmd = [ "tunnel" "run" ];
+      };
+      taskwarior-gui = {
+        image = "dcsunset/taskwarrior-webui:3";
+        ports = [ "8081:80" ];
+      };
+      linkding = {
+        image = "sissbruecker/linkding:latest";
+        ports = [ "8082:9090" ];
+        volumes = [
+          "/var/zion-data/linkding:/etc/linkding/data"
+        ];
+        environment = {
+          LD_ENABLE_AUTH_PROXY = "True";
+          LD_AUTH_PROXY_USERNAME_HEADER = "HTTP_CF_ACCESS_AUTHENTICATED_USER_EMAIL";
+          LD_AUTH_PROXY_LOGOUT_URL = "https://zionlab.cloudflareaccess.com/cdn-cgi/access/logout";
+          LD_CSRF_TRUSTED_ORIGINS = "https://links.zionlab.online";
+        };
+      };
+      beaverhabits = {
+        image = "daya0576/beaverhabits:latest";
+        ports = [ "8084:8080" ];
+        volumes = [
+          "/var/zion-data/beaverhabits:/app/.user/"
+        ];
+        environment = {
+          FIRST_DAY_OF_WEEK = "0";
+          HABITS_STORAGE = "DATABASE";
+          MAX_USER_COUNT = "1";
+          INDEX_SHOW_HABIT_COUNT = "false";
+        };
+      };
+      kavita = {
+        image = "jvmilazz0/kavita:latest";
+        ports = [ "8085:5000" ];
+        environment = {
+          TZ = "America/New_York";
+        };
+        volumes = [
+          "/home/nixos/Books:/Books"
+        ];
+      };
+    };
+  };
+
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.allowedTCPPorts = [ 8081 8082 8084 8085 ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
