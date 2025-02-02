@@ -31,7 +31,7 @@ return {
     }
   },
   {
-    "vimplugin-nnn-nvim",
+    "nnn-nvim",
     after = function()
       local nnn = require 'nnn'
 

@@ -1,16 +1,11 @@
 local blocal = vim.opt_local
 vim.cmd("packadd markdown-preview.nvim")
-vim.cmd("packadd vimplugin-mdeval-nvim")
-vim.cmd("packadd vimplugin-edit-code-block.nvim")
+vim.cmd("packadd mdeval-nvim")
 
 require 'mdeval'.setup {
   results_label = "**RESULTS**",
   require_confirmation = false,
   eval_options = {}
-}
-
-require 'ecb'.setup {
-  wincmd = "vsplit"
 }
 
 local run_code_block = function()
@@ -73,7 +68,6 @@ vim.keymap.set('n', '<localleader>r', '<CMD>MarkdownPreview<CR>', { buffer = tru
 vim.keymap.set('n', '<localleader>t', '<CMD>! md-tangle -f %<CR>', { buffer = true, desc = "tangle file" })
 vim.keymap.set('n', '<C-c><C-c>', run_code_block, { buffer = true, desc = "run block" })
 vim.keymap.set('n', '<C-c><C-x>', '<CMD>MdEval<CR>', { buffer = true, desc = "eval block" })
-vim.keymap.set('n', '<C-c><C-e>', '<CMD>EditCodeBlock<CR>', { buffer = true, desc = "edit block" })
 vim.keymap.set('n', '<C-c><C-r>', run_sql_block, { buffer = true, desc = "run as sql" })
 vim.keymap.set('n', '<localleader>ci', clock_in, { buffer = true, desc = "clock in" })
 vim.keymap.set('n', '<localleader>co', clock_out, { buffer = true, desc = "clock out" })

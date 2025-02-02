@@ -46,10 +46,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    embark-vim = {
-      url = "github:embark-theme/vim";
-      flake = false;
-    };
+    awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
 
     neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
 
@@ -78,6 +75,7 @@
 
       overlays = with inputs; [
         neorg-overlay.overlays.default
+        awesome-neovim-plugins.overlays.default
       ];
 
       systems.modules.nixos = with inputs; [

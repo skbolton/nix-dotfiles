@@ -1,6 +1,6 @@
 return {
   {
-    "vimplugin-hlchunk.nvim",
+    "hlchunk-nvim",
     event = "BufReadPre",
     after = function()
       require("hlchunk").setup {

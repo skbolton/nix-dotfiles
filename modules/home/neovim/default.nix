@@ -41,29 +41,7 @@ in
 
         # editing support
         {
-          plugin = (pkgs.vimUtils.buildVimPlugin {
-            name = "mdeval-nvim";
-            version = "2654caf";
-            src = pkgs.fetchFromGitHub {
-              owner = "jubnzv";
-              repo = "mdeval.nvim";
-              rev = "2654caf";
-              sha256 = "sha256-z+xowZ2ulJB5YcAW0OKAwcEed2iMdHYTwBkzKp5MHmQ=";
-            };
-          });
-          optional = true;
-        }
-        {
-          plugin = (pkgs.vimUtils.buildVimPlugin {
-            name = "edit-code-block.nvim";
-            version = "5e4e310";
-            src = pkgs.fetchFromGitHub {
-              owner = "dawsers";
-              repo = "edit-code-block.nvim";
-              rev = "main";
-              sha256 = "sha256-rB37XE0cvOCmFjSEVSHFl95KVJ+ScMFnGWYfYQiK5CQ=";
-            };
-          });
+          plugin = pkgs.awesomeNeovimPlugins.mdeval-nvim;
           optional = true;
         }
         {
@@ -85,16 +63,7 @@ in
         nui-nvim
 
         {
-          plugin = (pkgs.vimUtils.buildVimPlugin {
-            name = "hlchunk.nvim";
-            version = "5465dd33ade8676d63f6e8493252283060cd72ca";
-            src = pkgs.fetchFromGitHub {
-              owner = "shellRaining";
-              repo = "hlchunk.nvim";
-              rev = "5465dd33ade8676d63f6e8493252283060cd72ca";
-              sha256 = "sha256-f5VVfpfVZk6ULBWVSVEzXBN9F4ROTzhomV1F2mKIem4=";
-            };
-          });
+          plugin = pkgs.awesomeNeovimPlugins.hlchunk-nvim;
           optional = true;
         }
         {
@@ -148,19 +117,8 @@ in
         cmp-beancount
         luasnip
 
-        # nnn-vim
         {
-          plugin = pkgs.vimUtils.buildVimPlugin
-            {
-              name = "nnn-nvim";
-              version = "2023-12-24";
-              src = pkgs.fetchFromGitHub {
-                owner = "luukvbaal";
-                repo = "nnn.nvim";
-                rev = "662034c73718885ee599ad9fb193ab1ede70fbcb";
-                sha256 = "sha256-8+ax8n1fA4jgJugvWtRXkad4YM7TmAAsAopzalmGu/4=";
-              };
-            };
+          plugin = pkgs.awesomeNeovimPlugins.nnn-nvim;
           optional = true;
         }
 
@@ -238,17 +196,7 @@ in
           optional = true;
         }
         {
-          plugin = pkgs.vimUtils.buildVimPlugin
-            {
-              name = "telescope-headings";
-              version = "e85c0f6";
-              src = pkgs.fetchFromGitHub {
-                owner = "crispgm";
-                repo = "telescope-heading.nvim";
-                rev = "e85c0f6";
-                sha256 = "sha256-29nSqK4sWI3m5hHviGBfiSN/GPh8oXGiYrrTmN2okRk=";
-              };
-            };
+          plugin = pkgs.awesomeNeovimPlugins.telescope-heading-nvim;
           optional = true;
         }
       ];

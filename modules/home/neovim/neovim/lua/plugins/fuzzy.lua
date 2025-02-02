@@ -104,7 +104,7 @@ return {
     lazy = true
   },
   {
-    'vimplugin-telescope-headings',
+    'telescope-heading-nvim',
     after = function()
       require 'telescope'.load_extension('heading')
     end,

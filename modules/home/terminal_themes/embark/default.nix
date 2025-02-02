@@ -11,7 +11,7 @@ in
 
   config = mkIf cfg.enable {
 
-    programs.neovim.plugins = [{ plugin = pkgs.vimUtils.buildVimPlugin { name = "embark-vim"; src = inputs.embark-vim; }; }];
+    programs.neovim.plugins = [{ plugin = pkgs.awesomeNeovimPlugins.embark-theme-vim; }];
 
     xdg.configFile."nvim/plugin/embark.lua".text = ''
       vim.o.background = 'dark'
