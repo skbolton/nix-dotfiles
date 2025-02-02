@@ -1,18 +1,27 @@
 return {
   {
-    "indent-blankline.nvim",
+    "vimplugin-hlchunk.nvim",
     event = "BufReadPre",
     after = function()
-      require 'ibl'.setup {
-        indent = {
-          char = "┊"
+      require("hlchunk").setup {
+        chunk = {
+          enable = true,
+          chars = {
+            horizontal_line = "─",
+            vertical_line = "│",
+            left_top = "╭",
+            left_bottom = "╰",
+            right_arrow = "─",
+          },
+          style = { vim.api.nvim_get_hl(0, { name = "Comment" }) },
+          textobject = "is"
         },
-        scope = {
-          char = "│",
+        indent = {
+          enable = true,
+          chars = { "┊" }
         }
       }
     end
-
   },
   {
     'venn.nvim',

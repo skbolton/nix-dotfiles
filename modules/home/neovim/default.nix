@@ -85,7 +85,16 @@ in
         nui-nvim
 
         {
-          plugin = indent-blankline-nvim;
+          plugin = (pkgs.vimUtils.buildVimPlugin {
+            name = "hlchunk.nvim";
+            version = "5465dd33ade8676d63f6e8493252283060cd72ca";
+            src = pkgs.fetchFromGitHub {
+              owner = "shellRaining";
+              repo = "hlchunk.nvim";
+              rev = "5465dd33ade8676d63f6e8493252283060cd72ca";
+              sha256 = "sha256-f5VVfpfVZk6ULBWVSVEzXBN9F4ROTzhomV1F2mKIem4=";
+            };
+          });
           optional = true;
         }
         {
