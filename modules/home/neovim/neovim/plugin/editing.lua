@@ -58,19 +58,3 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     })
   end,
 })
-
--- vim.g.user_emmet_settings = {
---   ['javascript.jsx'] = {
---     extends = 'jsx',
---   },
---   elixir = {
---     extends = 'html'
---   },
---   eelixir = {
---     extends = 'html'
---   },
---   heex = {
---     extends = 'html'
---   }
--- }
--- vim.g.user_emmet_mode = 'inv'
