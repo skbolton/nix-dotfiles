@@ -1,4 +1,3 @@
-local diagrams = require 'diagramming'
 local gl = require 'galaxyline'
 local vcs = require 'galaxyline.providers.vcs'
 local file = require 'galaxyline.providers.fileinfo'
