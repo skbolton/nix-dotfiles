@@ -10,7 +10,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.nodejs_20 pkgs.nodePackages.poor-mans-t-sql-formatter-cli ];
+    home.packages = [ pkgs.nodejs_20 pkgs.nodePackages.poor-mans-t-sql-formatter-cli pkgs.emmet-language-server ];
     programs.neovim = {
       # package = pkgs.neovim-nightly;
       enable = true;
