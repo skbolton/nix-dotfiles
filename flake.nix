@@ -56,6 +56,11 @@
     };
 
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+
+    blink-cmp = {
+      url = "github:Saghen/blink.cmp";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs:

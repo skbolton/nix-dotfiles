@@ -107,14 +107,11 @@ in
 
         galaxyline-nvim
 
-        nvim-cmp
-        cmp-nvim-lsp
         { plugin = vista-vim; optional = true; }
-        cmp-buffer
-        cmp-path
-        cmp-cmdline
-        cmp-nvim-lua
-        cmp-beancount
+        {
+          plugin = inputs.blink-cmp.packages.${pkgs.system}.default;
+          optional = false;
+        }
         luasnip
 
         {
