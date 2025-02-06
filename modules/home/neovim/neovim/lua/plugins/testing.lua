@@ -9,8 +9,7 @@ return {
 
       g["test#custom_strategies"] = {
         vimux_watch = function(args)
-          vim.cmd("call VimuxClearTerminalScreen()")
-          vim.cmd("call VimuxClearRunnerHistory()")
+          vim.cmd("call VimuxInterruptRunner()")
           vim.cmd(string.format("call VimuxRunCommand('fd . | entr -c %s')", args))
         end
       }
