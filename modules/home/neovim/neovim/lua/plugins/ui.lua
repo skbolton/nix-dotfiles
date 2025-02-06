@@ -7,13 +7,13 @@ return {
         chunk = {
           enable = true,
           chars = {
-            horizontal_line = "─",
-            vertical_line = "│",
-            left_top = "╭",
-            left_bottom = "╰",
-            right_arrow = "─",
+            horizontal_line = "━",
+            vertical_line = "┃",
+            left_top = "┏",
+            left_bottom = "┗",
+            right_arrow = "━",
           },
-          style = { vim.api.nvim_get_hl(0, { name = "Comment" }) },
+          style = { vim.api.nvim_get_hl(0, { name = "LineNr" }), vim.api.nvim_get_hl(0, { name = "Function" }) },
           textobject = "is"
         },
         indent = {
