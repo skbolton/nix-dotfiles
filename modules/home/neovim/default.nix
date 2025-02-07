@@ -150,6 +150,10 @@ in
           optional = true;
         }
 
+        {
+          plugin = pkgs.awesomeNeovimPlugins.treewalker-nvim;
+          optional = true;
+        }
         nvim-web-devicons
         popup-nvim
         plenary-nvim
