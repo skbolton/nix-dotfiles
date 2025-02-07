@@ -1,6 +1,6 @@
 return {
   {
-    "treesitter-nvim",
+    "nvim-treesitter",
     after = function()
       require "nvim-treesitter.configs".setup {
         highlight = {
@@ -82,10 +82,10 @@ return {
       }
     end,
     keys = {
-      { '<M-left>',  '<cmd>Treewalker Left<cr>' },
-      { '<M-up>',    '<cmd>Treewalker Up<cr>' },
-      { '<M-right>', '<cmd>Treewalker Right<cr>' },
-      { '<M-down>',  '<cmd>Treewalker Down<cr>' },
+      { '<M-left>',  '<cmd>Treewalker Left<cr>zz' },
+      { '<M-up>',    '<cmd>Treewalker Up<cr>zz' },
+      { '<M-right>', '<cmd>Treewalker Right<cr>zz' },
+      { '<M-down>',  '<cmd>Treewalker Down<cr>zz' },
     }
   }
 }

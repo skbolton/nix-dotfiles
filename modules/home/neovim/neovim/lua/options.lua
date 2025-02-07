@@ -29,12 +29,11 @@ opt.linebreak = true
 -- UI CONFIG
 -- ===================================================================
 -- gutters, line numbers, searching
-opt.statuscolumn = "%{v:relnum?v:relnum:v:lnum}%=%s"
+opt.statuscolumn = "%{v:lnum}%=%s"
 opt.termguicolors = true
 opt.conceallevel = 2
 opt.encoding = "utf8"
 opt.number = true
-opt.relativenumber = true
 opt.ruler = true
 opt.cursorline = true
 -- when typing a bracket highlight the match
