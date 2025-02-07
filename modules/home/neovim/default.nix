@@ -110,7 +110,7 @@ in
         { plugin = vista-vim; optional = true; }
         {
           plugin = inputs.blink-cmp.packages.${pkgs.system}.default;
-          optional = false;
+          optional = true;
         }
         luasnip
 
