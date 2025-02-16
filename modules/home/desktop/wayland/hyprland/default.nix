@@ -247,7 +247,6 @@ in
 
           ", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10-"
           ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10"
-          ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10"
 
           "$mainMod, bracketright, focusmonitor, r"
           "$mainMod, bracketright, focusmonitor, r"
@@ -271,7 +270,7 @@ in
         bindl = [
           ", switch:on:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, disable\""
           # TODO: Find a good way to reference monitor without hard codigin
-          ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, 2880x1800@60, 0x0, 1.25\""
+          ", switch:off:Lid Switch, exec, hyprctl keyword monitor \"eDP-1, 2880x1920@60, 0x0, 1.66667\""
         ];
       };
     };
