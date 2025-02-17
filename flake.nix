@@ -87,6 +87,10 @@
         awesome-neovim-plugins.overlays.default
       ];
 
+      homes.modules = with inputs; [
+        sops-nix.homeManagerModules.sops
+      ];
+
       systems.modules.nixos = with inputs; [
         sops-nix.nixosModules.sops
         {

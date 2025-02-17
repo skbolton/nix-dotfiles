@@ -109,12 +109,12 @@ in
         color = {
           alternate = "";
         };
-        sync.server.url = "https://tasks.zionlab.online";
+        sync.server.url = "http://mouse.zionlab.local:10222";
       };
 
       # TODO: This is a secret that I could manage with nix if I figure out nix-sops
       extraConfig = ''
-        include $HOME/Documents/Logbook/Trackers/Tasks/credentials
+        include $XDG_RUNTIME_DIR/taskwarrior-sync-server-credentials.txt
       '';
     };
 

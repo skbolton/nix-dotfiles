@@ -7,7 +7,7 @@ keys:
     - &mouse age1jffchwjy3a5c0ugzjuzjd0m37gfxtpv4sgrmksvxafxawusegdjsl7x2vk
     - &framework age1vas6lrdlnapyv6j58jhpsudflxetgqapc0snpv4vd4jvtdaxr9us4gf22q
 creation_rules:
-  - path_regex: secrets.yaml$
+  - path_regex: secrets/system-secrets.yaml$
     key_groups:
     - age:
       - *orlando
@@ -15,3 +15,7 @@ creation_rules:
       - *neo
       - *mouse
       - *framework
+  - path_regex: secrets/home-secrets.yaml$
+    key_groups:
+    - age:
+      - *orlando

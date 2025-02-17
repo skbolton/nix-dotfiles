@@ -8,6 +8,7 @@
   fonts.fontconfig.enable = true;
 
   delta = {
+    sops.enable = true;
     gpg.enable = true;
     zsh.enable = true;
     cli_apps.enable = true;

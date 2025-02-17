@@ -63,8 +63,15 @@ Run installer
 nixos-install --flake .#$HOSTNAME
 ```
 
-## Building custom iso
+## Adding new hosts
 
+If new host needs access to secrets than update the comment in `systems/x86_64-install-iso/minimal/default.nix` with the age key.
+
+> Don't commit the secret dummy
+
+Next build the image
 ```bash
 nix build '.#install-isoConfigurations.minimal'
 ```
+
+Do traditional installation of nixos and if secrets are needed copy the `/etc/orlando-age-key.txt` into the new users `~/.config/sops/age-key.txt`

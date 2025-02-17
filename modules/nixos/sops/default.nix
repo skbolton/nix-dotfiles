@@ -2,7 +2,7 @@
 
 {
   sops = {
-    defaultSopsFile = ../../../secrets.yaml;
+    defaultSopsFile = ../../../secrets/system-secrets.yaml;
     validateSopsFiles = false;
 
     age = {
