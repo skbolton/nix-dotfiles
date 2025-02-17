@@ -20,6 +20,7 @@
     neovim.enable = true;
     terminal_theme.embark.enable = true;
     kitty.enable = true;
+    calendar.enable = true;
     lang = {
       elixir.enable = true;
       lua.enable = true;
