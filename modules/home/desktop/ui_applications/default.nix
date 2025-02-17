@@ -18,7 +18,6 @@ in
       lxappearance
       arandr
       gnucash
-      morgen
       mpv
       tidal-hifi
       font-manager

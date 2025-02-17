@@ -20,6 +20,9 @@ in
       secrets.taskwarrior-sync-server-credentials = {
         path = "%r/taskwarrior-sync-server-credentials.txt";
       };
+      secrets.fastmail-vdirsync-password = {
+        path = "%r/fastmail-vdirsync-password.txt";
+      };
     };
   };
 
