@@ -21,6 +21,7 @@ in
     home.packages = with pkgs; [
       vdirsyncer
       khal
+      delta.agenda
     ] ++ optional cfg.gui morgen;
 
     xdg.configFile."khal/config".text = /* ini */ ''
@@ -37,12 +38,13 @@ in
       [[rally]]
       path = ~/Calendars/65cbe2a3-f9b1-4c6f-9fdb-4b231178d1f5/
 
+      [[war]]
+      path = ~/Calendars/75f04ec1-431b-44d2-9691-edbc6367efa6/
+
       [view]
       event_format = {calendar-color}{cancelled}{start}-{end} {title}{repeat-symbol}{reset}
       agenda_event_format = {calendar-color}{cancelled}{start}-{end} {title}{repeat-symbol}{reset}
     '';
-
-    programs.zsh.shellAliases.agenda = "khal list --day-format '{white}{name}, {date}' --format '{calendar-color} {start-time} {end-time} | {title}{reset}{repeat-symbol}{red}{cancelled}{reset}' today '3 days'";
 
     xdg.configFile."vdirsyncer/calendar.conf".text = ''
       [general]
