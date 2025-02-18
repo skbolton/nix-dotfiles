@@ -11,3 +11,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- even out any splits when vim window is resized
 vim.api.nvim_create_autocmd("VimResized", { pattern = "*", group = window_group, command = [[exe "normal! \<c-w>=" ]] })
+vim.api.nvim_create_autocmd("CursorMoved", { pattern = "*", group = window_group, command = [[exe "normal! zz" ]] })
