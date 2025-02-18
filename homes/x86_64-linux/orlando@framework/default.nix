@@ -17,6 +17,7 @@
     passwords.enable = true;
     tasks.enable = true;
     timetracking.enable = true;
+    habits.enable = true;
     neovim.enable = true;
     terminal_theme.embark.enable = true;
     kitty.enable = true;
