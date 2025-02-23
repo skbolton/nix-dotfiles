@@ -59,8 +59,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-
     blink-cmp = {
       url = "github:Saghen/blink.cmp";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -93,13 +91,6 @@
 
       systems.modules.nixos = with inputs; [
         sops-nix.nixosModules.sops
-        {
-          nix.settings = {
-            substituters = [ "https://cosmic.cachix.org/" ];
-            trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-          };
-        }
-        nixos-cosmic.nixosModules.default
       ];
     };
 }
