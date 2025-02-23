@@ -27,6 +27,7 @@ in
       wofi-emoji
       wdisplays
       mission-center
+      thunderbird
     ];
 
     programs.wofi.enable = true;
