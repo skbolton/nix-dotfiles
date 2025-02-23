@@ -11,7 +11,7 @@ in
 
   config = mkIf cfg.enable {
     home.sessionVariables = {
-      HARSHPATH = "~/Documents/Logbook/Trackers/Habits/$(date +%Y)";
+      HARSHPATH = "$HOME/Documents/Logbook/Trackers/Habits/$(date +%Y)";
     };
     programs.zsh.shellAliases = {
       hab = "harsh";
