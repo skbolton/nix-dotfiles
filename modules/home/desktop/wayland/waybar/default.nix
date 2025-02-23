@@ -7,6 +7,10 @@ in
 {
   options.delta.desktop.wayland.waybar = with types; {
     enable = mkEnableOption "waybar";
+    target = mkOption {
+      type = str;
+      default = "graphical-session.target";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -17,6 +21,7 @@ in
     programs.waybar = {
       enable = true;
       systemd.enable = true;
+      systemd.target = cfg.target;
       package = pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ]; });
       settings = {
         mainBar = {
