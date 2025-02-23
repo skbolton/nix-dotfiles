@@ -26,20 +26,9 @@ in
 
     xdg.configFile."khal/config".text = /* ini */ ''
       [calendars]
-      [[work]]
-      path = ~/Calendars/25a8e96f-e691-480d-97ae-befca1faa7b2
-
-      [[art]]
-      path = ~/Calendars/dd8a9ad6-0447-476c-8ed3-d79673788fc3/
-
-      [[events]]
-      path = ~/Calendars/2ecc89af-3cd6-4c44-b8ec-49160b29d61b/
-
-      [[rally]]
-      path = ~/Calendars/65cbe2a3-f9b1-4c6f-9fdb-4b231178d1f5/
-
-      [[war]]
-      path = ~/Calendars/75f04ec1-431b-44d2-9691-edbc6367efa6/
+      [[calendars]]
+      path = ~/Calendars/*
+      type = discover
 
       [view]
       event_format = {calendar-color}{cancelled}{start}-{end} {title}{repeat-symbol}{reset}
