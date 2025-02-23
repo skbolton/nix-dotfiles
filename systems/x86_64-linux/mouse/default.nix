@@ -150,6 +150,9 @@
       taskwarior-gui = {
         image = "dcsunset/taskwarrior-webui:3";
         ports = [ "8081:80" ];
+        volumes = [
+          "${config.sops.secrets.taskwarrior-sync-server-credentials.path}:/.taskrc"
+        ];
       };
       linkding = {
         image = "sissbruecker/linkding:latest";
