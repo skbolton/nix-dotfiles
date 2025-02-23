@@ -93,6 +93,7 @@
     git
     yubikey-personalization
     yubikey-manager
+    wl-clipboard
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -187,7 +188,7 @@
           TZ = "America/New_York";
         };
         volumes = [
-          "/home/nixos/Books:/Books"
+          "/mnt/Books:/Books"
         ];
       };
     };

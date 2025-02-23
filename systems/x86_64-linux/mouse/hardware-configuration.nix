@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
@@ -69,6 +70,12 @@
       device = "/dev/disk/by-label/NIX-EFI";
       fsType = "vfat";
     };
+
+  fileSystems."/mnt/Books" = {
+    device = "oracle.zionlab.local:volume1/Shared\ Media/Books";
+    fsType = "nfs";
+    options = [ "x-systemd.automount" "noauto" ];
+  };
 
   swapDevices = [{ device = "/swap/swapfile"; }];
 
