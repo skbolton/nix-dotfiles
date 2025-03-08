@@ -12,8 +12,8 @@ in
   config = {
     qt = {
       enable = cfg.enable;
-      platformTheme.name = "gtk3";
-      style.name = "adwaita-gtk";
+      platformTheme.name = "adwaita";
+      style.name = "Adwaita";
     };
   };
 }

@@ -99,7 +99,7 @@
     pulseaudio
     qmk
     obs-studio
-    gnome.simple-scan
+    simple-scan
     sops
     (google-cloud-sdk.withExtraComponents [
       google-cloud-sdk.components.kubectl

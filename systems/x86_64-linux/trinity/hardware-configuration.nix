@@ -12,6 +12,7 @@
   boot.initrd.availableKernelModules = [ "thunderbolt" "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ "amdgpu" "v4l2loopback" ];
   boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
   fileSystems."/" =
@@ -83,8 +84,14 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.extraPackages = [ pkgs.amdvlk ];
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  hardware.amdgpu.opencl.enable = true;
+  hardware.amdgpu.amdvlk.enable = true;
+
   hardware.keyboard.qmk.enable = true;
 }
