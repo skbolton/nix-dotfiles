@@ -66,6 +66,7 @@
       docker-compose
       firefox
       pkgs.delta.fman
+      handbrake
     ];
   };
 
