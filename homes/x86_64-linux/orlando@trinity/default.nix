@@ -79,18 +79,9 @@
       wallpaper = "~/Media/Pictures/Wallpapers/KENSHI.jpg";
     }
     {
-      name = "DP-3";
-      width = 2560;
-      height = 2880;
-      scale = "1";
-      x = 2560;
-      workspaces = [ "2" "4" "6" ];
-      wallpaper = "~/Media/Pictures/Wallpapers/GHOSTEYESred.jpg";
-    }
-    {
-      name = "DP-2";
+      name = "DP-5";
       width = 3840;
-      x = 5120;
+      x = 2560;
       y = 0;
       refreshRate = 240;
       height = 2160;
