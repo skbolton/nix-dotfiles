@@ -12,7 +12,12 @@
     };
     zsh.enable = true;
     cli_apps.enable = true;
-    tmux.enable = true;
+    tmux = {
+      enable = true;
+      extraConfig = ''
+        run -b 'smug start notes'
+      '';
+    };
     neovim.enable = true;
     kitty.enable = true;
     notes = {

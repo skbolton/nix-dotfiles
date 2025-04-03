@@ -7,6 +7,11 @@ in
 {
   options.delta.tmux = with types; {
     enable = mkEnableOption "tmux";
+    extraConfig = mkOption {
+      type = lines;
+      description = "Extra lines to add at the end of tmux config";
+      default = '''';
+    };
   };
 
   config = mkIf cfg.enable {
@@ -77,6 +82,8 @@ in
 
         source ~/.config/tmux/bindings.tmux
         source "~/.config/tmux/statusline.tmux"
+
+        ${cfg.extraConfig}
       '';
     };
 
