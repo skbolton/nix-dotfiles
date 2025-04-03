@@ -60,6 +60,7 @@ return {
         end)
       end)
     end,
+    cmd = { "ZkNotes", "ZkTags" },
     keys = {
       { "<leader>nn",    "<CMD>ZkNotes<CR>",                  desc = "Find note" },
       { "<leader>nN",    ":ZkNotes { tags = {}}<left><left>", desc = "Notes with tag" },
