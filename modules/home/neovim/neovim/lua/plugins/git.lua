@@ -81,7 +81,7 @@ return {
       vim.keymap.set({ 'n' }, "<leader>gr", "<CMD>Gread<CR>", { desc = "Read" })
       vim.keymap.set({ 'n' }, "<leader>gl", "<CMD>Gclog<CR>", { desc = "Log" })
       vim.keymap.set({ 'n' }, "<leader>gh", "<CMD>0Gclog<CR>", { desc = "File history" })
-      vim.keymap.set({ 'n', 'v' }, "<leader>gv", "<CMD>Gbrowse!<CR>", { desc = "Webview copy" })
+      vim.keymap.set({ 'n', 'v' }, "<leader>gv", "<CMD>GBrowse!<CR>", { desc = "Webview copy" })
       vim.keymap.set({ 'n' }, "<leader>g<up>", "<CMD>Git push<CR>", { desc = "push" })
       vim.keymap.set({ 'n', 'v' }, "<leader>g<left>", "<CMD>diffget<CR>", { desc = "Diff get" })
       vim.keymap.set({ 'n', 'v' }, "<leader>g<right>", "<CMD>diffget<CR>", { desc = "Diff get" })
