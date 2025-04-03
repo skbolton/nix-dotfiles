@@ -15,6 +15,9 @@
     tmux.enable = true;
     neovim.enable = true;
     kitty.enable = true;
+    timetracking = {
+      enable = true;
+    };
     terminal_theme.embark.enable = true;
     desktop.macos.aerospace.enable = true;
     lang = {

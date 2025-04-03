@@ -17,7 +17,10 @@
     finance.enable = true;
     passwords.enable = true;
     tasks.enable = true;
-    timetracking.enable = true;
+    timetracking = {
+      enable = true;
+      timesheets = "$HOME/00-09-System/03-Quantified/03.10-Timecards/$(date +%Y)";
+    };
     habits.enable = true;
     neovim.enable = true;
     terminal_theme.embark.enable = true;

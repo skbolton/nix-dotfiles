@@ -7,6 +7,12 @@ in
 {
   options.delta.timetracking = with types; {
     enable = mkEnableOption "timetracking";
+    timesheets = mkOption {
+      type = str;
+      description = "Directory where timesheets are stored";
+      example = "$HOME/timesheets";
+      default = "$HOME/timesheets";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -16,14 +22,13 @@ in
     ];
 
     home.sessionVariables = {
-      TIMECARDS = "$HOME/00-09-System/03-Quantified/03.10-Timecards/$(date +%Y)";
+      TIMESHEETS = cfg.timesheets;
     };
 
     programs.zsh = {
       shellAliases = {
-        htime = "cat $TIMECARDS/*.timeclock | ${pkgs.hledger}/bin/hledger -f timeclock:- balance -t";
+        htime = "cat $TIMESHEETS/* | ${pkgs.hledger}/bin/hledger -f timeclock:- balance -t";
       };
     };
-
   };
 }
