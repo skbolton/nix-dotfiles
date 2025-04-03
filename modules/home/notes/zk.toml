@@ -167,6 +167,8 @@ dead-link = "warning"
 [alias]
 # Here are a few aliases to get you started.
 
+ei = "zk edit --interactive"
+
 # Shortcut to a command.
 #ls = "zk list $@"
 
