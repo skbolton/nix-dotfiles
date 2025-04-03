@@ -15,6 +15,10 @@
     tmux.enable = true;
     neovim.enable = true;
     kitty.enable = true;
+    notes = {
+      enable = true;
+      notebook_dir = "$HOME/Documents/Notes";
+    };
     timetracking = {
       enable = true;
     };

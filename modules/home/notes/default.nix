@@ -7,17 +7,21 @@ in
 {
   options.delta.notes = with types; {
     enable = mkEnableOption "Notes";
+    notebook_dir = mkOption {
+      type = str;
+      description = "Primary nootbook root";
+      default = "$HOME/Notes";
+      example = "$HOME/Notes";
+    };
   };
 
   config = mkIf cfg.enable {
     home.sessionVariables = {
       JOURNALS = "$HOME/Documents/Logbook/Journal";
-      ZK_NOTEBOOK_DIR = "$HOME/Documents/Reference";
+      ZK_NOTEBOOK_DIR = cfg.notebook_dir;
     };
 
     home.packages = with pkgs; [
-      logseq
-      obsidian
       zk
       delta.qke
       delta.dsearch

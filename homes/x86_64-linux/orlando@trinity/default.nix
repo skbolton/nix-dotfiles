@@ -32,7 +32,10 @@
       lua.enable = true;
       nix.enable = true;
     };
-    notes.enable = true;
+    notes = {
+      enable = true;
+      notebook_dir = "$HOME/Documents/Reference";
+    };
     desktop.wayland.hyprland = {
       enable = false;
       autostart = [
