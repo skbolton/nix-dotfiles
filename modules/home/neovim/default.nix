@@ -68,7 +68,7 @@ in
         }
         {
           plugin = vim-tmux-navigator;
-          optional = true;
+          optional = false;
         }
         {
           plugin = nvim-lint;
