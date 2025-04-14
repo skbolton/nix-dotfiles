@@ -124,14 +124,19 @@
     };
   };
 
+  services.gvfs.enable = true;
+
   services.dbus.packages = [ pkgs.gcr ];
 
   programs.dconf.enable = true;
 
   programs.hyprland.enable = true;
+  programs.river.enable = true;
 
   xdg.portal = {
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
+    wlr.enable = true;
   };
 
   virtualisation.docker.enable = true;

@@ -28,9 +28,9 @@ in
           start_hidden = false;
           margin = "0";
           layer = "top";
-          modules-left = [ "hyprland/workspaces" "mpris" ];
-          modules-center = [ "wlr/taskbar" ];
-          modules-right = [ "network#interface" "network#speed" "pulseaudio" "cpu" "temperature" "backlight" "battery" "clock" "custom/notification" "tray" ];
+          modules-left = optional config.delta.desktop.wayland.hyprland.enable "hyprland/workspaces" ++ optionals config.delta.desktop.wayland.river.enable [ "river/tags" "river/mode" ];
+          modules-center = [ "mpris" ];
+          modules-right = [ "network#interface" "network#speed" "pulseaudio" "cpu" "temperature" "backlight" "battery" "clock" "tray" ];
 
           persistent_workspaces = {
             "1" = [ ];
@@ -49,6 +49,11 @@ in
             };
           };
 
+          "river/tags" = {
+            num-tags = 5;
+            tag-labels = [ " " "󰈹 " "󰙯 " "󰝚 " ];
+          };
+
           mpris = {
             format = "{status_icon}<span weight='bold'>{artist}</span> | {title}";
             status-icons = {
@@ -60,6 +65,7 @@ in
 
           "wlr/taskbar" = {
             on-click = "activate";
+            icon-theme = "Fluent-dark";
           };
 
           "network#interface" = {
@@ -103,13 +109,6 @@ in
             format-alt = "󰃭 {:%Y-%m-%d}";
           };
 
-          "custom/notification" = {
-            exec = "~/.config/waybar/scripts/dunst.sh";
-            tooltip = false;
-            on-click = "dunstctl set-paused toggle";
-            restart-interval = 1;
-          };
-
           tray = {
             icon-size = 16;
             spacing = 8;
@@ -117,14 +116,23 @@ in
         };
       };
 
-      style = ''
+      style = /* css */ ''
         * {
           min-height: 0;
         }
 
         window#waybar {
           font-family: 'Noto', 'RobotoMono Nerd Font';
-          font-size: 10px;
+          font-size: 12px;
+          background: transparent;
+        }
+
+        #tags button {
+          padding: 0px 4px;
+        }
+
+        #tags button.focused {
+          color: #A1EFD3;
         }
 
         tooltip {
@@ -149,10 +157,6 @@ in
           padding: 0 4px;
         }
 
-        #custom-notification {
-          padding: 0 4px 0 4px;
-        }
-
         #tray {
           padding: 0 4px;
         }
@@ -162,34 +166,6 @@ in
           margin: 0;
         }
       '';
-    };
-
-    xdg.configFile."waybar/scripts/dunst.sh" = {
-      text = ''
-        COUNT=$(dunstctl count waiting)
-        ENABLED="󰂚 "
-        DISABLED="󰂛 "
-        if [ $COUNT != 0 ]; then DISABLED="󱅫 "; fi
-        if dunstctl is-paused | grep -q "false"; then
-          echo $ENABLED
-        else
-          echo $DISABLED
-        fi
-      '';
-      executable = true;
-    };
-
-    xdg.configFile."waybar/scripts/task-context.sh" = {
-      text = ''
-        ICON=" "
-        CONTEXT=$(task _get rc.context)
-
-        if [ -z "$CONTEXT" ]; then
-          CONTEXT="NONE"
-        fi
-        echo "$ICON $CONTEXT"
-      '';
-      executable = true;
     };
   };
 }

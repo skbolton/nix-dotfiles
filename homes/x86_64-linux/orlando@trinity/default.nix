@@ -31,14 +31,15 @@
     };
     notes.enable = true;
     desktop.wayland.hyprland = {
-      enable = true;
+      enable = false;
       autostart = [
         # "remind -z -k':notify-send -u critical \"Reminder!\" %s' ~/00-09-System/02-Logs/02.10-Journal/agenda.rem"
         "[workspace 7 silent] kitty --title='kitty-journal' --hold smug start delta -a"
       ];
     };
+    desktop.wayland.river.enable = true;
     desktop.wayland.waybar.enable = true;
-    desktop.wayland.waybar.target = "hyprland-session.target";
+    desktop.wayland.waybar.target = "river-session.target";
     desktop.dunst.enable = true;
     desktop.nm-applet.enable = true;
     desktop.gtk.enable = true;
@@ -77,7 +78,7 @@
       height = 2880;
       scale = "1";
       workspaces = [ "7" "8" "9" ];
-      wallpaper = "~/Media/Pictures/Wallpapers/KENSHI.jpg";
+      wallpaper = "~/Desktop/dc0l5thp6nre1.jpeg";
     }
     {
       name = "DP-5";
@@ -88,7 +89,7 @@
       height = 2160;
       scale = "1";
       workspaces = [ "1" "3" "5" ];
-      wallpaper = "~/Media/Pictures/Wallpapers/wallhaven-p91ve3.jpg";
+      wallpaper = "~/Desktop/3840x2400-v0-sfwqjybeaawd1.jpg";
     }
   ];
 
