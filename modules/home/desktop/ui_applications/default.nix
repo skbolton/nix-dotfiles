@@ -12,6 +12,7 @@ in
   config = mkIf cfg.enable {
     # TODO: These need cleaning up!
     home.packages = with pkgs; [
+      discord
       slack
       zoom-us
       nautilus
