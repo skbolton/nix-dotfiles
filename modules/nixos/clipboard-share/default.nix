@@ -18,8 +18,8 @@ in
           };
           port = mkOption {
             description = "Port server is running at";
-            type = str;
-            default = "11155";
+            type = int;
+            default = 11155;
           };
           user = lib.mkOption {
             description = "Unix User to run the server under";
@@ -63,7 +63,7 @@ in
       after = [ "network.target" ];
       description = "Clipboard Share client connection";
       serviceConfig = {
-        ExecStart = "${pkgs.delta.uniclip}/bin/uniclip ${cfg.server.hostname}:${cfg.server.port}";
+        ExecStart = "${pkgs.delta.uniclip}/bin/uniclip ${cfg.server.hostname}:${toString(cfg.server.port)}";
       };
     };
   };
