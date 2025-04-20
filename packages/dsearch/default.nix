@@ -1,7 +1,7 @@
 { writeShellApplication, ripgrep, bat, fzf }:
 
 writeShellApplication {
-  name = "note-search";
+  name = "dsearch";
   runtimeInputs = [ ripgrep bat fzf ];
   text = ''
     rm -f /tmp/rg-fzf-{r,f}
