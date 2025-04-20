@@ -12,7 +12,6 @@ in
     server = mkOption {
       type = submodule {
         options = {
-          enable = mkOption { type = bool; default = false; };
           hostname = mkOption {
             type = str;
             description = "hostname without port for clipboard server";
@@ -46,7 +45,7 @@ in
     };
     users.groups.${cfg.server.group} = { };
 
-    networking.firewall.allowedTCPPorts = mkIf cfg.server.enable [ cfg.server.port ];
+    networking.firewall.allowedTCPPorts = mkIf cfg.type == "server" [ cfg.server.port ];
 
     systemd.services.clipboard-share-server = mkIf (cfg.type == "server") {
       wantedBy = [ "multi-user.target" ];
