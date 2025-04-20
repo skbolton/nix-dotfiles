@@ -58,7 +58,6 @@
       scale = "1.666667, vrr, 1";
       refreshRate = 60;
       workspaces = [ "1" "2" "3" "4" "5" "6" ];
-      wallpaper = "~/Wallpapers/framework.jpeg";
     }
   ];
 

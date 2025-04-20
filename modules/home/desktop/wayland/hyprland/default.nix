@@ -18,7 +18,6 @@ in
   config = mkIf cfg.enable {
 
     home.packages = with pkgs; [
-      swaybg
       wl-clipboard
       grim
       slurp
@@ -35,7 +34,7 @@ in
           "hyprctl setcursor Bibata-Modern-Ice 22"
           "[workspace 2 silent] firefox"
           "kitty"
-        ] ++ (map (m: "swaybg --output ${m.name} --image ${m.wallpaper} --mode fill") config.monitors)
+        ]
         ++ cfg.autostart
         ++ optional config.delta.synology.enable "synology-drive";
 
@@ -96,6 +95,7 @@ in
         misc = {
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
+          background_color = "0x1E1C31";
         };
 
         xwayland = {

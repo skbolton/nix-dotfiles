@@ -94,7 +94,6 @@
       height = 2880;
       scale = "1";
       workspaces = [ "7" "8" "9" ];
-      wallpaper = "~/Desktop/dc0l5thp6nre1.jpeg";
     }
     {
       name = "DP-5";
@@ -105,7 +104,6 @@
       height = 2160;
       scale = "1";
       workspaces = [ "1" "3" "5" ];
-      wallpaper = "~/Desktop/3840x2400-v0-sfwqjybeaawd1.jpg";
     }
   ];
 

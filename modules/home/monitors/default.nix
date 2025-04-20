@@ -44,9 +44,6 @@ in
           example = [ "1" "4" ];
           default = [ ];
         };
-        wallpaper = mkOption {
-          type = types.str;
-        };
       };
     });
     default = [ ];
