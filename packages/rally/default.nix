@@ -22,7 +22,8 @@ writeShellApplication {
         --with-nth '-3..-1'
     }
 
-    TARGET=$(_targets | _select | xargs basename)
+    TARGET=$(_targets | _select)
+    NAME=$(basename "$TARGET")
 
 
     if [[ -f "$TARGET/.steve-smug.yml" ]]; then
@@ -30,7 +31,7 @@ writeShellApplication {
     elif [[ -f "$HOME/.config/smug/$NAME.yml" ]]; then
       smug start "$NAME" -a
     else
-      smug start default name="$(tr '[:lower:]' '[:upper]' "$TARGET")" root="$TARGET" -a
+      smug start default name="$(tr '[:lower:]' '[:upper]' "$NAME")" root="$TARGET" -a
     fi
   '';
 } 
