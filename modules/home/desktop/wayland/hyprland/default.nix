@@ -50,8 +50,8 @@ in
           gaps_in = 2;
           gaps_out = 6;
           border_size = 2;
-          "col.active_border" = "rgb(F48FB1) rgb(78A8FF) 45deg";
-          "col.inactive_border" = "rgba(585272aa)";
+          "col.active_border" = "rgb(2F2A47)";
+          "col.inactive_border" = "rgba(1E1C3100)";
           layout = "dwindle";
           resize_on_border = true;
         };
@@ -74,7 +74,7 @@ in
             new_optimizations = true;
           };
           shadow = {
-            enabled = true;
+            enabled = false;
             range = 4;
             render_power = 3;
           };
