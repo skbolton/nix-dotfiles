@@ -45,7 +45,7 @@ in
     };
     users.groups.${cfg.server.group} = { };
 
-    networking.firewall.allowedTCPPorts = mkIf cfg.type == "server" [ cfg.server.port ];
+    networking.firewall.allowedTCPPorts = mkIf (cfg.type == "server") [ cfg.server.port ];
 
     systemd.services.clipboard-share-server = mkIf (cfg.type == "server") {
       wantedBy = [ "multi-user.target" ];
