@@ -54,7 +54,7 @@ in
         User = cfg.server.user;
         Group = cfg.server.group;
         DynamicUser = false;
-        ExecStart = "${pkgs.delta.uniclip}/bin/uniclip -p ${cfg.server.port}";
+        ExecStart = "${pkgs.delta.uniclip}/bin/uniclip -d -p ${toString cfg.server.port}";
       };
     };
 
@@ -63,7 +63,7 @@ in
       after = [ "network.target" ];
       description = "Clipboard Share client connection";
       serviceConfig = {
-        ExecStart = "${pkgs.delta.uniclip}/bin/uniclip ${cfg.server.hostname}:${toString(cfg.server.port)}";
+        ExecStart = "${pkgs.delta.uniclip}/bin/uniclip -d ${cfg.server.hostname}:${toString(cfg.server.port)}";
       };
     };
   };
