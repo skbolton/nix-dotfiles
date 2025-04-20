@@ -61,6 +61,15 @@
 
   programs.ssh = {
     enable = true;
+    matchBlocks.niobe = {
+      hostname = "niobe.zionlab.local";
+      user = "s.bolton";
+      sendEnv = [ "LANG LC_*" ];
+    };
+    matchBlocks.framework = {
+      hostname = "framework.zionlab.local";
+      user = "orlando";
+    };
   };
 
   home = {
