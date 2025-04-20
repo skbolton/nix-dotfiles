@@ -38,7 +38,7 @@ in
 
       filtile \
         --output DP-1 main-location top, \
-        --output DP-5 main-location left &
+        --output HDMI-A-1 main-location left &
     '';
     wayland.windowManager.river.settings.focus-follows-cursor = "normal";
     wayland.windowManager.river.settings.set-cursor-warp = "on-output-change";
