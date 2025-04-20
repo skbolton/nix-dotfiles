@@ -194,6 +194,12 @@
     };
   };
 
+  delta.clipboard-share = {
+    enable = true;
+    type = "server";
+    server.hostname = "10.100.0.10";
+  };
+
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 8081 8082 8084 8085 ];
 
