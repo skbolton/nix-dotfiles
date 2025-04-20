@@ -19,10 +19,11 @@ in
     gtk = {
       enable = true;
       theme = {
-        name = "Colloid-Dark";
+        # Accent-<Light|Dark>-Tweak
+        name = "Colloid-Purple-Dark-Catppuccin";
         package = pkgs.colloid-gtk-theme.override {
-          themeVariants = [ "default" "purple" "teal" "grey" "green" ];
-          tweaks = [ "black" "rimless" "normal" ];
+          themeVariants = [ "all" ];
+          tweaks = [ "catppuccin" "black" "rimless" "normal" ];
         };
       };
 
@@ -32,8 +33,11 @@ in
       };
 
       iconTheme = {
+        # <green|purple|...>-<light|dark>
         name = "Fluent-dark";
-        package = pkgs.fluent-icon-theme;
+        package = pkgs.fluent-icon-theme.override {
+          allColorVariants = true;
+        };
       };
     };
   };
