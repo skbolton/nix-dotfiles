@@ -68,6 +68,7 @@
       firefox
       pkgs.delta.fman
       handbrake
+      delta.uniclip
     ];
   };
 
