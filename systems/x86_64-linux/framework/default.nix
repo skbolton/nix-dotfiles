@@ -134,6 +134,12 @@
     };
   };
 
+  delta.clipboard-share = {
+    enable = true;
+    type = "client";
+    server.hostname = "10.100.0.10";
+  };
+
   services.tlp.settings = {
     CPU_DRIVER_OPMODE_ON_AC = "active";
     CPU_DRIVER_OPMODE_ON_BAT = "active";
