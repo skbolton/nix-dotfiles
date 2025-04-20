@@ -231,6 +231,8 @@
     };
   };
 
+  delta.openlinkhub.enable = true;
+
   documentation.dev.enable = true;
   documentation.man.enable = true;
   documentation.man.generateCaches = true;
