@@ -1,0 +1,49 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    base64 (0.2.0)
+    clamp (1.3.2)
+    concurrent-ruby (1.3.5)
+    icalendar (2.9.0)
+      ice_cube (~> 0.16)
+    ice_cube (0.17.0)
+    logger (1.7.0)
+    ostruct (0.6.1)
+    pastel (0.8.0)
+      tty-color (~> 0.5)
+    strings (0.2.1)
+      strings-ansi (~> 0.2)
+      unicode-display_width (>= 1.5, < 3.0)
+      unicode_utils (~> 1.4)
+    strings-ansi (0.2.0)
+    taskwarrior-calendar (1.0.1)
+      base64
+      clamp (~> 1.3.2)
+      icalendar (~> 2.9.0)
+      logger
+      ostruct
+      pastel (~> 0.8.0)
+      tty-pager (~> 0.14.0)
+      tzinfo (~> 2.0.6)
+      tzinfo-data (~> 1.2023.3)
+    tty-color (0.6.0)
+    tty-pager (0.14.0)
+      strings (~> 0.2.0)
+      tty-screen (~> 0.8)
+    tty-screen (0.8.2)
+    tzinfo (2.0.6)
+      concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2023.4)
+      tzinfo (>= 1.0.0)
+    unicode-display_width (2.6.0)
+    unicode_utils (1.4.0)
+
+PLATFORMS
+  ruby
+  x86_64-linux
+
+DEPENDENCIES
+  taskwarrior-calendar
+
+BUNDLED WITH
+   2.5.22

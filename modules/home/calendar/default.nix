@@ -22,6 +22,27 @@ in
       vdirsyncer
       khal
       delta.agenda
+      delta.tw-calendar
+      (
+        pkgs.writeShellScriptBin "tw-cal-export" ''
+          # clear out existing state
+          rm -rf "$HOME/Calendars/Tasks"
+          rm -rf "$HOME/Calendars/Deadlines"
+
+          # put back some metadata
+          mkdir "$HOME/Calendars/Tasks"
+          echo "#63F2F1" > "$HOME/Calendars/Tasks/color"
+
+          mkdir "$HOME/Calendars/Deadlines"
+          echo "#F02E6E" > "$HOME/Calendars/Deadlines/color"
+
+          # import new events
+          ${pkgs.delta.tw-calendar}/bin/task-ical convert --no-alarm --filter "status:pending +SCHEDULED" | ${pkgs.khal}/bin/khal import -a Tasks --batch
+          ${pkgs.delta.tw-calendar}/bin/task-ical convert --no-alarm --filter "status:pending +DUE" | ${pkgs.khal}/bin/khal import -a Deadlines --batch
+
+          ${pkgs.vdirsyncer}/bin/vdirsyncer sync
+        ''
+      )
     ] ++ optional cfg.gui morgen;
 
     xdg.configFile."khal/config".text = /* ini */ ''
@@ -35,7 +56,7 @@ in
       agenda_event_format = {calendar-color}{cancelled}{start}-{end} {title}{repeat-symbol}{reset}
     '';
 
-    xdg.configFile."vdirsyncer/calendar.conf".text = ''
+    xdg.configFile."vdirsyncer/config".text = ''
       [general]
       status_path = "~/.local/state/vdirsyncer/status"
 
@@ -50,7 +71,7 @@ in
       type = "caldav"
       url = "https://caldav.fastmail.com/"
       username = "stephen@bitsonthemind.com"
-      password.fetch = ["command", "cat", "~/.config/sops-nix/secrets/fastmail-vdirsync-password"]
+      password.fetch = ["command", "${pkgs.coreutils}/bin/cat", "~/.config/sops-nix/secrets/fastmail-vdirsync-password"]
 
       [storage fastmail_calendar_local]
       type = "filesystem"
@@ -68,14 +89,11 @@ in
       Service = {
         Type = "oneshot";
         ExecStart =
-          (
-            pkgs.writeShellScript "vdirsyncer-discover-yes" ''
-              set -e
-              yes | ${pkgs.vdirsyncer}/bin/vdirsyncer --config="$HOME/.config/vdirsyncer/calendar.conf" discover
-              ${pkgs.vdirsyncer}/bin/vdirsyncer --config="$HOME/.config/vdirsyncer/calendar.conf" sync
-              ${pkgs.vdirsyncer}/bin/vdirsyncer --config="$HOME/.config/vdirsyncer/calendar.conf" metasync
-            ''
-          );
+          pkgs.writeShellScript "vdirsyncer-discover-yes" ''
+            ${pkgs.coreutils}/bin/yes | ${pkgs.vdirsyncer}/bin/vdirsyncer discover
+            ${pkgs.vdirsyncer}/bin/vdirsyncer sync
+            ${pkgs.vdirsyncer}/bin/vdirsyncer metasync
+          '';
       };
     };
 
