@@ -25,20 +25,8 @@ in
       delta.tw-calendar
       (
         pkgs.writeShellScriptBin "tw-cal-export" ''
-          # clear out existing state
-          rm -rf "$HOME/Calendars/Tasks"
-          rm -rf "$HOME/Calendars/Deadlines"
-
-          # put back some metadata
-          mkdir "$HOME/Calendars/Tasks"
-          echo "#63F2F1" > "$HOME/Calendars/Tasks/color"
-
-          mkdir "$HOME/Calendars/Deadlines"
-          echo "#F02E6E" > "$HOME/Calendars/Deadlines/color"
-
-          # import new events
           ${pkgs.delta.tw-calendar}/bin/task-ical convert --no-alarm --filter "status:pending +SCHEDULED" | ${pkgs.khal}/bin/khal import -a Tasks --batch
-          ${pkgs.delta.tw-calendar}/bin/task-ical convert --no-alarm --filter "status:pending +DUE" | ${pkgs.khal}/bin/khal import -a Deadlines --batch
+          ${pkgs.delta.tw-calendar}/bin/task-ical convert --no-alarm --filter "status:pending +DUE -SCHEDULED" | ${pkgs.khal}/bin/khal import -a Deadlines --batch
 
           ${pkgs.vdirsyncer}/bin/vdirsyncer sync
         ''
