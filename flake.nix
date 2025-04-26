@@ -76,7 +76,7 @@
       channels-config = {
         allowUnfree = true;
         permittedInsecurePackages = [
-          "electron-27.3.11"
+          "electron-32.3.3"
         ];
       };
 
