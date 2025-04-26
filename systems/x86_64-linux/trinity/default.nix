@@ -231,6 +231,23 @@
     };
   };
 
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+    loadModels = [ "deepseek-r1:32b" "mistral-small:24b" ];
+    rocmOverrideGfx = "11.0.0";
+  };
+
+  services.open-webui.enable = true;
+  services.open-webui.openFirewall = true;
+  services.open-webui.host = "0.0.0.0";
+  services.open-webui.environment = {
+    WEBUI_AUTH = "False";
+    ANONYMIZED_TELEMETRY = "False";
+    DO_NOT_TRACK = "True";
+    SCARF_NO_ANALYTICS = "True";
+  };
+
   delta.openlinkhub.enable = true;
 
   documentation.dev.enable = true;
