@@ -1,3 +1,17 @@
+local source_icons = {
+  nvim_lsp = '',
+  lsp = '',
+  buffer = '',
+  luasnip = '',
+  snippets = '',
+  path = '',
+  git = '',
+  tags = '',
+  cmdline = '󰘳',
+  -- FALLBACK
+  fallback = '󰜚',
+}
+
 return {
   {
     "blink-cmp",
@@ -17,6 +31,22 @@ return {
           },
           menu = {
             auto_show = true,
+            draw = {
+              columns = {
+                { 'kind_icon',  gap = 2 },
+                { 'label',      'label_description', gap = 1 },
+                { 'source_icon' },
+              },
+              components = {
+                source_icon = {
+                  ellipsis = false,
+                  text = function(ctx)
+                    return source_icons[ctx.source_name:lower()] or source_icons.fallback
+                  end,
+                  highlight = 'BlinkCmpSource',
+                },
+              },
+            }
           },
         },
         sources = {
@@ -25,10 +55,11 @@ return {
         },
         snippets = { preset = 'luasnip' },
         appearance = {
+          use_nvim_cmp_as_default = true,
           kind_icons = {
             Text = "",
             Method = "󰆧",
-            Function = "λ",
+            Function = "●",
             Constructor = ' ',
             Field = "󰇽",
             Variable = "󰂡",
