@@ -8,6 +8,6 @@ writeShellApplication {
     START=2025-01-05
 
     DIFF=$(($(datediff "$START" "$FROM" -f '%d') % 28))
-    dateadd $FROM $((28 - "$DIFF"))d
+    dateadd "$FROM" $((28 - "$DIFF"))d
   '';
 }
