@@ -1,4 +1,3 @@
-local diagrams = require 'diagramming'
 local gl = require 'galaxyline'
 local condition = require 'galaxyline.condition'
 local vcs = require 'galaxyline.providers.vcs'
@@ -95,27 +94,13 @@ gls.left[5] = {
 -----------------------------------------------------------
 
 gls.right[1] = {
-  VennEnabled = {
-    provider = function()
-      if diagrams.enabled then
-        return " "
-      else
-        return ""
-      end
-    end,
-    highlight = { "#795DA3", "#FFFFFF" },
-    separator = '',
-  }
-}
-
-gls.right[2] = {
   LanguageServer = {
     provider = function()
       active_client = vim.lsp.buf_get_clients()[1]
       if active_client ~= nil then
         return '   '
       else
-        return '   '
+        return ' 󰖪  '
       end
     end,
     highlight = { "#000000", "#F5F5F5" },
@@ -124,18 +109,10 @@ gls.right[2] = {
   }
 }
 
-gls.right[3] = {
+gls.right[2] = {
   TestResults = {
     provider = function()
-      if testing.TESTING_STATUS == 'init' then
-        return '   '
-      elseif testing.TESTING_STATUS == 'passing' then
-        return '   '
-      elseif testing.TESTING_STATUS == 'running' then
-        return '   '
-      elseif testing.TESTING_STATUS == 'failing' then
-        return '   '
-      end
+      return '   '
     end,
     highlight = { "#000000", "#EAEAEA" },
     separator_highlight = { "#EAEAEA", "#F5F5F5" },
@@ -143,7 +120,7 @@ gls.right[3] = {
   }
 }
 
-gls.right[4] = {
+gls.right[3] = {
   Position = {
     provider = function()
       local line = vim.fn.line('.')
