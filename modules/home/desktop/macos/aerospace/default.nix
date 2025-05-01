@@ -44,7 +44,7 @@ in
       # Possible values: horizontal|vertical|auto
       # 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
       #               tall monitor (anything higher than wide) gets vertical orientation
-      default-root-container-orientation = 'auto'
+      default-root-container-orientation = 'vertical'
 
       # Mouse follows focus when focused monitor changes
       # Drop it from your config, if you don't like this behavior
