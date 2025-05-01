@@ -19,6 +19,8 @@ in
       default = true;
       description = "Whether to enable extra socket";
     };
+
+    pinentry = mkPackageOption pkgs "pinentry" { default = "pinentry-gnome3"; };
   };
 
   config = mkIf cfg.enable {
@@ -40,12 +42,12 @@ in
     };
 
     services.gpg-agent = {
-      enable = pkgs.stdenv.isLinux;
+      enable = cfg.enable;
       verbose = true;
       enableSshSupport = true;
       enableExtraSocket = cfg.enableExtraSocket;
       enableZshIntegration = config.programs.zsh.enable;
-      pinentryPackage = pkgs.pinentry-gnome3;
+      pinentryPackage = cfg.pinentry;
       defaultCacheTtl = 60;
       maxCacheTtl = 120;
       enableScDaemon = true;

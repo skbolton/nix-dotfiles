@@ -27,7 +27,7 @@
   };
 
   programs.gnupg = {
-    agent.enable = true;
+    agent.enable = false;
     agent.enableSSHSupport = true;
   };
 

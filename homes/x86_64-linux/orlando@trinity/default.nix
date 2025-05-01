@@ -65,6 +65,19 @@
       hostname = "niobe.zionlab.local";
       user = "s.bolton";
       sendEnv = [ "LANG LC_*" ];
+      remoteForwards = [
+        {
+          # host is the local client in this situation
+          host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
+          # bind is the remote
+          bind.address = "/Users/s.bolton/.gnupg/S.gpg-agent";
+        }
+        {
+          host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+          bind.address = "/Users/s.bolton/.gnupg/S.gpg-agent.ssh";
+        }
+      ];
+
     };
     matchBlocks.framework = {
       hostname = "framework.zionlab.local";
@@ -85,6 +98,7 @@
       pkgs.delta.fman
       handbrake
       delta.quantified-self
+      delta.niobe
     ];
   };
 

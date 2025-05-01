@@ -8,7 +8,8 @@
   delta = {
     gpg = {
       enable = true;
-      autostart = true;
+      autostart = false;
+      pinentry = pkgs.pinentry_mac;
     };
     zsh.enable = true;
     cli_apps.enable = true;
@@ -42,17 +43,5 @@
     enable = true;
   };
 
-  # Just until release 24.05
-  home.file.".gnupg/gpg-agent.conf".text = ''
-    ttyname $GPG_TTY
-    enable-ssh-support
-    default-cache-ttl 60
-    max-cache-ttl 120
-    pinentry-program ${pkgs.pinentry_mac}/bin/pinentry-mac
-  '';
-
-  home.file.".gnupg/sshcontrol".text = ''
-    B189B794F1B984F63BAFA6785F3B2EE2F3458934
-  '';
   home.stateVersion = "24.05";
 }
