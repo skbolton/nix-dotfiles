@@ -141,32 +141,12 @@
   virtualisation.oci-containers = {
     backend = "docker";
     containers = {
-      cloudflared = {
-        image = "cloudflare/cloudflared:latest";
-        environmentFiles = [
-          config.sops.secrets.cloudflared-tunnel-creds.path
-        ];
-        cmd = [ "tunnel" "run" ];
-      };
       taskwarior-gui = {
         image = "dcsunset/taskwarrior-webui:3";
         ports = [ "8081:80" ];
         volumes = [
           "${config.sops.secrets.taskwarrior-sync-server-credentials.path}:/.taskrc"
         ];
-      };
-      linkding = {
-        image = "sissbruecker/linkding:latest";
-        ports = [ "8082:9090" ];
-        volumes = [
-          "/var/zion-data/linkding:/etc/linkding/data"
-        ];
-        environment = {
-          LD_ENABLE_AUTH_PROXY = "True";
-          LD_AUTH_PROXY_USERNAME_HEADER = "HTTP_CF_ACCESS_AUTHENTICATED_USER_EMAIL";
-          LD_AUTH_PROXY_LOGOUT_URL = "https://zionlab.cloudflareaccess.com/cdn-cgi/access/logout";
-          LD_CSRF_TRUSTED_ORIGINS = "https://links.zionlab.online";
-        };
       };
       beaverhabits = {
         image = "daya0576/beaverhabits:latest";
@@ -195,7 +175,7 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 8081 8082 8084 8085 ];
+  networking.firewall.allowedTCPPorts = [ 8081 8084 8085 ];
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

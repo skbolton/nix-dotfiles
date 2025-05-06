@@ -25,10 +25,21 @@ in
       delta.tw-calendar
       (
         pkgs.writeShellScriptBin "tw-cal-export" ''
+          if [ ! -d ~/Calendars/Tasks ]; then
+            mkdir ~/Calendars/Tasks
+            echo "#63F2F1" > ~/Calendars/Tasks/color
+            mkdir ~/Calendars/Deadlines
+            echo "#F48FB1" > ~/Calendars/Deadlines/color
+          else
+            rm -rf ~/Calendars/Tasks/
+            rm -rf ~/Calendars/Deadlines/
+            mkdir ~/Calendars/Tasks
+            echo "#63F2F1" > ~/Calendars/Tasks/color
+            mkdir ~/Calendars/Deadlines
+            echo "#F48FB1" > ~/Calendars/Deadlines/color
+          fi
           ${pkgs.delta.tw-calendar}/bin/task-ical convert --no-alarm --filter "status:pending +SCHEDULED" | ${pkgs.khal}/bin/khal import -a Tasks --batch
-          ${pkgs.delta.tw-calendar}/bin/task-ical convert --no-alarm --filter "status:pending +DUE -SCHEDULED" | ${pkgs.khal}/bin/khal import -a Deadlines --batch
-
-          ${pkgs.vdirsyncer}/bin/vdirsyncer sync
+          ${pkgs.delta.tw-calendar}/bin/task-ical convert --no-alarm --filter "status:pending +DUE" | ${pkgs.khal}/bin/khal import -a Deadlines --batch
         ''
       )
     ] ++ optional cfg.gui morgen;
@@ -36,7 +47,7 @@ in
     xdg.configFile."khal/config".text = /* ini */ ''
       [calendars]
       [[calendars]]
-      path = ~/Calendars/*
+      path = ~/Calendars/**
       type = discover
 
       [view]
@@ -63,7 +74,7 @@ in
 
       [storage fastmail_calendar_local]
       type = "filesystem"
-      path = "~/Calendars"
+      path = "~/Calendars/Fastmail"
       fileext = ".ics"
     '';
 
