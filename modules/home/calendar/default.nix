@@ -52,7 +52,11 @@ in
 
       [view]
       event_format = {calendar-color}{cancelled}{start}-{end} {title}{repeat-symbol}{reset}
-      agenda_event_format = {calendar-color}{cancelled}{start}-{end} {title}{repeat-symbol}{reset}
+      agenda_day_format = "{white}{name}, {date}"
+      agenda_event_format = "{calendar-color} {start-style} {to-style} {end-style} {title}{reset}{repeat-symbol}{red}{cancelled}{reset}"
+
+      [locale]
+      timeformat = "%H:%M"
     '';
 
     xdg.configFile."vdirsyncer/config".text = ''
