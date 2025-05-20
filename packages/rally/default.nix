@@ -31,7 +31,7 @@ writeShellApplication {
     elif [[ -f "$HOME/.config/smug/$NAME.yml" ]]; then
       smug start "$NAME" -a
     else
-      smug start default name="$(tr '[:lower:]' '[:upper]' "$NAME")" root="$TARGET" -a
+      smug start default name="$NAME" root="$TARGET" -a
     fi
   '';
 } 
