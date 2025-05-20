@@ -21,7 +21,6 @@ in
     home.packages = with pkgs; [
       vdirsyncer
       khal
-      delta.agenda
       delta.tw-calendar
       (
         pkgs.writeShellScriptBin "tw-cal-export" ''
