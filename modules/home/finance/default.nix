@@ -13,7 +13,6 @@ in
     home.packages = with pkgs; [
       fava
       beancount
-      # beancount-language-server
     ];
 
     systemd.user.services.fava = {
@@ -24,7 +23,7 @@ in
         WantedBy = [ "default.target" ];
       };
       Service = {
-        ExecStart = "${pkgs.fava}/bin/fava /home/orlando/Ledger/2024/journal.beancount";
+        ExecStart = "${pkgs.fava}/bin/fava /home/orlando/Public/ledger/main.beancount";
       };
     };
   };
