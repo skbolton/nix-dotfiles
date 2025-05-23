@@ -12,8 +12,8 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       postgresql
-      elixir_1_15
-      erlang_26
+      elixir_1_18
+      erlang_28
       lexical
     ] ++ lib.optional stdenv.isLinux inotify-tools
     ++ lib.optional stdenv.isDarwin terminal-notifier

@@ -54,6 +54,7 @@ in
               rev = "de64acfadcedec03f526ba79d95523cea6630b2d";
               sha256 = "sha256-W6zaaSPiEn6aIv28q91saQMDTK4VeGIZr/BHlXCfr/I=";
             };
+            doCheck = false;
           });
           optional = true;
         }

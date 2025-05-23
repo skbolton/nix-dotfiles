@@ -12,7 +12,8 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       delta.io-collins
-      (nerdfonts.override { fonts = [ "RobotoMono" "Iosevka" ]; })
+      nerd-fonts.iosevka
+      nerd-fonts.roboto-mono
       ibm-plex
       iosevka
       maple-mono.truetype

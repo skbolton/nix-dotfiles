@@ -47,7 +47,7 @@ in
       enableSshSupport = true;
       enableExtraSocket = cfg.enableExtraSocket;
       enableZshIntegration = config.programs.zsh.enable;
-      pinentryPackage = cfg.pinentry;
+      pinentry.package = cfg.pinentry;
       defaultCacheTtl = 60;
       maxCacheTtl = 120;
       enableScDaemon = true;

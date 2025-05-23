@@ -18,7 +18,7 @@ in
       "in" = "task add +in";
     };
 
-    programs.zsh.initExtra = /* bash */ ''
+    programs.zsh.initContent = mkOrder 1000 /* bash */ ''
       function twait() {
         task_id=$1
         shift
