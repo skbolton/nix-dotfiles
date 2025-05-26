@@ -75,7 +75,6 @@ in
         set -g status-interval 5
         set set-clipboard on
         set -g pane-base-index 1
-        set -g pane-border-indicators both
         set -g automatic-rename off
         set -g renumber-windows
         set -g clock-mode-style 24
