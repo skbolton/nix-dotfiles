@@ -11,7 +11,6 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      delta.io-collins
       nerd-fonts.iosevka
       nerd-fonts.roboto-mono
       ibm-plex
