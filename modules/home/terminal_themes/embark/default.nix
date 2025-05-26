@@ -88,7 +88,7 @@ in
       } + "/embark.theme";
 
     programs.starship.settings = {
-      format = "$character$jobs$directory$git_branch$git_status ";
+      format = "$character$hostname$jobs$directory$git_branch$git_status ";
       character = {
         format = "$symbol";
         error_symbol = "[  ](bold fg:red bg:#19172C)";
@@ -120,7 +120,7 @@ in
       };
 
       hostname = {
-        ssh_only = false;
+        ssh_only = true;
         format = "[ $hostname ](italic fg:bright-white bg:#19172C)";
       };
     };
