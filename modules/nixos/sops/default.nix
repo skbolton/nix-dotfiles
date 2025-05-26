@@ -15,6 +15,5 @@
     secrets.beevey-password = { neededForUsers = true; };
     secrets.wakatime-api-key = { };
     secrets.cloudflared-tunnel-creds = { };
-    secrets.taskwarrior-sync-server-credentials = { };
   };
 }
