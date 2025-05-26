@@ -104,7 +104,6 @@ in
 
           precmd() {
             precmd() {
-              tput setaf 8 && printf '%.s─' $(seq 1 $(tput cols))
               echo
             }
           }
