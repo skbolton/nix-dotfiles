@@ -154,7 +154,7 @@ in
             "windows,1,7,overshot,slide"
             "border,1,10,default"
             "fade,1,10,default"
-            "workspaces,1,7,overshot,slidevert"
+            "workspaces,1,7,overshot,slide"
           ];
         };
 
