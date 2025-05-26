@@ -133,21 +133,9 @@
     storageDriver = "btrfs";
   };
 
-  services.taskchampion-sync-server = {
-    enable = true;
-    openFirewall = true;
-  };
-
   virtualisation.oci-containers = {
     backend = "docker";
     containers = {
-      taskwarior-gui = {
-        image = "dcsunset/taskwarrior-webui:3";
-        ports = [ "8081:80" ];
-        volumes = [
-          "${config.sops.secrets.taskwarrior-sync-server-credentials.path}:/.taskrc"
-        ];
-      };
       beaverhabits = {
         image = "daya0576/beaverhabits:latest";
         ports = [ "8084:8080" ];

@@ -109,10 +109,8 @@ in
         color = {
           alternate = "";
         };
-        sync.server.url = "http://mouse.zionlab.local:10222";
       };
 
-      # TODO: This is a secret that I could manage with nix if I figure out nix-sops
       extraConfig = ''
         include $XDG_RUNTIME_DIR/taskwarrior-sync-server-credentials.txt
       '';
