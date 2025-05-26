@@ -22,7 +22,6 @@ in
       enable = true;
       systemd.enable = true;
       systemd.target = cfg.target;
-      package = pkgs.waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ]; });
       settings = {
         mainBar = {
           start_hidden = false;
