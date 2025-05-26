@@ -29,14 +29,14 @@ in
     wayland.windowManager.hyprland = {
       enable = true;
       xwayland.enable = true;
+      systemd.enableXdgAutostart = true;
       settings = {
         exec-once = [
           "hyprctl setcursor Bibata-Modern-Ice 22"
           "[workspace 2 silent] firefox"
           "kitty"
         ]
-        ++ cfg.autostart
-        ++ optional config.delta.synology.enable "synology-drive";
+        ++ cfg.autostart;
 
         workspace = lib.lists.flatten (map
           (m:
@@ -107,6 +107,7 @@ in
           kb_variant = config.keyboard.variant;
           kb_options = config.keyboard.options;
           sensitivity = 0.15;
+          repeat_rate = 50;
           follow_mouse = 1;
           touchpad = {
             natural_scroll = true;

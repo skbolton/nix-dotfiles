@@ -11,5 +11,8 @@ in
 
   config = mkIf cfg.enable {
     home.packages = [ pkgs.synology-drive-client ];
+    xdg.autostart.entries = [
+      "${pkgs.synology-drive-client}/share/applications/synology-drive.desktop"
+    ];
   };
 }

@@ -7,6 +7,7 @@
   ];
 
   fonts.fontconfig.enable = true;
+  xdg.autostart.enable = true;
 
   delta = {
     sops.enable = true;
@@ -37,15 +38,12 @@
       notebook_dir = "$HOME/Documents/Reference";
     };
     desktop.wayland.hyprland = {
-      enable = false;
-      autostart = [
-        # "remind -z -k':notify-send -u critical \"Reminder!\" %s' ~/00-09-System/02-Logs/02.10-Journal/agenda.rem"
-        "[workspace 7 silent] kitty --title='kitty-journal' --hold smug start delta -a"
-      ];
+      enable = true;
+      autostart = [ ];
     };
     desktop.wayland.river.enable = true;
     desktop.wayland.waybar.enable = true;
-    desktop.wayland.waybar.target = "river-session.target";
+    desktop.wayland.waybar.target = "hyprland-session.target";
     desktop.dunst.enable = true;
     desktop.nm-applet.enable = true;
     desktop.gtk.enable = true;
@@ -105,6 +103,7 @@
   monitors = [
     {
       name = "DP-1";
+      enabled = false;
       width = 2560;
       height = 2880;
       scale = "1";
@@ -119,15 +118,24 @@
       height = 2160;
       scale = "1";
       workspaces = [ "1" "3" "5" ];
+      enabled = false;
+    }
+    {
+      name = "HDMI-A-1";
+      width = 3840;
+      height = 2160;
+      x = 2560;
+      y = 0;
+      refreshRate = 240;
+      scale = "1";
+      workspaces = [ "1" "3" "5" ];
     }
   ];
-
 
   keyboard = {
     variant = "colemak";
     options = "lv3:ralt_alt";
   };
-
 
   programs.home-manager.enable = true;
   # Nicely reload system units when changing configs
