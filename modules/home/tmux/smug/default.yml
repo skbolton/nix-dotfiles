@@ -7,5 +7,5 @@ windows:
       - nvim
   - name: " console"
     commands:
-      - tmux link-window -s Notes -d
+      - ""
 
