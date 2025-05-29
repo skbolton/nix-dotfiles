@@ -122,10 +122,10 @@ in
       alt-l = 'focus right'
 
       # See: https://nikitabobko.github.io/AeroSpace/commands#move
-      cmd-ctrl-h = 'move left'
-      cmd-ctrl-j = 'move down'
-      cmd-ctrl-k = 'move up'
-      cmd-ctrl-l = 'move right'
+      alt-left = 'move left'
+      alt-down = 'move down'
+      alt-up = 'move up'
+      alt-right = 'move right'
 
       # See: https://nikitabobko.github.io/AeroSpace/commands#resize
       alt-shift-minus = 'resize smart -50'
