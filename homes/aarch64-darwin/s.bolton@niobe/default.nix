@@ -37,7 +37,7 @@
     };
   };
 
-  programs.zsh.shellAliases.rebuild = "darwin-rebuild switch --flake ~/nix-dotfiles";
+  programs.zsh.shellAliases.rebuild = "sudo darwin-rebuild switch --flake \"$HOME/nix-dotfiles#niobe\"";
 
   programs.ssh = {
     enable = true;
