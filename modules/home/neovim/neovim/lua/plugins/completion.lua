@@ -19,7 +19,8 @@ return {
     after = function()
       require 'blink.cmp'.setup {
         fuzzy = {
-          prebuilt_binaries = { download = false }
+          prebuilt_binaries = { download = false },
+          implementation = "rust"
         },
         completion = {
           ghost_text = {
