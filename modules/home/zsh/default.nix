@@ -26,6 +26,12 @@ in
       plugins = [
         { name = "fzf-tab"; src = "${pkgs.zsh-fzf-tab}/share/fzf-tab"; }
       ];
+      dirHashes = {
+        CO = "$XDG_CONFIG_DIR";
+        ST = "$XDG_STATE_DIR";
+        CA = "$XDG_CACHE_DIR";
+        NI = "/nix/store";
+      };
       shellGlobalAliases = {
         E = "| entr -c";
         F = "| fzf";
@@ -128,6 +134,9 @@ in
               echo
             }
           }
+
+          source "${pkgs.zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh";
+          autopair-init
         '')
       ];
     };
