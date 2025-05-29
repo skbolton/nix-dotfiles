@@ -4,6 +4,7 @@ return {
     before = function()
       local lz = require 'lz.n'
       lz.trigger_load("vim-dispatch")
+      lz.trigger_load("vimux")
 
       local g = vim.g
 
