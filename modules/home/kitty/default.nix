@@ -17,6 +17,8 @@ in
       iosevka
       maple-mono.truetype
       delta.md-io
+      courier-prime
+      roboto-mono
     ];
 
     programs.kitty = {
@@ -26,7 +28,7 @@ in
         # UI and Window Behavior
         window_padding_width = "0 8";
         remember_window_size = "no";
-        hide_window_decorations = if pkgs.stdenv.isLinux then "yes" else "no";
+        hide_window_decorations = if pkgs.stdenv.isLinux then "yes" else "titlebar-only";
         dynamic_background_opacity = "yes";
         background_opacity = 1;
         cursor_shape = "beam";
