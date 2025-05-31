@@ -23,11 +23,13 @@ writeShellApplication {
     _select() {
     # TODO: Find a better way to write preview
       fzf --accept-nth '{2}' \
-        --header="<CR>: 🏗️ | C-e: 📁 | C-f: 🏠" \
+        --input-label="<CR>  <C-e>  <C-f>  " \
         --prompt="  " \
+        --style="full" \
         --preview 'tmux capture-pane -ep -t {2} 2> /dev/null || eza --tree --icons --level 3 --git-ignore {2}' \
         --bind="ctrl-e:execute(nnn {2})" \
-        --bind="ctrl-f:reload(fd -t d {q} ~/)"
+        --bind="ctrl-f:reload(fd -t d {q} ~/)" \
+        --tiebreak="end"
     }
 
     # TODO: Find a better way to write preview
