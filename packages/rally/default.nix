@@ -1,5 +1,6 @@
 { writeShellApplication
 , fd
+, ripgrep
 , fzf
 , eza
 , smug
@@ -7,24 +8,31 @@
 
 writeShellApplication {
   name = "rally.sh";
-  runtimeInputs = [ fd fzf eza smug ];
+  runtimeInputs = [ fd ripgrep fzf eza smug ];
   text = ''
-    _targets() {
-      { fd -t d -d 1 '.' "$HOME/Public" & fd -t d -d 1 '.' "$HOME"; }
+    _tmux_sessions() {
+      tmux list-sessions -F '#S' 2> /dev/null | awk '{print "\033[32m \033[0m" $0}'| rg -v "$(tmux display -p '#S')"
+    }
+
+    _rallypoints() {
+      for search_path in $(tr ":" " " <<< "$HOME:$HOME/Public:$HOME/.local/share:$HOME/.config"); do
+        fd -t d -d 1 --search-path "$search_path" | awk '{print "\033[34m \033[0m" $0}'
+      done
     }
 
     _select() {
-      fzf --header-first \
-        --header="Launch Project" \
-        --prompt="󰑣 " \
-        --preview 'eza --tree --icons --level 3 --git-ignore {}' \
-        --delimiter '/' \
-        --with-nth '-3..-1'
+    # TODO: Find a better way to write preview
+      fzf --accept-nth '{2}' \
+        --header="<CR>: 🏗️ | C-e: 📁 | C-f: 🏠" \
+        --prompt="  " \
+        --preview 'tmux capture-pane -ep -t {2} 2> /dev/null || eza --tree --icons --level 3 --git-ignore {2}' \
+        --bind="ctrl-e:execute(nnn {2})" \
+        --bind="ctrl-f:reload(fd -t d {q} ~/)"
     }
 
-    TARGET=$(_targets | _select)
+    # TODO: Find a better way to write preview
+    TARGET=$( (_tmux_sessions; _rallypoints ) | _select)
     NAME=$(basename "$TARGET")
-
 
     if [[ -f "$TARGET/.steve-smug.yml" ]]; then
       smug start -f "$TARGET/.steve-smug.yml" -a

@@ -1,4 +1,4 @@
-session:  ${name}
+session: ${name}
 root: ${root}
 
 windows:

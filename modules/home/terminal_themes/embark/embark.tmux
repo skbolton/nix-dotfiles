@@ -22,7 +22,7 @@ set -g status-fg "brightwhite"
 set -g status-left " 󰇂  "
 set -g status-left-style "bg=black,fg=brightwhite"
 
-set -g status-right "#[bg=black,fg=brightwhite] #S | #[fg=brightwhite italics]󰲐 #H "
+set -g status-right "#[bg=black,fg=brightwhite]  #S | #[fg=brightwhite italics]󰲐 #H "
 
 # Windows ------------------------------
 set -g status-justify left
