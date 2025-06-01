@@ -12,8 +12,8 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       postgresql
-      elixir_1_18
-      erlang_28
+      elixir_1_17
+      erlang_27
       lexical
     ] ++ lib.optional stdenv.isLinux inotify-tools
     ++ lib.optional stdenv.isDarwin terminal-notifier
@@ -37,15 +37,16 @@ in
 
     programs.git.ignores = [ ".lexical" "scratchpad.ex" ".elixir-ls" ];
 
-    xdg.configFile."nvim/after/ftplugin/elixir.lua".text = /* lua */ ''
-      local capabilities = require 'lsp_capabilities'()
-
-      vim.lsp.start {
-        name = 'lexical',
+    xdg.configFile."nvim/lsp/lexical.lua".text = /* lua */ ''
+      return {
         cmd = { 'lexical' },
-        capabilities = capabilities,
-        root_dir = vim.fs.dirname(vim.fs.find({'mix.exs', '.git'}, { upward = true })[1]),
+        filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
+        root_markers = { '.mix.exs', '.git'}
       }
+    '';
+
+    programs.neovim.extraLuaConfig = /* lua */ ''
+      vim.lsp.enable('lexical')
     '';
   };
 }

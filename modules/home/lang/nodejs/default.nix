@@ -13,28 +13,26 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       nodejs_20
+      typescript-language-server
     ];
 
-    xdg.configFile."nvim/after/ftplugin/javascript.lua".text = /* lua */ ''
-      local capabilities = require 'lsp_capabilities'()
-
-      vim.lsp.start {
-        name = 'tsserver',
+    xdg.configFile."nvim/lsp/ts_ls.lua".text = /* lua */ ''
+      return {
         cmd = { 'typescript-language-server', '--stdio' },
-        capabilities = capabilities,
-        root_dir = vim.fs.dirname(vim.fs.find({'tsconfig.json', 'package.json', 'jsconfig.json', '.git'}, { upward = true })[1])
+        filetypes = {
+          'javascript',
+          'javascriptreact',
+          'javascript.jsx',
+          'typescript',
+          'typescriptreact',
+          'typescript.tsx',
+        },
+        root_markers = {'tsconfig.json', 'package.json', 'jsconfig.json', '.git'},
       }
     '';
 
-    xdg.configFile."nvim/after/ftplugin/typescript.lua".text = /* lua */ ''
-      local capabilities = require 'lsp_capabilities'()
-
-      vim.lsp.start {
-        name = 'tsserver',
-        cmd = { 'typescript-language-server', '--stdio' },
-        capabilities = capabilities,
-        root_dir = vim.fs.dirname(vim.fs.find({'tsconfig.json', 'package.json', 'jsconfig.json', '.git'}, { upward = true })[1])
-      }
+    programs.neovim.extraLuaConfig = /* lua */ ''
+      vim.lsp.enable('ts_ls')
     '';
   };
 }

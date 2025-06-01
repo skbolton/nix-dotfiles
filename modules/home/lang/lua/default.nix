@@ -12,14 +12,11 @@ in
   config = mkIf cfg.enable {
     home.packages = [ pkgs.lua-language-server ];
 
-    xdg.configFile."nvim/after/ftplugin/lua.lua".text = /* lua */ ''
-      local capabilities = require 'lsp_capabilities'()
-
-      vim.lsp.start {
-        name = 'lua_ls',
+    xdg.configFile."nvim/lsp/lua_ls.lua".text = /* lua */ ''
+      return {
         cmd = { "lua-language-server" },
-        capabilities = capabilities,
-        root_dir = vim.fs.dirname(vim.fs.find({'.luarc.json', '.git'}, { upward = true })[1]),
+        filetypes= {'lua'},
+        root_markers = {'.luarc.json', '.git'},
         on_init = function(client)
           local path = client.workspace_folders[1].name
           if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
@@ -45,6 +42,10 @@ in
           Lua = {}
         }
       }
+    '';
+
+    programs.neovim.extraLuaConfig = /* lua */ ''
+      vim.lsp.enable('lua_ls')
     '';
   };
 }

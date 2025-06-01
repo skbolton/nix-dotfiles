@@ -7,18 +7,19 @@ with lib;
       beancount-language-server
     ];
 
-    xdg.configFile."nvim/after/ftplugin/beancount.lua".text = /* lua */ ''
-      local capabilities = require 'lsp_capabilities'()
-
-      vim.lsp.start {
-        name = 'beancount',
+    xdg.configFile."nvim/lsp/beancount_ls.lua".text = /* lua */ ''
+      return {
         cmd = { 'beancount-language-server', '--stdio' },
-        capabilities = capabilities,
-        root_dir = vim.fs.dirname(vim.fs.find({'.git'}, { upward = true })[1]),
+        filetypes = { 'beancount', 'bean' },
+        root_markers = { '.git' },
         init_options = {
           journal_file = os.getenv("HOME") .. "/Public/ledger/main.beancount"
         }
       }
+    '';
+
+    programs.neovim.extraLuaConfig = /* lua */ ''
+      vim.lsp.enable('beancount_ls')
     '';
   };
 }
