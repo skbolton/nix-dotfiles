@@ -14,6 +14,7 @@
     passwords.enable = true;
     tasks.enable = true;
     timetracking.enable = true;
+    synology.enable = true;
     neovim.enable = true;
     terminal_theme.embark.enable = true;
     kitty.enable = true;
