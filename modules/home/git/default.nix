@@ -26,7 +26,7 @@
 
     aliases = {
       l = "log --date=short --decorate --pretty=format:'%C(yellow)%h %C(green)%ad%C(magenta)%d %Creset%s%C(brightblue) [%cn]'";
-      branches = "!git --no-pager branch --format '%(refname:short)' --sort=-committerdate | ${pkgs.fzf}/bin/fzf-tmux $1 --preview 'git log --color=always --decorate {}'";
+      branches = "!git --no-pager branch --format '%(refname:short)' | ${pkgs.fzf}/bin/fzf --tmux $1 --preview 'git log --color=always --decorate {}'";
       dog = "log --all --decorate --oneline --graph";
       to = "!git checkout $(git branches --no-multi)";
       drop = "!git branch -d $(git branches --multi)";
@@ -57,20 +57,34 @@
     };
 
     extraConfig = {
+      color.branch = {
+        current = "green";
+        local = "default";
+        remote = "magenta";
+        upstream = "blue";
+        plain = "default";
+      };
+      log.abbrevCommit = true;
       init = { defaultBranch = "main"; };
       core = { editor = "nvim"; };
       diff = { algorithm = "histogram"; };
       status = { showUntrackedFiles = "all"; };
       blame = { date = "relative"; };
+      branch.sort = "-committerdate";
       rebase = { autosquash = true; };
       merge = { conflictStyle = "diff3"; };
-      pull = { ff = "only"; };
+      pull.ff = "only";
+      pull.default = "current";
+      push.autoSetupRemote = true;
+      push.default = "current";
       checkout = { defaultRemote = "origin"; };
       commit = {
         verbose = true;
         template = "~/.config/git/commit-template";
       };
       git-extras.get.clone-path = "$HOME/Public";
+      url."git@github.com:skbolton/".insteadOf = "skb:";
+      url."git@github.com:".insteadOf = "gh:";
     };
   };
 
