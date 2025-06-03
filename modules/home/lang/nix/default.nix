@@ -11,26 +11,36 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      nil
+      nixd
       nixpkgs-fmt
     ];
 
-    xdg.configFile."nvim/lsp/nil_ls.lua".text = /* lua */ ''
+    xdg.configFile."nvim/lsp/nixd.lua".text = /* lua */ ''
       return {
-        cmd = {'nil'},
+        cmd = {'nixd'},
         filetypes = { 'nix' },
         root_markers = {'flake.nix', 'shell.nix'},
         settings = {
-          ["nil"] = {
+          nixd = {
+            nixpkgs = {
+              expr = "import <nixpkgs> { }",
+             },
             formatting = { command = { "nixpkgs-fmt" } },
-            nix = { flake = { autoArchive = true } }
+            options = {
+              nixos = {
+               expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.' .. vim.fn.hostname() .. '.options',
+              },
+              home_manager = {
+                expr = '(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.' .. vim.fn.hostname() .. '.options.home-manager.users.type.getSubOptions []'
+              }
+            }
           }
         }
       }
     '';
 
     programs.neovim.extraLuaConfig = /* lua */ ''
-      vim.lsp.enable('nil_ls')
+      vim.lsp.enable('nixd')
     '';
   };
 }
