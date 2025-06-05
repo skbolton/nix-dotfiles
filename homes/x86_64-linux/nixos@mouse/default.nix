@@ -16,6 +16,10 @@
     timetracking.enable = true;
     synology.enable = true;
     neovim.enable = true;
+    notes = {
+      enable = true;
+      notebook_dir = "$HOME/Documents/Reference";
+    };
     terminal_theme.embark.enable = true;
     kitty.enable = true;
     lang = {
