@@ -108,7 +108,7 @@ in
 
         galaxyline-nvim
 
-        { plugin = vista-vim; optional = true; }
+        { plugin = aerial-nvim; optional = true; }
         {
           plugin = inputs.blink-cmp.packages.${pkgs.system}.default;
           optional = true;

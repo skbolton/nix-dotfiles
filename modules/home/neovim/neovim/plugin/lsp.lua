@@ -1,21 +1,6 @@
 local lsp = vim.lsp
 local wk = require 'which-key'
 
--- Vista Sidebar
--- ===================================================================
-vim.g.vista_sidebar_width = 45;
-vim.g.vista_default_executive = 'nvim_lsp';
-vim.g.vista_disable_statusline = true;
-vim.g['vista#renderer#enable_icon'] = 1;
-vim.g.vista_icon_indent = { "▸ ", "" };
-vim.g['vista#renderer#icons'] = {
-  ['function'] = ' ',
-  module = '  ',
-  variable = ' ',
-  constant = ' ',
-  event = ' '
-}
-
 local function on_list(options)
   vim.fn.setqflist({}, ' ', options)
   vim.cmd.cfirst()
@@ -47,7 +32,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     wk.add {
       { "<leader>lo", "<CMD>Telescope lsp_document_symbols<CR>", desc = "Fuzzy symbols",  group = "+lsp", buffer = buffer },
-      { "<leader>lO", "<CMD>Vista<CR>",                          desc = "Symbol sidebar", group = "+lsp", buffer = buffer },
+      { "<leader>lO", "<CMD>AerialToggle!<CR>",                  desc = "Symbol sidebar", group = "+lsp", buffer = buffer },
       { "<leader>li", vim.diagnostic.setloclist,                 desc = "qf diagnostic",  group = "+lsp" },
     }
   end
