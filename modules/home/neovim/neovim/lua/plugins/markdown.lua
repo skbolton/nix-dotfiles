@@ -9,6 +9,9 @@ return {
           sign = false,
           position = 'inline',
         },
+        link = {
+          custom = { youtube = { pattern = '.+youtu%.be.+', icon = ' ' } }
+        },
         code = {
           sign = false,
           position = 'right',
