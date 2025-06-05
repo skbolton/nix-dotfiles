@@ -1,5 +1,45 @@
 return {
   {
+    "render-markdown.nvim",
+    after = function()
+      require 'render-markdown'.setup {
+        signs = { enabled = false },
+        heading = {
+          icons = { '󰎦  ', '󰎩 ', '󰎬 ', '󰎮 ', '󰎰 ', ' 󰎵 ' },
+          sign = false,
+          position = 'inline',
+        },
+        code = {
+          sign = false,
+          position = 'right',
+          width = 'block',
+          min_width = 80,
+          border = 'thick'
+        },
+        bullet = {
+          icons = { '•', '∘' }
+        },
+        checkbox = {
+          bullet = true,
+          unchecked = {
+            icon = '󰄱 '
+          },
+          checked = {
+            icon = '󰄲 '
+          },
+          custom = {
+            migrated = { raw = '[>]', rendered = ' ', highlight = '@string.special' },
+            logged = { raw = '[<]', rendered = ' ', highlight = '@string.special' },
+            delegated = { raw = '[/]', rendered = ' ', highlight = '@text.todo.unchecked' },
+            inspirational = { raw = '[!]', rendered = ' ', highlight = '@string' },
+            priority = { raw = '[*]', rendered = ' ', highlight = '@function' }
+          }
+        }
+      }
+    end,
+    ft = { "markdown" }
+  },
+  {
     "bullets.vim",
     before = function()
       vim.g.bullets_outline_levels = { 'num', 'abc', 'std*' }

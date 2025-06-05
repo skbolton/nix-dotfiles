@@ -113,6 +113,11 @@ in
           plugin = inputs.blink-cmp.packages.${pkgs.system}.default;
           optional = true;
         }
+        {
+        {
+          plugin = render-markdown-nvim;
+          optional = true;
+        }
         luasnip
 
         {
