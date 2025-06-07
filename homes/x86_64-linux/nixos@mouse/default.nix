@@ -12,7 +12,10 @@
       enable = true;
       user = "nixos";
     };
-    gpg.enable = true;
+    gpg = {
+      enable = true;
+      pinentry = pkgs.pinentry-qt;
+    };
     zsh.enable = true;
     cli_apps.enable = true;
     tmux.enable = true;
