@@ -3,6 +3,7 @@ return {
     "render-markdown.nvim",
     after = function()
       require 'render-markdown'.setup {
+        file_types = { "markdown", "codecompanion" },
         signs = { enabled = false },
         heading = {
           icons = { '󰎦  ', '󰎩 ', '󰎬 ', '󰎮 ', '󰎰 ', ' 󰎵 ' },
@@ -40,7 +41,7 @@ return {
         }
       }
     end,
-    ft = { "markdown" }
+    ft = { "markdown", "codecompanion" }
   },
   {
     "bullets.vim",

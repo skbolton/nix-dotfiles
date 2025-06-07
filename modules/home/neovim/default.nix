@@ -114,6 +114,10 @@ in
           optional = true;
         }
         {
+          plugin = codecompanion-nvim;
+          optional = true;
+        }
+        {
           plugin = render-markdown-nvim;
           optional = true;
         }

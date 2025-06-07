@@ -24,6 +24,7 @@ in
         path = "%r/fastmail-vdirsync-password.txt";
       };
       secrets.aichat-config.path = "%r/aichat/config.yaml";
+      secrets.ollama-api-creds.path = "%r/ollama-api-creds.txt";
     };
   };
 
