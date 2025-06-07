@@ -8,6 +8,10 @@
 
   delta = {
     ai.enable = true;
+    sops = {
+      enable = true;
+      user = "nixos";
+    };
     gpg.enable = true;
     zsh.enable = true;
     cli_apps.enable = true;
