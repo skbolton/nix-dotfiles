@@ -58,7 +58,6 @@ in
           });
           optional = true;
         }
-        lsp_lines-nvim
         dial-nvim
 
         nui-nvim

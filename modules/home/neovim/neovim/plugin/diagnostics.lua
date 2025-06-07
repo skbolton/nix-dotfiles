@@ -1,20 +1,23 @@
-local lsp_lines = require 'lsp_lines'
-
 local map = vim.keymap.set
-
-lsp_lines.setup()
 
 local default_diagnostic_config = {
   underline = true,
   virtual_lines = false,
   virtual_text = true,
-  signs = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.HINT] = '⌕',
+      [vim.diagnostic.severity.INFO] = '🞔',
+      [vim.diagnostic.severity.ERROR] = '🯀',
+      [vim.diagnostic.severity.WARN] = '🯀',
+    }
+  }
 }
 
 vim.diagnostic.config(default_diagnostic_config)
 
-map('n', '[d', vim.diagnostic.goto_prev)
-map('n', ']d', vim.diagnostic.goto_next)
+map('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end)
+map('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end)
 map('n', '<C-g>', function()
   vim.diagnostic.config { virtual_lines = true, virtual_text = false }
 
@@ -28,12 +31,3 @@ map('n', '<C-g>', function()
     end
   })
 end)
-
--- Sign Icons
-local signs = { Error = '🯀', Warn = '🯀', Hint = '⌕', Info = '🞔' }
-
--- Consigure signs
-for type, icon in pairs(signs) do
-  local highlight = "DiagnosticSign" .. type
-  vim.fn.sign_define(highlight, { text = icon, texthl = highlight })
-end
