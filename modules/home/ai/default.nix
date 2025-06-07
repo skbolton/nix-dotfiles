@@ -10,7 +10,7 @@ with lib;
 
   config = mkIf cfg.enable {
 
-    home.sessionVariables.AICHAT_CONFIG_FILE = "$XDG_RUNTIME_DIR/aichat/config.yaml";
+    home.sessionVariables.AICHAT_CONFIG_FILE = "$HOME/.config/sops-nix/secrets/aichat-config";
 
     home.packages = with pkgs; [
       aichat
