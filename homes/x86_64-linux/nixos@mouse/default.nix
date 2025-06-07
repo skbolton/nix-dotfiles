@@ -7,6 +7,7 @@
   fonts.fontconfig.enable = true;
 
   delta = {
+    ai.enable = true;
     gpg.enable = true;
     zsh.enable = true;
     cli_apps.enable = true;

@@ -10,6 +10,7 @@
   xdg.autostart.enable = true;
 
   delta = {
+    ai.enable = true;
     sops.enable = true;
     gpg.enable = true;
     zsh.enable = true;

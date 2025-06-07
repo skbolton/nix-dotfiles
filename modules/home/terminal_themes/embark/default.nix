@@ -67,12 +67,7 @@ in
     programs.bat = {
       config.theme = "embark";
       themes.embark = {
-        src = pkgs.fetchFromGitHub {
-          owner = "embark-theme";
-          repo = "bat";
-          rev = "fae7e23";
-          sha256 = "sha256-7xKdf5IRwRQo7nVc9hXb+ziULBtwhAn3pbOy4FiRbiQ=";
-        };
+        src = inputs.embark-bat-theme;
         file = "Embark.tmTheme";
       };
     };

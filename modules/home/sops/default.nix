@@ -23,6 +23,7 @@ in
       secrets.fastmail-vdirsync-password = {
         path = "%r/fastmail-vdirsync-password.txt";
       };
+      secrets.aichat-config.path = "%r/aichat/config.yaml";
     };
   };
 

@@ -64,6 +64,22 @@
         "type": "github"
       }
     },
+    "embark-bat-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1705268149,
+        "narHash": "sha256-LIHHIVECBDyO/Gc/vM/2/vewRj04ycgNn2OK7tObzZw=",
+        "owner": "embark-theme",
+        "repo": "bat",
+        "rev": "16e3534c26cf2b2f1b2d43645c1026c0cb328c28",
+        "type": "github"
+      },
+      "original": {
+        "owner": "embark-theme",
+        "repo": "bat",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -1328,6 +1344,7 @@
         "awesome-neovim-plugins": "awesome-neovim-plugins",
         "blink-cmp": "blink-cmp",
         "darwin": "darwin",
+        "embark-bat-theme": "embark-bat-theme",
         "home-manager": "home-manager",
         "lz-n": "lz-n",
         "neorg-overlay": "neorg-overlay",

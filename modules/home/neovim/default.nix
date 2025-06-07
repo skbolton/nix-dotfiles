@@ -114,7 +114,6 @@ in
           optional = true;
         }
         {
-        {
           plugin = render-markdown-nvim;
           optional = true;
         }

@@ -6,6 +6,7 @@
   home.packages = with pkgs; [ docker-compose zk rancher docker-credential-helpers ];
 
   delta = {
+    ai.enable = true;
     gpg = {
       enable = true;
       autostart = false;
