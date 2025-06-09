@@ -16,11 +16,7 @@ in
       erlang_27
       lexical
     ] ++ lib.optional stdenv.isLinux inotify-tools
-    ++ lib.optional stdenv.isDarwin terminal-notifier
-    ++ lib.optionals stdenv.isDarwin (with darwin.apple_sdk.frameworks; [
-      CoreFoundation
-      CoreServices
-    ]);
+    ++ lib.optional stdenv.isDarwin terminal-notifier;
 
     home.sessionVariables = {
       ERL_AFLAGS = "-kernel shell_history enabled";

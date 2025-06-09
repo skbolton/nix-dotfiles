@@ -1,8 +1,6 @@
-{ pkgs, self, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
-  services.nix-daemon.enable = true;
-
   nix.package = pkgs.nix;
   nix.settings.experimental-features = "nix-command flakes";
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
@@ -14,6 +12,8 @@
     };
     hostPlatform = "aarch64-darwin";
   };
+
+  system.primaryUser = "s.bolton";
 
   networking.hostName = "niobe";
 
