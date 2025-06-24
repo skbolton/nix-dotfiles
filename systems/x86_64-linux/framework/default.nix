@@ -34,7 +34,7 @@
   networking.networkmanager.wifi.backend = "iwd"; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  time.timeZone = "America/New_York";
+  time.timeZone = lib.mkForce null;
 
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -147,6 +147,8 @@
     CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
     CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
   };
+
+  services.automatic-timezoned.enable = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
