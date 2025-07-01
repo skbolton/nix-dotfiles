@@ -14,12 +14,12 @@ windows:
       - nvim
   - name: " scratchpad"
     commands: 
-      - mix ecto.create && iex -S mix phx.server
+      - nvim scratchpad.ex
     layout: main-vertical
     panes:
       - type: vertical
         commands:
-          - nvim scratchpad.ex
+          - mix ecto.create && iex -S mix phx.server
   - name: " db"
     commands:
       - nvim +DBUI
