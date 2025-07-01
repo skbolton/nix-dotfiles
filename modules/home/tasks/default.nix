@@ -7,6 +7,7 @@ in
 {
   options.delta.tasks = with types; {
     enable = mkEnableOption "tasks";
+    sync = mkEnableOption "sync";
   };
 
   config = mkIf cfg.enable {
@@ -111,12 +112,12 @@ in
         };
       };
 
-      extraConfig = ''
+      extraConfig = mkIf cfg.sync ''
         include $XDG_RUNTIME_DIR/taskwarrior-sync-server-credentials.txt
       '';
     };
 
-    systemd.user.services.taskwarrior-sync = {
+    systemd.user.services.taskwarrior-sync = mkIf cg.sync {
       Unit = { Description = "Taskwarrior sync"; };
       Service = {
         CPUSchedulingPolicy = "idle";
@@ -125,7 +126,7 @@ in
       };
     };
 
-    systemd.user.timers.taskwarrior-sync = {
+    systemd.user.timers.taskwarrior-sync = mkIf cfg.sync {
       Unit = { Description = "Taskwarrior periodic sync"; };
       Timer = {
         Unit = "taskwarrior-sync.service";
