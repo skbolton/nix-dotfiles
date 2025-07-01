@@ -29,14 +29,15 @@ return {
     after = function()
       require 'tide'.setup {
         keys = {
-          leader = '<leader>m',
+          leader = '<leader>o',
+          panel = "o"
         },
         hints = {
-          dictionary = 'rstdneio'
+          dictionary = 'neitsr'
         }
       }
     end,
-    keys = { "<leader>m" }
+    keys = { "<leader>o" }
   },
   {
     'comment.nvim',
