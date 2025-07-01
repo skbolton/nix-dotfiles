@@ -31,6 +31,7 @@
     };
     terminal_theme.embark.enable = true;
     desktop.macos.aerospace.enable = true;
+    cloud.gcloud.enable = true;
     lang = {
       elixir.enable = true;
       lua.enable = true;
