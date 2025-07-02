@@ -3,6 +3,7 @@ root: ${root}
 
 windows:
   - name: " neovim"
+    selected: true
     commands:
       - nvim
   - name: " console"

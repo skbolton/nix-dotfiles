@@ -9,6 +9,7 @@ stop:
 
 windows:
   - name: " neovim"
+    selected: true
     commands:
       - nvim
   - name: " scratchpad"
