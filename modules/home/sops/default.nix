@@ -15,7 +15,7 @@ in
 
   config = mkIf cfg.enable {
     sops = {
-      age.keyFile = "/home/${cfg.user}/.config/sops/age-key.txt";
+      age.keyFile = "/home/${cfg.user}/.config/sops/age/keys.txt";
       defaultSopsFile = ../../../secrets/home-secrets.yaml;
       secrets.taskwarrior-sync-server-credentials = {
         path = "%r/taskwarrior-sync-server-credentials.txt";
