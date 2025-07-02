@@ -63,7 +63,7 @@ in
         nui-nvim
 
         {
-          plugin = pkgs.awesomeNeovimPlugins.hlchunk-nvim;
+          plugin = hlchunk-nvim;
           optional = true;
         }
         {
