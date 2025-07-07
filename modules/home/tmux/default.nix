@@ -78,6 +78,7 @@ in
         set -g automatic-rename off
         set -g renumber-windows
         set -g clock-mode-style 24
+        set -g extended-keys on
 
         source ~/.config/tmux/bindings.tmux
         source "~/.config/tmux/statusline.tmux"
@@ -137,6 +138,9 @@ in
       bind s display-popup -E -w 90% -h 90% ${pkgs.delta.rally}/bin/rally.sh
       bind C-l split-window -h -l 120 zk log
       bind C-h split-window -h -l 150 fman
+      bind C-t if "tmux display -p '#h' | grep -q niobe" "split-window -h -l 33% \; send ssh Space orlando@192.168.0.46 Enter"
+      bind M-t if "tmux display -p '#h' | grep -q niobe" "split-window -h -l 33% \; send ssh Space orlando@192.168.0.46 Enter task Enter" "send task Enter"
+      bind M-r split-window -h -l 33% \; if "tmux display -p '#h' | grep -q niobe" "send ssh Space orlando@192.168.0.46 Enter \; send cd Space ~/Documents/Reference/ Enter zk Space ei Enter" "send cd Space ~/Documents/Reference/ Enter zk Space ei Enter"
     
       #######################################################################
       # Layers
