@@ -55,6 +55,11 @@
       flake = false;
     };
 
+    embark-vim = {
+      url = "github:embark-theme/vim";
+      flake = false;
+    };
+
     awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
 
     neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";

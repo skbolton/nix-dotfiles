@@ -80,6 +80,22 @@
         "type": "github"
       }
     },
+    "embark-vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1752125952,
+        "narHash": "sha256-9vy+UWdhIjswxMHQYgfuovJJM6RS316LRG4+prJNz0M=",
+        "owner": "embark-theme",
+        "repo": "vim",
+        "rev": "17c501c1f69d736f21959a66702cd6590f415a97",
+        "type": "github"
+      },
+      "original": {
+        "owner": "embark-theme",
+        "repo": "vim",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -1345,6 +1361,7 @@
         "blink-cmp": "blink-cmp",
         "darwin": "darwin",
         "embark-bat-theme": "embark-bat-theme",
+        "embark-vim": "embark-vim",
         "home-manager": "home-manager",
         "lz-n": "lz-n",
         "neorg-overlay": "neorg-overlay",
