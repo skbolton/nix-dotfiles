@@ -61,7 +61,7 @@
   programs.ssh = {
     enable = true;
     matchBlocks.niobe = {
-      hostname = "niobe.zionlab.local";
+      hostname = "niobe.home.arpa";
       user = "s.bolton";
       sendEnv = [ "LANG LC_*" ];
       remoteForwards = [
