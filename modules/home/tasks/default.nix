@@ -117,7 +117,7 @@ in
       '';
     };
 
-    systemd.user.services.taskwarrior-sync = mkIf cg.sync {
+    systemd.user.services.taskwarrior-sync = mkIf cfg.sync {
       Unit = { Description = "Taskwarrior sync"; };
       Service = {
         CPUSchedulingPolicy = "idle";
