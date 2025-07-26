@@ -170,7 +170,7 @@ return {
     end,
     cmd = { "CodeCompanionChat" },
     keys = {
-      { "<leader>a", "<CMD>CodeCompanionChat<CR>" }
+      { "<leader>a", "<CMD>CodeCompanionChat Toggle<CR>" }
     }
   }
 }

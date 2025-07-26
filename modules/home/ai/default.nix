@@ -21,5 +21,13 @@ with lib;
     '';
 
     xdg.configFile."aichat/dark.tmTheme".source = inputs.embark-bat-theme + "/Embark.tmTheme";
+    xdg.configFile."aichat/roles" = {
+      source = ./aichat/roles;
+      recursive = true;
+    };
+
+    xdg.configFile."nvim/plugin/ai-grammar.lua".text = mkIf config.delta.neovim.enable /* lua */ ''
+      vim.keymap.set({'n', 'v'}, '<leader>ag', '!aichat -r grammar<CR>')
+    '';
   };
 }
