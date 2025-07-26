@@ -13,7 +13,7 @@ in
 
     xdg.configFile."nvim/plugin/embark.lua".text = ''
       vim.o.background = 'dark'
-      vim.g.embark_terminal_italics = true;
+      vim.g.embark_terminal_italics = true
       vim.cmd("colorscheme embark")
     '';
 
