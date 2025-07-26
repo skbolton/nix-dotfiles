@@ -11,7 +11,9 @@ writeShellApplication {
   runtimeInputs = [ fd ripgrep fzf eza smug ];
   text = ''
     _tmux_sessions() {
-      tmux list-sessions -F '#S' 2> /dev/null | awk '{print "\033[32m \033[0m" $0}'| rg -v "$(tmux display -p '#S')"
+      if tmux ls &> /dev/null; then
+        tmux list-sessions -F '#S' 2> /dev/null | awk '{print "\033[32m \033[0m" $0}'| rg -v "$(tmux display -p '#S')"
+      fi
     }
 
     _rallypoints() {
@@ -36,7 +38,9 @@ writeShellApplication {
     TARGET=$( (_tmux_sessions; _rallypoints ) | _select)
     NAME=$(basename "$TARGET")
 
-    if [[ -f "$TARGET/.steve-smug.yml" ]]; then
+    if tmux has-session -t "$NAME"; then
+      tmux switch -t "$NAME"
+    elif [[ -f "$TARGET/.steve-smug.yml" ]]; then
       smug start -f "$TARGET/.steve-smug.yml" -a
     elif [[ -f "$HOME/.config/smug/$NAME.yml" ]]; then
       smug start "$NAME" -a
