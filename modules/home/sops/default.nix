@@ -7,15 +7,11 @@ in
 {
   options.delta.sops = with types; {
     enable = mkEnableOption "home-sops";
-    user = mkOption {
-      type = str;
-      default = "orlando";
-    };
   };
 
   config = mkIf cfg.enable {
     sops = {
-      age.keyFile = "/home/${cfg.user}/.config/sops/age/keys.txt";
+      age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
       defaultSopsFile = ../../../secrets/home-secrets.yaml;
       secrets.taskwarrior-sync-server-credentials = {
         path = "%r/taskwarrior-sync-server-credentials.txt";

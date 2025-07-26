@@ -7,6 +7,7 @@
 
   delta = {
     ai.enable = true;
+    sops.enable = true;
     gpg = {
       enable = true;
       autostart = false;
@@ -47,5 +48,9 @@
     enable = true;
   };
 
-  home.stateVersion = "24.05";
+  home = {
+    username = "s.bolton";
+    homeDirectory = "/Users/s.bolton";
+    stateVersion = "24.05";
+  };
 }
