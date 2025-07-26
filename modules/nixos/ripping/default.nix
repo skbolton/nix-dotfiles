@@ -14,6 +14,7 @@ in
       handbrake
       makemkv
       subtitleedit
+      mkvtoolnix
     ];
 
     boot.initrd.kernelModules = [ "sg" ];
