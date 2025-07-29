@@ -18,7 +18,7 @@ in
     };
 
     home.packages = with pkgs; [
-      harsh
+      unstable.harsh
       (writeShellScriptBin "habits" ''
         echo "$HARSHPATH/log" | ${entr}/bin/entr -c harsh log
       '')

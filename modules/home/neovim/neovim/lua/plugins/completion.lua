@@ -153,11 +153,11 @@ return {
               },
               schema = {
                 model = {
-                  default = "devstral:24b",
-                  choices = { "devstral:24b", "gemma3:27b" }
+                  default = "qwen3:30b",
+                  choices = { "qwen3:30b", "devstral:24b", "gemma3:27b" }
                 },
                 num_ctx = {
-                  default = 16384,
+                  default = 38000,
                 },
                 num_predict = {
                   default = -1,

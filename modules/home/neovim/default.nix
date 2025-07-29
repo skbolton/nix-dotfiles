@@ -22,7 +22,7 @@ in
 
         require('lz.n').load("plugins")
       '';
-      plugins = with pkgs.vimPlugins; [
+      plugins = with pkgs.unstable.vimPlugins; [
         inputs.lz-n.packages.${pkgs.system}.default
         # syntax
         vim-elixir
