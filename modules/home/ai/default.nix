@@ -14,6 +14,7 @@ with lib;
 
     home.packages = with pkgs; [
       aichat
+      unstable.opencode
     ];
 
     programs.tmux.extraConfig = /* tmux */ ''
@@ -29,5 +30,7 @@ with lib;
     xdg.configFile."nvim/plugin/ai-grammar.lua".text = mkIf config.delta.neovim.enable /* lua */ ''
       vim.keymap.set({'n', 'v'}, '<leader>ag', '!aichat -r grammar<CR>')
     '';
+
+    xdg.configFile."opencode/opencode.json".source = ./opencode.json;
   };
 }

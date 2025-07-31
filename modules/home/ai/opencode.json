@@ -1,0 +1,28 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "zionlab/devstral:24b",
+  "provider": {
+    "zionlab": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://zen5950.home.arpa:11434/v1"
+      },
+      "models": {
+        "qwen3:30b": {
+          "tools": true,
+          "reasoning": true,
+          "options": { "num_ctx": 65536 }
+        },
+        "devstral:24b": {
+          "tools": true,
+          "reasoning": false,
+          "limit": {
+            "context": 128000,
+            "output": 1280000
+          },
+          "options": { "num_ctx": 80000 }
+        }
+      }
+    }
+  }
+}
