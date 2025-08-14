@@ -72,12 +72,12 @@ in
       #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
       #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
       [gaps]
-      inner.horizontal = 4
-      inner.vertical =   4
-      outer.left =       4
-      outer.bottom =     4
-      outer.top =        4
-      outer.right =      4
+      inner.horizontal = 12
+      inner.vertical =   12
+      outer.left =       12
+      outer.bottom =     12
+      outer.top =        12
+      outer.right =      12
 
       # 'main' binding mode declaration
       # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
