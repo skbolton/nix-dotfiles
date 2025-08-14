@@ -75,6 +75,7 @@ in
       colorTheme = ./embark-taskwarrior.theme;
       config = {
         alias = {
+          "cr" = "add project:\"$TW_PROJECT\"";
           "@" = "context";
         };
         default.command = "ready";
