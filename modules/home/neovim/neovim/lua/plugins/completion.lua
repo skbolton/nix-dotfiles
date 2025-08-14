@@ -153,8 +153,8 @@ return {
               },
               schema = {
                 model = {
-                  default = "qwen3:30b",
-                  choices = { "qwen3:30b", "devstral:24b", "gemma3:27b" }
+                  default = "qwen3-coder:30b-a3b",
+                  choices = { "qwen3-coder:30b-a3b", "qwen3:30b", "devstral:24b", "gemma3:27b" }
                 },
                 num_ctx = {
                   default = 38000,
