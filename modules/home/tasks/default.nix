@@ -11,13 +11,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ todoist todoist-electron taskwarrior-tui ];
-
-    programs.zsh.shellAliases = {
-      t = "task";
-      dk = "task add +dk";
-      "in" = "task add +in";
-    };
+    home.packages = with pkgs; [ taskwarrior-tui ];
 
     programs.zsh.initContent = mkOrder 1000 /* bash */ ''
       function twait() {
