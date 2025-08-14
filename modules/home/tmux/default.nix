@@ -138,9 +138,6 @@ in
       bind s display-popup -E -w 90% -h 90% ${pkgs.delta.rally}/bin/rally.sh
       bind C-l split-window -h -l 120 zk log
       bind C-h split-window -h -l 150 fman
-      bind C-t if "tmux display -p '#h' | grep -q niobe" "split-window -h -l 33% \; send ssh Space orlando@192.168.0.46 Enter"
-      bind M-t if "tmux display -p '#h' | grep -q niobe" "split-window -h -l 33% \; send ssh Space orlando@192.168.0.46 Enter task Enter" "send task Enter"
-      bind M-r split-window -h -l 33% \; if "tmux display -p '#h' | grep -q niobe" "send ssh Space orlando@192.168.0.46 Enter \; send cd Space ~/Documents/Reference/ Enter zk Space ei Enter" "send cd Space ~/Documents/Reference/ Enter zk Space ei Enter"
     
       #######################################################################
       # Layers
@@ -150,6 +147,12 @@ in
       bind -Ttable1 ? split-window -h -l 100 \; send-keys '${pkgs.gh}/bin/gh' C-m
       bind -Ttable1 ! split-window -h -l 100 '${pkgs.gh}/bin/gh pr view --web'
       bind -Ttable1 t split-window -h 'clickup.sh'
+
+      bind t switch-client -Ttable2
+      bind -Ttable2 t if "tmux display -p '#h' | grep -q niobe" "split-window -b -h -l 33% \; send ssh Space orlando@trinity.home.arpa Enter"
+      bind -Ttable2 T if "tmux display -p '#h' | grep -q niobe" "split-window -b -h -l 33% \; send ssh Space orlando@trinity.home.arpa Enter task Enter" "send task Enter"
+      bind -Ttable2 r split-window -b -h -l 33% \; if "tmux display -p '#h' | grep -q niobe" "send ssh Space orlando@trinity.home.arpa Enter \; send zk Space ei Enter" "send zk Space ei Enter"
+      bind -Ttable2 l split-window -b -h -l 33% \; if "tmux display -p '#h' | grep -q niobe" "send ssh Space orlando@trinity.home.arpa Enter \; send Logbook Enter zk Space log Enter" "send Logbook Enter zk Space log Enter"
     '';
 
     xdg.configFile.smug = {
