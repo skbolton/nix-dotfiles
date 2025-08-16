@@ -64,11 +64,16 @@ in
       enableZshIntegration = true;
       defaultCommand = "${pkgs.fd}/bin/fd --type f";
       fileWidgetCommand = "${pkgs.fd}/bin/fd --type f --hidden";
-      fileWidgetOptions = [ "--preview '${pkgs.bat}/bin/bat --color=always {}'" ];
+      fileWidgetOptions = [
+        "--preview '${pkgs.bat}/bin/bat --color=always {}'"
+        "--pointer ' '"
+      ];
       changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
       changeDirWidgetOptions = [
         "--preview '${pkgs.eza}/bin/eza --tree --icons --color=always --level 3 --git-ignore {}'"
+        "--pointer ' '"
       ];
+      historyWidgetOptions = [ "--pointer ' '" ];
       defaultOptions = [ "--reverse" "--ansi" "--pointer '▌'" ];
     };
 
