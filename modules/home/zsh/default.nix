@@ -27,10 +27,11 @@ in
         { name = "fzf-tab"; src = "${pkgs.zsh-fzf-tab}/share/fzf-tab"; }
       ];
       dirHashes = {
-        CO = "$XDG_CONFIG_DIR";
-        ST = "$XDG_STATE_DIR";
-        CA = "$XDG_CACHE_DIR";
-        NI = "/nix/store";
+        co = "$HOME/.config";
+        st = "$HOME/.local/state";
+        sh = "$HOME/.local/share";
+        ca = "$HOME/.cache";
+        ni = "/nix/store";
       };
       shellGlobalAliases = {
         E = "| entr -c";
