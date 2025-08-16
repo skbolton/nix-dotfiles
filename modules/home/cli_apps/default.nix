@@ -51,19 +51,6 @@ in
       };
     };
 
-    programs.yazi = {
-      enable = cfg.enable;
-      enableZshIntegration = true;
-      settings = {
-        manager = {
-          ratio = [ 1 3 4 ];
-          show_hidden = true;
-          linemode = "mtime";
-          sort_dir_first = true;
-        };
-      };
-    };
-
     programs.direnv = {
       enable = cfg.enable;
       enableZshIntegration = true;

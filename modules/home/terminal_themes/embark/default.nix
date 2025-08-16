@@ -25,25 +25,6 @@ in
       include themes/embark.conf
     '';
 
-    programs.yazi.theme = {
-      manager = {
-        hovered = { bg = "#3E3859"; };
-        tab_active = { bg = "#A1EFD3"; fg = "#100E23"; };
-        tab_inactive = { bg = "#585273"; fg = "#CBE3E7"; };
-      };
-
-      status = {
-        separator_open = "";
-        separator_close = "";
-        mode_normal = { fg = "#100E23"; bg = "#A1EFD3"; };
-      };
-
-      input = {
-        border = { fg = "#585273"; };
-        value = { fg = "#CBE3E7"; };
-      };
-    };
-
     programs.fzf.colors = {
       "bg+" = "#1E1C31";
       "fg" = "#8A889D";

@@ -47,25 +47,6 @@ in
       include themes/inspired-github.conf
     '';
 
-    programs.yazi.theme = {
-      manager = {
-        hovered = { bg = "#F4F4F4"; };
-        tab_active = { bg = "#CA1243"; fg = "black"; };
-        tab_inactive = { bg = "#969896"; fg = "black"; };
-      };
-
-      status = {
-        separator_open = "";
-        separator_close = "";
-        mode_normal = { fg = "black"; bg = "#CA1243"; };
-      };
-
-      input = {
-        border = { fg = "#CA1243"; };
-        value = { fg = "#000000"; };
-      };
-    };
-
     programs.fzf.colors = {
       "bg+" = "#FFFFFF";
       "fg" = "-1";
