@@ -3,12 +3,12 @@
 , ripgrep
 , fzf
 , eza
-, smug
+, unstable
 }:
 
 writeShellApplication {
   name = "rally.sh";
-  runtimeInputs = [ fd ripgrep fzf eza smug ];
+  runtimeInputs = [ fd ripgrep fzf eza unstable.smug ];
   text = ''
     _tmux_sessions() {
       if tmux ls &> /dev/null; then
