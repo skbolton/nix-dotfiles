@@ -26,7 +26,7 @@ in
     programs.git.ignores = [ ".steve-smug.yml" ];
 
     home.packages = [
-      pkgs.smug
+      pkgs.unstable.smug
       pkgs.delta.rally
       pkgs.delta.tmux-file-paths
       pkgs.imagemagick
