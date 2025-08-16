@@ -178,7 +178,7 @@ gls.right[2] = {
 gls.right[3] = {
   LanguageServer = {
     provider = function()
-      local active_client = vim.lsp.buf_get_clients()[1]
+      local active_client = vim.lsp.get_clients()[1]
       if active_client ~= nil then
         vim.api.nvim_command('hi link GalaxyLanguageServer PreProc')
       else

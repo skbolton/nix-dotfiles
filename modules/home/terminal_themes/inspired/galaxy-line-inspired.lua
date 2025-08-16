@@ -96,7 +96,7 @@ gls.left[5] = {
 gls.right[1] = {
   LanguageServer = {
     provider = function()
-      active_client = vim.lsp.buf_get_clients()[1]
+      local active_client = vim.lsp.get_clients()[1]
       if active_client ~= nil then
         return '   '
       else
