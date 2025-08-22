@@ -148,7 +148,7 @@ in
       bind -Ttable2 t if "tmux display -p '#h' | grep -q niobe" "split-window -b -h -l 33% \; send ssh Space orlando@trinity.home.arpa Enter"
       bind -Ttable2 T if "tmux display -p '#h' | grep -q niobe" "split-window -b -h -l 33% \; send ssh Space orlando@trinity.home.arpa Enter task Enter" "send task Enter"
       bind -Ttable2 r split-window -b -h -l 33% \; if "tmux display -p '#h' | grep -q niobe" "send ssh Space orlando@trinity.home.arpa Enter \; send zk Space ei Enter" "send zk Space ei Enter"
-      bind -Ttable2 l split-window -b -h -l 33% \; if "tmux display -p '#h' | grep -q niobe" "send ssh Space orlando@trinity.home.arpa Enter \; send Logbook Enter zk Space log Enter" "send Logbook Enter zk Space log Enter"
+      bind -Ttable2 l split-window -b -h -l 100 'cd ~/Documents/Notes && zk log'
     '';
 
     xdg.configFile.smug = {
