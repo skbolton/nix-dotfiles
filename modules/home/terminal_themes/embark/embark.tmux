@@ -1,13 +1,13 @@
 # vim: set ft=tmux:
 set -g status-interval 3
 set-option -g status-position top
-set-option -g pane-border-style "fg=brightblack"
-set-option -g pane-active-border-style "fg=brightblack"
+set-option -g pane-border-style "fg=#3E3859"
+set-option -g pane-active-border-style "fg=#3E3859"
 set-option -g pane-border-lines "single"
 set-option -g pane-border-indicators "off"
 set-option -g message-style "bg=green,fg=black"
 set-option -g message-command-style "bg=green,fg=black"
-set -g popup-border-style "fg=#585273"
+set -g popup-border-style "fg=#3E3859"
 set -g popup-border-lines "rounded"
 
 # Status line
