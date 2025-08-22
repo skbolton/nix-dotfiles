@@ -25,6 +25,10 @@
     timetracking = {
       enable = true;
     };
+    tasks = {
+      enable = true;
+      sync = false;
+    };
     terminal_theme.embark.enable = true;
     desktop.macos.aerospace.enable = true;
     cloud.gcloud.enable = true;
