@@ -1,5 +1,4 @@
 local lsp = vim.lsp
-local wk = require 'which-key'
 
 local function on_list(options)
   vim.fn.setqflist({}, ' ', options)
@@ -25,15 +24,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if client:supports_method("textDocument/definition") then
-      wk.add {
-        { "<CR>", function() vim.lsp.buf.definition({ on_list = on_list }) end, desc = "Definition", group = "+lsp", buffer = buffer }
-      }
+      vim.keymap.set(
+        'n',
+        "<CR>",
+        function() vim.lsp.buf.definition({ on_list = on_list }) end,
+        { desc = "Definition", buffer = buffer })
     end
 
-    wk.add {
-      { "<leader>lo", "<CMD>Telescope lsp_document_symbols<CR>", desc = "Fuzzy symbols",  group = "+lsp", buffer = buffer },
-      { "<leader>lO", "<CMD>AerialToggle!<CR>",                  desc = "Symbol sidebar", group = "+lsp", buffer = buffer },
-      { "<leader>li", vim.diagnostic.setloclist,                 desc = "qf diagnostic",  group = "+lsp" },
-    }
+    vim.keymap.set("n", "<leader>lO", "<CMD>AerialToggle!<CR>", { desc = "Symbol sidebar", buffer = buffer })
+    vim.keymap.set("n", "<leader>li", vim.diagnostic.setloclist, { desc = "qf diagnostic" })
   end
 })
