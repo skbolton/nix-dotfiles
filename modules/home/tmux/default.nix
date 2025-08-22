@@ -43,13 +43,9 @@ in
       plugins = with pkgs.tmuxPlugins; [
         vim-tmux-navigator
         {
-          plugin = tmux-thumbs;
+          plugin = jump;
           extraConfig = ''
-            set -g @thumbs-key '='
-            set -g @thumbs-reverse enabled
-            set -g @thumbs-hint-bg-color yellow
-            set -g @thumbs-hint-fg-color black
-            set -g @thumbs-contrast 1
+            set -g @jump-key '='
           '';
         }
         tmux-fzf
