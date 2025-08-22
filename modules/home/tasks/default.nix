@@ -1,4 +1,8 @@
-{ lib, config, pkgs, ... }:
+{ lib
+, config
+, pkgs
+, ...
+}:
 
 with lib;
 let
@@ -128,6 +132,10 @@ in
         OnCalendar = "*:0/15";
       };
       Install = { WantedBy = [ "timers.target" ]; };
+    };
+
+    xdg.dataFile."task/hooks/on-modify-timelog" = mkIf config.delta.timetracking.enable {
+      source = (lib.getExe pkgs.delta.task-timelog-hook);
     };
   };
 }
