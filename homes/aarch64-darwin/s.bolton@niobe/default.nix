@@ -39,6 +39,18 @@
     };
   };
 
+  programs.zsh.shellAliases = {
+    dk = "task";
+    sup = "task add proj:Admin.Meetings.Standup sched:today Standup";
+    grm = "task add proj:Admin.Meetings.Grooming sched:today Product Grooming";
+    spln = "task add proj:Admin.Meetings.SprintPlanning sched:today Sprint Planning";
+    tpln = "task add proj:Admin.Meetings.TechPlanning sched:today Tech Planning";
+    ooo = "task add proj:Admin.Meetings.1on1 sched:today";
+  };
+
+  programs.taskwarrior.config.default.project = "Admin";
+  programs.taskwarrior.config.alias.do = "add";
+
   programs.man.enable = true;
 
   programs.zsh.shellAliases.rebuild = "sudo darwin-rebuild switch --flake \"$HOME/nix-dotfiles#niobe\"";
