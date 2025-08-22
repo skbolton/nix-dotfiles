@@ -52,8 +52,11 @@ return {
           },
         },
         sources = {
-          default = { 'lsp', 'path', 'snippets', 'buffer', 'dadbod' },
+          default = { 'lsp', 'path', 'snippets', 'buffer' },
           per_filetype = {
+            sql = { 'dadbod' },
+            plsql = { 'dadbod' },
+            mysql = { 'dadbod' },
             codecompanion = { "codecompanion" },
           },
           providers = { dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" } }

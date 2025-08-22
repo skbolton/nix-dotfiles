@@ -23,147 +23,53 @@ in
       '';
       plugins = with pkgs.unstable.vimPlugins; [
         inputs.lz-n.packages.${pkgs.system}.default
-        # syntax
-        vim-elixir
-        {
-          plugin = bullets-vim;
-          optional = true;
-        }
-        {
-          plugin = venn-nvim;
-          optional = true;
-        }
-        {
-          plugin = oil-nvim;
-          optional = true;
-        }
+        popup-nvim
+        plenary-nvim
+        { plugin = nvim-web-devicons; optional = true; }
+        { plugin = bullets-vim; optional = true; }
+        { plugin = venn-nvim; optional = true; }
+        { plugin = oil-nvim; optional = true; }
 
         # editing support
-        {
-          plugin = pkgs.awesomeNeovimPlugins.mdeval-nvim;
-          optional = true;
-        }
-        {
-          plugin = (pkgs.vimUtils.buildVimPlugin {
-            name = "tide.nvim";
-            version = "de64acfadcedec03f526ba79d95523cea6630b2d";
-            src = pkgs.fetchFromGitHub {
-              owner = "skbolton";
-              repo = "tide.nvim";
-              rev = "de64acfadcedec03f526ba79d95523cea6630b2d";
-              sha256 = "sha256-W6zaaSPiEn6aIv28q91saQMDTK4VeGIZr/BHlXCfr/I=";
-            };
-            doCheck = false;
-          });
-          optional = true;
-        }
-        dial-nvim
-
-        nui-nvim
-
-        {
-          plugin = hlchunk-nvim;
-          optional = true;
-        }
-        {
-          plugin = vim-tmux-navigator;
-          optional = false;
-        }
-        {
-          plugin = nvim-lint;
-          optional = true;
-        }
-        auto-pairs
-        {
-          plugin = firenvim;
-          optional = true;
-        }
-        vim-surround
-        {
-          plugin = comment-nvim;
-          optional = true;
-        }
-        vim-repeat
-        {
-          plugin = flash-nvim;
-          optional = true;
-
-        }
-        {
-          plugin = nvim-colorizer-lua;
-          optional = true;
-        }
+        { plugin = pkgs.awesomeNeovimPlugins.mdeval-nvim; optional = true; }
+        { plugin = dial-nvim; optional = true; }
+        { plugin = hlchunk-nvim; optional = true; }
+        { plugin = vim-tmux-navigator; optional = false; }
+        { plugin = nvim-lint; optional = true; }
+        { plugin = nvim-autopairs; optional = true; }
+        { plugin = firenvim; optional = true; }
+        { plugin = vim-surround; optional = true; }
+        { plugin = comment-nvim; optional = true; }
+        { plugin = vim-repeat; optional = true; }
+        { plugin = flash-nvim; optional = true; }
+        { plugin = nvim-colorizer-lua; optional = true; }
         { plugin = markdown-preview-nvim; optional = true; }
-        {
-          plugin = zk-nvim;
-          optional = true;
-        }
-        which-key-nvim
-        {
-          plugin = vim-wakatime;
-          optional = true;
-        }
-
+        { plugin = zk-nvim; optional = true; }
         galaxyline-nvim
 
         { plugin = aerial-nvim; optional = true; }
-        {
-          plugin = inputs.blink-cmp.packages.${pkgs.system}.default;
-          optional = true;
-        }
-        {
-          plugin = codecompanion-nvim;
-          optional = true;
-        }
-        {
-          plugin = render-markdown-nvim;
-          optional = true;
-        }
-        luasnip
+        { plugin = inputs.blink-cmp.packages.${pkgs.system}.default; optional = true; }
+        { plugin = codecompanion-nvim; optional = true; }
+        { plugin = render-markdown-nvim; optional = true; }
+        { plugin = luasnip; optional = true; }
 
-        {
-          plugin = pkgs.awesomeNeovimPlugins.nnn-nvim;
-          optional = true;
-        }
-
-        {
-          plugin = gitsigns-nvim;
-          optional = true;
-        }
-        {
-          plugin = diffview-nvim;
-          optional = true;
-        }
+        { plugin = gitsigns-nvim; optional = true; }
+        { plugin = diffview-nvim; optional = true; }
         { plugin = vim-fugitive; optional = true; }
-        {
-          plugin = git-messenger-vim;
-          optional = true;
-        }
-        vim-rhubarb
+        { plugin = git-messenger-vim; optional = true; }
+        { plugin = vim-rhubarb; optional = true; }
 
         # database
-        vim-dadbod
-        vim-dadbod-ui
-        vim-dadbod-completion
+        { plugin = vim-dadbod; optional = true; }
+        { plugin = vim-dadbod-ui; optional = true; }
+        { plugin = vim-dadbod-completion; optional = true; }
 
         # testing
-        {
-          plugin = vim-test;
-          optional = true;
-        }
+        { plugin = vim-test; optional = true; }
         { plugin = vim-dispatch; optional = true; }
-        {
-          plugin = vimux;
-          optional = true;
-        }
+        { plugin = vimux; optional = true; }
 
-        {
-          plugin = pkgs.awesomeNeovimPlugins.treewalker-nvim;
-          optional = true;
-        }
-        nvim-web-devicons
-        popup-nvim
-        plenary-nvim
+        { plugin = pkgs.awesomeNeovimPlugins.treewalker-nvim; optional = true; }
         (nvim-treesitter.withPlugins (p: nvim-treesitter.allGrammars ++ [
           (p.markdown.overrideAttrs {
             env.EXTENSION_WIKI_LINK = "1";
@@ -184,8 +90,8 @@ in
             '';
           })
         ]))
-        nvim-treesitter-textobjects
-        nvim-treesitter-endwise
+        { plugin = nvim-treesitter-textobjects; optional = true; }
+        { plugin = nvim-treesitter-endwise; optional = true; }
         {
           plugin = playground;
           optional = true;
@@ -212,6 +118,7 @@ in
             name = "embark-vim";
             src = inputs.embark-vim;
           };
+          optional = true;
         }
       ];
     };

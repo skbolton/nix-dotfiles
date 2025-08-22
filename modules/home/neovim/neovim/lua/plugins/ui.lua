@@ -1,7 +1,19 @@
 return {
   {
+    "nvim-web-devicons",
+    event = "User DeferredUIEnter"
+  },
+  {
+    "vimplugin-embark-vim",
+    before = function()
+      vim.o.background = 'dark'
+      vim.g.embark_terminal_italics = true
+    end,
+    colorscheme = "embark"
+  },
+  {
     "hlchunk.nvim",
-    event = "BufReadPre",
+    event = "InsertEnter",
     after = function()
       require("hlchunk").setup {
         chunk = {

@@ -1,3 +1,4 @@
+-- icons = { '󰎤  ', '󰎧 ', '󰎪 ', '󰎮 ', '󰎰 ', ' 󰎵 ' },
 return {
   {
     "render-markdown.nvim",
@@ -6,7 +7,7 @@ return {
         file_types = { "markdown", "codecompanion" },
         signs = { enabled = false },
         heading = {
-          icons = { '󰎦  ', '󰎩 ', '󰎬 ', '󰎮 ', '󰎰 ', ' 󰎵 ' },
+          icons = { '󰎤 ', '󰎧 ', '󰎪 ', '󰎭 ', '󰎱 ', '󰎳 ' },
           sign = false,
           position = 'inline',
         },
@@ -26,10 +27,10 @@ return {
         checkbox = {
           bullet = true,
           unchecked = {
-            icon = '󰄱 '
+            icon = '󰄱'
           },
           checked = {
-            icon = '󰄲 '
+            icon = '󰄲'
           },
           custom = {
             migrated = { raw = '[>]', rendered = ' ', highlight = '@string.special' },

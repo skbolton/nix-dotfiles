@@ -14,6 +14,7 @@
 
 -- Set editor options in lua
 local opt = vim.opt
+vim.loader.enable()
 
 -- SPACING AND INDENTATION
 -- ===================================================================

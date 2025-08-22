@@ -74,6 +74,14 @@ return {
     end
   },
   {
+    "nvim-treesitter-textobjects",
+    event = "User DeferredUIEnter"
+  },
+  {
+    "nvim-treesitter-endwise",
+    event = "User DeferredUIEnter"
+  },
+  {
     "treewalker-nvim",
     after = function()
       require 'treewalker'.setup {
@@ -82,10 +90,10 @@ return {
       }
     end,
     keys = {
-      { '<M-left>',  '<cmd>Treewalker Left<cr>zz' },
-      { '<M-up>',    '<cmd>Treewalker Up<cr>zz' },
-      { '<M-right>', '<cmd>Treewalker Right<cr>zz' },
-      { '<M-down>',  '<cmd>Treewalker Down<cr>zz' },
+      { '<left>',  '<cmd>Treewalker Left<cr>zz' },
+      { '<up>',    '<cmd>Treewalker Up<cr>zz' },
+      { '<right>', '<cmd>Treewalker Right<cr>zz' },
+      { '<down>',  '<cmd>Treewalker Down<cr>zz' },
     }
   }
 }

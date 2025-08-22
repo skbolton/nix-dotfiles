@@ -1,6 +1,7 @@
 return {
   {
     "gitsigns.nvim",
+    event = "InsertEnter",
     after = function()
       local gitsigns = require 'gitsigns'
 
@@ -39,7 +40,7 @@ return {
   },
   {
     "vim-fugitive",
-    -- event = "User DeferredUIEnter",
+    event = "User DeferredUIEnter",
     after = function()
       local Job = require 'plenary.job'
 
@@ -86,7 +87,11 @@ return {
       vim.keymap.set({ 'n', 'v' }, "<leader>g<left>", "<CMD>diffget<CR>", { desc = "Diff get" })
       vim.keymap.set({ 'n', 'v' }, "<leader>g<right>", "<CMD>diffget<CR>", { desc = "Diff get" })
       vim.keymap.set({ 'n', 'v' }, "<leader>g<down>", "<CMD>diffput<CR>", { desc = "diff put" })
-    end
+    end,
+  },
+  {
+    "vim-rhubarb",
+    cmd = "GBrowse"
   },
   {
     "git-messenger.vim",

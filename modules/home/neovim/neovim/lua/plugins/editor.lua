@@ -3,6 +3,26 @@ return {
     'cfilter',
     event = "QuickFixCmdPre"
   },
+  {
+    "vim-surround",
+    event = "User DeferredUIEnter"
+  },
+  {
+    "vim-repeat",
+    event = "User DeferredUIEnter"
+  },
+  {
+    'nvim-autopairs',
+    event = "InsertEnter",
+    after = function()
+      require('nvim-autopairs').setup {}
+    end
+  },
+  {
+    "luasnip",
+    event = "User DeferredUIEnter",
+  },
+  {
     'nvim-lint',
     event = "BufWritePost",
     after = function()
@@ -28,24 +48,9 @@ return {
     end
   },
   {
-    "vimplugin-tide.nvim",
-    after = function()
-      require 'tide'.setup {
-        keys = {
-          leader = '<leader>o',
-          panel = "o"
-        },
-        hints = {
-          dictionary = 'neitsr'
-        }
-      }
-    end,
-    keys = { "<leader>o" }
-  },
-  {
     'comment.nvim',
     after = function() require 'Comment'.setup() end,
-    event = "UIEnter",
+    event = "User DeferredUIEnter",
   },
   {
     "flash.nvim",
@@ -56,10 +61,6 @@ return {
       { "s", function() require("flash").jump() end,                                   desc = "Flash",            mode = { "n", "x", "o" } },
       { "S", function() require("flash").treesitter({ jump = { pos = "start" } }) end, desc = "Flash treesitter", mode = { "n", "x", "o" } }
     },
-  },
-  {
-    "vim-wakatime",
-    event = "InsertEnter"
   },
   {
     "playground",

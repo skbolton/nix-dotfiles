@@ -11,9 +11,7 @@ in
 
   config = mkIf cfg.enable {
 
-    xdg.configFile."nvim/plugin/embark.lua".text = ''
-      vim.o.background = 'dark'
-      vim.g.embark_terminal_italics = true
+    programs.neovim.extraLuaConfig = /* lua */ ''
       vim.cmd("colorscheme embark")
     '';
 

@@ -29,29 +29,5 @@ return {
     keys = {
       { "<leader>e", '<CMD>Oil<CR>', "Open oil" }
     }
-  },
-  {
-    "nnn-nvim",
-    after = function()
-      local nnn = require 'nnn'
-
-      nnn.setup {
-        offset = true,
-        explorer = {
-          width = 24
-        },
-        picker = {
-          border = "rounded"
-        },
-        mappings = {
-          { "<C-t>", nnn.builtin.open_in_tab },
-          { "<C-x>", nnn.builtin.open_in_split },
-          { "<C-v>", nnn.builtin.open_in_vsplit },
-        }
-      }
-    end,
-    keys = {
-      { "<leader>E", "<CMD>NnnPicker %:p<CR>", desc = "NNN" }
-    }
   }
 }
