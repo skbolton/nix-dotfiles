@@ -8,6 +8,7 @@
   fonts.fontconfig.enable = true;
 
   delta = {
+    ai.enable = true;
     sops.enable = true;
     gpg.enable = true;
     zsh.enable = true;
@@ -19,6 +20,7 @@
     timetracking.enable = true;
     habits.enable = true;
     neovim.enable = true;
+    terminal_theme.inspired.enable = false;
     terminal_theme.embark.enable = true;
     kitty.enable = true;
     calendar.enable = true;

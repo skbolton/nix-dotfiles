@@ -35,9 +35,7 @@ in
       iconTheme = {
         # <green|purple|...>-<light|dark>
         name = "Fluent-dark";
-        package = pkgs.fluent-icon-theme.override {
-          allColorVariants = true;
-        };
+        package = pkgs.fluent-icon-theme;
       };
     };
   };
