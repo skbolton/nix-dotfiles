@@ -14,12 +14,19 @@ in
       USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
     };
 
+    programs.zsh.shellAliases = {
+      "k" = "kubectl";
+      "kp" = "kubectl get pods | fzf --header-lines=1 --accept-nth 1";
+      "kx" = "kubectl exec -it $(kubectl get pods | fzf --header-lines=1) -- ";
+    };
+
     home.packages = with pkgs; [
       (google-cloud-sdk.withExtraComponents [
         google-cloud-sdk.components.kubectl
         google-cloud-sdk.components.gke-gcloud-auth-plugin
         google-cloud-sdk.components.pubsub-emulator
       ])
+      kubectx
     ];
   };
 }
