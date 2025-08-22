@@ -18,7 +18,6 @@ in
       extraPython3Packages = pyPkgs: with pyPkgs; [ beancount ];
       extraLuaConfig = /* lua */ ''
         require 'options'
-        vim.cmd [[packadd cfilter]]
 
         require('lz.n').load("plugins")
       '';

@@ -1,5 +1,8 @@
 return {
   {
+    'cfilter',
+    event = "QuickFixCmdPre"
+  },
     'nvim-lint',
     event = "BufWritePost",
     after = function()
