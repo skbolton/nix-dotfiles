@@ -26,6 +26,7 @@
     habits.enable = true;
     neovim.enable = true;
     terminal_theme.embark.enable = true;
+    terminal_theme.inspired.enable = false;
     calendar.enable = true;
     kitty.enable = true;
     lang = {
