@@ -213,31 +213,6 @@
     };
   };
 
-  services.prometheus = {
-    enable = true;
-    port = 9001;
-    scrapeConfigs = [
-      {
-        job_name = "wakatime-exporter";
-        static_configs = [{
-          # TODO: Stop hardcoding port - env of docker container?
-          targets = [ "127.0.0.1:9212" ];
-        }];
-      }
-    ];
-  };
-
-  virtualisation.oci-containers = {
-    backend = "docker";
-    containers = {
-      wakatime-exporter = {
-        image = "macropower/wakatime-exporter";
-        environmentFiles = [ config.sops.secrets.wakatime-api-key.path ];
-        ports = [ "9212:9212" ];
-      };
-    };
-  };
-
   delta.openlinkhub.enable = true;
 
   documentation.dev.enable = true;
