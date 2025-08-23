@@ -59,7 +59,10 @@ return {
             mysql = { 'dadbod' },
             codecompanion = { "codecompanion" },
           },
-          providers = { dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" } }
+          providers = {
+            dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+            buffer = { opts = { get_bufnrs = vim.api.nvim_list_bufs } }
+          }
         },
         snippets = { preset = 'luasnip' },
         appearance = {
