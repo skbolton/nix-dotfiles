@@ -25,7 +25,7 @@ return {
         },
         completion = {
           ghost_text = {
-            enabled = false,
+            enabled = true,
             show_without_selection = true,
           },
           documentation = {
