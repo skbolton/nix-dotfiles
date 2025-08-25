@@ -10,7 +10,10 @@ with lib;
 
   config = mkIf cfg.enable {
 
-    home.sessionVariables.AICHAT_CONFIG_FILE = "$HOME/.config/sops-nix/secrets/aichat-config";
+    home.sessionVariables = {
+      AICHAT_CONFIG_FILE = "$HOME/.config/sops-nix/secrets/aichat-config";
+      AICHAT_ROLES_DIR = "$HOME/.config/aichat/roles";
+    };
 
     home.packages = with pkgs; [
       aichat
