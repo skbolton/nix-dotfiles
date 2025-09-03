@@ -1370,6 +1370,7 @@
         "nixpkgs": "nixpkgs_11",
         "snowfall-lib": "snowfall-lib",
         "sops-nix": "sops-nix",
+        "spelunk-nvim": "spelunk-nvim",
         "unstable": "unstable"
       }
     },
@@ -1429,6 +1430,22 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "spelunk-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1751522485,
+        "narHash": "sha256-x2XsEtA94EGzpkX3D9w6JpdPUAUJiyyI47El54Acwic=",
+        "owner": "EvWilson",
+        "repo": "spelunk.nvim",
+        "rev": "553674609390156fb9d271f66fa501a1616e4052",
+        "type": "github"
+      },
+      "original": {
+        "owner": "EvWilson",
+        "repo": "spelunk.nvim",
         "type": "github"
       }
     },

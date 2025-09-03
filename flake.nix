@@ -60,6 +60,11 @@
       flake = false;
     };
 
+    spelunk-nvim = {
+      url = "github:EvWilson/spelunk.nvim";
+      flake = false;
+    };
+
     awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
 
     neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";

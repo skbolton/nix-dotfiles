@@ -45,6 +45,14 @@ in
         { plugin = nvim-colorizer-lua; optional = true; }
         { plugin = markdown-preview-nvim; optional = true; }
         { plugin = zk-nvim; optional = true; }
+        {
+          plugin = pkgs.vimUtils.buildVimPlugin {
+            name = "spelunk-nvim";
+            src = inputs.spelunk-nvim;
+            doCheck = false;
+          };
+          optional = true;
+        }
         galaxyline-nvim
 
         { plugin = aerial-nvim; optional = true; }

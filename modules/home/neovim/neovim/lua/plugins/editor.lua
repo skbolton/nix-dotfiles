@@ -19,6 +19,29 @@ return {
     end
   },
   {
+    "vimplugin-spelunk-nvim",
+    after = function()
+      require 'spelunk'.setup {
+        enable_persist = true,
+        persist_by_git_branch = true,
+        enable_status_col_display = true,
+        base_mappings = {
+          toggle = '<leader>mm',
+          add = '<leader>ma',
+          next_bookmark = '<c-i>',
+          prev_bookmark = '<c-o>',
+          search_bookmarks = '<leader>fm',
+        }
+      }
+    end,
+    keys = {
+      '<c-o>',
+      '<c-i>',
+      '<leader>mm',
+      '<leader>ma'
+    }
+  },
+  {
     "luasnip",
     event = "User DeferredUIEnter",
   },

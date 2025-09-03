@@ -104,7 +104,6 @@ return {
       { "<leader>/",           "<CMD>Telescope live_grep<CR>",                 desc = "Grep" },
       { "<leader><leader>",    "<CMD>Telescope find_files<CR>",                desc = "Files" },
       { "<leader><Backspace>", "<CMD>Telescope buffers<CR>",                   desc = "Recent" },
-      { "<leader>fm",          "<CMD>Telescope man_pages<CR>",                 desc = "Manpages" },
       { "<leader>f?",          "<CMD>Telescope help_tags<CR>",                 desc = "Help" },
       { "<leader>f.",          "<CMD>Telescope resume<CR>",                    desc = "Resume last" },
       { "<leader>fg",          "<CMD>Telescope git_status<CR>",                desc = "Git changes" },
