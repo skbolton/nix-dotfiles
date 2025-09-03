@@ -44,6 +44,7 @@ return {
             prompt_position = 'top',
           },
           prompt_prefix = '  ',
+          selection_caret = "󰧚 ",
           sorting_strategy = 'ascending',
           borderchars = {
             { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
@@ -61,6 +62,18 @@ return {
           },
           buffers = {
             show_all_buffers = true
+          },
+          current_buffer_fuzzy_find = {
+            skip_empty_lines = true,
+            prompt_prefix = " ",
+            results_title = "",
+            prompt_title = "",
+            preview_title = "",
+            border = false,
+            theme = 'ivy',
+            layout_config = {
+              height = 100
+            }
           },
           git_status = {
             git_icons = {
@@ -87,6 +100,7 @@ return {
     end,
     keys = {
       { "<leader>lo",          "<CMD>Telescope treesitter<CR>",                desc = "Fuzzy symbols" },
+      { "/",                   "<CMD>Telescope current_buffer_fuzzy_find<CR>", desc = "Fuzzy search file" },
       { "<leader>/",           "<CMD>Telescope live_grep<CR>",                 desc = "Grep" },
       { "<leader><leader>",    "<CMD>Telescope find_files<CR>",                desc = "Files" },
       { "<leader><Backspace>", "<CMD>Telescope buffers<CR>",                   desc = "Recent" },
