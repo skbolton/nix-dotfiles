@@ -30,6 +30,20 @@ with lib;
       recursive = true;
     };
 
+    programs.zsh.initContent = lib.mkOrder 1200 ''
+      _aichat_zsh() {
+        if [[ -n "$BUFFER" ]]; then
+          local _old=$BUFFER
+          BUFFER+="  🤔"
+          zle -I && zle redisplay
+          BUFFER=$(aichat -e "$_old")
+          zle end-of-line
+        fi
+      }
+      zle -N _aichat_zsh
+      bindkey '^e' _aichat_zsh
+    '';
+
     xdg.configFile."nvim/plugin/ai-grammar.lua".text = mkIf config.delta.neovim.enable /* lua */ ''
       vim.keymap.set({'n', 'v'}, '<leader>ag', '!aichat -r grammar<CR>')
     '';
