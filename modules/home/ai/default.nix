@@ -41,7 +41,7 @@ with lib;
         fi
       }
       zle -N _aichat_zsh
-      bindkey '^e' _aichat_zsh
+      bindkey -M viins '^x' _aichat_zsh
     '';
 
     xdg.configFile."nvim/plugin/ai-grammar.lua".text = mkIf config.delta.neovim.enable /* lua */ ''
