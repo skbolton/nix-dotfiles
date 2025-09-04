@@ -48,6 +48,6 @@ with lib;
       vim.keymap.set({'n', 'v'}, '<leader>ag', '!aichat -r grammar<CR>')
     '';
 
-    xdg.configFile."opencode/opencode.json".source = ./opencode.json;
+    xdg.configFile."opencode/opencode.json".text = import ./opencode.nix;
   };
 }
