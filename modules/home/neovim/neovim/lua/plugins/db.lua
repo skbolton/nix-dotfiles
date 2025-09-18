@@ -14,6 +14,7 @@ return {
       vim.g.db_ui_save_location = "./steve_queries"
       vim.g.db_ui_use_nvim_notify = false
       vim.g.db_ui_disable_mappings = true
+      vim.g.db_ui_disable_info_notifications = true
     end,
     after = function()
       local lz = require 'lz.n'
