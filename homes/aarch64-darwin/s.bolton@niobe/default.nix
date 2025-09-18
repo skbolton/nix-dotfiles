@@ -45,6 +45,7 @@
     grm = "task add proj:Admin.Meetings.Grooming sched:today Product Grooming";
     spln = "task add proj:Admin.Meetings.SprintPlanning sched:today Sprint Planning";
     tpln = "task add proj:Admin.Meetings.TechPlanning sched:today Tech Planning";
+    rtr = "task add proj:Admin.Meetings.Retro sched:today Retro";
     ooo = "task add proj:Admin.Meetings.1on1 sched:today";
   };
 
