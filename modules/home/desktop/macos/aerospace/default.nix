@@ -79,6 +79,14 @@ in
       outer.top =        12
       outer.right =      12
 
+      [workspace-to-monitor-force-assignment]
+      1 = 'main'
+      2 = 'secondary'
+      3 = 'main'
+      4 = 'secondary'
+      5 = 'main'
+      6 = 'secondary'
+
       # 'main' binding mode declaration
       # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
       # 'main' binding mode must be always presented
@@ -120,6 +128,11 @@ in
       alt-j = 'focus down'
       alt-k = 'focus up'
       alt-l = 'focus right'
+
+      cmd-rightSquareBracket = 'focus-monitor right'
+      cmd-leftSquareBracket = 'focus-monitor left'
+      cmd-alt-rightSquareBracket = 'move-node-to-monitor right'
+      cmd-alt-leftSquareBracket = 'move-node-to-monitor left'
 
       # See: https://nikitabobko.github.io/AeroSpace/commands#move
       alt-left = 'move left'
