@@ -2,11 +2,11 @@ session: ${name}
 root: ${root}
 
 windows:
-  - name: " neovim"
+  - name: " "
     selected: true
     commands:
       - nvim
-  - name: " console"
+  - name: " "
     commands:
       - ""
 

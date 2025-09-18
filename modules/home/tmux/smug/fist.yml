@@ -8,11 +8,11 @@ stop:
   - docker-compose stop
 
 windows:
-  - name: " neovim"
+  - name: " "
     selected: true
     commands:
       - nvim
-  - name: " scratchpad"
+  - name: " "
     commands: 
       - nvim scratchpad.ex
     layout: main-vertical
@@ -20,9 +20,9 @@ windows:
       - type: vertical
         commands:
           - mix ecto.create && iex -S mix phx.server
-  - name: " db"
+  - name: " "
     commands:
       - nvim +DBUI
-  - name: "󱈫 test"
+  - name: "󱈫 "
     commands:
       - clear
