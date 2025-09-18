@@ -29,7 +29,8 @@
       enable = true;
       sync = false;
     };
-    terminal_theme.embark.enable = true;
+    terminal_theme.inspired.enable = true;
+    terminal_theme.embark.enable = false;
     desktop.macos.aerospace.enable = true;
     cloud.gcloud.enable = true;
     lang = {
