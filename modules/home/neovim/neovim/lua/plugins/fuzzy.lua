@@ -72,6 +72,7 @@ return {
             border = false,
             theme = 'ivy',
             layout_config = {
+              prompt_position = 'bottom',
               height = 100
             }
           },
