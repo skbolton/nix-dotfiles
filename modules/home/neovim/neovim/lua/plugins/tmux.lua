@@ -35,7 +35,7 @@ return {
       vim.g.VimuxCloseOnExit = true;
 
       vim.g.VimuxRunnerQuery = {
-        window = "󱈫 ",
+        window = "󱈬 ",
       };
     end,
     cmd = {
