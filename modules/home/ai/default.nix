@@ -80,7 +80,7 @@ with lib;
       config.delta.neovim.enable /* lua */
       ''
         vim.keymap.set({'n', 'v'}, '<leader>ag', '!aichat -r grammar<CR>')
-        vim.keymap.set({'n', 'v'}, '<leader>ad', '!aichat -r dev')
+        vim.keymap.set({'n', 'v'}, '<leader>ad', '!aichat -r dev ')
       '';
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
