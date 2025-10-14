@@ -112,5 +112,9 @@ in
         features = "decorations";
       };
     };
+
+    xdg.configFile."aichat/dark.tmTheme".source = inputs.embark-bat-theme + "/Embark.tmTheme";
+
+    delta.ai.aichat_theme = "dark";
   };
 }

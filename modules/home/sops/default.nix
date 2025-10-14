@@ -19,7 +19,7 @@ in
       secrets.fastmail-vdirsync-password = {
         path = "%r/fastmail-vdirsync-password.txt";
       };
-      secrets.aichat-config.path = "%r/aichat/config.yaml";
+      secrets.aichat-env.path = "%r/aichat/.env";
       secrets.ollama-api-creds.path = "%r/ollama-api-creds.txt";
     };
   };
