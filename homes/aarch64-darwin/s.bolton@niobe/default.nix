@@ -10,8 +10,9 @@
     sops.enable = true;
     gpg = {
       enable = true;
-      autostart = false;
+      autostart = true;
       pinentry = pkgs.pinentry_mac;
+      enableExtraSocket = false;
     };
     zsh.enable = true;
     cli_apps.enable = true;
