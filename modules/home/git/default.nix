@@ -45,7 +45,7 @@
       what = "!git config --get-regexp alias";
     };
 
-    ignores = [ "steve_queries" ".envrc" ".envrc.private" ".direnv" ".vim" ];
+    ignores = [ "stevies" ".envrc" ".envrc.private" ".direnv" ".vim" ];
 
     delta = {
       enable = true;
