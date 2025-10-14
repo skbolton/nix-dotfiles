@@ -2,11 +2,11 @@ session: ${name}
 root: ${root}
 
 windows:
-  - name: " "
+  - name: " "
     selected: true
     commands:
       - nvim
-  - name: " "
+  - name: " "
     commands:
       - ""
 

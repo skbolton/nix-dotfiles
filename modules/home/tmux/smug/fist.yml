@@ -8,11 +8,11 @@ stop:
   - docker-compose stop
 
 windows:
-  - name: " "
+  - name: " "
     selected: true
     commands:
       - nvim
-  - name: " "
+  - name: "󰐻 "
     commands: 
       - nvim scratchpad.ex
     layout: main-vertical
@@ -23,6 +23,6 @@ windows:
   - name: " "
     commands:
       - nvim +DBUI
-  - name: "󱈫 "
+  - name: "󱈬 "
     commands:
       - clear
