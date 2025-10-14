@@ -111,7 +111,7 @@ in
 
           source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     
-          ${pkgs.dwt1-shell-color-scripts}/bin/colorscript -e blocks1
+          tput setaf ''${$(( ( RANDOM % 6 ) + 1 ))} && printf "%*s\n" $(((''${#title}+$COLUMNS)/2)) "EYES UP, GUARDIAN"
 
           function w() {
             fd $1 | entr -c "''${@:2}"
