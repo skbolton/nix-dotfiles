@@ -11,14 +11,12 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      nerd-fonts.iosevka
       nerd-fonts.roboto-mono
       ibm-plex
-      iosevka
-      maple-mono.truetype
-      delta.md-io
+      lilex
       courier-prime
       roboto-mono
+      recursive
     ];
 
     programs.kitty = {
@@ -36,10 +34,10 @@ in
         cursor_trail_decay = "0.1 0.3";
         cursor_trail_start_threshold = 5;
 
-        font_family = "MD IO Trial";
-        bold_font = "MD IO Trial Bold";
-        bold_italic_font = "MD IO Trial Bold Italic";
-        italic_font = "MD IO Trial Italic";
+        font_family = "Lilex";
+        bold_font = "Operator Mono Bold";
+        bold_italic_font = "Rec Mono Bold Italic";
+        italic_font = "Rec Mono Casual Italic";
         font_size = "14.0";
 
         # Terminal Settings
