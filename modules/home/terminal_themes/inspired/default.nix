@@ -27,17 +27,20 @@ in
     xdg.configFile."nvim/plugin/inspired.lua".text = ''
       vim.o.background = 'light'
       vim.cmd("colorscheme inspired-github")
-      vim.cmd("hi! Visual guibg=#EFEFEF")
+      vim.cmd("hi! Visual guibg=#F4F4F4")
       vim.cmd("hi! link CursorLineNr Keyword")
       vim.cmd("hi! link @markup.link.label Keyword")
       vim.api.nvim_set_hl(0, "@markup.strong", { bold = true })
       vim.api.nvim_set_hl(0, "@markup.heading", { bold = true, sp = "#CA1243", underline = true })
       vim.api.nvim_set_hl(0, "Todo", { bold = true, link = "Function"})
+      vim.api.nvim_set_hl(0, "@text.todo.unchecked", { bold = true, link = "Function"})
       vim.api.nvim_set_hl(0, "@text.todo.checked", { link = "Comment"})
       vim.api.nvim_set_hl(0, "DiffChange", { bg = "#DDFFDD"})
       vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#DDFFDD"})
       vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#FFDDDD"})
       vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#F7F7F7"})
+      vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ebebeb" })
+      vim.api.nvim_set_hl(0, "CurSearch", { link = "Search" })
     '';
 
     xdg.configFile."nvim/plugin/statusline.lua".source = ./galaxy-line-inspired.lua;
