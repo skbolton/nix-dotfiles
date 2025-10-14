@@ -81,5 +81,87 @@ with lib;
       ''
         vim.keymap.set({'n', 'v'}, '<leader>ag', '!aichat -r grammar<CR>')
       '';
+
+    programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
+      {
+        plugin = minuet-ai-nvim;
+        config = /* lua */ ''
+          local Job = require 'plenary.job'
+          local credsfile = os.getenv("HOME") .. "/.config/sops-nix/secrets/ollama-api-creds"
+
+          local get_ollama_creds = function()
+            local first_line, second_line
+
+            Job:new {
+              command = "cat",
+              args = { credsfile },
+              on_stdout = function(_, line)
+                if first_line == nil then
+                  first_line = line
+                elseif second_line == nil and line ~= "" then
+                  second_line = line
+
+                  -- stop when we have both lines
+                  return false
+                end
+
+                return true
+              end
+            }:sync()
+
+            return { first_line, second_line }
+          end
+
+          local creds = get_ollama_creds()
+
+          require 'lz.n'.load {
+            "minuet-ai.nvim",
+            event = 'InsertEnter',
+            after = function()
+              require 'minuet'.setup {
+              blink = { enable_auto_complete = false },
+                virtualtext = {
+                  auto_trigger_ft = {'*'},
+                  auto_trigger_ignore_ft = {'markdown', 'txt'},
+                  keymap = {
+                    accept = '<TAB>',
+                    accept_line = '<S-TAB>'
+                  }
+                },
+                provider = 'openai_fim_compatible',
+                provider_options = {
+                  openai_fim_compatible = {
+                    api_key = function() return 'UNUSED' end,
+                    name = 'Zionlab',
+                    end_point = "https://ollama-api.zionlab.online/v1/completions",
+                    model = "qwen3-coder:30b-a3b",
+                    template = {
+                      prompt = function(context_before_cursor, context_after_cursor, _)
+                        return '<|fim_prefix|>'
+                            .. context_before_cursor
+                            .. '<|fim_suffix|>'
+                            .. context_after_cursor
+                            .. '<|fim_middle|>'
+                      end,
+                      suffix = false,
+                    },
+                    transform = {
+                      function (args)
+                        args.headers["CF-Access-Client-Secret"] = creds[1]
+                        args.headers["CF-Access-Client-Id"] = creds[2]
+
+                        return args
+                      end
+                    }
+                  }
+                }
+              }
+            end
+          }
+        '';
+        optional = true;
+        type = "lua";
+      }
+    ];
   };
 }

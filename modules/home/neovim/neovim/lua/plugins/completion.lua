@@ -61,7 +61,7 @@ return {
           },
           providers = {
             dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-            buffer = { opts = { get_bufnrs = vim.api.nvim_list_bufs } }
+            buffer = { opts = { get_bufnrs = vim.api.nvim_list_bufs } },
           }
         },
         snippets = { preset = 'luasnip' },
@@ -130,53 +130,49 @@ return {
       local creds = get_ollama_creds()
 
       require 'codecompanion'.setup {
-        log_level = "DEBUG",
         show_defaults = false,
         strategies = {
           chat = {
-            adapter = "ollama",
+            adapter = "zionlab",
           },
           inline = {
-            adapter = "ollama",
+            adapter = "zionlab",
           },
           cmd = {
-            adapter = "ollama",
+            adapter = "zionlab",
           }
         },
         adapters = {
-          ollama = function()
-            return require("codecompanion.adapters").extend("ollama", {
-              env = {
-                url = "https://ollama-api.zionlab.online",
-              },
-              headers = {
-                ["Content-Type"] = "application/json",
-                ["CF-Access-Client-Secret"] = creds[1],
-                ["CF-Access-Client-Id"] = creds[2],
-              },
-              parameters = {
-                sync = true,
-              },
-              schema = {
-                model = {
-                  default = "qwen3-coder:30b-a3b",
-                  choices = { "qwen3-coder:30b-a3b", "qwen3:30b", "devstral:24b", "gemma3:27b" }
+          http = {
+            zionlab = function()
+              return require("codecompanion.adapters").extend("openai_compatible", {
+                env = {
+                  url = "https://ollama-api.zionlab.online",
                 },
-                num_ctx = {
-                  default = 38000,
+                headers = {
+                  ["Content-Type"] = "application/json",
+                  ["CF-Access-Client-Secret"] = creds[1],
+                  ["CF-Access-Client-Id"] = creds[2],
                 },
-                num_predict = {
-                  default = -1,
+                schema = {
+                  model = {
+                    default = "qwen3-coder:30b-a3b",
+                    choices = { "qwen3-coder:30b-a3b", "devstral:24b" }
+                  },
+                  num_predict = {
+                    default = -1,
+                  }
                 }
-              }
-            })
-          end,
-        },
+              })
+            end,
+          }
+        }
       }
     end,
-    cmd = { "CodeCompanionChat" },
+    cmd = { "CodeCompanionChat", "CodeCompanion" },
     keys = {
-      { "<leader>a", "<CMD>CodeCompanionChat Toggle<CR>" }
+      { "<leader>a", "<CMD>CodeCompanionChat Toggle<CR>", mode = "n" },
+      { "<leader>a", ":CodeCompanion ",                   mode = "v" }
     }
   }
 }
