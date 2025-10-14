@@ -17,7 +17,7 @@ writeShellApplication {
     }
 
     _rallypoints() {
-      for search_path in $(tr ":" " " <<< "$HOME:$HOME/Public:$HOME/.local/share:$HOME/.config"); do
+      for search_path in $(tr ":" " " <<< "$HOME/Public:$HOME"); do
         fd -t d -d 1 --search-path "$search_path" | awk '{print "\033[34m \033[0m" $0}'
       done
     }
@@ -26,8 +26,9 @@ writeShellApplication {
     # TODO: Find a better way to write preview
       fzf --accept-nth '{2}' \
         --input-label="<CR>  <C-e>  <C-f>  " \
-        --prompt="  " \
-        --style="full" \
+        --prompt="󰇂  " \
+        --input-border=none \
+        --preview-border=sharp \
         --preview 'tmux capture-pane -ep -t {2} 2> /dev/null || eza --tree --icons --level 3 --git-ignore {2}' \
         --bind="ctrl-e:execute(nnn {2})" \
         --bind="ctrl-f:reload(fd -t d {q} ~/)" \
