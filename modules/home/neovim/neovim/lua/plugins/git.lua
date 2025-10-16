@@ -1,7 +1,7 @@
 return {
   {
     "gitsigns.nvim",
-    event = "InsertEnter",
+    event = "User DeferredUIEnter",
     after = function()
       local gitsigns = require 'gitsigns'
 
