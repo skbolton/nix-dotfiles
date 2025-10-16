@@ -109,10 +109,37 @@ gls.right[1] = {
   }
 }
 
+local ai_icons = { init = ' ', running = ' ', complete = ' ' }
+local ai_state = 'init'
+local ai_msg = ''
+
+local group = vim.api.nvim_create_augroup("MinuetStatusLine", { clear = true })
+vim.api.nvim_create_autocmd("User", {
+  group = group,
+  pattern = { 'MinuetRequestStarted', 'MinuetRequestFinished' },
+  callback = function(args)
+    if args.match == 'MinuetRequestStarted' then
+      ai_msg = args.data.model
+      ai_state = 'running'
+    else
+      ai_state = 'complete'
+    end
+
+    gl.load_galaxyline()
+  end
+})
+
 gls.right[2] = {
-  TestResults = {
+  AIResults = {
     provider = function()
-      return '   '
+      if ai_msg == '' then
+        return ' '
+      else
+        return ai_msg .. ' '
+      end
+    end,
+    icon = function()
+      return ' ' .. ai_icons[ai_state]
     end,
     highlight = { "#000000", "#EAEAEA" },
     separator_highlight = { "#EAEAEA", "#F5F5F5" },
