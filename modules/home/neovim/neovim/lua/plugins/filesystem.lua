@@ -28,6 +28,7 @@ return {
     end,
     keys = {
       { "<leader>e", '<CMD>Oil<CR>', "Open oil" }
-    }
+    },
+    cmd = { 'Oil' }
   }
 }
