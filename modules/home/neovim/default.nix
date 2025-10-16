@@ -26,6 +26,15 @@ in
         popup-nvim
         plenary-nvim
         { plugin = nvim-web-devicons; optional = true; }
+        {
+          plugin = nvim-web-devicons;
+          optional = true;
+          config = /* lua */''
+            require("mini.icons").setup {}
+          '';
+          type = "lua";
+        }
+        { plugin = mini-icons; optional = false; }
         { plugin = bullets-vim; optional = true; }
         { plugin = venn-nvim; optional = true; }
         { plugin = oil-nvim; optional = true; }
