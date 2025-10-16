@@ -98,7 +98,7 @@ gls.right[1] = {
     provider = function()
       local active_client = vim.lsp.get_clients()[1]
       if active_client ~= nil then
-        return '   '
+        return '   ' .. active_client.name .. ' '
       else
         return ' 󰖪  '
       end
