@@ -102,7 +102,7 @@ return {
     "codecompanion.nvim",
     after = function()
       local Job = require 'plenary.job'
-      local credsfile = os.getenv("HOME") .. "/.config/sops-nix/secrets/ollama-api-creds"
+      local credsfile = os.getenv("HOME") .. "/.config/sops-nix/secrets/zaia-creds"
 
       local get_ollama_creds = function()
         local first_line, second_line
@@ -147,7 +147,7 @@ return {
             zionlab = function()
               return require("codecompanion.adapters").extend("openai_compatible", {
                 env = {
-                  url = "https://ollama-api.zionlab.online",
+                  url = "https://zaia.zionlab.online",
                 },
                 headers = {
                   ["Content-Type"] = "application/json",

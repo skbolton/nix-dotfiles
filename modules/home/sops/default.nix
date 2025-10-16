@@ -20,7 +20,7 @@ in
         path = "%r/fastmail-vdirsync-password.txt";
       };
       secrets.aichat-env.path = "%r/aichat/.env";
-      secrets.ollama-api-creds.path = "%r/ollama-api-creds.txt";
+      secrets.zaia-creds.path = "%r/zaia-creds.txt";
     };
   };
 

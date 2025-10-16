@@ -34,7 +34,7 @@ with lib;
         {
           type = "openai-compatible";
           name = "Zionlab";
-          api_base = "https://ollama-api.zionlab.online/v1";
+          api_base = "https://zaia.zionlab.online/v1";
           models = [
             { name = "qwen3-coder:30b-a3b"; }
             { name = "gpt-oss:120b"; }
@@ -88,7 +88,7 @@ with lib;
         plugin = minuet-ai-nvim;
         config = /* lua */ ''
           local Job = require 'plenary.job'
-          local credsfile = os.getenv("HOME") .. "/.config/sops-nix/secrets/ollama-api-creds"
+          local credsfile = os.getenv("HOME") .. "/.config/sops-nix/secrets/zaia-creds"
 
           local get_ollama_creds = function()
             local first_line, second_line
@@ -134,7 +134,7 @@ with lib;
                   openai_fim_compatible = {
                     api_key = function() return 'UNUSED' end,
                     name = 'Zionlab',
-                    end_point = "https://ollama-api.zionlab.online/v1/completions",
+                    end_point = "https://zaia.zionlab.online/v1/completions",
                     model = "qwen3-coder:30b-a3b",
                     template = {
                       prompt = function(context_before_cursor, context_after_cursor, _)
