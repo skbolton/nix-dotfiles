@@ -69,5 +69,32 @@ return {
       { "<leader>n<up>", "<CMD>ZkLinks<CR>",                  desc = "Outbound links" },
     },
     ft = "markdown"
+  },
+  {
+    "neorg",
+    lazy = false,
+    after = function()
+      require("neorg").setup {
+        load = {
+          ["core.defaults"] = {},
+          ["core.concealer"] = {},
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+                notes = "~/Documents/Notes"
+              },
+              default_workspace = "notes"
+            }
+          },
+          ["core.qol.todo_items"] = {},
+          ["core.tangle"] = {
+            config = {
+              tange_on_write = true
+            }
+          },
+          ["core.summary"] = {}
+        }
+      }
+    end
   }
 }

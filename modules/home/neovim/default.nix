@@ -54,6 +54,7 @@ in
         { plugin = nvim-colorizer-lua; optional = true; }
         { plugin = markdown-preview-nvim; optional = true; }
         { plugin = zk-nvim; optional = true; }
+        neorg
         {
           plugin = pkgs.vimUtils.buildVimPlugin {
             name = "spelunk-nvim";
@@ -87,7 +88,7 @@ in
         { plugin = vimux; optional = true; }
 
         { plugin = pkgs.awesomeNeovimPlugins.treewalker-nvim; optional = true; }
-        (nvim-treesitter.withPlugins (p: nvim-treesitter.allGrammars ++ [
+        (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: nvim-treesitter.allGrammars ++ [
           (p.markdown.overrideAttrs {
             env.EXTENSION_WIKI_LINK = "1";
             env.EXTENSION_TAGS = "1";
