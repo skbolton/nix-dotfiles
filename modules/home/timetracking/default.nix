@@ -27,7 +27,7 @@ in
 
     programs.zsh = {
       shellAliases = {
-        htime = "cat $TIMESHEETS/* | ${pkgs.hledger}/bin/hledger -f timeclock:- balance -t";
+        htime = "cat ${cfg.timesheets}/* | ${pkgs.hledger}/bin/hledger -f timeclock:- balance -t";
       };
     };
   };

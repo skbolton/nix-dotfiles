@@ -89,7 +89,7 @@ return {
           ["core.qol.todo_items"] = {},
           ["core.tangle"] = {
             config = {
-              tange_on_write = true
+              tangle_on_write = true
             }
           },
           ["core.summary"] = {}

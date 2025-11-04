@@ -17,7 +17,10 @@
     finance.enable = true;
     passwords.enable = true;
     tasks.enable = true;
-    timetracking.enable = true;
+    timetracking = {
+      enable = true;
+      timesheets = "~/Documents/Notes/tracking/time";
+    };
     habits.enable = true;
     neovim.enable = true;
     terminal_theme.inspired.enable = false;
