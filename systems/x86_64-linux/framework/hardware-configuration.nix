@@ -10,13 +10,9 @@
       inputs.nixos-hardware.nixosModules.framework-intel-core-ultra-series1
     ];
 
-  services.fwupd.enable = true;
-  services.fprintd.enable = true;
-
   boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelPackages = pkgs.linuxPackages_6_17;
 
   fileSystems."/" =
     {
@@ -81,7 +77,10 @@
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
+      # quick sync
       vpl-gpu-rt
+      # hardware acceleration
+      intel-media-driver
     ];
   };
 
