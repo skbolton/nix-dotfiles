@@ -83,7 +83,7 @@ in
           ready = {
             columns = "id,project,tags,due.relative,until.remaining,scheduled.formatted,description.count,urgency";
             labels = "ID,Pr,Tags,Due,Until,Sched,Desc,Urg";
-            filter = "+READY -in";
+            filter = "(+READY or sched:today and -COMPLETED) -in";
           };
           "in".columns = "id,description";
           "in".description = "Inbox";
@@ -97,8 +97,8 @@ in
           "sched".sort = "scheduled";
         };
         context = {
-          work = "+dk or +car";
-          personal = "-dk";
+          work = "proj:DK or +car";
+          personal = "proj.not:DK";
         };
         urgency = {
           project.coefficient = 0;
