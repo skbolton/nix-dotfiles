@@ -1,6 +1,6 @@
 # vim: set ft=tmux:
 set -g status-interval 3
-set-option -g status-position top
+set-option -g status-position bottom
 set-option -g pane-border-style "fg=#E0E0E0"
 set-option -g pane-active-border-style "fg=#E0E0E0"
 set-option -g popup-border-style "fg=#E0E0E0"
@@ -21,7 +21,7 @@ set -g status-left "#[fg=#795DA3] #S #[fg=#969896]| "
 set -g status-right "#[fg=#969896] #[push-default]%Y-%m-%d#[fg=#969896] | #[fg=default]%H:%M #[fg=#969896]| #[fg=#795DA3 italics]@#H"
 
 # Windows ------------------------------
-set -g status-justify left
+set -g status-justify absolute-centre
 
 set -g window-status-format "#[fg=#969896]#{?window_zoomed_flag,▪#W,#W}"
 set -g window-status-current-format "#[fg=#CA1243]#{?window_zoomed_flag,▪#W,#W}"
