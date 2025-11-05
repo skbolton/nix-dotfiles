@@ -74,7 +74,6 @@ in
         set -g automatic-rename off
         set -g renumber-windows
         set -g clock-mode-style 24
-        set -g extended-keys on
 
         source ~/.config/tmux/bindings.tmux
         source "~/.config/tmux/statusline.tmux"
