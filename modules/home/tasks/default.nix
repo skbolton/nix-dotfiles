@@ -77,17 +77,18 @@ in
           "@" = "context";
         };
         default.command = "ready";
+        default.project = "in";
         report = {
           next.filter = "status:pending -WAITING -in limit:page";
           next.columns = "id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency";
           ready = {
             columns = "id,project,tags,due.relative,until.remaining,scheduled.formatted,description.count,urgency";
             labels = "ID,Pr,Tags,Due,Until,Sched,Desc,Urg";
-            filter = "(+READY or sched:today and -COMPLETED) -in";
+            filter = "(+READY or sched:today and -COMPLETED) proj.not:in";
           };
           "in".columns = "id,description";
           "in".description = "Inbox";
-          "in".filter = "status:pending limit:10 (+in)";
+          "in".filter = "status:pending limit:10 proj:in";
           "in".labels = "ID,Description";
 
           "sched".columns = "id,scheduled.formatted,scheduled.countdown,description,tags,due.relative";

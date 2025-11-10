@@ -23,6 +23,7 @@ in
 
     home.sessionVariables = {
       TIMESHEETS = cfg.timesheets;
+      TASK_TIMESHEET = "${cfg.timesheets}/$(date +%Y)-tasks.journal";
     };
 
     programs.zsh = {
