@@ -16,6 +16,7 @@
     finance.enable = true;
     passwords.enable = true;
     tasks.enable = true;
+    tasks.sync = true;
     timetracking.enable = true;
     neovim.enable = true;
     terminal_theme.embark.enable = true;

@@ -35,6 +35,7 @@
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  networking.networkmanager.wifi.backend = "iwd";
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -106,6 +107,8 @@
     pavucontrol
     pulseaudio
   ];
+
+  delta.tailscale.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.pathsToLink = [ "/share/zsh" ];
@@ -179,28 +182,6 @@
 
       START_CHARGE_THRESH_BAT0 = 75;
       STOP_CHARGE_THRESH_BAT0 = 80;
-    };
-  };
-
-  systemd.services.unbind-wifi-before-suspend = {
-    description = "Unbind Wi-Fi PCI device before suspend";
-    before = [ "suspend.target" ];
-    wantedBy = [ "sleep.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/bash -c 'echo 0000:c3:00.0 > /sys/bus/pci/drivers/mt7925e/unbind'";
-      RemainAfterExit = false;
-    };
-  };
-
-  systemd.services.bind-wifi-after-resume = {
-    description = "Bind Wi-Fi PCI device after resume";
-    after = [ "suspend.target" ];
-    wantedBy = [ "suspend.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/bash -c 'echo 0000:c3:00.0 > /sys/bus/pci/drivers/mt7925e/bind'";
-      RemainAfterExit = false;
     };
   };
 
