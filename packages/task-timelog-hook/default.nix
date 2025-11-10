@@ -13,13 +13,13 @@ writeShellApplication {
 
     # started task
     if [ "$(jq 'has("start")' <<< "$new_task")" = "true" ] && [ "$(jq 'has("start")' <<< "$old_task")" = "false" ]; then
-      punchin=$(date "+%Y/%m/%d %H:%M:%S" --date="$(strptime -i "%Y%m%dT%H%M%SZ" -f "%Y-%m-%d %H:%M:%S" "$(jq -r '.start' <<< "$new_task")")")
+      punchin=$(date "+%Y/%m/%d %H:%M:%S" --date="$(strptime -i "%Y%m%dT%H%M%SZ" -f "%Y-%m-%d %H:%M:%SZ" "$(jq -r '.start' <<< "$new_task")")")
       project=$(jq -r '.project' <<< "$new_task" | tr '.' ':')
       description=$(jq -r '.description' <<< "$new_task")
       tee -a "$TASK_TIMESHEET" <<< "i $punchin $project  $description"
     # stopped/completed task
     elif [ "$(jq 'has("start")' <<< "$new_task")" = "false" ] || [ "$(jq 'has("end")' <<< "$new_task")" = "true" ] && [ "$(jq 'has("start")' <<< "$old_task")" = "true" ]; then
-      punchout=$(date "+%Y/%m/%d %H:%M:%S" --date="$(strptime -i "%Y%m%dT%H%M%SZ" -f "%Y-%m-%d %H:%M:%S" "$(jq -r '.modified' <<< "$new_task")")")
+      punchout=$(date "+%Y/%m/%d %H:%M:%S" --date="$(strptime -i "%Y%m%dT%H%M%SZ" -f "%Y-%m-%d %H:%M:%SZ" "$(jq -r '.modified' <<< "$new_task")")")
       tee -a "$TASK_TIMESHEET" <<< "o $punchout"
     # modified started task
     # TODO: Implement modifying entry in ledger
