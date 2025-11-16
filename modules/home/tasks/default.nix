@@ -15,7 +15,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ taskwarrior-tui ];
+    home.packages = with pkgs; [ taskwarrior-tui delta.task-fs ];
+
+    programs.zsh.dirHashes = {
+      tfs = "$HOME/TaskFS";
+    };
 
     programs.zsh.initContent = mkOrder 1000 /* bash */ ''
       function twait() {
@@ -73,7 +77,8 @@ in
       colorTheme = ./embark-taskwarrior.theme;
       config = {
         alias = {
-          "cr" = "add project:\"$TW_PROJECT\"";
+          "do" = "add project:\"$TW_PROJECT\"";
+          "q" = "project:\"$TW_PROJECT\"";
           "@" = "context";
         };
         default.command = "ready";
