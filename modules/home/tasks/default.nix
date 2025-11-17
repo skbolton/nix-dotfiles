@@ -22,6 +22,11 @@ in
     };
 
     programs.zsh.initContent = mkOrder 1000 /* bash */ ''
+
+      function in() {
+        task add $* proj:in
+      }
+
       function twait() {
         task_id=$1
         shift
