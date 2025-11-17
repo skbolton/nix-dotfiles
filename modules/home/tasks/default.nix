@@ -81,7 +81,7 @@ in
           "q" = "project:\"$TW_PROJECT\"";
           "@" = "context";
         };
-        default.command = "ready";
+        default.command = "next";
         default.project = "in";
         report = {
           next.filter = "status:pending -WAITING -in limit:page";
@@ -93,7 +93,7 @@ in
           };
           "in".columns = "id,description";
           "in".description = "Inbox";
-          "in".filter = "status:pending limit:10 proj:in";
+          "in".filter = "status:pending proj:in";
           "in".labels = "ID,Description";
 
           "sched".columns = "id,scheduled.formatted,scheduled.countdown,description,tags,due.relative";
