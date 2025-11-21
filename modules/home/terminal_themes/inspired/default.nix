@@ -42,6 +42,7 @@ in
       vim.api.nvim_set_hl(0, "PmenuSel", { bg = "#ebebeb" })
       vim.api.nvim_set_hl(0, "CurSearch", { link = "Search" })
       vim.api.nvim_set_hl(0, "@neorg.tags.ranged_verbatim.code_block", { link = "Visual"})
+      vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#F4F4F4"})
     '';
 
     xdg.configFile."nvim/plugin/statusline.lua".source = ./galaxy-line-inspired.lua;
