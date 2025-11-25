@@ -113,6 +113,7 @@
   ];
 
   delta.tailscale.enable = true;
+  delta.tailscale.package = pkgs.unstable.tailscale;
   delta.ripping.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
