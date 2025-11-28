@@ -44,6 +44,27 @@
     ];
   };
 
+  services.xserver = {
+    enable = true;
+    xkb.variant = "colemak";
+    videoDrivers = [ "amdgpu" "modesetting" ];
+  };
+  console.useXkbConfig = true;
+
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+  services.desktopManager.plasma6.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     git
     vim
@@ -62,6 +83,7 @@
   };
 
   delta = {
+    ripping.enable = true;
     backup.enable = true;
     backup.extraGroups = [ "plex" ];
     plex = {
