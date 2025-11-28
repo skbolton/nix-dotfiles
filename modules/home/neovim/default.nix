@@ -21,7 +21,7 @@ in
 
         require('lz.n').load("plugins")
       '';
-      plugins = with pkgs.unstable.vimPlugins; [
+      plugins = with pkgs.vimPlugins; [
         inputs.lz-n.packages.${pkgs.system}.default
         popup-nvim
         plenary-nvim

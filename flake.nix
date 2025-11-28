@@ -37,6 +37,11 @@
       url = "github:NixOS/nixos-hardware/master";
     };
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     snowfall-lib = {
       url = "github:snowfallorg/lib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -112,6 +117,7 @@
 
       systems.modules.nixos = with inputs; [
         sops-nix.nixosModules.sops
+        disko.nixosModules.disko
       ];
     };
 }

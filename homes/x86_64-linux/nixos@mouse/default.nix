@@ -7,11 +7,7 @@
   fonts.fontconfig.enable = true;
 
   delta = {
-    ai.enable = true;
-    sops = {
-      enable = true;
-      user = "nixos";
-    };
+    sops.enable = true;
     gpg = {
       enable = true;
       pinentry = pkgs.pinentry-qt;
@@ -20,18 +16,13 @@
     cli_apps.enable = true;
     tmux.enable = true;
     passwords.enable = true;
-    tasks.enable = true;
+    tasks.enable = false;
     timetracking.enable = true;
     synology.enable = true;
     neovim.enable = true;
-    notes = {
-      enable = true;
-      notebook_dir = "$HOME/Documents/Reference";
-    };
     terminal_theme.embark.enable = true;
     kitty.enable = true;
     lang = {
-      elixir.enable = true;
       lua.enable = true;
       nix.enable = true;
     };
@@ -52,7 +43,6 @@
     stateVersion = "24.11";
     packages = with pkgs; [
       mpv
-      docker-compose
       firefox
       delta.fman
     ];

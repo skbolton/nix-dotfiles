@@ -4,7 +4,7 @@ keys:
   - hosts:
     - &trinity age1xx7wq5gugwsjjxwv4gc0d6sgmq3q0h8qk3crn7erp33fsg2fn93sqlf3e0
     - &neo  age1lze5jczgmqtgmes6tl43gk29rc2fc05qj0tmdq60dkjjvlw5g45swhuymz
-    - &mouse age1jffchwjy3a5c0ugzjuzjd0m37gfxtpv4sgrmksvxafxawusegdjsl7x2vk
+    - &mouse age1f9l507w0nnhvqtvd9az0y52us0vzftq8c39qs59h0udsjtr4gqfqyjj88a
     - &framework age1vas6lrdlnapyv6j58jhpsudflxetgqapc0snpv4vd4jvtdaxr9us4gf22q
 creation_rules:
   - path_regex: secrets/system-secrets.yaml$

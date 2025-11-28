@@ -1,173 +1,79 @@
-{ config, lib, pkgs, inputs, ... }:
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
+
+{ config, pkgs, ... }:
 
 {
   imports =
     [
       # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./disks.nix
+      ./hardware.nix
     ];
+
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.trusted-users = [ "@wheel" ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nix.settings.trusted-users = [ "@wheel" ];
-
-  networking.hostName = "mouse"; # Define your hostname.
+  networking.hostName = "mouse";
   # Pick only one of the below networking options.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
-  networking.networkmanager.wifi.backend = "iwd";
 
   # Set your time zone.
   time.timeZone = "America/New_York";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  services.xserver = {
-    enable = true;
-    xkb.variant = "colemak";
-    videoDrivers = [ "amdgpu" ];
-  };
-  console.useXkbConfig = true;
-
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-  services.desktopManager.plasma6.enable = true;
-
-  services.blueman.enable = true;
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
+  users.users.root.openssh = {
+    authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOsUvi/j/2Gs8QkZ5S0/bGsK/BhmU8n24eDFCc7GZx9 cardno:13_494_293"
+    ];
   };
 
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
+  environment.shells = [ pkgs.zsh ];
   programs.zsh.enable = true;
 
   users.users.nixos = {
     isNormalUser = true;
-    hashedPasswordFile = config.sops.secrets.orlando-password.path;
-    extraGroups = [ "wheel" "docker" "networkmanager" "scanner" "lp" ]; # Enable ‘sudo’ for the user.
+    hashedPasswordFile = config.sops.secrets.mouse-password.path;
+    extraGroups = [ "wheel" ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOsUvi/j/2Gs8QkZ5S0/bGsK/BhmU8n24eDFCc7GZx9 cardno:13_494_293"
     ];
   };
 
-  # programs.firefox.enable = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim
-    wget
-    firefox
-    neovim
     git
-    yubikey-personalization
-    yubikey-manager
-    wl-clipboard
+    vim
+    neovim
+    wget
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  services.openssh.enable = true;
 
-  # List services that you want to enable:
+  security.sudo.wheelNeedsPassword = false;
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOsUvi/j/2Gs8QkZ5S0/bGsK/BhmU8n24eDFCc7GZx9 cardno:13_494_293"
-  ];
-
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-
-  delta.tailscale.enable = true;
-
-  services.openssh = {
+  services.btrfs.autoScrub = {
     enable = true;
-    settings = {
-      # require public key authentication for better security
-      PasswordAuthentication = false;
-      #permitRootLogin = "yes";
+    fileSystems = [ "/Media" ];
+    interval = "monthly";
+  };
+
+  delta = {
+    backup.enable = true;
+    backup.extraGroups = [ "plex" ];
+    plex = {
+      enable = true;
+      dataDir = "/var/zion-data/plex";
     };
   };
-
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.pathsToLink = [ "/share/zsh" ];
-
-  services.udev.packages = [ pkgs.yubikey-personalization ];
-  services.pcscd.enable = true;
-  programs.ssh.startAgent = false;
-
-  virtualisation.docker = {
-    enable = true;
-    storageDriver = "btrfs";
-  };
-
-  virtualisation.oci-containers = {
-    backend = "docker";
-    containers = {
-      beaverhabits = {
-        image = "daya0576/beaverhabits:latest";
-        ports = [ "8084:8080" ];
-        volumes = [
-          "/var/zion-data/beaverhabits:/app/.user/"
-        ];
-        environment = {
-          FIRST_DAY_OF_WEEK = "0";
-          HABITS_STORAGE = "DATABASE";
-          MAX_USER_COUNT = "1";
-          INDEX_SHOW_HABIT_COUNT = "false";
-        };
-      };
-      kavita = {
-        image = "jvmilazz0/kavita:latest";
-        ports = [ "8085:5000" ];
-        environment = {
-          TZ = "America/New_York";
-        };
-        volumes = [
-          "/mnt/Books:/Books"
-        ];
-      };
-    };
-  };
-
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 8081 8084 8085 ];
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -191,7 +97,6 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 
 }
-
