@@ -10,7 +10,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.nodejs_20 pkgs.nodePackages.poor-mans-t-sql-formatter-cli pkgs.emmet-language-server ];
+    home.packages = [ pkgs.nodejs_20 pkgs.emmet-language-server ];
     programs.neovim = {
       # package = pkgs.neovim-nightly;
       enable = true;
@@ -66,7 +66,7 @@ in
         }
         galaxyline-nvim
 
-        { plugin = aerial-nvim; optional = true; }
+        # { plugin = aerial-nvim; optional = true; }
         { plugin = inputs.blink-cmp.packages.${pkgs.system}.default; optional = true; }
         { plugin = codecompanion-nvim; optional = true; }
         { plugin = render-markdown-nvim; optional = true; }

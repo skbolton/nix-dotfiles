@@ -14,6 +14,7 @@
     secrets.orlando-password = { neededForUsers = true; };
     secrets.beevey-password = { neededForUsers = true; };
     secrets.mouse-password = { neededForUsers = true; };
+    secrets.construct-password = { neededForUsers = true; };
     secrets.cloudflared-tunnel-creds = { };
   };
 }
