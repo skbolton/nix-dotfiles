@@ -97,7 +97,7 @@ in
       };
     };
 
-    programs.git.delta = {
+    programs.delta = {
       options = {
         light = false;
         decorations = {

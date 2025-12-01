@@ -22,7 +22,7 @@ in
       autocd = true;
       cdpath = [ "." "$HOME" "$HOME/Public" "$HOME/Documents" "$HOME/Notes" ];
       defaultKeymap = "viins";
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
       plugins = [
         { name = "fzf-tab"; src = "${pkgs.zsh-fzf-tab}/share/fzf-tab"; }
       ];

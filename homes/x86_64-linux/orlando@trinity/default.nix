@@ -61,6 +61,7 @@
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks.niobe = {
       hostname = "niobe.home.arpa";
       user = "s.bolton";

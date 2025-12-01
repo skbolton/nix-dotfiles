@@ -104,7 +104,7 @@ in
       };
     };
 
-    programs.git.delta = {
+    programs.delta = {
       options = {
         light = true;
         decorations = {

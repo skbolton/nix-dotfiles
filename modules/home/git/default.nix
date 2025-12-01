@@ -14,49 +14,47 @@
     extensions = with pkgs; [ gh-dash ];
   };
 
+  programs.delta = {
+    enable = true;
+    options = {
+      navigate = true;
+      side-by-side = true;
+      line-numbers = true;
+    };
+  };
+
   programs.git = {
     enable = true;
-    userName = "Stephen Bolton";
-    userEmail = "stephen@bitsonthemind.com";
+    settings = {
+      user.email = "stephen@bitsonthemind.com";
+      user.name = "Stephen Bolton";
 
-    signing = {
-      key = "0x60410414D406AF1D";
-      signByDefault = true;
-    };
-
-    aliases = {
-      l = "log --date=short --decorate --pretty=format:'%C(yellow)%h %C(green)%ad%C(magenta)%d %Creset%s%C(brightblue) [%cn]'";
-      branches = "!git --no-pager branch --format '%(refname:short)' | ${pkgs.fzf}/bin/fzf --tmux $1 --preview 'git log --color=always --decorate {}'";
-      dog = "log --all --decorate --oneline --graph";
-      to = "!git checkout $(git branches --no-multi)";
-      drop = "!git branch -d $(git branches --multi)";
-      st = "status";
-      p = "pull";
-      pp = "push";
-      c = "commit";
-      cm = "commit -m";
-      can = "commit --amend --no-edit";
-      co = "checkout";
-      default-branch = "!git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5";
-      back = "reset HEAD~1";
-      backk = "reset HEAD~1 --hard";
-      files = "!git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")";
-      stat = "!git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")";
-      what = "!git config --get-regexp alias";
-    };
-
-    ignores = [ "stevies" ".envrc" ".envrc.private" ".direnv" ".vim" ];
-
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        side-by-side = true;
-        line-numbers = true;
+      signing = {
+        key = "0x60410414D406AF1D";
+        signByDefault = true;
       };
-    };
 
-    extraConfig = {
+      alias = {
+        l = "log --date=short --decorate --pretty=format:'%C(yellow)%h %C(green)%ad%C(magenta)%d %Creset%s%C(brightblue) [%cn]'";
+        branches = "!git --no-pager branch --format '%(refname:short)' | ${pkgs.fzf}/bin/fzf --tmux $1 --preview 'git log --color=always --decorate {}'";
+        dog = "log --all --decorate --oneline --graph";
+        to = "!git checkout $(git branches --no-multi)";
+        drop = "!git branch -d $(git branches --multi)";
+        st = "status";
+        p = "pull";
+        pp = "push";
+        c = "commit";
+        cm = "commit -m";
+        can = "commit --amend --no-edit";
+        co = "checkout";
+        default-branch = "!git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5";
+        back = "reset HEAD~1";
+        backk = "reset HEAD~1 --hard";
+        files = "!git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")";
+        stat = "!git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")";
+        what = "!git config --get-regexp alias";
+      };
+
       color.branch = {
         current = "green";
         local = "default";
@@ -86,6 +84,8 @@
       url."git@github.com:skbolton/".insteadOf = "skb:";
       url."git@github.com:".insteadOf = "gh:";
     };
+
+    ignores = [ "stevies" ".envrc" ".envrc.private" ".direnv" ".vim" ];
   };
 
   xdg.configFile."git/commit-template" = {

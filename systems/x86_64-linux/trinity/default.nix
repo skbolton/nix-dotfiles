@@ -55,10 +55,10 @@
     xkb.variant = "colemak";
     videoDrivers = [ "amdgpu" ];
     windowManager.awesome.enable = true;
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
+  };
+  services.displayManager.gdm = {
+    enable = true;
+    wayland = true;
   };
   console.useXkbConfig = true;
 
@@ -139,7 +139,7 @@
   programs.dconf.enable = true;
 
   programs.hyprland.enable = true;
-  programs.river.enable = true;
+  programs.river-classic.enable = true;
 
   xdg.portal = {
     enable = true;

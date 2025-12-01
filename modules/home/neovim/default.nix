@@ -22,7 +22,7 @@ in
         require('lz.n').load("plugins")
       '';
       plugins = with pkgs.vimPlugins; [
-        inputs.lz-n.packages.${pkgs.system}.default
+        inputs.lz-n.packages.${pkgs.stdenv.hostPlatform.system}.default
         popup-nvim
         plenary-nvim
         { plugin = nvim-web-devicons; optional = true; }
@@ -66,8 +66,8 @@ in
         }
         galaxyline-nvim
 
-        # { plugin = aerial-nvim; optional = true; }
-        { plugin = inputs.blink-cmp.packages.${pkgs.system}.default; optional = true; }
+        { plugin = aerial-nvim; optional = true; }
+        { plugin = inputs.blink-cmp.packages.${pkgs.stdenv.hostPlatform.system}.default; optional = true; }
         { plugin = codecompanion-nvim; optional = true; }
         { plugin = render-markdown-nvim; optional = true; }
         { plugin = luasnip; optional = true; }

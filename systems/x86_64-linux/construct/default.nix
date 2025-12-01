@@ -53,7 +53,7 @@
     neovim
     wget
     python3Packages.huggingface-hub
-    inputs.llama-cpp.packages.${pkgs.system}.cuda
+    inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.cuda
   ];
 
   services.openssh.enable = true;
@@ -82,7 +82,7 @@
     openFirewall = true;
     settings =
       let
-        llama-cpp = inputs.llama-cpp.packages.${pkgs.system}.cuda;
+        llama-cpp = inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.cuda;
         llama-server = lib.getExe' llama-cpp "llama-server";
       in
       {
