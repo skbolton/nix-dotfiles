@@ -15,6 +15,7 @@ in
       makemkv
       subtitleedit
       mkvtoolnix
+      mpv
     ];
 
     boot.initrd.kernelModules = [ "sg" ];
