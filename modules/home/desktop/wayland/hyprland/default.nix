@@ -130,6 +130,7 @@ in
           }
           {
             name = "ploopy-corporation-ploopy-adept-trackball-mouse";
+            sensitivity = "-0.5";
             natural_scroll = true;
           }
         ];
