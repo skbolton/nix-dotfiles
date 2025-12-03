@@ -51,15 +51,13 @@
     ooo = "task add proj:Admin.Meetings.1on1 sched:today";
   };
 
-  programs.taskwarrior.config.default.project = "Admin";
-  programs.taskwarrior.config.alias.do = "add";
-
   programs.man.enable = true;
 
   programs.zsh.shellAliases.rebuild = "sudo darwin-rebuild switch --flake \"$HOME/nix-dotfiles#niobe\"";
 
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
   };
 
   home = {

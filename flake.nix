@@ -27,7 +27,7 @@
     };
 
     darwin = {
-      url = "github:LnL7/nix-darwin/nix-darwin-25.05";
+      url = "github:LnL7/nix-darwin/nix-darwin-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -78,11 +78,6 @@
 
     lz-n = {
       url = "github:nvim-neorocks/lz.n";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    blink-cmp = {
-      url = "github:Saghen/blink.cmp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -15,7 +15,7 @@ local source_icons = {
 
 return {
   {
-    "blink-cmp",
+    "blink.cmp",
     event = "User DeferredUIEnter",
     after = function()
       require 'blink.cmp'.setup {
