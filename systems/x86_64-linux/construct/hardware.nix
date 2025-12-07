@@ -11,6 +11,16 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  fileSystems."/mnt/ingest" = {
+    device = "//oracle.home.arpa/ingest";
+    fsType = "cifs";
+    options =
+      let
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,user,users";
+      in
+      [ "${automount_opts},credentials=${config.sops.secrets.smb-creds.path},uid=1000,gid=100" ];
+  };
+
   swapDevices = [ ];
 
   hardware.enableRedistributableFirmware = true;

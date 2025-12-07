@@ -16,5 +16,10 @@
     secrets.mouse-password = { neededForUsers = true; };
     secrets.construct-password = { neededForUsers = true; };
     secrets.cloudflared-tunnel-creds = { };
+    secrets.smb-creds = { };
+    secrets.builder-ssh-key = {
+      neededForUsers = true;
+      path = "/root/.ssh/builder_ed25519";
+    };
   };
 }
