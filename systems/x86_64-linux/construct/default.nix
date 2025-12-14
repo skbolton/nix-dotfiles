@@ -108,7 +108,7 @@
         };
         models."gemma3:27b" = {
           cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/gemma-3-27b-it-UD-Q6_K_XL.gguf -ctk q8_0 -ctv q8_0 -c 32768 --jinja -ub 1024 -b 1024 -fa on --no-mmap
+            ${llama-server} --port ''${PORT} -m /models/Gemma3/UD-Q6_K_XL.gguf --mmproj /models/Gemma3/mmproj-BF16.gguf -ctk q8_0 -ctv q8_0 -c 32768 --jinja -ub 1024 -b 1024 -fa on --top-p 0.95 --top-k 64 --min-p 0.01 --temp 1.0 --prio 2
           '';
           ttl = 300; # 5 min
         };
