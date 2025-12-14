@@ -118,6 +118,24 @@
           '';
           ttl = 300; # 5 min
         };
+        models.Devstral2 = {
+          cmd = ''
+            ${llama-server} --port ''${PORT} -m /models/Devstral2/Devstral-2-123B-Instruct-2512-UD-Q6_K_XL-00001-of-00003.gguf -c 32768 -ctk q8_0 -ctv q8_0 --jinja -ngl 99 --temp 0.15"
+          '';
+          ttl = 300; # 5 min
+        };
+        models.Devstral2-Small = {
+          cmd = ''
+            ${llama-server} --port ''${PORT} -m /models/Devstral2/Devstral-Small-2-24B-Instruct-2512-UD-Q8_K_XL.gguf -c 0 -fa on --jinja -ngl 99 --temp 0.15"
+          '';
+          ttl = 300; # 5 min
+        };
+        models.MiniMax-M2 = {
+          cmd = ''
+            ${llama-server} --port ''${PORT} -m /models/MiniMax-M2/UD-Q4_K_XL-00001-of-00003.gguf -c 0 -fa on -ctk q8_0 -ctv q8_0 --no-mmap --jinja -ngl 99 --temp 1.0 --top-p 0.95 --top-k 40"
+          '';
+          ttl = 300; # 5 min
+        };
         models."llama3.2:3b" = {
           cmd = ''
             ${llama-server} --port ''${PORT} -m /models/unsloth_Llama-3.2-3B-Instruct-GGUF_Llama-3.2-3B-Instruct-UD-Q5_K_XL.gguf -c 8192 --jinja 
