@@ -101,34 +101,6 @@ return {
   {
     "codecompanion.nvim",
     after = function()
-      local Job = require 'plenary.job'
-      local credsfile = os.getenv("HOME") .. "/.config/sops-nix/secrets/zaia-creds"
-
-      local get_ollama_creds = function()
-        local first_line, second_line
-
-        Job:new {
-          command = "cat",
-          args = { credsfile },
-          on_stdout = function(_, line)
-            if first_line == nil then
-              first_line = line
-            elseif second_line == nil and line ~= "" then
-              second_line = line
-
-              -- stop when we have both lines
-              return false
-            end
-
-            return true
-          end
-        }:sync()
-
-        return { first_line, second_line }
-      end
-
-      local creds = get_ollama_creds()
-
       require 'codecompanion'.setup {
         show_defaults = false,
         strategies = {
@@ -151,13 +123,13 @@ return {
                 },
                 headers = {
                   ["Content-Type"] = "application/json",
-                  ["CF-Access-Client-Secret"] = creds[1],
-                  ["CF-Access-Client-Id"] = creds[2],
+                  ["CF-Access-Client-Secret"] = os.getenv("ZAIA_CLIENT_SECRET"),
+                  ["CF-Access-Client-Id"] = os.getenv("ZAIA_CLIENT_ID")
                 },
                 schema = {
                   model = {
-                    default = "qwen3-coder:30b-a3b",
-                    choices = { "qwen3-coder:30b-a3b", "devstral:24b" }
+                    default = "MiniMax-M2",
+                    choices = { "qwen3-coder:30b-a3b", "devstral:24b", "MiniMax-M2" }
                   },
                   num_predict = {
                     default = -1,

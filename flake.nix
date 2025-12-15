@@ -3,17 +3,17 @@
 
   nixConfig = {
     experimental-features = [ "nix-command" "flakes" ];
-    substituters = [
-      "https://cache.nixos.org"
-    ];
-
-    extraSubstituters = [
-      "https://nix-community.cachix.org"
-    ];
-
-    extra-trusted-public-keys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
+    # substituters = [
+    #   "https://cache.nixos.org"
+    # ];
+    #
+    # extraSubstituters = [
+    #   "https://nix-community.cachix.org"
+    # ];
+    #
+    # extra-trusted-public-keys = [
+    #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    # ];
   };
 
   inputs = {
@@ -82,6 +82,8 @@
     };
 
     llama-cpp.url = "github:ggml-org/llama.cpp";
+
+    opencode.url = "github:sst/opencode";
   };
 
   outputs = inputs:

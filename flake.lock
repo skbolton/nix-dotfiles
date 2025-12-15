@@ -1115,6 +1115,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_15": {
+      "locked": {
+        "lastModified": 1765425892,
+        "narHash": "sha256-jlQpSkg2sK6IJVzTQBDyRxQZgKADC2HKMRfGCSgNMHo=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5d6bdbddb4695a62f0d00a3620b37a15275a5093",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1732014248,
@@ -1284,6 +1300,24 @@
         "type": "github"
       }
     },
+    "opencode": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_15"
+      },
+      "locked": {
+        "lastModified": 1765778207,
+        "narHash": "sha256-lcmXm8IN69AkKbJRDw78u+6DdYcYmAdqkW6cdIH9p1A=",
+        "owner": "sst",
+        "repo": "opencode",
+        "rev": "9eefcd1b41db29e5142bce800790f559f01f2877",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sst",
+        "repo": "opencode",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_4",
@@ -1319,6 +1353,7 @@
         "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_14",
+        "opencode": "opencode",
         "snowfall-lib": "snowfall-lib",
         "sops-nix": "sops-nix",
         "spelunk-nvim": "spelunk-nvim",

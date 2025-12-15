@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ inputs, lib, config, pkgs, ... }:
 let
   cfg = config.delta.ai;
 in
@@ -21,7 +21,7 @@ with lib;
 
     home.packages = with pkgs; [
       unstable.aichat
-      unstable.opencode
+      inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
 
     programs.tmux.extraConfig = /* tmux */ ''
@@ -49,6 +49,8 @@ with lib;
       recursive = true;
     };
 
+    xdg.configFile."opencode/opencode.json".text = import ./opencode.nix;
+
     programs.zsh.initContent = lib.mkOrder
       1200
       ''
@@ -74,6 +76,8 @@ with lib;
 
         zle -N _aichat_zsh_explain
         bindkey -M viins '^X' _aichat_zsh_explain
+
+        export $(xargs < "$HOME/.config/sops-nix/secrets/zaia-creds")
       '';
 
     xdg.configFile."nvim/plugin/ai-grammar.lua".text = mkIf
@@ -88,32 +92,6 @@ with lib;
         plugin = minuet-ai-nvim;
         config = /* lua */ ''
           local Job = require 'plenary.job'
-          local credsfile = os.getenv("HOME") .. "/.config/sops-nix/secrets/zaia-creds"
-
-          local get_ollama_creds = function()
-            local first_line, second_line
-
-            Job:new {
-              command = "cat",
-              args = { credsfile },
-              on_stdout = function(_, line)
-                if first_line == nil then
-                  first_line = line
-                elseif second_line == nil and line ~= "" then
-                  second_line = line
-
-                  -- stop when we have both lines
-                  return false
-                end
-
-                return true
-              end
-            }:sync()
-
-            return { first_line, second_line }
-          end
-
-          local creds = get_ollama_creds()
 
           require 'lz.n'.load {
             "minuet-ai.nvim",
@@ -148,8 +126,8 @@ with lib;
                     },
                     transform = {
                       function (args)
-                        args.headers["CF-Access-Client-Secret"] = creds[1]
-                        args.headers["CF-Access-Client-Id"] = creds[2]
+                        args.headers["CF-Access-Client-Secret"] = os.getenv("ZAIA_CLIENT_SECRET")
+                        args.headers["CF-Access-Client-Id"] = os.getenv("ZAIA_CLIENT_ID")
 
                         return args
                       end
