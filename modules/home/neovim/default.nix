@@ -68,7 +68,6 @@ in
 
         { plugin = aerial-nvim; optional = true; }
         { plugin = blink-cmp; optional = true; }
-        { plugin = codecompanion-nvim; optional = true; }
         { plugin = render-markdown-nvim; optional = true; }
         { plugin = luasnip; optional = true; }
 

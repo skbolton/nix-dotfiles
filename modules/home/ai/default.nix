@@ -89,6 +89,23 @@ with lib;
 
     programs.neovim.plugins = with pkgs.unstable.vimPlugins; [
       {
+        plugin = opencode-nvim;
+        config = /* lua */ ''
+          require 'lz.n'.load {
+            'opencode.nvim',
+            before = function()
+              vim.o.autoread = true
+            end,
+            keys = {
+              { "<leader>aa", function() require 'opencode'.ask('@this: ', { submit = true }) end, { mode = { "n", "v" } } },
+              { "<leader>ax", function() require 'opencode'.select() end }
+            }
+          }
+        '';
+        type = "lua";
+        optional = true;
+      }
+      {
         plugin = minuet-ai-nvim;
         config = /* lua */ ''
           local Job = require 'plenary.job'
@@ -96,6 +113,7 @@ with lib;
           require 'lz.n'.load {
             "minuet-ai.nvim",
             event = 'InsertEnter',
+          enabled = false,
             after = function()
               require 'minuet'.setup {
               blink = { enable_auto_complete = false },

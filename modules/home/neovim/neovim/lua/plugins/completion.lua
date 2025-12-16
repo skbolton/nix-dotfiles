@@ -1,5 +1,4 @@
 local source_icons = {
-  codecompanion = '󰭆 ',
   nvim_lsp = '󱜠 ',
   lsp = '󱜠 ',
   buffer = ' ',
@@ -57,7 +56,6 @@ return {
             sql = { 'dadbod' },
             plsql = { 'dadbod' },
             mysql = { 'dadbod' },
-            codecompanion = { 'codecompanion' },
           },
           providers = {
             dadbod = { name = 'Dadbod', module = 'vim_dadbod_completion.blink' },
@@ -97,54 +95,5 @@ return {
         }
       }
     end
-  },
-  {
-    'codecompanion.nvim',
-    after = function()
-      require 'codecompanion'.setup {
-        show_defaults = false,
-        strategies = {
-          chat = {
-            adapter = 'zionlab',
-          },
-          inline = {
-            adapter = 'zionlab',
-          },
-          cmd = {
-            adapter = 'zionlab',
-          }
-        },
-        adapters = {
-          http = {
-            zionlab = function()
-              return require('codecompanion.adapters').extend('openai_compatible', {
-                env = {
-                  url = 'https://zaia.zionlab.online',
-                },
-                headers = {
-                  ['Content-Type'] = 'application/json',
-                  ['CF-Access-Client-Secret'] = os.getenv('ZAIA_CLIENT_SECRET'),
-                  ['CF-Access-Client-Id'] = os.getenv('ZAIA_CLIENT_ID')
-                },
-                schema = {
-                  model = {
-                    default = 'MiniMax-M2',
-                    choices = { 'qwen3-coder:30b-a3b', 'devstral:24b', 'MiniMax-M2' }
-                  },
-                  num_predict = {
-                    default = -1,
-                  }
-                }
-              })
-            end,
-          }
-        }
-      }
-    end,
-    cmd = { 'CodeCompanionChat', 'CodeCompanion' },
-    keys = {
-      { '<leader>a', '<CMD>CodeCompanionChat Toggle<CR>', mode = 'n' },
-      { '<leader>a', ':CodeCompanion ',                   mode = 'v' }
-    }
   }
 }
