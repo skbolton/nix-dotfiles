@@ -3,7 +3,7 @@
 {
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ docker-compose zk rancher docker-credential-helpers ];
+  home.packages = with pkgs; [ docker-compose zk rancher docker-credential-helpers raycast ];
 
   delta = {
     ai.enable = true;
@@ -32,7 +32,7 @@
     };
     terminal_theme.inspired.enable = true;
     terminal_theme.embark.enable = false;
-    desktop.macos.aerospace.enable = true;
+    desktop.macos.aerospace.enable = false;
     cloud.gcloud.enable = true;
     lang = {
       elixir.enable = true;

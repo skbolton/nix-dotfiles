@@ -31,8 +31,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mac-app-util.url = "github:hraban/mac-app-util";
-
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
@@ -108,10 +106,6 @@
 
       homes.modules = with inputs; [
         sops-nix.homeManagerModules.sops
-      ];
-
-      homes.users."s.bolton@niobe".modules = with inputs; [
-        mac-app-util.homeManagerModules.default
       ];
 
       systems.modules.nixos = with inputs; [
