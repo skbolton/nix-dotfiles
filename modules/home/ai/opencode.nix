@@ -2,8 +2,8 @@ builtins.toJSON {
   "$schema" = "https://opencode.ai/config.json";
   model = "zionlab/MiniMax-M2";
   keybinds = {
-    input_submit = "shift+return";
     input_newline = "return";
+    input_submit = "ctrl+y";
   };
   provider.zionlab = {
     npm = "@ai-sdk/openai-compatible";
