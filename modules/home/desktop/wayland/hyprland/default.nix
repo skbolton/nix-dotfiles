@@ -50,8 +50,6 @@ in
           gaps_in = 2;
           gaps_out = 6;
           border_size = 2;
-          "col.active_border" = "rgb(2F2A47)";
-          "col.inactive_border" = "rgba(1E1C3100)";
           layout = "dwindle";
           resize_on_border = true;
         };
@@ -80,22 +78,9 @@ in
           };
         };
 
-        group = {
-          "col.border_active" = "rgba(63F2F1aa)";
-          "col.border_inactive" = "rgba(585272aa)";
-
-          groupbar = {
-            font_family = "Iosevka";
-            font_size = 13;
-            "col.active" = "rgba(63F2F1aa)";
-            "col.inactive" = "rgba(585272aa)";
-          };
-        };
-
         misc = {
           disable_hyprland_logo = true;
           disable_splash_rendering = true;
-          background_color = "0x1E1C31";
         };
 
         xwayland = {

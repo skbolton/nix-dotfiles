@@ -30,8 +30,8 @@
       enable = true;
       sync = false;
     };
-    terminal_theme.inspired.enable = true;
-    terminal_theme.embark.enable = false;
+    inspired-theme.enable = true;
+    embark-theme.enable = false;
     desktop.macos.aerospace.enable = false;
     cloud.gcloud.enable = true;
     lang = {

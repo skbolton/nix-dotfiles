@@ -115,6 +115,7 @@
   delta.tailscale.enable = true;
   delta.tailscale.package = pkgs.unstable.tailscale;
   delta.ripping.enable = true;
+  delta.inspired-theme.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.pathsToLink = [ "/share/zsh" ];
@@ -205,14 +206,6 @@
   };
 
   # Personal dashboard config
-
-  services.grafana = {
-    enable = true;
-    settings = {
-      server.http_port = 2333;
-      server.http_addr = "0.0.0.0";
-    };
-  };
 
   delta.openlinkhub.enable = true;
 

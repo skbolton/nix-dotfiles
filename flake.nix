@@ -55,6 +55,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     embark-bat-theme = {
       url = "github:embark-theme/bat";
       flake = false;
@@ -109,8 +114,13 @@
       ];
 
       systems.modules.nixos = with inputs; [
+        stylix.nixosModules.stylix
         sops-nix.nixosModules.sops
         disko.nixosModules.disko
+      ];
+
+      systems.modules.darwin = with inputs; [
+        stylix.darwindModules.stylix
       ];
     };
 }

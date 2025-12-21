@@ -61,6 +61,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   delta.ripping.enable = true;
+  delta.inspired-theme.enable = true;
 
   virtualisation.oci-containers = {
     backend = "docker";

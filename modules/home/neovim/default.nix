@@ -131,13 +131,6 @@ in
           plugin = pkgs.awesomeNeovimPlugins.telescope-heading-nvim;
           optional = true;
         }
-        {
-          plugin = pkgs.vimUtils.buildVimPlugin {
-            name = "embark-vim";
-            src = inputs.embark-vim;
-          };
-          optional = true;
-        }
       ];
     };
 

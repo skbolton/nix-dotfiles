@@ -20,7 +20,7 @@
     timetracking.enable = true;
     timetracking.timesheets = "$HOME/Documents/Notes/tracking/time";
     neovim.enable = true;
-    terminal_theme.embark.enable = true;
+    embark-theme.enable = true;
     kitty.enable = true;
     lang = {
       elixir.enable = true;

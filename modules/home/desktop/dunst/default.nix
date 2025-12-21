@@ -20,8 +20,6 @@ in
       };
       settings = {
         global = {
-          font = "Inter 12";
-          frame_color = "#100E23";
           frame_width = "2";
           origin = "top-right";
           offset = "8x4";
@@ -29,23 +27,14 @@ in
           height = "200";
           padding = 16;
           horizontal_padding = 16;
-          separator_color = "#585273";
           follow = "mouse";
         };
 
-        urgency_low = {
-          background = "#2D2B40";
-        };
-
         urgency_normal = {
-          background = "#2D2B40";
           script = "/home/orlando/.config/dunst/play_normal.sh";
         };
 
         urgency_critical = {
-          background = "#2D2B40";
-          foreground = "#CBE3E7";
-          frame_color = "#F48FB1";
           script = "/home/orlando/.config/dunst/play_critical.sh";
         };
 

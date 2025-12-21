@@ -43,16 +43,11 @@ in
     wayland.windowManager.river.settings.focus-follows-cursor = "normal";
     wayland.windowManager.river.settings.set-cursor-warp = "on-output-change";
     wayland.windowManager.river.settings.border-width = 2;
-    wayland.windowManager.river.settings.background-color = "0x1e1c31";
-    wayland.windowManager.river.settings.border-color-unfocused = "0x63f2f100";
-    wayland.windowManager.river.settings.border-color-focused = "0x2F2A47";
-    wayland.windowManager.river.settings.border-color-urgent = "0xd4bfff";
     wayland.windowManager.river.settings.set-repeat = "50 300";
     wayland.windowManager.river.settings.keyboard-layout = "-variant colemak us";
     wayland.windowManager.river.settings.input."ploopy-corporation-ploopy-adept-trackball-mouse" = {
       natural-scroll = true;
     };
-    wayland.windowManager.river.settings.xcursor-theme = "Bibata-Modern-Ice 22";
     wayland.windowManager.river.settings.declare-mode = [
       "locked"
       "resize"

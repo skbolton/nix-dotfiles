@@ -13,8 +13,8 @@
     cli_apps.enable = true;
     tmux.enable = true;
     neovim.enable = true;
-    terminal_theme.embark.enable = false;
-    terminal_theme.inspired.enable = true;
+    embark-theme.enable = false;
+    inspired-theme.enable = true;
     kitty.enable = true;
     lang = {
       elixir.enable = true;
