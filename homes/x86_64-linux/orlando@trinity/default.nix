@@ -48,8 +48,6 @@
     desktop.wayland.waybar.target = "hyprland-session.target";
     desktop.dunst.enable = true;
     desktop.nm-applet.enable = true;
-    desktop.gtk.enable = true;
-    desktop.qt.enable = true;
     desktop.ui_applications.enable = true;
     synology.enable = true;
     cloud.gcloud.enable = true;

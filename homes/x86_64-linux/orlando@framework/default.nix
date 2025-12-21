@@ -37,8 +37,6 @@
       enable = true;
       autostart = [ ];
     };
-    desktop.gtk.enable = true;
-    desktop.qt.enable = true;
     desktop.wayland.waybar.enable = true;
     desktop.wayland.waybar.target = "hyprland-session.target";
     desktop.dunst.enable = true;

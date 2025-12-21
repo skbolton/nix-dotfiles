@@ -32,8 +32,6 @@
       enable = true;
       autostart = [ ];
     };
-    desktop.gtk.enable = true;
-    desktop.qt.enable = true;
     desktop.wayland.waybar.enable = true;
     desktop.dunst.enable = true;
     desktop.nm-applet.enable = true;
