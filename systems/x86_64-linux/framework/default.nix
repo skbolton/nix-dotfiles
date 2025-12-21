@@ -27,6 +27,7 @@
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.configurationLimit = 15;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "framework";
@@ -41,7 +42,7 @@
   services.xserver = {
     xkb.variant = "colemak";
     enable = true;
-    videoDrivers = [ "i915" ];
+    videoDrivers = [ "modesetting" ];
 
     windowManager.awesome.enable = true;
   };
@@ -87,7 +88,7 @@
 
   delta.tailscale.enable = true;
   delta.tailscale.package = pkgs.unstable.tailscale;
-  delat.embark-theme.enable = true;
+  delta.embark-theme.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.pathsToLink = [ "/share/zsh" ];
