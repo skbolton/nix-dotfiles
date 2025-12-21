@@ -13,7 +13,17 @@
     ];
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings.trusted-users = [ "@wheel" ];
+  nix = {
+    settings = {
+      trusted-users = [ "root" "@wheel" ];
+      substituters = [
+        "https://cache.nixos-cuda.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+      ];
+    };
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
