@@ -115,7 +115,8 @@
   delta.tailscale.enable = true;
   delta.tailscale.package = pkgs.unstable.tailscale;
   delta.ripping.enable = true;
-  delta.inspired-theme.enable = true;
+  delta.theme.enable = true;
+  delta.theme.palette = "embark";
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.pathsToLink = [ "/share/zsh" ];

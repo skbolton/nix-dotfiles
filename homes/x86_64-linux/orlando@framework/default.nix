@@ -23,8 +23,7 @@
     };
     habits.enable = true;
     neovim.enable = true;
-    inspired-theme.enable = false;
-    embark-theme.enable = true;
+    theme.enable = true;
     kitty.enable = true;
     calendar.enable = true;
     lang = {

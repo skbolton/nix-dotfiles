@@ -91,7 +91,8 @@
       enable = true;
       dataDir = "/var/zion-data/plex";
     };
-    embark-theme.enable = true;
+    theme.enable = true;
+    theme.palette = "embark";
   };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

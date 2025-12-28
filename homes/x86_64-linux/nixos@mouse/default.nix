@@ -20,7 +20,7 @@
     timetracking.enable = true;
     synology.enable = true;
     neovim.enable = true;
-    embark-theme.enable = true;
+    theme.enable = true;
     kitty.enable = true;
     lang = {
       lua.enable = true;

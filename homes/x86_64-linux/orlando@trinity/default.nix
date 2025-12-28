@@ -25,8 +25,10 @@
     };
     habits.enable = true;
     neovim.enable = true;
-    embark-theme.enable = true;
-    inspired-theme.enable = false;
+    theme = {
+      enable = true;
+      palette = "embark";
+    };
     calendar.enable = true;
     kitty.enable = true;
     lang = {
