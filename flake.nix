@@ -70,6 +70,11 @@
       flake = false;
     };
 
+    dev-null-theme = {
+      url = "github:skbolton/dev-null.nvim";
+      flake = false;
+    };
+
     spelunk-nvim = {
       url = "github:EvWilson/spelunk.nvim";
       flake = false;

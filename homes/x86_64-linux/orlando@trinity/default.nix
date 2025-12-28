@@ -19,9 +19,10 @@
     finance.enable = true;
     passwords.enable = true;
     tasks.enable = true;
+    tasks.sync = true;
     timetracking = {
       enable = true;
-      timesheets = "$HOME/00-09-System/03-Quantified/03.10-Timecards/$(date +%Y)";
+      timesheets = "$HOME/Documents/new-journals/tracking/time";
     };
     habits.enable = true;
     neovim.enable = true;
@@ -86,6 +87,10 @@
     };
   };
 
+  services.syncthing = {
+    enable = true;
+  };
+
   home = {
     username = "orlando";
     homeDirectory = "/home/orlando";
@@ -104,23 +109,41 @@
   };
 
   monitors = [
-    {
-      name = "DP-4";
-      width = 3840;
-      x = 0;
-      y = 0;
-      refreshRate = 240;
-      height = 2160;
-      scale = "1";
-      workspaces = [ "1" "3" "5" ];
-      enabled = true;
-    }
+    # {
+    #   name = "DP-1";
+    #   width = 2560;
+    #   x = 3200;
+    #   y = 0;
+    #   refreshRate = 60;
+    #   height = 2880;
+    #   scale = "1.6";
+    #   workspaces = [ "2" "4" "6" ];
+    #   enabled = true;
+    # }
+    # {
+    #   name = "DP-5";
+    #   width = 3840;
+    #   x = 0;
+    #   y = 0;
+    #   refreshRate = 240;
+    #   height = 2160;
+    #   scale = "1";
+    #   workspaces = [ "1" "3" "5" ];
+    #   enabled = true;
+    # }
   ];
 
   keyboard = {
     variant = "colemak";
     options = "lv3:ralt_alt";
   };
+
+  # TODO: Find a way to automate this in themes
+  # switching constructs theme should update this
+  xdg.configFile."kitty/ssh.conf".text = ''
+    hostname nixos@construct.home.arpa
+    color_scheme ${../../../modules/home/dev-null-theme/kitty-dev-null.conf}
+  '';
 
   programs.home-manager.enable = true;
   # Nicely reload system units when changing configs

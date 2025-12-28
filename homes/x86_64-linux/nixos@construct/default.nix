@@ -15,7 +15,7 @@
     neovim.enable = true;
     theme = {
       enable = true;
-      palette = "inspired";
+      palette = "dev-null";
     };
     kitty.enable = true;
     lang = {

@@ -8,7 +8,7 @@ in
   options.delta.theme = with types; {
     enable = mkEnableOption "themeing";
     palette = mkOption {
-      type = enum [ "inspired" "embark" ];
+      type = enum [ "inspired" "embark" "dev-null" ];
       default = "embark";
     };
   };
@@ -17,6 +17,7 @@ in
     delta = {
       "embark-theme".enable = cfg.palette == "embark";
       "inspired-theme".enable = cfg.palette == "inspired";
+      "dev-null-theme".enable = cfg.palette == "dev-null";
     };
   };
 }

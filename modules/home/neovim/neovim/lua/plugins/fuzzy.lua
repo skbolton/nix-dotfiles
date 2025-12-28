@@ -101,7 +101,7 @@ return {
     end,
     keys = {
       { "<leader>lo",          "<CMD>Telescope treesitter<CR>",                desc = "Fuzzy symbols" },
-      { "/",                   "<CMD>Telescope current_buffer_fuzzy_find<CR>", desc = "Fuzzy search file" },
+      -- { "/",                   "<CMD>Telescope current_buffer_fuzzy_find<CR>", desc = "Fuzzy search file" },
       { "<leader>/",           "<CMD>Telescope live_grep<CR>",                 desc = "Grep" },
       { "<leader><leader>",    "<CMD>Telescope find_files<CR>",                desc = "Files" },
       { "<leader><Backspace>", "<CMD>Telescope buffers<CR>",                   desc = "Recent" },

@@ -107,6 +107,22 @@
         "type": "github"
       }
     },
+    "dev-null-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1766916608,
+        "narHash": "sha256-a0IUXfxbTV2uyT5sjaxYyQa58aiHNq/reY8IbuVzOt4=",
+        "owner": "skbolton",
+        "repo": "dev-null.nvim",
+        "rev": "b3713487aa676599590a492e564c5a44c61820c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "skbolton",
+        "repo": "dev-null.nvim",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -1400,6 +1416,7 @@
       "inputs": {
         "awesome-neovim-plugins": "awesome-neovim-plugins",
         "darwin": "darwin",
+        "dev-null-theme": "dev-null-theme",
         "disko": "disko",
         "embark-bat-theme": "embark-bat-theme",
         "embark-vim": "embark-vim",
