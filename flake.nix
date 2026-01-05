@@ -125,7 +125,7 @@
       ];
 
       systems.modules.darwin = with inputs; [
-        stylix.darwindModules.stylix
+        stylix.darwinModules.stylix
       ];
     };
 }
