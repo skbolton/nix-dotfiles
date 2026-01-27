@@ -31,6 +31,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
@@ -126,6 +128,7 @@
 
       systems.modules.darwin = with inputs; [
         stylix.darwinModules.stylix
+        nix-homebrew.darwinModules.nix-homebrew
       ];
     };
 }

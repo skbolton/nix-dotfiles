@@ -3,6 +3,7 @@
 {
   nix.package = pkgs.nix;
   nix.settings.experimental-features = "nix-command flakes";
+  nix.settings.trusted-users = [ "s.bolton" ];
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   nixpkgs = {
@@ -37,6 +38,23 @@
 
   documentation.enable = true;
   documentation.man.enable = true;
+
+  nix-homebrew = {
+    # Install Homebrew under the default prefix
+    enable = true;
+
+    # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+    enableRosetta = true;
+
+    # User owning the Homebrew prefix
+    user = "s.bolton";
+
+    # Optional: Enable fully-declarative tap management
+    #
+    # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
+    mutableTaps = true;
+    autoMigrate = true;
+  };
 
   # system.configurationRevision = self.rev or self.dirtyRev or null;
   system.stateVersion = 5;
