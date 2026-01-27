@@ -29,8 +29,6 @@ NAME=$(basename "$TARGET")
 
 if tmux has-session -t "$NAME"; then
   tmux switch -t "$NAME" 2> /dev/null || tmux attach -t "$NAME"
-elif [[ -f "$TARGET/.steve-smug.yml" ]]; then
-  smug start -f "$TARGET/.steve-smug.yml" -a
 elif [[ -f "$HOME/.config/smug/$NAME.yml" ]]; then
   smug start "$NAME" -a
 else
