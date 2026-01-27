@@ -1,11 +1,5 @@
 return {
   {
-    "vim-tpipeline",
-    before = function()
-      vim.g.tpipeline_restore = true
-    end
-  },
-  {
     "nvim-web-devicons",
     event = "User DeferredUIEnter"
   },

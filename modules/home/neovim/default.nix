@@ -26,7 +26,6 @@ in
         popup-nvim
         plenary-nvim
         { plugin = nvim-web-devicons; optional = true; }
-        vim-tpipeline
         {
           plugin = nvim-web-devicons;
           optional = true;
