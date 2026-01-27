@@ -108,7 +108,6 @@
       pkgs.delta.fman
       handbrake
       delta.quantified-self
-      delta.niobe
     ];
   };
 
