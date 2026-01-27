@@ -4,7 +4,7 @@ let
 in
 with lib;
 {
-  options.delta.ai = with types; {
+  options.delta.rally = with types; {
     enable = mkEnableOption "rally";
     rallypoints = mkOption {
       type = listOf str;
