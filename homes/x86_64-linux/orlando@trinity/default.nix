@@ -30,6 +30,10 @@
       enable = true;
       palette = "embark";
     };
+    rally = {
+      enable = true;
+      rallypoints = [ "$HOME" "$HOME/Public" ];
+    };
     calendar.enable = true;
     kitty.enable = true;
     lang = {

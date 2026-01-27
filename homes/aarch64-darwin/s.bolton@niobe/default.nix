@@ -30,6 +30,10 @@
       enable = false;
       sync = false;
     };
+    rally = {
+      enable = true;
+      rallypoints = [ "$HOME/Public" "$HOME/Public/printserver/packages" ];
+    };
     theme.enable = true;
     theme.palette = "embark";
     desktop.macos.aerospace.enable = false;

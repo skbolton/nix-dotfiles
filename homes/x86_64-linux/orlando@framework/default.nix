@@ -26,6 +26,10 @@
     theme.enable = true;
     kitty.enable = true;
     calendar.enable = true;
+    rally = {
+      enable = true;
+      rallypoints = [ "$HOME" "$HOME/Public" ];
+    };
     lang = {
       elixir.enable = true;
       lua.enable = true;
