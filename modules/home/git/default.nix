@@ -85,7 +85,7 @@
       url."git@github.com:".insteadOf = "gh:";
     };
 
-    ignores = [ "stevies" ".envrc" ".envrc.private" ".direnv" ".vim" ];
+    ignores = [ "stevies" ".envrc" ".devenv" ".envrc.private" ".direnv" ".vim" ];
   };
 
   xdg.configFile."git/commit-template" = {

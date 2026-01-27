@@ -16,6 +16,7 @@ in
       entr
       md-tangle
       dateutils
+      devenv
     ];
 
     programs.jq.enable = cfg.enable;
