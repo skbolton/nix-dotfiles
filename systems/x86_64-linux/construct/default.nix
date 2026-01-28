@@ -130,6 +130,12 @@
           '';
           ttl = 300; # 5 min
         };
+        models."GLM-4.7" = {
+          cmd = ''
+            ${llama-server} --port ''${PORT} -m /models/GLM-4.7/UD-Q2_K_XL.gguf -c 0 --jinja -fa on --no-mmap -ngl 99"
+          '';
+          ttl = 14400; # 4 hours
+        };
         models.Devstral2 = {
           cmd = ''
             ${llama-server} --port ''${PORT} -m /models/Devstral2/Devstral-2-123B-Instruct-2512-UD-Q6_K_XL-00001-of-00003.gguf -c 32768 -ctk q8_0 -ctv q8_0 --jinja -ngl 99 --temp 0.15"
