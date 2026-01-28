@@ -150,9 +150,9 @@
         };
         models.MiniMax-M2 = {
           cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/MiniMax-M2/UD-Q4_K_XL-00001-of-00003.gguf -c 0 -fa on -ctk q8_0 -ctv q8_0 --no-mmap --jinja -ngl 99 --temp 1.0 --top-p 0.95 --top-k 40"
+            ${llama-server} --port ''${PORT} -m /models/MiniMax-M2.1/UD-Q4_K_XL.gguf -c 0 -fa on -ctk q8_0 -ctv q8_0 --no-mmap --jinja -ngl 99 --temp 1.0 --top-p 0.95 --top-k 40"
           '';
-          ttl = 300; # 5 min
+          ttl = 14400; # 4 hours
         };
         models."llama3.2:3b" = {
           cmd = ''
