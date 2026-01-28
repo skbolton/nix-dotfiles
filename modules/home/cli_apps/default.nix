@@ -43,12 +43,7 @@ in
         mappings = {
           p = "preview-tui";
         };
-        src = (pkgs.fetchFromGitHub {
-          owner = "jarun";
-          repo = "nnn";
-          rev = "9e95578c22bf76515a633723f6ec335469d4f000";
-          sha256 = "sha256-XM88ROUexwl26feNRik8pMzOcpiF84bC3l3F4RQnG34=";
-        }) + "/plugins";
+        src = "${pkgs.nnn}/share/plugins";
       };
     };
 
