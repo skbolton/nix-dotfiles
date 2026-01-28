@@ -36,9 +36,9 @@ with lib;
           name = "Zionlab";
           api_base = "https://zaia.zionlab.online/v1";
           models = [
+            { name = "MiniMax-M2"; }
             { name = "qwen3-coder:30b-a3b"; }
-            { name = "gpt-oss:120b"; }
-            { name = "llama3.2:3b"; }
+            { name = "gemma3:27b"; }
           ];
         }
       ];
