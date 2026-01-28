@@ -122,7 +122,7 @@
           cmd = ''
             ${llama-server} --port ''${PORT} -m /models/Gemma3/UD-Q6_K_XL.gguf --mmproj /models/Gemma3/mmproj-BF16.gguf -ctk q8_0 -ctv q8_0 -c 32768 --jinja -ub 1024 -b 1024 -fa on --top-p 0.95 --top-k 64 --min-p 0.01 --temp 1.0 --prio 2
           '';
-          ttl = 300; # 5 min
+          ttl = 1500; # 15 min
         };
         models."GLM-4.6" = {
           cmd = ''
@@ -163,7 +163,7 @@
         groups.coding = {
           swap = false;
           exclusive = true;
-          members = [ "qwen3-coder:30b-a3b" "gpt-oss:120b" ];
+          members = [ "gemma3:27b" "MiniMax-M2" ];
         };
       };
   };
