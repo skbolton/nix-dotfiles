@@ -93,7 +93,7 @@
 
     llama-cpp.url = "github:ggml-org/llama.cpp";
 
-    opencode.url = "github:sst/opencode";
+    opencode.url = "github:anomalyco/opencode";
   };
 
   outputs = inputs:
