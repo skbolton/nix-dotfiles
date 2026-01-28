@@ -51,6 +51,8 @@ with lib;
 
     xdg.configFile."opencode/opencode.json".text = import ./opencode.nix;
 
+    programs.git.ignores = [ ".opencode" ];
+
     programs.zsh.initContent = lib.mkOrder
       1200
       ''
