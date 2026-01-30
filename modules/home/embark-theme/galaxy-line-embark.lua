@@ -53,45 +53,48 @@ gls.right[1] = {
 
 gls.right[2] = {
   GitDiffAdded = {
-    icon = ' + ',
     provider = function()
-      if vcs.diff_add() then
-        return vcs.diff_add()
-      else
-        return '∅ '
-      end
+      return '  '
     end,
     separator = '|',
     separator_highlight = { colors.fg_dark },
-    highlight = { colors.fg_dark, colors.bg_0 },
+    highlight = function()
+      if vcs.diff_add() then
+        return { "#A1EFD3", colors.bg_0 }
+      else
+        return { colors.fg_dark, colors.bg_0 }
+      end
+    end
   }
 }
 
 gls.right[3] = {
   GitDiffChanged = {
-    icon = '~ ',
     provider = function()
-      if vcs.diff_modified() then
-        return vcs.diff_modified()
-      else
-        return '∅ '
-      end
+      return '  '
     end,
-    highlight = { colors.fg_dark, colors.bg_0 },
+    highlight = function()
+      if vcs.diff_modified() then
+        return { "#D4BFFF", colors.bg_0 }
+      else
+        return { colors.fg_dark, colors.bg_0 }
+      end
+    end
   }
 }
 
 gls.right[4] = {
   GitDiffRemoved = {
-    icon = '- ',
     provider = function()
-      if vcs.diff_remove() then
-        return vcs.diff_remove()
-      else
-        return '∅ '
-      end
+      return '  '
     end,
-    highlight = { colors.fg_dark, colors.bg_0 },
+    highlight = function()
+      if vcs.diff_remove() then
+        return { "#F48FB1", colors.bg_0 }
+      else
+        return { colors.fg_dark, colors.bg_0 }
+      end
+    end
   }
 }
 
@@ -120,3 +123,10 @@ gls.short_line_left[1] = {
     highlight = "PreProc"
   }
 }
+
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'GitSignsUpdate',
+  callback = function(_args)
+    gl.load_galaxyline()
+  end
+})
