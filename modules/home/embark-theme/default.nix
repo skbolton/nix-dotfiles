@@ -56,24 +56,43 @@ in
     xdg.configFile."tmux/statusline.tmux".source = ./embark.tmux;
 
     programs.starship.settings = {
-      format = "$character$hostname$jobs$directory$git_branch$git_status ";
+      add_newline = false;
+      format = ''
+        [┌─](fg:#585273)$jobs$directory$fill$git_branch$git_status
+        [└─](fg:#585273)$character 
+      '';
       character = {
         format = "$symbol";
-        error_symbol = "[  ](bold fg:red bg:#19172C)";
-        success_symbol = "[  ](bold fg:green bg:#19172C)";
-        vimcmd_symbol = "[  ](bold fg:purple bg:#19172C)";
+        error_symbol = "[  ](bold red)";
+        success_symbol = "[  ](bold bright-white)";
+        vimcmd_symbol = "[  ](bold green)";
+      };
+
+      fill = {
+        symbol = "";
+        style = "fg:#19172C bg:#19172C";
       };
 
       directory = {
-        format = "[   $path ](bg:#2D2B40 fg:bright-white)[](fg:#2D2B40)";
+        format = "[   $path ](bg:#2D2B40 fg:bright-white)[](fg:#2D2B40 bg:#19172C)";
+        truncate_to_repo = false;
       };
 
       git_branch = {
-        format = "[  $branch ](fg:bright-white)";
+        format = "[](fg:#2D2B40 bg:#19172C)[  $branch ](bg:#2D2B40 fg:bright-white)";
       };
 
       git_status = {
-        style = "bold purple";
+        format = "[$ahead_behind $stashed$staged$modified$deleted$untracked ](bg:#2D2B40)";
+        style = "bright-white";
+        ahead = "[](bg:#2D2B40 bold green)";
+        behind = "[](bg:#2D2B40 bold green)";
+        diverged = "[](bg:#2D2B40 bold green)";
+        staged = "[](bg:#2D2B40 green)";
+        untracked = "[](bg:#2D2B40 white)";
+        modified = "[](bg:#2D2B40 purple)";
+        stashed = "[](bg:#2D2B40 yellow)";
+        deleted = "[](bg:#2D2B40 red)";
       };
 
       jobs = {
