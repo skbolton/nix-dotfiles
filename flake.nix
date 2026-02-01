@@ -94,6 +94,11 @@
     llama-cpp.url = "github:ggml-org/llama.cpp";
 
     opencode.url = "github:anomalyco/opencode";
+
+    zsh-almostontop = {
+      url = "github:Valiev/almostontop";
+      flake = false;
+    };
   };
 
   outputs = inputs:

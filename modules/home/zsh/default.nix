@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, inputs, ... }:
 
 with lib;
 let
@@ -137,6 +137,7 @@ in
           }
 
           source "${pkgs.zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh";
+          source "${inputs.zsh-almostontop}/almostontop.plugin.zsh"
           autopair-init
         '')
       ];
