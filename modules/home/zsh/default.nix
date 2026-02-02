@@ -18,6 +18,7 @@ in
       autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting.enable = true;
+      syntaxHighlighting.styles = { comment = "fg=8,bold"; };
       historySubstringSearch.enable = true;
       autocd = true;
       cdpath = [ "." "$HOME" "$HOME/Public" "$HOME/Documents" "$HOME/Notes" ];
@@ -81,6 +82,7 @@ in
           setopt CDABLE_VARS          # Change directory to a path stored in a variable
           setopt EXTENDED_GLOB        # Use extended globbing syntax
           KEYTIMEOUT=5
+          setopt INTERACTIVE_COMMENts # recognize comments in shell (don't execute if line is comment)
 
           # use tmux popup
           zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
