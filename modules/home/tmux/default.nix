@@ -148,6 +148,21 @@ in
       bind -Ttable2 T if "tmux display -p '#h' | grep -q niobe" "split-window -b -h -l 33% \; send ssh Space orlando@trinity.home.arpa Enter task Enter" "send task Enter"
       bind -Ttable2 r split-window -b -h -l 33% \; if "tmux display -p '#h' | grep -q niobe" "send ssh Space orlando@trinity.home.arpa Enter \; send zk Space ei Enter" "send zk Space ei Enter"
       bind -Ttable2 l split-window -b -h -l 100 'cd ~/Documents/Notes && zk log'
+
+      # WINDOW LAYER
+      # keep the default w key available somewhere
+      bind W choose-tree -Zw
+
+      bind w switch-client -Ttable3
+      bind -Ttable3 j split-window -v
+      bind -Ttable3 k split-window -v -b
+      bind -Ttable3 h split-window -h -b
+      bind -Ttable3 l split-window -h
+
+      bind -Ttable3 Left swap-pane -d -t '{left-of}'
+      bind -Ttable3 Up swap-pane -d -t '{up-of}'
+      bind -Ttable3 Right swap-pane -d -t'{right-of}'
+      bind -Ttable3 Down swap-pane -d -t '{down-of}'
     '';
 
     xdg.configFile.smug = {
