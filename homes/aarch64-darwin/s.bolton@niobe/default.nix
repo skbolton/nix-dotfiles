@@ -56,6 +56,7 @@
   };
 
   programs.man.enable = true;
+  programs.man.generateCaches = true;
 
   programs.zsh.shellAliases.rebuild = "sudo darwin-rebuild switch --flake \"$HOME/nix-dotfiles#niobe\"";
 

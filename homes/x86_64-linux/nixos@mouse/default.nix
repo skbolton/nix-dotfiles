@@ -45,7 +45,6 @@
     packages = with pkgs; [
       mpv
       firefox
-      delta.fman
     ];
   };
 

@@ -30,6 +30,7 @@ in
       pkgs.delta.rally
       pkgs.delta.tmux-file-paths
       pkgs.imagemagick
+      pkgs.delta.fman
     ];
 
     programs.tmux = {

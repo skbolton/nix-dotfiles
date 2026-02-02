@@ -105,7 +105,6 @@
       mpv
       docker-compose
       firefox
-      pkgs.delta.fman
       handbrake
       delta.quantified-self
     ];

@@ -38,7 +38,6 @@
     packages = with pkgs; [
       docker-compose
       firefox
-      pkgs.delta.fman
     ];
   };
 
