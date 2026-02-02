@@ -1,3 +1,5 @@
+local window_runner = "󱈬 "
+
 local function send_to_tmux()
   -- yank text into v register
   if vim.api.nvim_get_mode()["mode"] == "n" then
@@ -13,9 +15,13 @@ local function toggle_output()
   if vim.g.VimuxRunnerType == 'window' then
     vim.g.VimuxRunnerType = 'pane'
     vim.g.VimuxCloseOnExit = true;
+    -- destroy window if it was created
+    vim.system({ "tmux", "kill-window", "-t", window_runner })
   else
     vim.g.VimuxRunnerType = 'window'
     vim.g.VimuxCloseOnExit = false;
+    -- create window to be ready to run tests in it
+    vim.system({ "tmux", "new-window", "-d", "-n", window_runner })
   end
 end
 
