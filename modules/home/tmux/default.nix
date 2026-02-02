@@ -93,7 +93,7 @@ in
       bind-key p paste-buffer
       bind-key -T copy-mode-vi v send-keys -X begin-selection
       bind-key -T copy-mode-vi V send-keys -X select-line
-      bind-key -T copy-mode-vi y send-keys -X copy-selection
+      bind-key -T copy-mode-vi y send-keys -X copy-selection \; send-keys -X cancel
       bind-key -T copy-mode-vi C-y send-keys -X rectangle-toggle
       bind-key -T copy-mode-vi Escape send-keys -X cancel
       bind-key C-r choose-buffer
