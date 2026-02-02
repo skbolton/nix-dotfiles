@@ -1,5 +1,5 @@
 session: FIST
-root: ~/Public/fist
+root: ~/c/fist
 
 before_start: 
   - docker-compose up -d

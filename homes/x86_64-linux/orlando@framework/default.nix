@@ -28,7 +28,7 @@
     calendar.enable = true;
     rally = {
       enable = true;
-      rallypoints = [ "$HOME" "$HOME/Public" ];
+      rallypoints = [ "$HOME" "$HOME/c" ];
     };
     lang = {
       elixir.enable = true;

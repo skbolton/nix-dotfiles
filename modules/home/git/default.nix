@@ -80,7 +80,8 @@
         verbose = true;
         template = "~/.config/git/commit-template";
       };
-      git-extras.get.clone-path = "$HOME/Public";
+      git-extras.get.clone-path = "$HOME/c";
+
       url."git@github.com:skbolton/".insteadOf = "skb:";
       url."git@github.com:".insteadOf = "gh:";
     };

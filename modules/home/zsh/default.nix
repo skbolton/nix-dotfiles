@@ -21,7 +21,7 @@ in
       syntaxHighlighting.styles = { comment = "fg=8,bold"; };
       historySubstringSearch.enable = true;
       autocd = true;
-      cdpath = [ "." "$HOME" "$HOME/Public" "$HOME/Documents" "$HOME/Notes" ];
+      cdpath = [ "." "$HOME" "$HOME/c" "$HOME/Documents" "$HOME/Notes" ];
       defaultKeymap = "viins";
       dotDir = "${config.xdg.configHome}/zsh";
       plugins = [

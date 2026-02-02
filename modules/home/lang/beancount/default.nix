@@ -13,7 +13,7 @@ with lib;
         filetypes = { 'beancount', 'bean' },
         root_markers = { '.git' },
         init_options = {
-          journal_file = os.getenv("HOME") .. "/Public/ledger/main.beancount"
+          journal_file = os.getenv("HOME") .. "/c/ledger/main.beancount"
         }
       }
     '';

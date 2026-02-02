@@ -32,7 +32,7 @@
     };
     rally = {
       enable = true;
-      rallypoints = [ "$HOME" "$HOME/Public" ];
+      rallypoints = [ "$HOME" "$HOME/c" ];
     };
     calendar.enable = true;
     kitty.enable = true;

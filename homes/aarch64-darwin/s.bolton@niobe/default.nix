@@ -32,7 +32,7 @@
     };
     rally = {
       enable = true;
-      rallypoints = [ "$HOME/Public" "$HOME/Public/printserver/packages" ];
+      rallypoints = [ "$HOME/c" "$HOME/c/printserver" ];
     };
     theme.enable = true;
     theme.palette = "embark";
@@ -58,7 +58,7 @@
   programs.man.enable = true;
   programs.man.generateCaches = true;
 
-  programs.zsh.shellAliases.rebuild = "sudo darwin-rebuild switch --flake \"$HOME/nix-dotfiles#niobe\"";
+  programs.zsh.shellAliases.rebuild = "sudo darwin-rebuild switch --flake \"$HOME/c/nix-dotfiles#niobe\"";
 
   programs.ssh = {
     enable = true;

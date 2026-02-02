@@ -1,5 +1,5 @@
 session: BOTM
-root: ~/Public/bitsonthemind
+root: ~/c/bitsonthemind
 
 windows:
   - name: " "

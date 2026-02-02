@@ -23,7 +23,7 @@ in
         WantedBy = [ "default.target" ];
       };
       Service = {
-        ExecStart = "${pkgs.fava}/bin/fava /home/orlando/Public/ledger/main.beancount";
+        ExecStart = "${pkgs.fava}/bin/fava /home/orlando/c/ledger/main.beancount";
       };
     };
   };
