@@ -32,6 +32,8 @@ in
         cursor_trail = 1;
         cursor_trail_decay = "0.1 0.3";
         cursor_trail_start_threshold = 5;
+        cursor_blink_interval = 0.6;
+        cursor_stop_blinking_after = 0;
 
         font_family = "Lilex";
         bold_font = "Operator Mono Bold";

@@ -112,6 +112,9 @@ in
           bindkey -M vicmd '^i' edit-command-line
 
           source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+          ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+          ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+          ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
     
           tput setaf ''${$(( ( RANDOM % 6 ) + 1 ))} && printf "%*s\n" $(((''${#title}+$COLUMNS)/2)) "EYES UP, GUARDIAN"
 
