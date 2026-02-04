@@ -42,6 +42,7 @@
       elixir.enable = true;
       lua.enable = true;
       nix.enable = true;
+      json.enable = true;
     };
   };
 
