@@ -16,16 +16,34 @@
 
   programs.delta = {
     enable = true;
+    enableGitIntegration = true;
     options = {
       navigate = true;
       side-by-side = true;
       line-numbers = true;
+      true-color = "always";
     };
   };
+
+  programs.zsh.shellAliases.g = "git";
+  programs.zsh.shellAliases.gd = "git diff --output-indicator-new=' ' --output-indicator-old=' '";
+  programs.zsh.shellAliases.gc = "git commit";
+  programs.zsh.shellAliases.gs = "git status --short";
 
   programs.git = {
     enable = true;
     settings = {
+      core.editor = "nvim";
+      core.compression = 9;
+      core.whitespace = "error";
+      core.preloadindex = true;
+
+      init.defaultBranch = "main";
+
+      advice.addEmptyPathSpec = false;
+      advice.pushNonFastForward = false;
+      advice.statusHints = false;
+
       user.email = "stephen@bitsonthemind.com";
       user.name = "Stephen Bolton";
 
@@ -34,15 +52,28 @@
         signByDefault = true;
       };
 
+      status.branch = true;
+      status.showStash = true;
+      status.showUntrackedFiles = "all";
+
+      diff.algorithm = "histogram";
+      diff.context = 3;
+      diff.renames = "copies";
+      diff.interHunkContext = 10;
+
+      pager.branch = false;
+      pager.tag = false;
+
       alias = {
         l = "log --date=short --decorate --pretty=format:'%C(yellow)%h %C(green)%ad%C(magenta)%d %Creset%s%C(brightblue) [%cn]'";
-        branches = "!git --no-pager branch --format '%(refname:short)' | ${pkgs.fzf}/bin/fzf --tmux $1 --preview 'git log --color=always --decorate {}'";
+        branches = "!git branch --format '%(refname:short)' | ${pkgs.fzf}/bin/fzf --tmux $1 --preview 'git log --color=always --decorate {}'";
         dog = "log --all --decorate --oneline --graph";
         to = "!git checkout $(git branches --no-multi)";
         drop = "!git branch -d $(git branches --multi)";
         st = "status";
         p = "pull";
         pp = "push";
+        P = "push -f";
         c = "commit";
         cm = "commit -m";
         can = "commit --amend --no-edit";
@@ -53,6 +84,7 @@
         files = "!git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")";
         stat = "!git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")";
         what = "!git config --get-regexp alias";
+        changes = "!git status --porcelain | fzf --multi --pointer ' ' --prompt ' ' --accept-nth {2} --preview-window=top --preview='git diff --color=always {2}'";
       };
 
       color.branch = {
@@ -62,19 +94,20 @@
         upstream = "blue";
         plain = "default";
       };
+
       log.abbrevCommit = true;
-      init = { defaultBranch = "main"; };
-      core = { editor = "nvim"; };
-      diff = { algorithm = "histogram"; };
-      status = { showUntrackedFiles = "all"; };
       blame = { date = "relative"; };
       branch.sort = "-committerdate";
-      rebase = { autosquash = true; };
+      tag.sort = "-taggerdate";
+      rebase.autosquash = true;
+      rebase.missingCommitsCheck = "warn";
       merge = { conflictStyle = "diff3"; };
       pull.ff = "only";
+      pull.rebase = true;
       pull.default = "current";
       push.autoSetupRemote = true;
       push.default = "current";
+      push.followTags = true;
       checkout = { defaultRemote = "origin"; };
       commit = {
         verbose = true;
