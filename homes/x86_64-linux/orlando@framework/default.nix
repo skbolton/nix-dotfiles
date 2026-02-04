@@ -17,9 +17,10 @@
     finance.enable = true;
     passwords.enable = true;
     tasks.enable = true;
+    tasks.sync = true;
     timetracking = {
-      enable = true;
-      timesheets = "~/Documents/Notes/tracking/time";
+      enable = false;
+      timesheets = "$HOME/Documents/Notes/tracking/time";
     };
     habits.enable = true;
     neovim.enable = true;
@@ -48,13 +49,30 @@
     synology.enable = true;
   };
 
-  programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch";
+  programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch --flake ~/c/nix-dotfiles#framework";
 
   programs.man.generateCaches = true;
 
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
+    matchBlocks.niobe = {
+      hostname = "niobe.home.arpa";
+      user = "s.bolton";
+      sendEnv = [ "LANG LC_*" ];
+      # remoteForwards = [
+      #   {
+      #     # host is the local client in this situation
+      #     host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
+      #     # bind is the remote
+      #     bind.address = "/Users/s.bolton/.gnupg/S.gpg-agent";
+      #   }
+      #   {
+      #     host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+      #     bind.address = "/Users/s.bolton/.gnupg/S.gpg-agent.ssh";
+      #   }
+      # ];
+    };
   };
 
   monitors = [
