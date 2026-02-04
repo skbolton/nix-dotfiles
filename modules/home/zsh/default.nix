@@ -137,6 +137,10 @@ in
             nvim ''$(frg $* | awk -F':' '{print $1 " +"$2}')
           }
 
+          function ng() {
+            nvim `git changes`
+          }
+
           function zvm_after_init() {
             zvm_bindkey viins '^R' fzf-history-widget
             bindkey -M viins '^f' edit-command-line
