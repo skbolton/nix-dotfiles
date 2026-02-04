@@ -32,7 +32,7 @@
     };
     rally = {
       enable = true;
-      rallypoints = [ "$HOME/c" "$HOME/c/printserver" ];
+      rallypoints = [ "$HOME/c" "$HOME/c/printserver" "$HOME/c/cycler" "$HOME/c/otis" ];
     };
     theme.enable = true;
     theme.palette = "embark";
