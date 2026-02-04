@@ -12,6 +12,8 @@ in
   config = {
     home.packages = with pkgs; [
       flyctl
+      delta.dsearch
+      delta.frg
     ];
     programs.zsh = {
       enable = cfg.enable;
@@ -43,6 +45,7 @@ in
       };
       shellAliases = {
         t = "task";
+        ff = "dsearch";
         cat = "bat --paging=never";
         mv = "mv -iv";
         cp = "cp -iv";
@@ -128,6 +131,10 @@ in
 
           function take() {
             mkdir -p $1 && cd $1
+          }
+
+          function nf() {
+            nvim ''$(frg $* | awk -F':' '{print $1 " +"$2}')
           }
 
           function zvm_after_init() {
