@@ -146,12 +146,6 @@ in
             bindkey -M viins '^f' edit-command-line
           }
 
-          precmd() {
-            precmd() {
-              echo
-            }
-          }
-
           source "${pkgs.zsh-autopair}/share/zsh/zsh-autopair/autopair.zsh";
           source "${inputs.zsh-almostontop}/almostontop.plugin.zsh"
           autopair-init
@@ -161,7 +155,8 @@ in
 
     programs.starship = {
       enable = cfg.enable;
-      settings.add_newline = false;
+      settings.add_newline = true;
+      settings.command_timeout = 1000;
       enableZshIntegration = true;
     };
   };
