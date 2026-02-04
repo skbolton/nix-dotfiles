@@ -663,6 +663,22 @@
         "type": "github"
       }
     },
+    "git-worktree-runner": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769216720,
+        "narHash": "sha256-yJsDItAtfPUre6SQfVGm0ZFROMd/hqWkrUlKmWMa+4g=",
+        "owner": "coderabbitai",
+        "repo": "git-worktree-runner",
+        "rev": "dbfbb6f74dfc12c9089da97cc922420a5b282fb2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "coderabbitai",
+        "repo": "git-worktree-runner",
+        "type": "github"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -1455,6 +1471,7 @@
         "disko": "disko",
         "embark-bat-theme": "embark-bat-theme",
         "embark-vim": "embark-vim",
+        "git-worktree-runner": "git-worktree-runner",
         "home-manager": "home-manager",
         "llama-cpp": "llama-cpp",
         "lz-n": "lz-n",
@@ -1468,7 +1485,9 @@
         "sops-nix": "sops-nix",
         "spelunk-nvim": "spelunk-nvim",
         "stylix": "stylix",
-        "unstable": "unstable"
+        "telescope-egrepify-nvim": "telescope-egrepify-nvim",
+        "unstable": "unstable",
+        "zsh-almostontop": "zsh-almostontop"
       }
     },
     "snowfall-lib": {
@@ -1609,6 +1628,22 @@
         "type": "github"
       }
     },
+    "telescope-egrepify-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1766305247,
+        "narHash": "sha256-jBKeAOKWlTaN11n8lfaxCdz5dXooy+bj//u6fPiTnKM=",
+        "owner": "fdschmidt93",
+        "repo": "telescope-egrepify.nvim",
+        "rev": "cd9342b95c1a8cff2e41ba5041ae3912f47595cc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fdschmidt93",
+        "repo": "telescope-egrepify.nvim",
+        "type": "github"
+      }
+    },
     "tinted-foot": {
       "flake": false,
       "locked": {
@@ -1723,6 +1758,22 @@
       "original": {
         "owner": "mrcjkb",
         "repo": "vimcats",
+        "type": "github"
+      }
+    },
+    "zsh-almostontop": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1568747795,
+        "narHash": "sha256-B7fZzafT7PpgnDkdhnUTB57WzfEWcsi1PnjxVOGUwGE=",
+        "owner": "Valiev",
+        "repo": "almostontop",
+        "rev": "aaf8a3e38d383cd179f04e814461acee66348dc8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Valiev",
+        "repo": "almostontop",
         "type": "github"
       }
     }

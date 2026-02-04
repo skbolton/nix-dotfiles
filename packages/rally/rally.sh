@@ -27,10 +27,26 @@ _select() {
 TARGET=$( (_tmux_sessions; _rallypoints ) | _select)
 NAME=$(basename "$TARGET")
 
-if tmux has-session -t "$NAME"; then
-  tmux switch -t "$NAME" 2> /dev/null || tmux attach -t "$NAME"
-elif [[ -f "$HOME/.config/smug/$NAME.yml" ]]; then
-  smug start "$NAME" -a
+# check for git worktrees
+if (($(git -C "$TARGET" worktree list -v 2>/dev/null | wc -l) > 1)); then
+  REPO="$(basename "$(dirname "$TARGET")")"
+  BRANCH="$NAME"
+
+  if tmux has-session -t "$REPO/$BRANCH"; then
+    tmux switch -t "$REPO/$BRANCH" 2> /dev/null || tmux attach -t "$REPO/$BRANCH"
+  elif [[ -f "$HOME/.config/smug/$REPO.yml" ]]; then
+    smug start "$REPO" branch="$BRANCH" -a
+  else
+    smug start default name="$REPO/$BRANCH" root="$TARGET" branch="$BRANCH" -a
+  fi
 else
-  smug start default name="$NAME" root="$TARGET" -a
+  if tmux has-session -t "$NAME"; then
+    tmux switch -t "$NAME" 2> /dev/null || tmux attach -t "$NAME"
+  elif [[ -f "$HOME/.config/smug/$NAME.yml" ]]; then
+    smug start "$NAME" -a
+  else
+    smug start default name="$NAME" root="$TARGET" -a
+  fi
 fi
+
+

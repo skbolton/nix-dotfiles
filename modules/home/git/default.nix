@@ -3,6 +3,7 @@
 {
   home.packages = [
     pkgs.git-extras
+    pkgs.delta.gtr
   ];
 
   programs.gh = {
@@ -71,8 +72,8 @@
         to = "!git checkout $(git branches --no-multi)";
         drop = "!git branch -d $(git branches --multi)";
         st = "status";
-        p = "pull";
-        pp = "push";
+        u = "pull";
+        p = "push";
         P = "push -f";
         c = "commit";
         cm = "commit -m";
@@ -117,6 +118,10 @@
 
       url."git@github.com:skbolton/".insteadOf = "skb:";
       url."git@github.com:".insteadOf = "gh:";
+
+      gtr.worktrees.dir = "../";
+      gtr.copy.include = [ ".envrc" ".devenv.*" ];
+      gtr.copy.includeDirs = [ ".direnv" ];
     };
 
     ignores = [ "stevies" ".envrc" ".devenv" ".envrc.private" ".direnv" ".vim" ];

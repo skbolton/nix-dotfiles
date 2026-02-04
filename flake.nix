@@ -95,6 +95,11 @@
 
     opencode.url = "github:anomalyco/opencode";
 
+    git-worktree-runner = {
+      url = "github:coderabbitai/git-worktree-runner";
+      flake = false;
+    };
+
     zsh-almostontop = {
       url = "github:Valiev/almostontop";
       flake = false;
