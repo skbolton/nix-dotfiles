@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   imports = [
@@ -49,7 +49,7 @@
     synology.enable = true;
   };
 
-  programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch --flake ~/c/nix-dotfiles#framework";
+  programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch --flake '${config.home.homeDirectory}/c/nix-dotfiles#framework'";
 
   programs.man.generateCaches = true;
 
