@@ -99,6 +99,11 @@
       url = "github:Valiev/almostontop";
       flake = false;
     };
+
+    telescope-egrepify-nvim = {
+      url = "github:fdschmidt93/telescope-egrepify.nvim";
+      flake = false;
+    };
   };
 
   outputs = inputs:

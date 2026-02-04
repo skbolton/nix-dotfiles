@@ -116,6 +116,14 @@ in
 
         {
           plugin = telescope-nvim;
+          optional = false;
+        }
+        {
+          plugin = pkgs.vimUtils.buildVimPlugin
+            {
+              name = "telescope-egrepify-nvim";
+              src = inputs.telescope-egrepify-nvim;
+            };
           optional = true;
         }
         {

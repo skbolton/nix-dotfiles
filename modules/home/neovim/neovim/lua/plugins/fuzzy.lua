@@ -101,8 +101,7 @@ return {
     end,
     keys = {
       { "<leader>lo",          "<CMD>Telescope treesitter<CR>",                desc = "Fuzzy symbols" },
-      -- { "/",                   "<CMD>Telescope current_buffer_fuzzy_find<CR>", desc = "Fuzzy search file" },
-      { "<leader>/",           "<CMD>Telescope live_grep<CR>",                 desc = "Grep" },
+      { "<leader>_",           "<CMD>Telescope current_buffer_fuzzy_find<CR>", desc = "Fuzzy search file" },
       { "<leader><leader>",    "<CMD>Telescope find_files<CR>",                desc = "Files" },
       { "<leader><Backspace>", "<CMD>Telescope buffers<CR>",                   desc = "Recent" },
       { "<leader>f?",          "<CMD>Telescope help_tags<CR>",                 desc = "Help" },
@@ -131,6 +130,23 @@ return {
     "telescope-symbols.nvim",
     keys = {
       { "<leader>fi", "<CMD>Telescope symbols<CR>", desc = "Symbols" },
+    }
+  },
+  {
+    "vimplugin-telescope-egrepify-nvim",
+    after = function()
+      require 'telescope'.load_extension('egrepify')
+    end,
+    keys = {
+      {
+        "<leader>/",
+        function()
+          require "telescope".extensions.egrepify.egrepify { layout_config = {
+            prompt_position = 'top'
+          } }
+        end,
+        desc = "live grep"
+      },
     }
   }
 }
