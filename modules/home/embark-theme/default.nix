@@ -56,16 +56,21 @@ in
     xdg.configFile."tmux/statusline.tmux".source = ./embark.tmux;
 
     programs.starship.settings = {
-      add_newline = false;
       format = ''
-        [┌─](fg:#585273)$jobs$directory$fill$git_branch$git_status
-        [└─](fg:#585273)$character 
+        $jobs$directory[](fg:#2D2B40 bg:#19172C)$fill[$git_branch$git_status ](bg:#2D2B40)
+        [  ├──](fg:#585273) $username$hostname$kubernetes$elixir
+        [  └────](fg:#585273) $character 
       '';
       character = {
         format = "$symbol";
-        error_symbol = "[  ](bold red)";
-        success_symbol = "[  ](bold bright-white)";
-        vimcmd_symbol = "[  ](bold green)";
+        error_symbol = "[ ](bold red)";
+        success_symbol = "[ ](bold bright-white)";
+        vimcmd_symbol = "[ ](bold green)";
+      };
+
+      username = {
+        show_always = true;
+        format = "[$user](fg:bright-white)";
       };
 
       fill = {
@@ -73,9 +78,21 @@ in
         style = "fg:#19172C bg:#19172C";
       };
 
+      elixir = {
+        symbol = " ";
+        format = "[$symbol](fg:purple)[$version \\($otp_version\\)](fg:bright-white)";
+      };
+
       directory = {
-        format = "[   $path ](bg:#2D2B40 fg:bright-white)[](fg:#2D2B40 bg:#19172C)";
+        format = "[   $path ](bg:#2D2B40 fg:bright-white)";
+        truncation_length = 5;
         truncate_to_repo = false;
+      };
+
+      kubernetes = {
+        disabled = false;
+        symbol = "󱃾 ";
+        format = "[ $symbol](fg:blue)[$context/$namespace ](fg:bright-white)";
       };
 
       git_branch = {
@@ -83,10 +100,11 @@ in
       };
 
       git_status = {
-        format = "[$ahead_behind $stashed$staged$modified$deleted$untracked ](bg:#2D2B40)";
+        format = "$ahead_behind$stashed$staged$modified$deleted$untracked";
         style = "bright-white";
-        ahead = "[](bg:#2D2B40 bold green)";
-        behind = "[](bg:#2D2B40 bold green)";
+        ahead = "[ ](bg:#2D2B40 bold green)";
+        behind = "[ ](bg:#2D2B40 bold green)";
+        up_to_date = "[- ](bg:#2D2B40 bold bright-white)";
         diverged = "[](bg:#2D2B40 bold green)";
         staged = "[](bg:#2D2B40 green)";
         untracked = "[](bg:#2D2B40 white)";
@@ -107,8 +125,8 @@ in
       };
 
       hostname = {
-        ssh_only = true;
-        format = "[ $hostname ](italic fg:bright-white bg:#19172C)";
+        ssh_only = false;
+        format = "[@$hostname](italic fg:bright-white)";
       };
     };
 
@@ -119,6 +137,8 @@ in
         file = "Embark.tmTheme";
       };
     };
+
+    programs.delta.options."syntax-theme" = "embark";
 
     programs.fzf.colors = {
       "bg+" = "#1E1C31";
