@@ -131,7 +131,7 @@ in
       #######################################################################
       # Tasks
       #######################################################################
-      bind s display-popup -E -w 90% -h 90% ${pkgs.delta.rally}/bin/rally.sh
+      bind s display-popup -E -w 90% -h 90% ${pkgs.delta.rally}/bin/rally.sh pick
       bind C-l split-window -h -l 120 zk log
       bind C-h split-window -h -l 150 fman
     

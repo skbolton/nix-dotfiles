@@ -69,7 +69,7 @@ in
         "ctrl+alt+u" = "change_font_size all 0";
         "ctrl+alt+backspace" = "change_font_size all 0";
         "ctrl+alt+period" = "send_text current pass fzf\r";
-        "ctrl+alt+p" = "send_text all ${pkgs.delta.rally}/bin/rally.sh\\r";
+        "ctrl+alt+p" = "send_text all ${pkgs.delta.rally}/bin/rally.sh pick\\r";
         "ctrl+alt+t" = "send_text all rebuild\\r";
         "ctrl+alt+r" = "send_text all zk runbooks\r";
         "ctrl+alt+c" = "send_text all zk cast\u0020";
