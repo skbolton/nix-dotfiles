@@ -28,6 +28,6 @@ set -g status-right "#[fg=#2D2B40,bg=#19172C]#[fg=brightwhite,bg=#2D2B40] %Y-
 set -g status-justify left
 
 set -g window-status-separator ""
-set -g window-status-format "#[bg=#19172C,fg=#2D2B40]#[bg=#2D2B40,fg=brightwhite] #W #[fg=#2D2B40,bg=#19172C]"
+set -g window-status-format "#{?window_zoomed_flag,#[bg=#19172C#,fg=brightmagenta]#[bg=brightmagenta#,fg=black] #W #[fg=brightmagenta#,bg=#19172C],#[bg=#19172C#,fg=#2D2B40]#[bg=#2D2B40#,fg=brightwhite] #W #[fg=#2D2B40#,bg=#19172C]}"
 set -g window-status-current-format "#[bg=#19172C]#{?window_zoomed_flag,#[fg=brightmagenta],#[fg=brightcyan]}#[fg=black]#{?window_zoomed_flag,#[bg=brightmagenta],#[bg=brightcyan]} #W #[bg=#19172C]#{?window_zoomed_flag,#[fg=brightmagenta],#[fg=brightcyan]}"
 set -g window-status-bell-style "bg=red"
