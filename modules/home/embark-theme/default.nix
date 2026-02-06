@@ -58,8 +58,8 @@ in
     programs.starship.settings = {
       format = ''
         $jobs$directory[](fg:#2D2B40 bg:#19172C)$fill[$git_branch$git_status ](bg:#2D2B40)
-        [  ├──](fg:#585273) $username$hostname$kubernetes$elixir
-        [  └────](fg:#585273) $character 
+        [  ├─](fg:#585273) $username$hostname$kubernetes$elixir
+        [  └──](fg:#585273) $character 
       '';
       character = {
         format = "$symbol";
