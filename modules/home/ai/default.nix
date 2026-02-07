@@ -58,7 +58,10 @@ with lib;
     };
 
     programs.tmux.extraConfig = /* tmux */ ''
-      bind C-a new-window 'nvim +"set ft=markdown" $(mktemp)'
+      bind a switch-client -T ai
+      bind -T ai a split -h -l 120 opencode
+      bind -T ai g new-window 'nvim +"set ft=markdown" $(mktemp)'
+      bind -T ai A new-window -n "󱚞 " opencode
     '';
 
     xdg.configFile."aichat/config.yaml".text = (generators.toYAML { } {
