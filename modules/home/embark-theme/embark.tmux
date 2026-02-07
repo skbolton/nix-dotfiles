@@ -19,10 +19,10 @@ set -g status-bg "#19172C"
 set -g status-fg "brightwhite"
 
 #Bars ---------------------------------
-set -g status-left "#[bg=#2D2B40]  #S #[fg=#2D2B40,bg=#19172C]"
+set -g status-left "#[fg=#2D2B40,bg=#19172C]#[fg=brightwhite,bg=#2D2B40]  #S #[fg=#2D2B40,bg=#19172C]"
 set -g status-left-style "fg=brightwhite"
 
-set -g status-right "#[fg=#2D2B40,bg=#19172C]#[fg=brightwhite,bg=#2D2B40] %Y-%m-%d | %H:%M | #[italics]󰲐 #H "
+set -g status-right "#[fg=#2D2B40,bg=#19172C]#[fg=brightwhite,bg=#2D2B40] %Y-%m-%d | %H:%M | #[italics]󰲐 #H #[fg=#2D2B40,bg=#19172C]"
 
 # Windows ------------------------------
 set -g status-justify left
