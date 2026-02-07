@@ -21,8 +21,41 @@ with lib;
 
     home.packages = with pkgs; [
       unstable.aichat
-      inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
+
+    programs.opencode = {
+      enable = true;
+      package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      settings.model = "zionlab/MiniMax-M2";
+      settings.keybinds = {
+        input_newline = "return";
+        input_submit = "ctrl+y";
+      };
+      settings.provider.zionlab = {
+        npm = "@ai-sdk/openai-compatible";
+        options = {
+          baseURL = "https://zaia.zionlab.online/v1";
+          headers = {
+            CF-Access-Client-Secret = "{env:ZAIA_CLIENT_SECRET}";
+            CF-Access-Client-Id = "{env:ZAIA_CLIENT_ID}";
+          };
+        };
+        models = {
+          "qwen3-coder:30b-a3b" = {
+            tools = true;
+          };
+          "MiniMax-M2" = {
+            tools = true;
+            reasoning = true;
+            tool_call = true;
+            cost = {
+              input = 0.255;
+              output = 1.02;
+            };
+          };
+        };
+      };
+    };
 
     programs.tmux.extraConfig = /* tmux */ ''
       bind C-a new-window 'nvim +"set ft=markdown" $(mktemp)'
@@ -48,8 +81,6 @@ with lib;
       source = ./aichat/roles;
       recursive = true;
     };
-
-    xdg.configFile."opencode/opencode.json".text = import ./opencode.nix;
 
     programs.git.ignores = [ ".opencode" ];
 

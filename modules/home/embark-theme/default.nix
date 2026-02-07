@@ -31,6 +31,9 @@ in
     stylix.targets.fzf.enable = false;
     stylix.targets.tmux.enable = false;
     stylix.targets.starship.enable = false;
+    # need to make a custom theme as the stylix form misses on some marks
+    # will just rock system in the meantime
+    stylix.targets.opencode.enable = false;
 
     programs.kitty.extraConfig = ''
       include ${./kitty-embark.conf}
