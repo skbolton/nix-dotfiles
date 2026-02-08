@@ -46,13 +46,12 @@ cmd_list() {
 }
 
 cmd_preview() {
+  local follow=false
+  while [[ "$1" == "--follow" ]]; do
+    follow=true
+    shift
+  done
   local selection="$1"
-  # remove possible surrounding single quotes around "$1"
-  # fzf adds them to their preview command
-  # and other pickers might follow suit
-  # doing this for compatibility to support several pickers
-  # without forcing use of `{r}` in tmux.
-  # TODO: Break out to helper?
   selection="${selection#\'}"
   selection="${selection%\'}"
   local item="${selection##*::}"
@@ -60,7 +59,16 @@ cmd_preview() {
   if grep -q "$RALLYPOINT_ICON" <<< "$selection"; then
     eza --tree --icons --level 3 --git-ignore "$item"
   else
-    tmux list-windows -t "$item"
+    if $follow; then
+      while true; do
+        tmux capture-pane -p -t "$item" 2>/dev/null
+        printf "\033[2J"
+        sleep 0.25
+      done
+    else
+      tmux capture-pane -ep -t "$item" 2> /dev/null
+      tmux capture-pane -t "#{$item}.#{last_pane_id}" -p
+    fi
   fi
 }
 
@@ -71,7 +79,8 @@ cmd_pick() {
     --prompt="󰇂  " \
     --input-border=none \
     --preview-border=sharp \
-    --preview='rally.sh preview "{}"' \
+    --preview='rally.sh preview --follow {}' \
+    --preview-window 'up:follow,60%' \
     --bind="ctrl-e:execute(nnn {2})" \
     --bind="ctrl-f:reload(fd -t d {q} ~/)" \
     --tiebreak="end")
