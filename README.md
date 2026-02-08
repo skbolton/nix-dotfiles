@@ -1,77 +1,59 @@
-# Orlando's Dotfiles - Nix Edition
+# Stephen Bolton's Dotfiles
 
-## Installing on a new machine
+Nix flake-based dotfiles using [snowfall-lib](https://github.com/snowfallorg/lib) for module organization.
 
-Enable flakes inside of installer
+## Structure
 
-```bash
-export NIX_CONFIG="experimental-features = nix-command flakes"
-```
+- `systems/<arch>-<platform>/<hostname>/` - NixOS and darwin system configurations
+- `homes/<arch>-<platform>/<user>@<hostname>/` - Home Manager configurations
+- `modules/<platform>/<category>/<name>/` - Reusable modules
+- `packages/<name>/` - Custom packages
+- `overlays/<name>/` - Nixpkgs overlays
 
-Clone dotfiles into `/mnt/etc/nixos`
-
-```bash
-# pull git package
-nix-shell -p git
-git clone https://github.com/skbolton/nix-dotfiles /mnt/etc/nixos
-cd /mnt/etc/nixos
-```
-
-Create a new host directory for machine
+## Building Systems
 
 ```bash
-mkdir hosts/$HOSTNAME
+# Build NixOS system
+nixos-rebuild switch --flake .#<hostname>
+
+# Build darwin system
+darwin-rebuild switch --flake .#<hostname>
+
+# Build home configuration
+home-manager switch --flake .#<user>@<hostname>
 ```
 
-Generate config - this will scan the hardware and add a `hardware-configuration.nix` for host
+## Creating a New Host
 
-```bash
-nixos-generate-config --root /mnt
+1. Create directory: `systems/<arch>-<platform>/<hostname>/`
+2. Copy hardware config from installer to `./hardware-configuration.nix`
+3. Create `default.nix`:
+
+```nix
+{ lib, inputs, ... }:
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
+
+  networking.hostName = "<hostname>";
+}
 ```
 
-Move generated `hardware-configuration.nix` into host dir
+## Creating a New Home
 
-> TODO: Maybe there is a way to set where to dump this file to?
+1. Create directory: `homes/<arch>-<platform>/<user>@<hostname>/`
+2. Create `default.nix` with home configuration
 
-```bash
-mv hardware-configuration /hosts/$HOSTNAME
-```
+## ISO Generation
 
-Remove `configuration.nix` that was generated. The other hosts have enough of a template to copy
-
-```bash
-rm configuration.nix
-```
-
-Make a `default.nix` for host
-
-```
-vim hosts/$HOSTNAME/default.nix
-```
-
-Copy and nudge contents of this file based on other hosts
-
-> TODO: Maybe I can break some stuff out into more common shared code?
-
-Add new host entry to `flake.nix`. Copy from a different host and then nudge `$HOSTNAME`.
-
-Run installer
-
-> This is going to ask some questions about accepting trust levels
-
-```bash
-nixos-install --flake .#$HOSTNAME
-```
-
-## Adding new hosts
-
-If new host needs access to secrets than update the comment in `systems/x86_64-install-iso/minimal/default.nix` with the age key.
+If new host needs access to secrets, update the comment in `systems/x86_64-install-iso/minimal/default.nix` with the age key.
 
 > Don't commit the secret dummy
 
-Next build the image
+Build the installer ISO:
 ```bash
 nix build '.#install-isoConfigurations.minimal'
 ```
 
-Do traditional installation of nixos and if secrets are needed copy the `/etc/orlando-age-key.txt` into the new users `~/.config/sops/age-key.txt`
+Perform traditional Nixos installation. If secrets are needed, copy the `/etc/orlando-age-key.txt` into the new user's `~/.config/sops/age-key.txt`.
