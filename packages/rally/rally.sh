@@ -80,7 +80,7 @@ cmd_pick() {
     --input-border=none \
     --preview-border=sharp \
     --preview='rally.sh preview --follow {}' \
-    --preview-window 'up:follow,60%' \
+    --preview-window 'right:follow,60%' \
     --bind="ctrl-e:execute(nnn {2})" \
     --bind="ctrl-f:reload(fd -t d {q} ~/)" \
     --tiebreak="end")
