@@ -20,6 +20,9 @@
 
   programs.zsh.enable = true;
 
+  nix.gc.automatic = true;
+  nix.gc.options = "--older-than 7d";
+
   users.users."s.bolton" = {
     home = "/Users/s.bolton";
     shell = pkgs.zsh;
