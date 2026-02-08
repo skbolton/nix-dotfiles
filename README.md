@@ -6,7 +6,7 @@ Nix flake-based dotfiles using [snowfall-lib](https://github.com/snowfallorg/lib
 
 - `systems/<arch>-<platform>/<hostname>/` - NixOS and darwin system configurations
 - `homes/<arch>-<platform>/<user>@<hostname>/` - Home Manager configurations
-- `modules/<platform>/<category>/<name>/` - Reusable modules
+- `modules/<context>/<name>/` - Reusable modules
 - `packages/<name>/` - Custom packages
 - `overlays/<name>/` - Nixpkgs overlays
 
