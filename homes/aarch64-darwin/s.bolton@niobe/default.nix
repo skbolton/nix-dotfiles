@@ -6,7 +6,15 @@
   home.packages = with pkgs; [ docker-compose zk rancher docker docker-credential-helpers raycast wget ];
 
   delta = {
-    ai.enable = true;
+    ai = {
+      enable = true;
+      opencode_mcp = {
+        atlassian = {
+          type = "remote";
+          url = "https://mcp.atlassian.com/v1/mcp";
+        };
+      };
+    };
     sops.enable = true;
     gpg = {
       enable = true;
@@ -64,7 +72,22 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
+    matchBlocks.tank = {
+      hostname = "tank.home.arpa";
+      user = "u0_a351";
+      port = 8022;
+    };
   };
+
+  xdg.configFile."kitty/ssh.conf".text = ''
+    hostname trinity
+    color_scheme ${../../../modules/home/embark-theme/kitty-embark.conf}
+
+    hostname tank
+    # color_scheme Base2Tone Lavender Dark
+    color_scheme Nord
+  '';
+
 
   home = {
     username = "s.bolton";

@@ -10,6 +10,23 @@ with lib;
       type = enum [ "light" "dark" ];
       default = "dark";
     };
+    opencode_mcp = mkOption {
+      type = types.attrsOf (types.submodule {
+        options = {
+          type = mkOption {
+            type = types.enum [ "local" "remote" ];
+          };
+          url = mkOption {
+            type = types.str;
+          };
+          enabled = mkOption {
+            type = types.bool;
+            default = true;
+          };
+        };
+      });
+      default = { };
+    };
   };
 
   config = mkIf cfg.enable {
