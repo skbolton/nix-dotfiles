@@ -145,5 +145,10 @@ with lib;
     };
 
     programs.git.ignores = [ ".opencode" ];
+
+    xdg.configFile."opencode/agents" = {
+      source = ./agents;
+      recursive = true;
+    };
   };
 }
