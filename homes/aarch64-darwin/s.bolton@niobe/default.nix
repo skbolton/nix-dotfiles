@@ -8,7 +8,7 @@
   delta = {
     ai = {
       enable = true;
-      opencode_mcp = {
+      opencode.mcp = {
         atlassian = {
           type = "remote";
           url = "https://mcp.atlassian.com/v1/mcp";

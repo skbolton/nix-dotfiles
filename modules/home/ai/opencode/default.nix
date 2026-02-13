@@ -11,17 +11,44 @@ with lib;
       description = "Whether to enable opencode";
     };
     mcp = mkOption {
+      type = types.attrsOf types.unspecified;
+      default = { };
+    };
+    agent = mkOption {
       type = types.attrsOf (types.submodule {
         options = {
-          type = mkOption {
-            type = enum [ "local" "remote" ];
+          mode = mkOption {
+            type = enum [ "primary" "subagent" ];
           };
-          url = mkOption {
+          model = mkOption {
             type = str;
           };
-          enabled = mkOption {
-            type = bool;
-            default = true;
+          prompt = mkOption {
+            type = str;
+            default = "";
+          };
+          description = mkOption {
+            type = str;
+            default = "";
+          };
+          tools = mkOption {
+            type = types.submodule {
+              options = {
+                write = mkOption {
+                  type = bool;
+                  default = false;
+                };
+                edit = mkOption {
+                  type = bool;
+                  default = false;
+                };
+                bash = mkOption {
+                  type = bool;
+                  default = false;
+                };
+              };
+            };
+            default = { };
           };
         };
       });
@@ -71,7 +98,7 @@ with lib;
           info = "blue";
           text = "astral1";
           textMuted = "astral0";
-          background = "space2";
+          background = "space0";
           backgroundPanel = "space1";
           backgroundElement = "space1";
           border = "cyan";
@@ -79,14 +106,14 @@ with lib;
           borderSubtle = "yellow";
           diffAdded = "green";
           diffRemoved = "red";
-          diffContext = "space3";
-          diffHunkHeader = "space3";
+          diffContext = "space1";
+          diffHunkHeader = "space1";
           diffHighlightAdded = "green";
           diffHighlightRemoved = "red";
           diffAddedBg = "diff_add";
           diffRemovedBg = "diff_del";
           diffContextBg = "diff_changed";
-          diffLineNumber = "space2";
+          diffLineNumber = "space1";
           diffAddedLineNumberBg = "space1";
           diffRemovedLineNumberBg = "space1";
           markdownText = "astral1";
@@ -95,7 +122,7 @@ with lib;
           markdownLinkText = "cyan";
           markdownCode = "green";
           markdownBlockQuote = "space3";
-          markdownEmph = "dark_blue";
+          markdownEmph = "yellow";
           markdownStrong = "astral1";
           markdownHorizontalRule = "space3";
           markdownListItem = "cyan";
@@ -118,6 +145,7 @@ with lib;
         input_newline = "return";
         input_submit = "ctrl+y";
       };
+      settings.agent = cfg.agent;
       settings.provider.zionlab = {
         npm = "@ai-sdk/openai-compatible";
         options = {
