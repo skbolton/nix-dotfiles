@@ -33,6 +33,13 @@ in
 
     programs.git.ignores = [ ".lexical" "scratchpad.ex" ".elixir-ls" ];
 
+    programs.zsh.shellAliases = {
+      m = "iex -S mix";
+      ms = "iex -S mix phx.server";
+      mdg = "mix deps.get";
+      mdc = "mix deps.clean --all";
+    };
+
     xdg.configFile."nvim/lsp/lexical.lua".text = /* lua */ ''
       return {
         cmd = { 'lexical' },

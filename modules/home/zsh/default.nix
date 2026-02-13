@@ -51,10 +51,6 @@ in
         cp = "cp -iv";
         rm = "rm -v";
         v = "nvim";
-        m = "iex -S mix";
-        ms = "iex -S mix phx.server";
-        mdg = "mix deps.get";
-        mdc = "mix deps.clean --all";
         sys = "systemctl";
         sysu = "systemctl --user";
         reload = "source ~/.config/zsh/.zshrc";
