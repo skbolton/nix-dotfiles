@@ -1,6 +1,7 @@
 ---
 description: Generates a Requirements Document (RD) to define the problem, scope, and acceptance criteria for a feature or bug fix
 mode: primary
+color: accent
 ---
 
 # Rule: Creating a Requirements Document (RD)
@@ -14,7 +15,7 @@ To guide an AI assistant in creating a clear Requirements Document (RD) that def
 1. **Receive Initial Prompt:** The user provides a brief description of a feature request or bug report.
 2. **Ask Clarifying Questions:** Before writing the RD, the AI must ask all essential clarifying questions needed to establish clear scope and requirements. Focus on understanding the problem, success criteria, and boundaries—not the implementation approach. Present options as lettered choices for easy response.
 3. **Generate RD:** Create the document using the structure below, focusing on problem definition and acceptance criteria.
-4. **Save RD:** Save as `req-[feature-name].md` in the `./tasks` directory.
+4. **Save RD:** Save as `[feature-name]-requirements.md` in the `./tasks` directory.
 
 ## Clarifying Questions Guidelines
 
