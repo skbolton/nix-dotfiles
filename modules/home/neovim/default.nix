@@ -87,13 +87,12 @@ in
         { plugin = vimux; optional = true; }
 
         { plugin = pkgs.awesomeNeovimPlugins.treewalker-nvim; optional = true; }
-        (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: nvim-treesitter.allGrammars ++ [
+        (nvim-treesitter.withPlugins (p: nvim-treesitter.allGrammars ++ [
           (p.markdown.overrideAttrs {
             env.EXTENSION_WIKI_LINK = "1";
             env.EXTENSION_TAGS = "1";
             nativeBuildInputs = [ pkgs.nodejs pkgs.tree-sitter ];
             configurePhase = ''
-              cd tree-sitter-markdown
               tree-sitter generate
             '';
           })
@@ -102,17 +101,12 @@ in
             env.EXTENSION_TAGS = "1";
             nativeBuildInputs = [ pkgs.nodejs pkgs.tree-sitter ];
             configurePhase = ''
-              cd tree-sitter-markdown-inline
               tree-sitter generate
             '';
           })
         ]))
         { plugin = nvim-treesitter-textobjects; optional = true; }
         { plugin = nvim-treesitter-endwise; optional = true; }
-        {
-          plugin = playground;
-          optional = true;
-        }
 
         {
           plugin = telescope-nvim;

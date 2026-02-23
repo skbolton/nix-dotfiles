@@ -80,8 +80,6 @@ opt.laststatus = 3
 opt.foldenable = false
 opt.foldlevelstart = 10
 opt.foldnestmax = 10
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -- BACKUP/SWAP
 -- ===================================================================
