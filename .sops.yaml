@@ -7,6 +7,7 @@ keys:
     - &mouse age1f9l507w0nnhvqtvd9az0y52us0vzftq8c39qs59h0udsjtr4gqfqyjj88a
     - &framework age1vas6lrdlnapyv6j58jhpsudflxetgqapc0snpv4vd4jvtdaxr9us4gf22q
     - &construct age123jll7qsv27nerm8fzwpaxpssefa2azpc9vxqcef06lf5t6c734qngx3hp
+    - &cypher age1cgve8s32uk0zfvnvzevzp5rj0vu2emdc57s6479v7kn894ksncuscd6zx2
 
 creation_rules:
   - path_regex: secrets/system-secrets.yaml$
@@ -18,6 +19,7 @@ creation_rules:
       - *mouse
       - *framework
       - *construct
+      - *cypher
   - path_regex: secrets/home-secrets.yaml$
     key_groups:
     - age:

@@ -57,6 +57,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    arion.url = "github:hercules-ci/arion";
+
     stylix = {
       url = "github:nix-community/stylix/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -136,6 +138,7 @@
       ];
 
       systems.modules.nixos = with inputs; [
+        arion.nixosModules.arion
         stylix.nixosModules.stylix
         sops-nix.nixosModules.sops
         disko.nixosModules.disko
