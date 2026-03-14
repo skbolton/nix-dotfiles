@@ -149,7 +149,7 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 3010 ];
+  networking.firewall.allowedTCPPorts = [ 3010 config.services.searx.settings.server.port ];
 
   virtualisation.oci-containers = {
     backend = "docker";
@@ -192,6 +192,17 @@
     config.ROCKET_ADDRESS = "127.0.0.1";
     config.ROCKET_PORT = 8222;
     environmentFile = config.sops.secrets.vaultwarden-secrets.path;
+  };
+
+  services.searx = {
+    enable = true;
+    domain = "search.zionlab.online";
+    settings = {
+      server.port = 8333;
+      server.bind_address = "0.0.0.0";
+      server.secret_key = "$SEARXNG_SECRET_KEY";
+    };
+    environmentFile = config.sops.secrets.searxng-secrets.path;
   };
 
   services.llama-swap = {

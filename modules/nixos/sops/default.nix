@@ -25,5 +25,6 @@
     secrets.affine-secrets = { };
     secrets.caddy-secrets = { };
     secrets.vaultwarden-secrets = { };
+    secrets.searxng-secrets = { };
   };
 }
