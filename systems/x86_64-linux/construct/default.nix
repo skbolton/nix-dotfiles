@@ -168,18 +168,6 @@
       };
   };
 
-  services.open-webui.enable = true;
-  services.open-webui.package = pkgs.unstable.open-webui;
-  services.open-webui.openFirewall = true;
-  services.open-webui.host = "0.0.0.0";
-  services.open-webui.port = 8080;
-  services.open-webui.environment = {
-    WEBUI_AUTH_TRUSTED_EMAIL_HEADER = "Cf-Access-Authenticated-User-Email";
-    ANONYMIZED_TELEMETRY = "False";
-    DO_NOT_TRACK = "True";
-    SCARF_NO_ANALYTICS = "True";
-  };
-
   services.hardware.openrgb = {
     package = pkgs.openrgb-with-all-plugins;
     enable = true;

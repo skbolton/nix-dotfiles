@@ -37,7 +37,7 @@ with lib;
           {
             type = "openai-compatible";
             name = "Zionlab";
-            api_base = "https://zaia.zionlab.online/v1";
+            api_base = "https://zai.zionlab.online/v1";
             models = [
               { name = "MiniMax-M2"; }
               { name = "qwen3-coder:30b-a3b"; }
@@ -111,7 +111,7 @@ with lib;
                       openai_fim_compatible = {
                         api_key = function() return 'UNUSED' end,
                         name = 'Zionlab',
-                        end_point = "https://zaia.zionlab.online/v1/completions",
+                        end_point = "https://zai.zionlab.online/v1/completions",
                         model = "qwen3-coder:30b-a3b",
                         template = {
                           prompt = function(context_before_cursor, context_after_cursor, _)
