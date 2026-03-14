@@ -165,6 +165,35 @@
     };
   };
 
+  services.caddy = {
+    enable = true;
+    environmentFile = config.sops.secrets.caddy-secrets.path;
+    package = pkgs.caddy.withPlugins {
+      plugins = [ "github.com/tailscale/caddy-tailscale@v0.0.0-20260106222316-bb080c4414ac" ];
+      hash = "sha256-bb7yRcm+KXolMdeFFjOXeRBkvcyfUfrTBIOo88gT/FY=";
+    };
+
+    virtualHosts."https://${config.services.vaultwarden.domain}" = {
+      extraConfig = ''
+        bind tailscale/vault
+        tailscale_auth
+        reverse_proxy ${config.services.vaultwarden.config.ROCKET_ADDRESS}:${toString config.services.vaultwarden.config.ROCKET_PORT} {
+          header_up X-Webauth-User {http.auth.user.tailscale_user}
+        }
+      '';
+    };
+  };
+
+  services.vaultwarden = {
+    enable = true;
+    domain = "vault.gorgon-procyon.ts.net";
+    dbBackend = "sqlite";
+    backupDir = "/var/zion-data/vaultwarden";
+    config.ROCKET_ADDRESS = "127.0.0.1";
+    config.ROCKET_PORT = 8222;
+    environmentFile = config.sops.secrets.vaultwarden-secrets.path;
+  };
+
   services.llama-swap = {
     enable = false;
     port = 11434;

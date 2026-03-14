@@ -23,5 +23,7 @@
       path = "/root/.ssh/builder_ed25519";
     };
     secrets.affine-secrets = { };
+    secrets.caddy-secrets = { };
+    secrets.vaultwarden-secrets = { };
   };
 }
