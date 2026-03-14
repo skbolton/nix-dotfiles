@@ -14,18 +14,9 @@
     };
     zsh.enable = true;
     cli_apps.enable = true;
-    tmux.enable = true;
-    passwords.enable = true;
-    tasks.enable = false;
     timetracking.enable = true;
-    synology.enable = true;
-    neovim.enable = true;
-    theme.enable = true;
+    theme.enable = false;
     kitty.enable = true;
-    lang = {
-      lua.enable = true;
-      nix.enable = true;
-    };
   };
 
   programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch";
