@@ -27,6 +27,12 @@
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.kernelParams = [
+    "amd_iommu=off"
+    "ttm.pages_limit=33554432"
+    "ttm.page_pool_size=33554432"
+  ];
+
   networking.hostName = "cypher";
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
@@ -206,7 +212,7 @@
   };
 
   services.llama-swap = {
-    enable = false;
+    enable = true;
     port = 11434;
     openFirewall = true;
     settings =
@@ -216,88 +222,33 @@
       in
       {
         logLevel = "debug";
-        oealthCheckTimeout = 120;
-        models."gpt-oss:120b" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/gpt-oss-120b-F16.gguf --chat-template-kwargs "{\"reasoning_effort\": \"medium\"}" -c 0 --jinja -fa on --no-mmap --temp 1.0 --top-p 1.0 --top-k 0 -np 2
-          '';
-          ttl = 3600; # 1 hour
-        };
-        models."qwen3-coder:30b-a3b" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/Qwen3-Coder-30B-A3B-Instruct-UD-Q5_K_XL.gguf -ctk q8_0 -ctv q8_0 -c 65536 --jinja -ub 2048 -b 2048 --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 -np 2
-          '';
-          ttl = 3600; # 1 hour
-        };
-        models."gemma3:27b" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/Gemma3/UD-Q6_K_XL.gguf --mmproj /models/Gemma3/mmproj-BF16.gguf -ctk q8_0 -ctv q8_0 -c 32768 --jinja -ub 1024 -b 1024 -fa on --top-p 0.95 --top-k 64 --min-p 0.01 --temp 1.0 --prio 2
-          '';
-          ttl = 1500; # 15 min
-        };
-        models."GLM-4.7" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/GLM-4.7/UD-Q4_K_XL.gguf 
-            -c 0 
-            --jinja 
-            -fa on 
-            --no-mmap 
-            -ctk q8_0 -ctv q8_0
-            --temp 0.7 --top-p 1.0
-          '';
-          ttl = 14400; # 4 hours
-        };
-        models."GLM-5" = {
+        healthCheckTimeout = 120;
+        models."Qwen3.5-27b" = {
           cmd = ''
             ${llama-server} --port ''${PORT} 
-            -m /models/GLM-5/UD-IQ2_XXS.gguf 
-            -c 0
-            --threads 16
-            -fa on
-            --prio 3 
-            --temp 1 
-            --top-p 0.95
-            -ot ".ffn_(up)_exps.=CPU"
-            --parallel 1
-            --no-mmap
-            --batch-size 128
-            --ubatch-size 128 
-          '';
-          ttl = 300; # 5 min
-        };
-        models.MiniMax-M2 = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} 
-            -m /models/MiniMax-M2.5/UD-Q4_K_XL.gguf 
-            -c 0 
+            -m /models/Qwen3.5/27b/UD-Q6_K_XL.gguf
             -fa on 
             -ctk q8_0 -ctv q8_0 
-            --tensor-split 1,3,3
-            --no-mmap 
-            --jinja 
-            -ngl 99 
-            --temp 1.0 --top-p 0.95 --top-k 40 --min-p 0.01 --repeat-penalty 1.0
+            --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0
           '';
           ttl = 14400; # 4 hours
         };
-        models."Qwen3.5" = {
+
+        models."Qwen3.5-27b-nothink" = {
           cmd = ''
             ${llama-server} --port ''${PORT} 
-            -m /models/Qwen3.5/UD-Q4_K_XL.gguf
-            -c 0 
+            -m /models/Qwen3.5/27b/UD-Q6_K_XL.gguf
+            --chat-template-kwargs '{"enable_thinking":false}'
             -fa on 
             -ctk q8_0 -ctv q8_0 
-            --no-mmap 
-            --jinja 
-            -ngl 99 
-            --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.0 --repeat-penalty 1.0 --presence-penalty 0.0
+            --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0
           '';
           ttl = 14400; # 4 hours
         };
-        groups.coding = {
+        groups.shared = {
           swap = false;
           exclusive = true;
-          members = [ "gemma3:27b" "MiniMax-M2" ];
+          members = [ "Qwen3.5-27b" "Qwen3.5-27b-nothink" ];
         };
       };
   };
