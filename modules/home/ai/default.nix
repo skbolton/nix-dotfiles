@@ -37,7 +37,7 @@ with lib;
           {
             type = "openai-compatible";
             name = "Zionlab";
-            api_base = "https://zai.zionlab.online/v1";
+            api_base = "https://zai.zionlab.online/api/v1";
             models = [
               { name = "MiniMax-M2"; }
               { name = "qwen3-coder:30b-a3b"; }

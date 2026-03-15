@@ -149,7 +149,7 @@ with lib;
       settings.provider.zionlab = {
         npm = "@ai-sdk/openai-compatible";
         options = {
-          baseURL = "https://zaia.zionlab.online/v1";
+          baseURL = "https://zai.zionlab.online/api/v1";
           headers = {
             CF-Access-Client-Secret = "{env:ZAIA_CLIENT_SECRET}";
             CF-Access-Client-Id = "{env:ZAIA_CLIENT_ID}";
