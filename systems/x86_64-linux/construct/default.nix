@@ -102,63 +102,69 @@
         healthCheckTimeout = 120;
         models."gpt-oss:120b" = {
           cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/gpt-oss-120b-F16.gguf --chat-template-kwargs "{\"reasoning_effort\": \"high\"}" -c 0 --jinja -ub 2048 -b 2048 -fa on --no-mmap --temp 1.0 --top-p 1.0 --top-k 0 -np 2
-          '';
-          ttl = 3600; # 1 hour
-        };
-        models."qwen3-coder:30b-a3b" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/Qwen3-Coder-30B-A3B-Instruct-UD-Q5_K_XL.gguf -ctk q8_0 -ctv q8_0 -c 65536 --jinja -ub 2048 -b 2048 --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 -np 2
-          '';
-          ttl = 3600; # 1 hour
-        };
-        models."qwen3-coder:480b-a35b" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/Qwen3-Coder-480B-A35B-Instruct-UD-Q2_K_XL-00001-of-00004.gguf -ctk q8_0 -ctv q8_0 -c 8192 -ot ".ffn_(up|down)_exps.=CPU" --jinja -ub 2048 -b 2048 --temp 0.7 --min-p 0.0 --top-p 0.80 --top-k 20 --repeat-penalty 1.05 -np 2
+            ${llama-server} --port ''${PORT} 
+            -m /models/gpt-oss-120b-F16.gguf 
+            --chat-template-kwargs "{\"reasoning_effort\": \"medium\"}" 
+            -fa on 
+            --temp 1.0 --top-p 1.0 --top-k 0 -np 2
           '';
           ttl = 3600; # 1 hour
         };
         models."gemma3:27b" = {
           cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/Gemma3/UD-Q6_K_XL.gguf --mmproj /models/Gemma3/mmproj-BF16.gguf -ctk q8_0 -ctv q8_0 -c 32768 --jinja -ub 1024 -b 1024 -fa on --top-p 0.95 --top-k 64 --min-p 0.01 --temp 1.0 --prio 2
+            ${llama-server} --port ''${PORT} 
+            -m /models/Gemma3/UD-Q6_K_XL.gguf 
+            --mmproj /models/Gemma3/mmproj-BF16.gguf 
+            -c 32768 
+            -fa on 
+            -ctk q8_0 
+            -ctv q8_0 
+            -ub 1024 
+            -b 1024 
+            --top-p 0.95 --top-k 64 --min-p 0.01 --temp 1.0 --prio 2
           '';
           ttl = 1500; # 15 min
         };
-        models."GLM-4.6" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/GLM-4.6-UD-Q2_K_XL-00001-of-00003.gguf --split-mode row -c 8192 --jinja -fa on -ngl 99 -ot ".ffn_.*_exps.=CPU"
-          '';
-          ttl = 300; # 5 min
-        };
         models."GLM-4.7" = {
           cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/GLM-4.7/UD-Q2_K_XL.gguf -c 0 --jinja -fa on --no-mmap -ngl 99"
+            ${llama-server} --port ''${PORT} -m /models/GLM-4.7/UD-Q4_K_XL.gguf 
+            -fa on 
+            --no-mmap 
+            -ctk q8_0 -ctv q8_0
+            --temp 0.7 --top-p 1.0
           '';
           ttl = 14400; # 4 hours
-        };
-        models.Devstral2 = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/Devstral2/Devstral-2-123B-Instruct-2512-UD-Q6_K_XL-00001-of-00003.gguf -c 32768 -ctk q8_0 -ctv q8_0 --jinja -ngl 99 --temp 0.15"
-          '';
-          ttl = 300; # 5 min
-        };
-        models.Devstral2-Small = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/Devstral2/Devstral-Small-2-24B-Instruct-2512-UD-Q8_K_XL.gguf -c 0 -fa on --jinja -ngl 99 --temp 0.15"
-          '';
-          ttl = 300; # 5 min
         };
         models.MiniMax-M2 = {
           cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/MiniMax-M2.1/UD-Q4_K_XL.gguf -c 0 -fa on -ctk q8_0 -ctv q8_0 --no-mmap --jinja -ngl 99 --temp 1.0 --top-p 0.95 --top-k 40"
+            ${llama-server} --port ''${PORT} 
+            -m /models/MiniMax-M2.5/UD-Q4_K_XL.gguf 
+            -fa on 
+            -ctk q8_0 -ctv q8_0 
+            --no-mmap 
+            --temp 1.0 --top-p 0.95 --top-k 40 --min-p 0.01 --repeat-penalty 1.0
           '';
           ttl = 14400; # 4 hours
         };
-        models."llama3.2:3b" = {
+        models."Qwen3.5-27b" = {
           cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/unsloth_Llama-3.2-3B-Instruct-GGUF_Llama-3.2-3B-Instruct-UD-Q5_K_XL.gguf -c 8192 --jinja 
+            ${llama-server} --port ''${PORT} 
+            -m /models/Qwen3.5/27B/UD-Q4_K_XL.gguf
+            -fa on 
+            -ctk q8_0 -ctv q8_0 
+            --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.0 --repeat-penalty 1.0 --presence-penalty 0.0
           '';
-          ttl = 3600; # 60 mins
+          ttl = 1500;
+        };
+        models."Qwen3.5-122b-a3b" = {
+          cmd = ''
+            ${llama-server} --port ''${PORT} 
+            -m /models/Qwen3.5/122B/UD-Q4_K_XL.gguf
+            -fa on 
+            -ctk q8_0 -ctv q8_0 
+            --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.0 --repeat-penalty 1.0 --presence-penalty 0.0
+          '';
+          ttl = 1500;
         };
         groups.coding = {
           swap = false;
