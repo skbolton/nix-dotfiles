@@ -146,16 +146,6 @@
           '';
           ttl = 14400; # 4 hours
         };
-        models."Qwen3.5-27b" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} 
-            -m /models/Qwen3.5/27B/UD-Q4_K_XL.gguf
-            -fa on 
-            -ctk q8_0 -ctv q8_0 
-            --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.0 --repeat-penalty 1.0 --presence-penalty 0.0
-          '';
-          ttl = 1500;
-        };
         models."Qwen3.5-122b-a3b" = {
           cmd = ''
             ${llama-server} --port ''${PORT} 
