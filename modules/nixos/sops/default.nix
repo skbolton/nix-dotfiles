@@ -26,5 +26,7 @@
     secrets.caddy-secrets = { };
     secrets.vaultwarden-secrets = { };
     secrets.searxng-secrets = { };
+    secrets.paperless-admin-password = { };
+    secrets.paperless-gpt-secrets = { };
   };
 }
