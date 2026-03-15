@@ -99,7 +99,7 @@
       in
       {
         logLevel = "debug";
-        healthCheckTimeout = 60;
+        healthCheckTimeout = 120;
         models."gpt-oss:120b" = {
           cmd = ''
             ${llama-server} --port ''${PORT} -m /models/gpt-oss-120b-F16.gguf --chat-template-kwargs "{\"reasoning_effort\": \"high\"}" -c 0 --jinja -ub 2048 -b 2048 -fa on --no-mmap --temp 1.0 --top-p 1.0 --top-k 0 -np 2
