@@ -141,10 +141,6 @@ with lib;
           syntaxPunctuation = "astral1";
         };
       };
-      settings.keybinds = {
-        input_newline = "return";
-        input_submit = "ctrl+y";
-      };
       settings.agent = cfg.agent;
       settings.provider.zionlab = {
         npm = "@ai-sdk/openai-compatible";
@@ -177,6 +173,14 @@ with lib;
     xdg.configFile."opencode/agents" = {
       source = ./agents;
       recursive = true;
+    };
+
+    xdg.configFile."opencode/tui.json".text = builtins.toJSON {
+      "$schema" = "https://opencode.ai/tui.json";
+      keybinds = {
+        input_newline = "return";
+        input_submit = "ctrl+y";
+      };
     };
   };
 }
