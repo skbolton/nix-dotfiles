@@ -102,7 +102,7 @@
       tag.sort = "-taggerdate";
       rebase.autosquash = true;
       rebase.missingCommitsCheck = "warn";
-      merge = { conflictStyle = "diff3"; };
+      merge = { conflictStyle = "zdiff3"; };
       pull.ff = "only";
       pull.rebase = true;
       pull.default = "current";
