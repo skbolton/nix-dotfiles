@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, inputs, pkgs, ... }:
 
 with lib;
 let
@@ -14,7 +14,7 @@ in
       postgresql
       elixir_1_17
       erlang_27
-      lexical
+      inputs.expert-lsp.packages.${stdenv.hostPlatform.system}.expert
     ] ++ lib.optional stdenv.isLinux inotify-tools
     ++ lib.optional stdenv.isDarwin terminal-notifier;
 
@@ -31,7 +31,7 @@ in
             )
     '';
 
-    programs.git.ignores = [ ".lexical" "scratchpad.ex" ".elixir-ls" ];
+    programs.git.ignores = [ ".lexical" ".expert" "scratchpad.ex" ".elixir-ls" ];
 
     programs.zsh.shellAliases = {
       m = "iex -S mix";
@@ -40,16 +40,16 @@ in
       mdc = "mix deps.clean --all";
     };
 
-    xdg.configFile."nvim/lsp/lexical.lua".text = /* lua */ ''
+    xdg.configFile."nvim/lsp/expert.lua".text = /* lua */ ''
       return {
-        cmd = { 'lexical' },
+        cmd = { 'expert', '--stdio' },
         filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
         root_markers = { '.mix.exs', '.git'}
       }
     '';
 
     programs.neovim.extraLuaConfig = /* lua */ ''
-      vim.lsp.enable('lexical')
+      vim.lsp.enable('expert')
     '';
   };
 }

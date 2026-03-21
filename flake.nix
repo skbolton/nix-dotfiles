@@ -111,6 +111,8 @@
       url = "github:fdschmidt93/telescope-egrepify.nvim";
       flake = false;
     };
+
+    expert-lsp.url = "github:elixir-lang/expert";
   };
 
   outputs = inputs:
