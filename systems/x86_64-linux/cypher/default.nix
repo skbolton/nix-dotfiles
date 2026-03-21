@@ -255,6 +255,7 @@
 
   services.llama-swap = {
     enable = true;
+    package = pkgs.unstable.llama-swap;
     port = 11434;
     openFirewall = true;
     settings =
