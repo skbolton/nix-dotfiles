@@ -61,7 +61,6 @@ with lib;
       enable = true;
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
       settings.theme = "embark";
-      settings.model = "zionlab/MiniMax-M2";
       settings.mcp = cfg.mcp;
       themes.embark = {
         defs = {
