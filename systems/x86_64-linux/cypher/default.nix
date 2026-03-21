@@ -266,6 +266,7 @@
       {
         logLevel = "debug";
         healthCheckTimeout = 120;
+        includeAliasesInList = true;
         models."Qwen3.5-27b" = {
           cmd = ''
             ${llama-server} --port ''${PORT} 

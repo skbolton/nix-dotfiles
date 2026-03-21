@@ -101,6 +101,7 @@
       {
         logLevel = "debug";
         healthCheckTimeout = 120;
+        includeAliasesInList = true;
         models."gpt-oss:120b" = {
           cmd = ''
             ${llama-server} --port ''${PORT} 
