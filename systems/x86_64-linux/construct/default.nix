@@ -173,6 +173,16 @@
     motherboard = "amd";
   };
 
+  systemd.services.openrgb-set-color = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "openrgb.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${config.services.hardware.openrgb.package}/bin/openrgb -c 'FFFFFF' -b 100";
+    };
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
