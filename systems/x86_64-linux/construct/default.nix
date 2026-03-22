@@ -144,6 +144,7 @@
             -fa on 
             -ctk q8_0 -ctv q8_0 
             --no-mmap 
+            -b 4096 -ub 2048
             --temp 1.0 --top-p 0.95 --top-k 40 --min-p 0.01 --repeat-penalty 1.0
           '';
           ttl = 14400; # 4 hours
