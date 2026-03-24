@@ -77,6 +77,8 @@
 
   delta.theme.enable = true;
   delta.theme.palette = "dev-null";
+  delta.backup.enable = true;
+  delta.backup.extraGroups = [ "vaultwarden" "paperless" ];
 
   virtualisation.arion = {
     backend = "docker";
@@ -249,6 +251,7 @@
       server.port = 8333;
       server.bind_address = "0.0.0.0";
       server.secret_key = "$SEARXNG_SECRET_KEY";
+      search.formats = [ "html" "json" ];
     };
     environmentFile = config.sops.secrets.searxng-secrets.path;
   };
