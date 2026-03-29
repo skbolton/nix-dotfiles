@@ -35,10 +35,10 @@ in
         cursor_blink_interval = 0.6;
         cursor_stop_blinking_after = 0;
 
-        font_family = "Lilex";
+        font_family = "Recursive Mono Linear Static Light";
         bold_font = "Operator Mono Bold";
         bold_italic_font = "Rec Mono Bold Italic";
-        italic_font = "Rec Mono Casual Italic";
+        italic_font = "Rec Mono Casual Italic Light";
         font_size = "14.0";
 
         # Terminal Settings
