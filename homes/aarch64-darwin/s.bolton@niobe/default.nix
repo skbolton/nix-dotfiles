@@ -43,7 +43,7 @@
       rallypoints = [ "$HOME/c" "$HOME/c/printserver" "$HOME/c/cycler" "$HOME/c/otis" ];
     };
     theme.enable = true;
-    theme.palette = "embark";
+    theme.palette = "evergloom";
     desktop.macos.aerospace.enable = false;
     cloud.gcloud.enable = true;
     lang = {

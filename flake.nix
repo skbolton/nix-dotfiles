@@ -79,6 +79,11 @@
       flake = false;
     };
 
+    evergloom-nvim = {
+      url = "github:skbolton/evergloom.nvim";
+      flake = false;
+    };
+
     spelunk-nvim = {
       url = "github:EvWilson/spelunk.nvim";
       flake = false;
