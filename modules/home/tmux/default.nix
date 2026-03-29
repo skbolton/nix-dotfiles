@@ -158,6 +158,8 @@ in
       bind -T window Up swap-pane -d -t '{up-of}'
       bind -T window Right swap-pane -d -t'{right-of}'
       bind -T window Down swap-pane -d -t '{down-of}'
+
+      bind -T window s setw synchronize-panes\; display-message "synchronize-panes is now #{?pane_synchronized,on,off}"
     '';
 
     xdg.configFile.smug = {
