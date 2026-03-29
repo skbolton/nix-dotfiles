@@ -238,6 +238,22 @@
         "type": "github"
       }
     },
+    "evergloom-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774813977,
+        "narHash": "sha256-lcdWfJyLoFo7ioQzPHcIOS22Z1yQI/tN5tzie9Y1amU=",
+        "owner": "skbolton",
+        "repo": "evergloom.nvim",
+        "rev": "b655a8703d4d8d70ec4119505cfc972586d9e193",
+        "type": "github"
+      },
+      "original": {
+        "owner": "skbolton",
+        "repo": "evergloom.nvim",
+        "type": "github"
+      }
+    },
     "expert-lsp": {
       "inputs": {
         "beam-flakes": "beam-flakes",
@@ -1625,6 +1641,7 @@
         "disko": "disko",
         "embark-bat-theme": "embark-bat-theme",
         "embark-vim": "embark-vim",
+        "evergloom-nvim": "evergloom-nvim",
         "expert-lsp": "expert-lsp",
         "git-worktree-runner": "git-worktree-runner",
         "home-manager": "home-manager",
