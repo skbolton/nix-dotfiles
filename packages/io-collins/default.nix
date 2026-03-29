@@ -15,9 +15,11 @@ pkgs.iosevka.override {
     [buildPlans.IosevkaIOCollins.variants.design]
     zero = "slashed"
     at = "fourfold"
-    asterisk = "hex-low"
-    number-sign = "upright-open"
-    percent = "rings-segmented-slash"
+    lower-lambda = "straight-turn"
+    brace = "straight"
+    lig-ltgteq = "slanted"
+    lig-equal-chain = "without-notch"
+    lig-hyphen-chain = "without-notch"
     lig-single-arrow-bar = "without-notch"
     caret = "low"
 
@@ -27,7 +29,7 @@ pkgs.iosevka.override {
     [buildPlans.IosevkaIOCollins.ligations]
     inherits = "dlig"
 
-    [buildPlans.IosevkaIOCollins.widgths.Condensed]
+    [buildPlans.IosevkaIOCollins.widths.Condensed]
     shape = 500
     menu = 3
     css = "condensed"
