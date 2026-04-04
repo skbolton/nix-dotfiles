@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, inputs, system, ... }:
 
 with lib;
 let
@@ -24,6 +24,8 @@ in
       grimblast
       neofetch
       libnotify
+      inputs.handy.packages.${system}.handy
+      wtype
     ];
 
     wayland.windowManager.hyprland = {
@@ -50,18 +52,19 @@ in
           gaps_in = 2;
           gaps_out = 6;
           border_size = 2;
-          layout = "dwindle";
+          layout = "master";
           resize_on_border = true;
         };
 
         dwindle = {
           pseudotile = true;
           preserve_split = true;
-          single_window_aspect_ratio = "5 3";
+          # single_window_aspect_ratio = "5 3";
         };
 
         master = {
-          orientation = "left";
+          orientation = "right";
+          mfact = 0.70;
         };
 
         decoration = {
@@ -169,6 +172,7 @@ in
           "$mainMod SHIFT, t, togglefloating,"
           "ALT, d, exec, wofi --show drun -I"
           "ALT, e, exec, wofi-emoji"
+          "$mainMod SHIFT ALT, 0, exec, handy --toggle-transcription"
 
           "$mainMod, r, exec, kitty --title='kitty-float' --override initial_window_width=100c --override initial_window_height=1c --hold"
           "$mainMod CTRL, r, exec, kitty --title='kitty-float' --override initial_window_width=100c --override initial_window_height=40c --hold"
@@ -234,7 +238,7 @@ in
           ", XF86MonBrightnessDown, exec, ${pkgs.brightnessctl}/bin/brightnessctl set 10-"
           ", XF86MonBrightnessUp, exec, ${pkgs.brightnessctl}/bin/brightnessctl set +10"
 
-          "$mainMod, bracketright, focusmonitor, r"
+          "$mainMod, bracketleft, focusmonitor, l"
           "$mainMod, bracketright, focusmonitor, r"
           "$mainMod ALT, bracketleft, movewindow, mon:-1"
           "$mainMod ALT, bracketright, movewindow, mon:+1"

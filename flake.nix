@@ -120,6 +120,8 @@
     };
 
     expert-lsp.url = "github:elixir-lang/expert";
+
+    handy.url = "github:cjpais/Handy";
   };
 
   outputs = inputs:
