@@ -60,7 +60,7 @@
     cloud.gcloud.enable = true;
   };
 
-  programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch --flake '${config.home.homeDirectory}/c/nix-dotfiles#trinity";
+  programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch --flake '${config.home.homeDirectory}/c/nix-dotfiles#trinity'";
 
   programs.man.generateCaches = true;
 
