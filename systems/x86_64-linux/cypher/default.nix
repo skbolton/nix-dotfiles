@@ -19,6 +19,7 @@
       ];
       trusted-public-keys = [
       ];
+      download-buffer-size = 1048576000; # 1GB
     };
   };
 

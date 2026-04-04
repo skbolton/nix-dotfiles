@@ -19,6 +19,7 @@
   fonts.fontDir.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.download-buffer-size = 1048576000; # 1GB
   nix.settings.trusted-users = [ "@wheel" ];
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
