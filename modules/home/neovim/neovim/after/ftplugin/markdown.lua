@@ -8,15 +8,6 @@ require 'mdeval'.setup {
   eval_options = {}
 }
 
-local run_code_block = function()
-  if vim.api.nvim_get_mode()["mode"] == "n" then
-    vim.cmd('normal vib"vy')
-  else
-    vim.cmd('normal "vy')
-  end
-  vim.cmd("call VimuxRunCommand(@v)")
-end
-
 local run_sql_block = function()
   if vim.api.nvim_get_mode()["mode"] == "n" then
     vim.api.nvim_feedkeys(
@@ -66,7 +57,6 @@ end
 
 vim.keymap.set('n', '<localleader>r', '<CMD>MarkdownPreview<CR>', { buffer = true, desc = "preview" })
 vim.keymap.set('n', '<localleader>t', '<CMD>! md-tangle -f %<CR>', { buffer = true, desc = "tangle file" })
-vim.keymap.set('n', '<C-c><C-c>', run_code_block, { buffer = true, desc = "run block" })
 vim.keymap.set('n', '<C-c><C-x>', '<CMD>MdEval<CR>', { buffer = true, desc = "eval block" })
 vim.keymap.set('n', '<C-c><C-r>', run_sql_block, { buffer = true, desc = "run as sql" })
 vim.keymap.set('n', '<localleader>ci', clock_in, { buffer = true, desc = "clock in" })

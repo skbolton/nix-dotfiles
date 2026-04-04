@@ -1,4 +1,4 @@
-{ lib, config, pkgs, inputs, ... }:
+{ lib, config, pkgs, inputs, system, ... }:
 
 with lib;
 let
@@ -38,6 +38,7 @@ in
         { plugin = bullets-vim; optional = true; }
         { plugin = venn-nvim; optional = true; }
         { plugin = oil-nvim; optional = true; }
+        { plugin = inputs.gossip-nvim.packages.${system}.gossip; }
 
         # editing support
         { plugin = pkgs.awesomeNeovimPlugins.mdeval-nvim; optional = true; }
@@ -84,7 +85,6 @@ in
         # testing
         { plugin = vim-test; optional = true; }
         { plugin = vim-dispatch; optional = true; }
-        { plugin = vimux; optional = true; }
 
         { plugin = pkgs.awesomeNeovimPlugins.treewalker-nvim; optional = true; }
         (nvim-treesitter.withPlugins (p: nvim-treesitter.allGrammars ++ [

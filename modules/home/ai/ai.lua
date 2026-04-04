@@ -1,18 +1,34 @@
+local gossip = require 'gossip'
+
+gossip.contact {
+  name = "ai",
+  create = {
+    split = { dir = "h", size = "120", command = "opencode" },
+  },
+  match_command = "opencode",
+  breakup_on_exit = false
+}
+
 vim.api.nvim_create_user_command('SendPrompt', function(opts)
   local buffer = vim.fn.bufname()
+  local selection = gossip.selection()
   local lines = ''
-  if (opts.line2 == opts.line1) then
-    lines = string.format('L%s', opts.line1)
-  elseif (opts.line2 > opts.line1) then
+
+  if #selection then
     lines = string.format('L%s-%s', opts.line1, opts.line2)
   else
-    lines = ''
+    lines = string.format('L%s', opts.line1)
   end
-  vim.system({ 'tmux', 'send-keys', '-t', '{right-of}',
-    buffer, 'Space', lines,
+
+  gossip.send("ai", {
+    buffer,
+    'Space',
+    lines,
     'Enter',
     'Enter',
-    vim.fn.shellescape(opts.args), 'C-y' })
+    vim.fn.shellescape(opts.args),
+    'C-y'
+  })
 end, { nargs = "+", range = true })
 
 vim.keymap.set({ 'n', 'v' }, '<leader>ag', '!aichat -r grammar<CR>')

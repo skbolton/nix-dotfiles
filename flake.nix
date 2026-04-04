@@ -89,6 +89,8 @@
       flake = false;
     };
 
+    gossip-nvim.url = "github:skbolton/gossip.nvim";
+
     awesome-neovim-plugins.url = "github:m15a/flake-awesome-neovim-plugins";
 
     neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
