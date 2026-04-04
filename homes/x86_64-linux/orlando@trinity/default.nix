@@ -41,6 +41,7 @@
       nodejs.enable = true;
       lua.enable = true;
       nix.enable = true;
+      go.enable = true;
     };
     notes = {
       enable = true;

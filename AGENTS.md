@@ -107,11 +107,8 @@ in
 ### Imports
 
 - Use `with lib;` for Nixpkgs/lib functions
-- NixOS hardware config files use relative paths: `./hardware-configuration.nix` or `./hardware.nix`
-- NixOS disko disk configs: `./disks.nix`
-- Home modules go in `modules/home/<category>/`
-- NixOS modules go in `modules/nixos/`
-- Desktop modules go in `modules/home/desktop/`
+- **Modules are auto-discovered** by snowfall-lib from `modules/` - do NOT manually import them
+- Only import local files: `./hardware-configuration.nix`, `./disks.nix`, `./rgb.nix`, etc.
 
 ### Naming Conventions
 
@@ -194,7 +191,6 @@ mkdir -p systems/x86_64-linux/<hostname>
 {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/nixos/<category>/<module>
   ];
 
   networking.hostName = "<hostname>";
@@ -220,6 +216,8 @@ mkdir -p homes/x86_64-linux/<user>@<hostname>
 ```
 
 ### New Module
+
+Modules are auto-discovered by snowfall-lib - no manual imports needed.
 
 ```bash
 # 1. Create directory (choose platform and category)
