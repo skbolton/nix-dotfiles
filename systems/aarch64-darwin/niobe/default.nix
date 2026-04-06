@@ -21,7 +21,19 @@
   programs.zsh.enable = true;
 
   nix.gc.automatic = true;
-  nix.gc.options = "--older-than 7d";
+  nix.gc.options = "--delete-older-than 7d";
+  nix.gc.interval = [
+    {
+      Weekday = 0;
+      Hour = 3;
+      Minute = 15;
+    }
+    {
+      Weekday = 6;
+      Hour = 3;
+      Minute = 15;
+    }
+  ];
 
   users.users."s.bolton" = {
     home = "/Users/s.bolton";
