@@ -8,6 +8,7 @@ keys:
     - &framework age1vas6lrdlnapyv6j58jhpsudflxetgqapc0snpv4vd4jvtdaxr9us4gf22q
     - &construct age123jll7qsv27nerm8fzwpaxpssefa2azpc9vxqcef06lf5t6c734qngx3hp
     - &cypher age1cgve8s32uk0zfvnvzevzp5rj0vu2emdc57s6479v7kn894ksncuscd6zx2
+    - &weasel age1nfj07rm4gxdx7g4hfzqs6y0rfchpg4cx2f4a3ledkd32tk45uvsqtflged
 
 creation_rules:
   - path_regex: secrets/system-secrets.yaml$
@@ -20,6 +21,7 @@ creation_rules:
       - *framework
       - *construct
       - *cypher
+      - *weasel
   - path_regex: secrets/home-secrets.yaml$
     key_groups:
     - age:

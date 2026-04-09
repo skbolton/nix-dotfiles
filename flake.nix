@@ -33,6 +33,11 @@
 
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
+    NixOS-WSL = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
@@ -153,6 +158,10 @@
         stylix.nixosModules.stylix
         sops-nix.nixosModules.sops
         disko.nixosModules.disko
+      ];
+
+      systems.hosts.weasel.modules = with inputs; [
+        NixOS-WSL.nixosModules.wsl
       ];
 
       systems.modules.darwin = with inputs; [
