@@ -149,7 +149,7 @@
             --temp 1.0 --top-p 0.95 --top-k 40 --min-p 0.01 --repeat-penalty 1.0
           '';
           ttl = 14400; # 4 hours
-          aliases = [ "Haiku-4.5" ];
+          aliases = [ "Haiku-4.5" "us.anthropic.claude-haiku-4-5-20251001-v1" ];
         };
         models."Qwen3.5-122b-a3b" = {
           cmd = ''

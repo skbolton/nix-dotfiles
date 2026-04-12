@@ -182,13 +182,14 @@
           AUTO_OCR_TAG = "gpt-ocr-auto";
 
           LLM_PROVIDER = "openai";
-          LLM_MODEL = "Qwen3.5-27b-nothink";
+          LLM_MODEL = "Qwen3.5-122b";
           OCR_PROVIDER = "llm";
           VISION_LLM_PROVIDER = "openai";
-          VISION_LLM_MODEL = "Qwen3.5-27b-nothink";
+          VISION_LLM_MODEL = "Qwen3.5-122b";
           OPENAI_BASE_URL = "http://cypher.home.arpa:11434/v1";
           OPENAI_API_KEY = "notneeded";
           PDF_UPLOAD = "false";
+          CREATE_NEW_TAGS = "true";
           PDF_OCR_COMPLETE_TAG = "paperless-gpt-ocr-complete";
           LOG_LEVEL = "info";
         };
@@ -271,11 +272,22 @@
         logLevel = "debug";
         healthCheckTimeout = 120;
         includeAliasesInList = true;
+        models."Qwen3.5-122b" = {
+          cmd = ''
+            ${llama-server} --port ''${PORT} 
+            -m /models/Qwen3.5/122b/UD-Q4_K_XL.gguf
+            --mmproj /models/Qwen3.5/122b/mmproj-F16.gguf
+            -fa on 
+            -ctk q8_0 -ctv q8_0 
+            --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0
+          '';
+          ttl = 14400; # 4 hours
+        };
         models."Qwen3.5-27b" = {
           cmd = ''
             ${llama-server} --port ''${PORT} 
             -m /models/Qwen3.5/27b/UD-Q6_K_XL.gguf
-            --mmproj /models/Qwen3.5/mmproj-BF16.gguf
+            --mmproj /models/Qwen3.5/27b/mmproj-BF16.gguf
             -fa on 
             -ctk q8_0 -ctv q8_0 
             --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0
@@ -287,7 +299,7 @@
           cmd = ''
             ${llama-server} --port ''${PORT} 
             -m /models/Qwen3.5/27b/UD-Q6_K_XL.gguf
-            --mmproj /models/Qwen3.5/mmproj-BF16.gguf
+            --mmproj /models/Qwen3.5/27b/mmproj-BF16.gguf
             --chat-template-kwargs '{"enable_thinking":false}'
             -fa on 
             -ctk q8_0 -ctv q8_0 
