@@ -20,7 +20,11 @@ return {
   {
     "nvim-treesitter-textobjects",
     event = "User DeferredUIEnter",
+    before = function()
+      vim.g.no_plugin_maps = true
+    end,
     after = function()
+      local select = require 'nvim-treesitter-textobjects.select'
       require 'nvim-treesitter-textobjects'.setup {
         select = {
           enable = true,
@@ -36,23 +40,39 @@ return {
             ["ab"] = "@block.outer"
           }
         },
-        move = {
-          enable = true,
-          set_jumps = false,
-          goto_next_start = {
-            ["]]"] = "@function.outer",
-          },
-          goto_next_end = {
-            ["]["] = "@function.outer",
-          },
-          goto_previous_start = {
-            ["[["] = "@function.outer",
-          },
-          goto_previous_end = {
-            ["[]"] = "@function.outer",
-          },
-        },
       }
+
+      vim.keymap.set({ "x", "o" }, "ic", function()
+        select.select_textobject("@comment.inner", "textobjects")
+      end)
+
+      vim.keymap.set({ "x", "o" }, "ac", function()
+        select.select_textobject("@comment.outer", "textobjects")
+      end)
+
+      vim.keymap.set({ "x", "o" }, "im", function()
+        select.select_textobject("@class.inner", "textobjects")
+      end)
+
+      vim.keymap.set({ "x", "o" }, "am", function()
+        select.select_textobject("@class.outer", "textobjects")
+      end)
+
+      vim.keymap.set({ "x", "o" }, "if", function()
+        select.select_textobject("@function.inner", "textobjects")
+      end)
+
+      vim.keymap.set({ "x", "o" }, "af", function()
+        select.select_textobject("@function.outer", "textobjects")
+      end)
+
+      vim.keymap.set({ "x", "o" }, "ib", function()
+        select.select_textobject("@block.inner", "textobjects")
+      end)
+
+      vim.keymap.set({ "x", "o" }, "ab", function()
+        select.select_textobject("@block.outer", "textobjects")
+      end)
     end
   },
   {
