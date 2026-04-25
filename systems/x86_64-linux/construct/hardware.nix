@@ -10,6 +10,11 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [
+    "iommu=pt" # 1. IOMMU Passthrough (Crucial for P2P)
+    "iommu.passthrough=1" # 2. Force passthrough for all DMA
+    "init_on_alloc=0" # 3. Blackwell-specific optimization
+  ];
 
   fileSystems."/mnt/ingest" = {
     device = "//oracle.home.arpa/ingest";

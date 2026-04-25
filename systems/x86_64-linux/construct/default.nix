@@ -89,9 +89,10 @@
     };
   };
 
-  services.llama-swap = {
+  delta.llama-swap = {
     enable = true;
     package = pkgs.unstable.llama-swap;
+    listenAddress = "0.0.0.0";
     port = 11434;
     openFirewall = true;
     settings =
@@ -101,18 +102,8 @@
       in
       {
         logLevel = "debug";
-        healthCheckTimeout = 120;
+        healthCheckTimeout = 900;
         includeAliasesInList = true;
-        models."gpt-oss:120b" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} 
-            -m /models/gpt-oss-120b-F16.gguf 
-            --chat-template-kwargs "{\"reasoning_effort\": \"medium\"}" 
-            -fa on 
-            --temp 1.0 --top-p 1.0 --top-k 0 -np 2
-          '';
-          ttl = 3600; # 1 hour
-        };
         models."gemma3:27b" = {
           cmd = ''
             ${llama-server} --port ''${PORT} 
@@ -128,43 +119,44 @@
           '';
           ttl = 1500; # 15 min
         };
-        models."GLM-4.7" = {
+        models."MiniMax-M2" = {
+          cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
           cmd = ''
-            ${llama-server} --port ''${PORT} -m /models/GLM-4.7/UD-Q4_K_XL.gguf 
-            -fa on 
-            --no-mmap 
-            -ctk q8_0 -ctv q8_0
-            --temp 0.7 --top-p 1.0
+            ${pkgs.docker}/bin/docker run
+            --rm --name ''${MODEL_ID}
+            --shm-size 32g  
+            --ipc host
+            --ulimit memlock=-1  
+            --ulimit stack=67108864  
+            -p ''${PORT}:5000  
+            -v /models:/mnt/data/models  
+            -e SGLANG_ENABLE_JIT_DEEPGEMM=0
+            -e TORCH_ALLOW_TF32_CUBLAS_OVERRIDE=1
+            --device=nvidia.com/gpu=all
+            voipmonitor/sglang:cu130
+            python -m sglang.launch_server  
+              --sleep-on-idle 
+              --model-path /mnt/data/models/MiniMax-M2.7/NVFP4
+              --served-model-name MiniMax-M2.7     
+              --reasoning-parser minimax
+              --tool-call-parser minimax-m2     
+              --tp 2  
+              --enable-torch-compile  
+              --trust-remote-code
+              --chunked-prefill-size 4096
+              --quantization modelopt_fp4     
+              --cuda-graph-max-bs 4
+              --kv-cache-dtype fp8_e4m3
+              --moe-runner-backend b12x  
+              --fp4-gemm-backend b12x         
+              --attention-backend flashinfer
+              --mem-fraction-static 0.92                            
+              --host 0.0.0.0 --port 5000
           '';
-          ttl = 14400; # 4 hours
-        };
-        models.MiniMax-M2 = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} 
-            -m /models/MiniMax-M2.5/UD-Q4_K_XL.gguf 
-            -fa on 
-            -ctk q8_0 -ctv q8_0 
-            --no-mmap 
-            -b 4096 -ub 2048
-            --temp 1.0 --top-p 0.95 --top-k 40 --min-p 0.01 --repeat-penalty 1.0
-          '';
-          ttl = 14400; # 4 hours
-          aliases = [ "Haiku-4.5" "us.anthropic.claude-haiku-4-5-20251001-v1" ];
-        };
-        models."Qwen3.5-122b-a3b" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} 
-            -m /models/Qwen3.5/122B/UD-Q4_K_XL.gguf
-            -fa on 
-            -ctk q8_0 -ctv q8_0 
-            --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.0 --repeat-penalty 1.0 --presence-penalty 0.0
-          '';
-          ttl = 1500;
-        };
-        groups.coding = {
-          swap = false;
-          exclusive = true;
-          members = [ "gemma3:27b" "MiniMax-M2" ];
+          environment = [
+            "CUDA_VISIBLE_DEVICES=0,1"
+          ];
+          ttl = 43200; # 12 hours
         };
       };
   };
