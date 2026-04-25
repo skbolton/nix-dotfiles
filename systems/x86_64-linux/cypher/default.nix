@@ -182,10 +182,10 @@
           AUTO_OCR_TAG = "gpt-ocr-auto";
 
           LLM_PROVIDER = "openai";
-          LLM_MODEL = "Qwen3.5-122b";
+          LLM_MODEL = "gemma4-31b";
           OCR_PROVIDER = "llm";
           VISION_LLM_PROVIDER = "openai";
-          VISION_LLM_MODEL = "Qwen3.5-122b";
+          VISION_LLM_MODEL = "gemma4-31b";
           OPENAI_BASE_URL = "http://cypher.home.arpa:11434/v1";
           OPENAI_API_KEY = "notneeded";
           PDF_UPLOAD = "false";
@@ -272,12 +272,23 @@
         logLevel = "debug";
         healthCheckTimeout = 120;
         includeAliasesInList = true;
+        models."gemma4-31b" = {
+          cmd = ''
+            ${llama-server} --port ''${PORT} 
+            -m /models/gemma4/31b/UD-Q8_K_XL.gguf
+            --mmproj /models/gemma4/31b/mmproj-BF16.gguf
+            --no-mmap
+            -ctk q8_0 -ctv q8_0 
+            --temp 1.0 --top-p 0.95 --top-k 64
+          '';
+          ttl = 14400; # 4 hours
+        };
         models."Qwen3.5-122b" = {
           cmd = ''
             ${llama-server} --port ''${PORT} 
             -m /models/Qwen3.5/122b/UD-Q4_K_XL.gguf
             --mmproj /models/Qwen3.5/122b/mmproj-F16.gguf
-            -fa on 
+            --no-mmap
             -ctk q8_0 -ctv q8_0 
             --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0
           '';
@@ -288,7 +299,7 @@
             ${llama-server} --port ''${PORT} 
             -m /models/Qwen3.5/27b/UD-Q6_K_XL.gguf
             --mmproj /models/Qwen3.5/27b/mmproj-BF16.gguf
-            -fa on 
+            --no-mmap
             -ctk q8_0 -ctv q8_0 
             --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0
           '';
@@ -301,7 +312,7 @@
             -m /models/Qwen3.5/27b/UD-Q6_K_XL.gguf
             --mmproj /models/Qwen3.5/27b/mmproj-BF16.gguf
             --chat-template-kwargs '{"enable_thinking":false}'
-            -fa on 
+            --no-mmap
             -ctk q8_0 -ctv q8_0 
             --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0
           '';
