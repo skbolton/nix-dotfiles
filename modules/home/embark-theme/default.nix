@@ -170,6 +170,87 @@ in
     delta.ai.aichat_theme = "dark";
     xdg.configFile."aichat/dark.tmTheme".source = inputs.embark-bat-theme + "/Embark.tmTheme";
 
+    programs.opencode = {
+      settings.theme = "embark";
+      themes.embark = {
+        defs = {
+          space0 = "#100E23";
+          space1 = "#1e1c31";
+          space2 = "#2d2a4a";
+          space3 = "#3E3859";
+          space4 = "#585273";
+          astral0 = "#8A889D";
+          astral1 = "#cbe3e7";
+          red = "#F48FB1";
+          dark_red = "#F02E6E";
+          green = "#A1EFD3";
+          dark_green = "#7fe9c3";
+          yellow = "#ffe6b3";
+          dark_yellow = "#F2B482";
+          blue = "#91ddff";
+          dark_blue = "#78a8ff";
+          purple = "#d4bfff";
+          dark_purple = "#7676ff";
+          cyan = "#ABF8F7";
+          dark_cyan = "#63f2f1";
+          diff_add = "#2D5059";
+          diff_del = "#5E3859";
+          diff_changed = "#38325A";
+        };
+        theme = {
+          primary = "green";
+          secondary = "purple";
+          accent = "cyan";
+          error = "red";
+          warning = "yellow";
+          success = "green";
+          info = "blue";
+          text = "astral1";
+          textMuted = "astral0";
+          background = "space0";
+          backgroundPanel = "space1";
+          backgroundElement = "space1";
+          border = "cyan";
+          borderActive = "space3";
+          borderSubtle = "yellow";
+          diffAdded = "green";
+          diffRemoved = "red";
+          diffContext = "space1";
+          diffHunkHeader = "space1";
+          diffHighlightAdded = "green";
+          diffHighlightRemoved = "red";
+          diffAddedBg = "diff_add";
+          diffRemovedBg = "diff_del";
+          diffContextBg = "diff_changed";
+          diffLineNumber = "space1";
+          diffAddedLineNumberBg = "space1";
+          diffRemovedLineNumberBg = "space1";
+          markdownText = "astral1";
+          markdownHeading = "dark_blue";
+          markdownLink = "purple";
+          markdownLinkText = "cyan";
+          markdownCode = "green";
+          markdownBlockQuote = "space3";
+          markdownEmph = "yellow";
+          markdownStrong = "astral1";
+          markdownHorizontalRule = "space3";
+          markdownListItem = "cyan";
+          markdownListEnumeration = "cyan";
+          markdownImage = "purple";
+          markdownImageText = "cyan";
+          markdownCodeBlock = "astral1";
+          syntaxComment = "space4";
+          syntaxKeyword = "purple";
+          syntaxFunction = "red";
+          syntaxVariable = "cyan";
+          syntaxString = "green";
+          syntaxNumber = "dark_yellow";
+          syntaxType = "purple";
+          syntaxOperator = "dark_blue";
+          syntaxPunctuation = "astral1";
+        };
+      };
+    };
   };
 }
 
