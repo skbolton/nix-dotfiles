@@ -1,6 +1,7 @@
 keys:
   - users:
     - &orlando age10uea7efn6cg8pj88vtmvm8k90e3a0sy5zs4qtserlrj3gs07fq9s5dxj47
+    - &contra age1g0k74arsvladgghtjlz9rza7uekgy22cxykfhllk78gsp7qa9yqq6xkyqu
   - hosts:
     - &trinity age1xx7wq5gugwsjjxwv4gc0d6sgmq3q0h8qk3crn7erp33fsg2fn93sqlf3e0
     - &neo  age1lze5jczgmqtgmes6tl43gk29rc2fc05qj0tmdq60dkjjvlw5g45swhuymz
@@ -15,6 +16,7 @@ creation_rules:
     key_groups:
     - age:
       - *orlando
+      - *contra
       - *trinity
       - *neo
       - *mouse
@@ -26,3 +28,4 @@ creation_rules:
     key_groups:
     - age:
       - *orlando
+      - *contra
