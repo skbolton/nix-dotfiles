@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   fonts.fontconfig.enable = true;
@@ -19,6 +19,10 @@
       enable = true;
       palette = "dev-null";
     };
+    rally = {
+      enable = true;
+      rallypoints = [ "$HOME" "$HOME/c" ];
+    };
     desktop.wayland.hyprland = {
       enable = true;
       autostart = [ ];
@@ -37,9 +41,14 @@
     desktop.nm-applet.enable = true;
   };
 
-  programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch";
+  programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch --flake '${config.home.homeDirectory}/c/nix-dotfiles#trinity'";
 
   programs.man.generateCaches = true;
+
+  keyboard = {
+    variant = "colemak";
+    options = "lv3:ralt_alt";
+  };
 
   home = {
     username = "contra";

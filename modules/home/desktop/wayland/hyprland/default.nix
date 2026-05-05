@@ -26,6 +26,7 @@ in
       libnotify
       inputs.handy.packages.${system}.handy
       wtype
+      wofi
     ];
 
     wayland.windowManager.hyprland = {
