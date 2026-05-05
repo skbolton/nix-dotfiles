@@ -86,6 +86,23 @@
       ];
 
     };
+    matchBlocks.construct = {
+      hostname = "construct.home.arpa";
+      user = "contra";
+      remoteForwards = [
+        {
+          # host is the local client in this situation
+          host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
+          # bind is the remote
+          bind.address = "/run/user/1001/gnupg/S.gpg-agent";
+        }
+        {
+          host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+          bind.address = "/run/user/1001/gnupg/S.gpg-agent.ssh";
+        }
+      ];
+    };
+
     matchBlocks.framework = {
       hostname = "framework.zionlab.local";
       user = "orlando";
@@ -144,7 +161,7 @@
   # TODO: Find a way to automate this in themes
   # switching constructs theme should update this
   xdg.configFile."kitty/ssh.conf".text = ''
-    hostname nixos@construct.home.arpa
+    hostname construct
     color_scheme ${../../../modules/home/dev-null-theme/kitty-dev-null.conf}
   '';
 

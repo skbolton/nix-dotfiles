@@ -20,6 +20,12 @@ in
       description = "Whether to enable extra socket";
     };
 
+    enableSshSupport = mkOption {
+      type = bool;
+      default = true;
+      description = "Whether to enable extra socket";
+    };
+
     pinentry = mkPackageOption pkgs "pinentry" { default = "pinentry-gnome3"; };
   };
 
@@ -44,7 +50,7 @@ in
     services.gpg-agent = {
       enable = cfg.enable;
       verbose = true;
-      enableSshSupport = true;
+      enableSshSupport = cfg.enableSshSupport;
       enableExtraSocket = cfg.enableExtraSocket;
       enableZshIntegration = config.programs.zsh.enable;
       pinentry.package = cfg.pinentry;
