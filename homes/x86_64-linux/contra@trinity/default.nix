@@ -34,6 +34,7 @@
       lua.enable = true;
       nix.enable = true;
       json.enable = true;
+      cpp.enable = true;
     };
     desktop.wayland.waybar.enable = true;
     desktop.wayland.waybar.target = "hyprland-session.target";
