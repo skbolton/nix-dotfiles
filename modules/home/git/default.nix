@@ -124,7 +124,7 @@
       gtr.copy.includeDirs = [ ".direnv" ];
     };
 
-    ignores = [ "stevies" ".envrc" ".devenv" ".envrc.private" ".direnv" ".vim" ];
+    ignores = [ "stevies" ".envrc" ".envrc.private" ".direnv" ".vim" ];
   };
 
   xdg.configFile."git/commit-template" = {
