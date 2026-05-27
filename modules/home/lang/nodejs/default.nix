@@ -12,7 +12,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      nodejs_20
+      nodejs
       typescript-language-server
     ];
 
