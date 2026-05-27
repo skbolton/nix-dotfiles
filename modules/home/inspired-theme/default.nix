@@ -74,34 +74,77 @@ in
     xdg.configFile."nvim/plugin/statusline.lua".source = ./galaxy-line-inspired.lua;
     xdg.configFile."tmux/statusline.tmux".source = ./inspired.tmux;
     programs.starship.settings = {
-      format = "$character$jobs$directory$git_branch$git_status ";
+      format = ''
+        [](fg:#EAEAEA bg:#FFFFFF)$jobs$directory[](fg:#EAEAEA bg:#FFFFFF)$fill[$git_branch$git_status ](bg:#EAEAEA)[](fg:#EAEAEA bg:#FFFFFF)
+        [  ├─](fg:#969896) $username$hostname$kubernetes$elixir
+        [  └──](fg:#969896) $character 
+      '';
       character = {
         format = "$symbol";
-        error_symbol = "[  ](bold fg:#CA1243 bg:#F4F4F4)";
-        success_symbol = "[  ](bold fg:#795DA3 bg:#F4F4F4)";
-        vimcmd_symbol = "[  ](bold fg:#0086B3 bg:#F4F4F4)";
+        error_symbol = "[ ](bold #CA1243)";
+        success_symbol = "[ ](bold #795DA3)";
+        vimcmd_symbol = "[ ](bold #0086B3)";
+      };
+
+      username = {
+        show_always = true;
+        format = "[$user](fg:#000000)";
+      };
+
+      fill = {
+        symbol = "";
+        style = "fg:#FFFFFF bg:#FFFFFF";
+      };
+
+      elixir = {
+        symbol = " ";
+        format = "[$symbol](fg:#795DA3)[$version \\($otp_version\\)](fg:#000000)";
       };
 
       directory = {
-        format = "[   $path ](fg:#000000 bg:#E0E0E0)[](fg:#E0E0E0)";
+        format = "[   $path ](bg:#EAEAEA fg:#000000)";
+        truncation_length = 5;
+        truncate_to_repo = false;
+      };
+
+      kubernetes = {
+        disabled = false;
+        symbol = "󱃾 ";
+        format = "[ $symbol](fg:#0086B3)[$context/$namespace ](fg:#000000)";
       };
 
       git_branch = {
-        format = "[  $branch ](fg:#A71D5D)";
+        format = "[](fg:#EAEAEA bg:#FFFFFF)[  $branch ](bg:#EAEAEA fg:#000000)";
       };
 
       git_status = {
-        style = "bold #795DA3";
+        format = "$ahead_behind$stashed$staged$modified$deleted$untracked";
+        style = "#000000";
+        ahead = "[ ](bg:#EAEAEA bold #0086B3)";
+        behind = "[ ](bg:#EAEAEA bold #0086B3)";
+        up_to_date = "[- ](bg:#EAEAEA bold #000000)";
+        diverged = "[](bg:#EAEAEA bold #0086B3)";
+        staged = "[](bg:#EAEAEA #0086B3)";
+        untracked = "[](bg:#EAEAEA #969896)";
+        modified = "[](bg:#EAEAEA #795DA3)";
+        stashed = "[](bg:#EAEAEA #A71D5D)";
+        deleted = "[](bg:#EAEAEA #CA1243)";
       };
 
       jobs = {
-        symbol = "[ 󰠜 ](bg:#E0E0E0 fg:#000000)";
+        symbol = " 󰠜 ";
+        style = "#000000";
       };
 
       status = {
-        format = "[ $symbol$status ](fg:#000 bg:#CCC)";
+        format = "[ $symbol$status ](fg:#000000 bg:#EAEAEA)";
         disabled = false;
-        symbol = " ";
+        symbol = " ";
+      };
+
+      hostname = {
+        ssh_only = false;
+        format = "[@$hostname](fg:#000000)";
       };
     };
 
@@ -109,13 +152,15 @@ in
 
     programs.fzf.colors = {
       "bg+" = "#FFFFFF";
-      "fg" = "-1";
-      "fg+" = "-1";
+      "gutter" = "#FFFFFF";
+      "fg" = "#444444";
+      "fg+" = "#444444";
       "prompt" = "#A71D5D";
       "header" = "#0086B3";
       "pointer" = "#D4BFFF";
-      "hl" = "#A71D5D";
-      "hl+" = "#A71D5D";
+      "current-bg" = "#EEE6FF";
+      "hl" = "#795DA3";
+      "hl+" = "#795DA3";
       "spinner" = "#795DA3";
       "info" = "#0086B3";
       "border" = "#969896";
