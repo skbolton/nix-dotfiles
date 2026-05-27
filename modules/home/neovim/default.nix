@@ -10,7 +10,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.nodejs_20 pkgs.emmet-language-server ];
+    home.packages = [ pkgs.emmet-language-server ];
     programs.neovim = {
       # package = pkgs.neovim-nightly;
       enable = true;
