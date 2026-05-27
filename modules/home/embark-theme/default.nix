@@ -60,7 +60,7 @@ in
 
     programs.starship.settings = {
       format = ''
-        [](fg:#2D2B40 bg:#19172C)$jobs$directory[](fg:#2D2B40 bg:#19172C)$fill[$git_branch$git_status ](bg:#2D2B40)[](fg:#2D2B40 bg:#19172C)
+        [](fg:#2e2a49 bg:#19172C)$jobs$directory[](fg:#2e2a49 bg:#19172C)$fill[$git_branch$git_status ](bg:#2e2a49)[](fg:#2e2a49 bg:#19172C)
         [  ├─](fg:#585273) $username$hostname$kubernetes$elixir
         [  └──](fg:#585273) $character 
       '';
@@ -87,7 +87,7 @@ in
       };
 
       directory = {
-        format = "[   $path ](bg:#2D2B40 fg:bright-white)";
+        format = "[   $path ](bg:#2e2a49 fg:bright-white)";
         truncation_length = 5;
         truncate_to_repo = false;
       };
@@ -99,21 +99,21 @@ in
       };
 
       git_branch = {
-        format = "[](fg:#2D2B40 bg:#19172C)[  $branch ](bg:#2D2B40 fg:bright-white)";
+        format = "[](fg:#2e2a49 bg:#19172C)[  $branch ](bg:#2e2a49 fg:bright-white)";
       };
 
       git_status = {
         format = "$ahead_behind$stashed$staged$modified$deleted$untracked";
         style = "bright-white";
-        ahead = "[ ](bg:#2D2B40 bold green)";
-        behind = "[ ](bg:#2D2B40 bold green)";
-        up_to_date = "[- ](bg:#2D2B40 bold bright-white)";
-        diverged = "[](bg:#2D2B40 bold green)";
-        staged = "[](bg:#2D2B40 green)";
-        untracked = "[](bg:#2D2B40 white)";
-        modified = "[](bg:#2D2B40 purple)";
-        stashed = "[](bg:#2D2B40 yellow)";
-        deleted = "[](bg:#2D2B40 red)";
+        ahead = "[ ](bg:#2e2a49 bold green)";
+        behind = "[ ](bg:#2e2a49 bold green)";
+        up_to_date = "[- ](bg:#2e2a49 bold bright-white)";
+        diverged = "[](bg:#2e2a49 bold green)";
+        staged = "[](bg:#2e2a49 green)";
+        untracked = "[](bg:#2e2a49 white)";
+        modified = "[](bg:#2e2a49 purple)";
+        stashed = "[](bg:#2e2a49 yellow)";
+        deleted = "[](bg:#2e2a49 red)";
       };
 
       jobs = {
@@ -122,7 +122,7 @@ in
       };
 
       status = {
-        format = "[ $symbol$status ](fg:bright-white bg:#2D2B40)";
+        format = "[ $symbol$status ](fg:bright-white bg:#2e2a49)";
         disabled = false;
         symbol = " ";
       };
