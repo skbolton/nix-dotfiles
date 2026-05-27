@@ -57,7 +57,7 @@ gls.right[2] = {
       return '  '
     end,
     separator = '|',
-    separator_highlight = { colors.fg_dark },
+    separator_highlight = { colors.fg_dark, colors.bg_0 },
     highlight = function()
       if vcs.diff_add() then
         return { "#c5e478", colors.bg_0 }
@@ -109,7 +109,7 @@ gls.right[5] = {
       return ' ' .. line .. ':' .. col .. ' '
     end,
     separator = '|',
-    separator_highlight = { colors.fg_dark },
+    separator_highlight = { colors.fg_dark, colors.bg_0 },
     highlight = { colors.fg_dark, colors.bg_0 },
   }
 }
@@ -130,3 +130,4 @@ vim.api.nvim_create_autocmd('User', {
     gl.load_galaxyline()
   end
 })
+

@@ -51,6 +51,11 @@ in
             require 'evergloom'.setup {}
 
             vim.cmd("colorscheme evergloom")
+            vim.api.nvim_set_hl(0, "TelescopeSelection", {bg = "#0a2a30"})
+            vim.api.nvim_set_hl(0, "TelescopeMatching", {fg = "#7FDBCA"})
+            vim.api.nvim_set_hl(0, "TelescopeSelectionCaret", {fg = "#7FDBCA", bg = "#0a2a30"})
+            vim.api.nvim_set_hl(0, "TelescopeBorder", {fg = "#1E3A5F"})
+            vim.api.nvim_set_hl(0, "@text.reference", { link = "Function" })
           '';
           type = "lua";
         }
@@ -138,7 +143,7 @@ in
 
     programs.bat = {
       config.theme = "evergloom";
-      themes.embark = {
+      themes.evergloom = {
         src = ./evergloom.tmTheme;
       };
     };
@@ -147,13 +152,15 @@ in
 
     programs.fzf.colors = {
       "bg+" = "#011627";
+      "gutter" = "#011627";
       "fg" = "#8b9bb4";
       "fg+" = "#d6deeb";
       "prompt" = "#7FDBCA";
       "header" = "#82AAFF";
-      "pointer" = "#c792ea";
-      "hl" = "#ECC48D";
-      "hl+" = "#ECC48D";
+      "pointer" = "#21C7A8";
+      "current-bg" = "#0a2a30";
+      "hl" = "#21C7A8";
+      "hl+" = "#7FDBCA";
       "spinner" = "#f78c6c";
       "info" = "#82AAFF";
       "border" = "#1E3A5F";
