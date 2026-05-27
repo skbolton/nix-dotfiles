@@ -25,6 +25,9 @@ in
     programs.ripgrep = {
       enable = cfg.enable;
       arguments = [
+        "--hidden"
+        "-g"
+        "\!.git"
         "--colors=match:bg:yellow"
         "--colors=match:fg:black"
       ];
