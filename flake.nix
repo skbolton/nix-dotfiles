@@ -127,6 +127,8 @@
     expert-lsp.url = "github:elixir-lang/expert";
 
     handy.url = "github:cjpais/Handy";
+
+    hermes-agent.url = "github:NousResearch/hermes-agent";
   };
 
   outputs = inputs:
@@ -158,6 +160,7 @@
         stylix.nixosModules.stylix
         sops-nix.nixosModules.sops
         disko.nixosModules.disko
+        hermes-agent.nixosModules.default
       ];
 
       systems.hosts.weasel.modules = with inputs; [

@@ -87,6 +87,7 @@
   delta.ripping.enable = true;
   delta.theme.enable = true;
   delta.theme.palette = "dev-null";
+  delta.tailscale.enable = true;
 
   virtualisation.oci-containers = {
     backend = "docker";
@@ -187,6 +188,39 @@
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = "${config.services.hardware.openrgb.package}/bin/openrgb -c 'FFFFFF' -b 100";
+    };
+  };
+
+  services.hermes-agent = {
+    enable = true;
+    environment = {
+      SEARXNG_URL = "http://cypher.home.arpa:8333";
+    };
+    settings.model.provider = "custom";
+    settings.model.base_url = "http://localhost:11434/v1";
+    settings.model.default = "MiniMax-M2";
+    mcpServers = {
+      fastmail = { url = "https://api.fastmail.com/mcp"; auth = "oauth"; };
+    };
+    settings.web.search_backend = "searxng";
+    addToSystemPackages = true;
+    stateDir = config.users.users.mira.home;
+    user = "mira";
+    group = "hermes";
+    createUser = false;
+  };
+
+  users.groups.hermes = { };
+  users.users.mira = {
+    isNormalUser = true;
+    home = "/home/mira";
+    hashedPasswordFile = config.sops.secrets.mira-password.path;
+    extraGroups = [ "hermes" ];
+    shell = pkgs.bashInteractive;
+    openssh = {
+      authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOsUvi/j/2Gs8QkZ5S0/bGsK/BhmU8n24eDFCc7GZx9 cardno:13_494_293"
+      ];
     };
   };
 
