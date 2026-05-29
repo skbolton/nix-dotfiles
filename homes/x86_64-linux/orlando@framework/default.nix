@@ -26,7 +26,6 @@
     neovim.enable = true;
     theme.enable = true;
     kitty.enable = true;
-    calendar.enable = true;
     rally = {
       enable = true;
       rallypoints = [ "$HOME" "$HOME/c" ];

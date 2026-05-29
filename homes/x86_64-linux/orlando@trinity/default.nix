@@ -34,7 +34,6 @@
       enable = true;
       rallypoints = [ "$HOME" "$HOME/c" ];
     };
-    calendar.enable = true;
     kitty.enable = true;
     lang = {
       elixir.enable = true;
