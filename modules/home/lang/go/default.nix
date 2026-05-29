@@ -22,6 +22,7 @@ in
         root_markers = { 'go.mod', 'go.sum', '.git' },
         settings = {
           gopls = {
+            gofumpt = true,
             completeUnimported = true,
             usePlaceholders = true,
             analyses = {
