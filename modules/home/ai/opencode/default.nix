@@ -57,15 +57,15 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.unstable.mpv ];
+    home.packages = [ pkgs.mpv ];
     programs.opencode = {
       enable = true;
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
       settings.mcp = cfg.mcp;
       settings.plugin = [ "opentmux" ];
       settings.agent = cfg.agent;
-      settings.provider.litellm = {
-        name = "LiteLLM";
+      settings.provider.zionlab = {
+        name = "Zionlab";
         npm = "@ai-sdk/openai-compatible";
         options = {
           baseURL = "https://zai.zionlab.online/api/v1";
@@ -78,6 +78,15 @@ with lib;
           "MiniMax-M2" = {
             interleaved.field = "reasoning_content";
             name = "Haiku 4.5";
+            reasoning = true;
+            tool_call = true;
+            cost = {
+              input = 1.10;
+              output = 5.50;
+            };
+          };
+          "Mira" = {
+            interleaved.field = "reasoning_content";
             reasoning = true;
             tool_call = true;
             cost = {

@@ -195,7 +195,12 @@
     enable = true;
     environment = {
       SEARXNG_URL = "http://cypher.home.arpa:8333";
+      API_SERVER_ENABLED = "true";
+      API_SERVER_PORT = "8642";
+      API_SERVER_HOST = "0.0.0.0";
+      API_SERVER_MODEL_NAME = "Mira";
     };
+    environmentFiles = [ config.sops.secrets.hermes-agent-env.path ];
     settings.model.provider = "custom";
     settings.model.base_url = "http://localhost:11434/v1";
     settings.model.default = "MiniMax-M2";
@@ -209,6 +214,8 @@
     group = "hermes";
     createUser = false;
   };
+
+  networking.firewall.allowedTCPPorts = [ (lib.toIntBase10 config.services.hermes-agent.environment.API_SERVER_PORT) ];
 
   users.groups.hermes = { };
   users.users.mira = {
