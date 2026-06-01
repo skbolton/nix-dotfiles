@@ -123,7 +123,7 @@ in
       };
 
       extraConfig = mkIf cfg.sync ''
-        include $XDG_RUNTIME_DIR/taskwarrior-sync-server-credentials.txt
+        include ~/.config/task/server-credentials.conf
       '';
     };
 
