@@ -52,6 +52,11 @@ with lib;
         recursive = true;
       };
 
+      home.file.".agents/skills" = {
+        source = ./skills;
+        recursive = true;
+      };
+
       programs.zsh.initContent = lib.mkOrder
         1200
         ''
