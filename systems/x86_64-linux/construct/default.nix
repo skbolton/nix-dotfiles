@@ -188,7 +188,8 @@
           ];
           ttl = 43200; # 12 hours
         };
-        models."Step-3.7-Flash" = {
+        #"Step-3.7-Flash" = {
+        models.Delta = {
           cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
           cmd = ''
             ${pkgs.docker}/bin/docker run 
@@ -204,7 +205,7 @@
                 /mnt/data/models/Step-3.7-Flash/NVFP4
                 --host 0.0.0.0 
                 --port 5000
-                --served-model-name Step-3.7-Flash
+                --served-model-name ''${MODEL_ID}
                 --tensor-parallel-size 2 
                 --gpu-memory-utilization 0.94
                 --enable-expert-parallel 
