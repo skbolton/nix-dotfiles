@@ -146,31 +146,82 @@
             -v /models:/mnt/data/models  
             -e SGLANG_ENABLE_JIT_DEEPGEMM=0
             -e TORCH_ALLOW_TF32_CUBLAS_OVERRIDE=1
+            -e SGLANG_CUSTOM_ALLREDUCE_ALGO=oneshot
+            -e NCCL_P2P_DISABLE=1
+            -e NCCL_IB_DISABLE=1
+            -e NCCL_NVLS_ENABLE=0
+            -e NCCL_CUMEM_ENABLE=0
+            -e B12X_MOE_FORCE_A16=1
+            -e CUDA_MODULE_LOADING=LAZY
+            -e OMP_NUM_THREADS=16
+            -e MKL_NUM_THREADS=16
             --device=nvidia.com/gpu=all
             voipmonitor/sglang:cu130
-            python -m sglang.launch_server  
+            sglang serve 
               --sleep-on-idle 
               --model-path /mnt/data/models/MiniMax-M2.7/NVFP4
               --served-model-name MiniMax-M2.7     
               --reasoning-parser minimax
               --tool-call-parser minimax-m2     
               --tp 2  
+              --enable-pcie-oneshot-allreduce
+              --pcie-oneshot-allreduce-max-size 8388608
               --enable-torch-compile  
               --trust-remote-code
               --chunked-prefill-size 4096
-              --quantization modelopt_fp4     
+              --quantization modelopt_fp4  
+              --num-continuous-decode-steps 4
+              --enable-mixed-chunk
+              --prefill-max-requests 4
+              --max-running-requests 8
+              --cuda-graph-bs 1 2 4 6 8
               --cuda-graph-max-bs 4
               --kv-cache-dtype fp8_e4m3
               --moe-runner-backend b12x  
               --fp4-gemm-backend b12x         
               --attention-backend flashinfer
-              --mem-fraction-static 0.92                            
+              --mem-fraction-static 0.95
               --host 0.0.0.0 --port 5000
           '';
           environment = [
             "CUDA_VISIBLE_DEVICES=0,1"
           ];
           ttl = 43200; # 12 hours
+        };
+        models."Step-3.7-Flash" = {
+          cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
+          cmd = ''
+            ${pkgs.docker}/bin/docker run 
+              --rm --name ''${MODEL_ID}
+              --shm-size 32g  
+              --ipc host
+              --ulimit memlock=-1  
+              --ulimit stack=67108864  
+              --device=nvidia.com/gpu=all
+              -p ''${PORT}:5000  
+              -v /models:/mnt/data/models  
+              vllm/vllm-openai:stepfun37
+                /mnt/data/models/Step-3.7-Flash/NVFP4
+                --host 0.0.0.0 
+                --port 5000
+                --served-model-name Step-3.7-Flash
+                --tensor-parallel-size 2 
+                --gpu-memory-utilization 0.94
+                --enable-expert-parallel 
+                --trust-remote-code 
+                --quantization modelopt 
+                --kv-cache-dtype fp8 
+                --reasoning-parser step3p5 
+                --enable-auto-tool-choice 
+                --tool-call-parser step3p5 
+                --speculative_config '{"method": "mtp", "num_speculative_tokens": 3}'
+                --async-scheduling
+          '';
+          environment = [
+            "CUDA_VISIBLE_DEVICES=0,1"
+          ];
+          ttl = 43200; # 12 hours
+          aliases = [ "Delta" ];
         };
       };
   };
