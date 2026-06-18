@@ -32,6 +32,14 @@ Execution rules
 - If the task is ambiguous, prefer the narrowest interpretation consistent with the requirements.
 - If the task cannot be completed without changing scope, requirements, or task structure, stop and report that clearly to `lead`.
 
+Code comments and ticket references
+
+- Code, comments, tests, fixtures, and configuration should describe the durable current state of the system, not the ticket plan or implementation history.
+- Do not add TODOs, FIXMEs, stubs, comments, test names, fixture names, or documentation notes that reference ticket keys, ticket numbers, epics, or follow-up planning work unless the selected task explicitly requires the ticket identifier as durable product data or integration behavior.
+- Do not write comments such as `TODO: implement in TICKET-123` or `handled by follow-up ticket TICKET-123`; report that kind of future work through `tasklist_feedback`, `requirements_feedback`, or `blockers` instead.
+- If the selected task makes an existing ticket-specific comment or TODO obsolete, remove or reword it as part of the task when that cleanup is local and clearly in scope.
+- If a ticket reference appears necessary, keep it out of source by default; if it truly must remain, explain why in the handoff.
+
 Allowed initiative
 
 - Fix small local issues that block completion of the selected task.
