@@ -61,6 +61,8 @@ with lib;
     programs.opencode = {
       enable = true;
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      settings.autoupdate = false;
+      settings.formatter = true;
       settings.mcp = cfg.mcp;
       settings.plugin = [ "opentmux" ];
       settings.agent = cfg.agent;
@@ -75,9 +77,7 @@ with lib;
           };
         };
         models = {
-          "MiniMax-M2" = {
-            interleaved.field = "reasoning_content";
-            name = "Haiku 4.5";
+          "Delta" = {
             reasoning = true;
             tool_call = true;
             cost = {
