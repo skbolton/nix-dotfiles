@@ -26,7 +26,7 @@ vim.api.nvim_create_user_command('SendPrompt', function(opts)
     lines,
     'Enter',
     'Enter',
-    vim.fn.shellescape(opts.args),
+    opts.args,
     'C-y'
   })
 end, { nargs = "+", range = true })
