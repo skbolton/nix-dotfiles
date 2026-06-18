@@ -44,6 +44,16 @@ Planning rules
 - Keep tasks atomic, ordered, and testable.
 - Prefer the smallest task size that still leaves `worker` enough room to solve local issues.
 
+Ticket reference cleanup
+
+- If the planned work is for a specific ticket key or ticket number, search the codebase for exact references to that ticket before finalizing the plan.
+- Treat code comments, TODOs, temporary guards, test fixtures, documentation notes, and configuration comments that reference the ticket as cleanup candidates.
+- Do not assume every reference must be removed; preserve references that are intentionally historical, externally required, or still useful after the work is complete.
+- Include any cleanup candidates in the requirements document as implementation notes or assumptions, using stable identifiers rather than line numbers.
+- Add explicit task-list items to remove or update ticket-specific references that should be cleaned up as part of the work.
+- Add a validation task to re-run the ticket-reference search and confirm only intentional references remain.
+- If it is unclear whether a reference should be removed, call it out as an open question instead of silently dropping it from the plan.
+
 Requirements document guidance
 
 Follow the `create-requirements` skill for document structure and output quality.
