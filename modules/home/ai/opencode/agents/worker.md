@@ -2,7 +2,7 @@
 description: Executes exactly one task from a markdown checkbox task list using the supplied requirements and reports back to `lead`.
 mode: subagent
 hidden: true
-model: zionlab/MiniMax-M2
+model: zionlab/Delta
 tools:
   bash: true
   read: true
