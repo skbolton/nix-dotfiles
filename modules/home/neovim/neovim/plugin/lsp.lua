@@ -33,5 +33,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     vim.keymap.set("n", "<leader>lO", "<CMD>AerialToggle!<CR>", { desc = "Symbol sidebar", buffer = buffer })
     vim.keymap.set("n", "<leader>li", vim.diagnostic.setloclist, { desc = "qf diagnostic" })
+    vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.references() end, { desc = "lsp references" })
+    vim.keymap.set("n", "<leader>la", function() vim.lsp.buf.code_action() end, { desc = "lsp actions" })
   end
 })
