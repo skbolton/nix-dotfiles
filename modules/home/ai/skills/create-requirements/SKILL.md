@@ -106,6 +106,11 @@ The goal is that the final test suite reads like a **specification of promises**
 
 - Include unresolved decisions, missing product details, or risky assumptions.
 - If there are none, say `- None`.
+- Treat this section as a **working buffer, not a log**. When a question is resolved:
+  - Fold the resolution into the appropriate section — as a `Constraint`, an `Acceptance Criterion`, an `Implementation Note`, or a task-list checkbox — wherever it will actually be applied during implementation.
+  - Delete the question itself from `Open Questions`.
+  - If the resolution does not materially affect how the work is done, do not record it at all. Do not leave "resolved with note" entries behind.
+- The goal is that a reader opening the final document sees only questions that still need answers, not a history of decisions already made.
 
 ## Output Standard
 
