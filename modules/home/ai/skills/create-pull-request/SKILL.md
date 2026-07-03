@@ -48,18 +48,19 @@ Use the most recent commit's subject line as the PR title. This preserves any ti
 
 ### Recommended file viewing order:
 
-1. [path/to/first-file](<pr-url>/changes#diff-<hash>)
-   - <short reason this file appears here>
-2. [path/to/second-file](<pr-url>/changes#diff-<hash>) / [path/to/companion-file](<pr-url>/changes#diff-<hash>)
-   - <short reason>
-   - <optional second bullet for a distinct constraint>
-3. [path/to/third-file](<pr-url>/changes#diff-<hash>)
+| File(s) | Description |
+| --- | --- |
+| [path/to/first-file](<pr-url>/changes#diff-<hash>) | <short reason this file appears here> |
+| [path/to/second-file](<pr-url>/changes#diff-<hash>) / [path/to/companion-file](<pr-url>/changes#diff-<hash>) | <short reason>; <optional second constraint> |
+| [path/to/third-file](<pr-url>/changes#diff-<hash>) | |
 ...
 ```
 
-File entries should be clickable links that jump the reviewer directly to that file's diff in the PR. The link format is provider-specific and may require a two-step flow (create PR, then patch links) — consult the provider reference for details.
+The viewing order is a two-column markdown table. The first column is the file link (or grouped links separated by ` / ` for tightly-coupled files). The second column is the reason. Row order still encodes the recommended reading order — reviewers read top to bottom.
 
-Tightly-coupled files (e.g., a header and its implementation, or two parallel modules that share a single rationale) may share one numbered entry separated by ` / `, with reasons in shared bullets below.
+File entries should be clickable links that jump the reviewer directly to that file's diff in the PR. Do NOT wrap file paths in backticks — keep the link text as plain text (e.g., `[path/to/file](...)`, not `` [`path/to/file`](...) ``) so the rendered links remain clean. The link format is provider-specific and may require a two-step flow (create PR, then patch links) — consult the provider reference for details.
+
+Tightly-coupled files (e.g., a header and its implementation, or two parallel modules that share a single rationale) may share one row separated by ` / ` in the file column, with the shared rationale in the description column.
 
 ### Above the separator
 
@@ -79,7 +80,7 @@ The `## For reviewers` section contains information that helps during review but
 
 #### Recommended file viewing order
 
-Produce a numbered list of the pivotal files a reviewer needs to read to understand the change, in the order that builds understanding incrementally.
+Produce a two-column table of the pivotal files a reviewer needs to read to understand the change, ordered top to bottom so that understanding builds incrementally.
 
 This is a guided tour, not an inventory. Completeness is not the goal — signal is. A file earns a slot in the order only if reading it changes the reviewer's understanding of the PR. Files that don't drive a decision, expose a contract, or carry meaningful logic should be omitted, not included for the sake of accounting for every diff.
 
@@ -96,13 +97,13 @@ Within each tier, prefer the file that has fewer dependencies on other changed f
 
 **Annotation:**
 
-Each entry gets zero, one, or two short bullets (under 15 words each) explaining why the file appears at this position. Focus on what understanding it provides for *later* files in the order, not what the file does mechanically.
+Each row's description cell should be one short sentence (under ~20 words) explaining why the file appears at this position. Focus on what understanding it provides for *later* rows in the order, not what the file does mechanically.
 
-- **Zero bullets** when the file is self-explanatory once the position is known. The trailing test file in a feature PR rarely needs a bullet — its slot at the end of the order tells the reviewer it verifies everything above it.
-- **One bullet** is the common case. State the one thing the reviewer should know before opening the diff.
-- **Two bullets** only when there is a distinct constraint or non-obvious choice worth flagging *in addition to* the primary reason — never to elaborate on the first bullet.
+- **Empty cell** when the file is self-explanatory once the position is known. The trailing test file in a feature PR rarely needs a description — its slot at the end of the order tells the reviewer it verifies everything above it.
+- **One sentence** is the common case. State the one thing the reviewer should know before opening the diff.
+- **Two clauses separated by a semicolon** only when there is a distinct constraint or non-obvious choice worth flagging *in addition to* the primary reason — never to elaborate on the first clause.
 
-Three or more bullets is a smell: the file probably needs an inline code comment or a richer commit message rather than PR-description framing.
+Anything longer than two clauses is a smell: the file probably needs an inline code comment or a richer commit message rather than PR-description framing. Keep descriptions to a single line so the table stays readable.
 
 **Exclusions:**
 
@@ -178,20 +179,18 @@ ticket: https://jira.example.com/browse/PROJ-142
 
 ## For reviewers
 
-Recommended file viewing order:
+### Recommended file viewing order:
 
-1. [`lib/payments/retry_service.ex`](https://github.com/owner/repo/pull/7/changes#diff-abc123)
-   - new module that defines the interface everything else delegates to
-2. [`lib/payments/retry_policy.ex`](https://github.com/owner/repo/pull/7/changes#diff-def456)
-   - retry policy rules consumed by the service
-3. [`lib/payments/payments.ex`](https://github.com/owner/repo/pull/7/changes#diff-789abc)
-   - context module wiring that exposes the new service
-4. [`lib/web/controllers/charge_controller.ex`](https://github.com/owner/repo/pull/7/changes#diff-aaa111) / [`lib/web/controllers/subscription_controller.ex`](https://github.com/owner/repo/pull/7/changes#diff-bbb222) / [`lib/web/controllers/invoice_controller.ex`](https://github.com/owner/repo/pull/7/changes#diff-ccc333)
-   - all three controllers move to the same delegation pattern; read once, the others mirror it
-5. [`test/payments/retry_service_test.exs`](https://github.com/owner/repo/pull/7/changes#diff-ddd444)
+| File(s) | Description |
+| --- | --- |
+| [lib/payments/retry_service.ex](https://github.com/owner/repo/pull/7/changes#diff-abc123) | new module that defines the interface everything else delegates to |
+| [lib/payments/retry_policy.ex](https://github.com/owner/repo/pull/7/changes#diff-def456) | retry policy rules consumed by the service |
+| [lib/payments/payments.ex](https://github.com/owner/repo/pull/7/changes#diff-789abc) | context module wiring that exposes the new service |
+| [lib/web/controllers/charge_controller.ex](https://github.com/owner/repo/pull/7/changes#diff-aaa111) / [lib/web/controllers/subscription_controller.ex](https://github.com/owner/repo/pull/7/changes#diff-bbb222) / [lib/web/controllers/invoice_controller.ex](https://github.com/owner/repo/pull/7/changes#diff-ccc333) | all three controllers move to the same delegation pattern; read once, the others mirror it |
+| [test/payments/retry_service_test.exs](https://github.com/owner/repo/pull/7/changes#diff-ddd444) | |
 ```
 
-Notice in the example above that the commit body's hard-wrapped lines have been unwrapped into flowing paragraphs, the three controllers share a single grouped entry, and the test file sits at the end with no bullet because its position alone explains its role. The PR's diff also touches `mix.lock`, a `CHANGELOG.md` entry, and a routine fixture update for the new test — none appear in the order because they don't change what the reviewer needs to understand.
+Notice in the example above that the commit body's hard-wrapped lines have been unwrapped into flowing paragraphs, the three controllers share a single grouped row, and the test file sits at the end with an empty description because its position alone explains its role. The PR's diff also touches `mix.lock`, a `CHANGELOG.md` entry, and a routine fixture update for the new test — none appear in the order because they don't change what the reviewer needs to understand.
 
 ## Final Self-Check
 
@@ -199,9 +198,9 @@ Before presenting the PR draft to the user, verify:
 
 - The title matches the most recent commit subject exactly.
 - The body above the separator preserves the commit message verbatim except for unwrapping single-newline line breaks into spaces; blank-line paragraph breaks remain intact.
-- The viewing order follows a dependency-first strategy, not alphabetical or diff order.
-- Every file in the order earns its slot — files that don't change the reviewer's understanding (lockfiles, routine doc/test updates, trivial wiring) are omitted, not included for completeness.
-- Each file entry uses zero, one, or at most two short bullets — never three or more.
-- Bullets explain what understanding the file provides for later entries, not what the file does mechanically.
+- The viewing order is rendered as a two-column markdown table (File(s) | Description) and rows appear in a dependency-first order, not alphabetical or diff order.
+- Every row in the table earns its slot — files that don't change the reviewer's understanding (lockfiles, routine doc/test updates, trivial wiring) are omitted, not included for completeness.
+- Each description cell is empty, a single sentence, or at most two clauses separated by a semicolon — never longer.
+- Descriptions explain what understanding the file provides for later rows, not what the file does mechanically.
 - No information has been invented beyond what the diff and commit messages support.
 - The PR is not created until the user has confirmed the viewing order.
