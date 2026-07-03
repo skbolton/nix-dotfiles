@@ -51,6 +51,8 @@
       lua.enable = true;
       nix.enable = true;
       json.enable = true;
+      nodejs.enable = true;
+      cpp.enable = true;
     };
   };
 
