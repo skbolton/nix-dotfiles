@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   programs.home-manager.enable = true;
@@ -79,17 +79,35 @@
       user = "u0_a351";
       port = 8022;
     };
+
+    matchBlocks.contra = {
+      hostname = "construct.home.arpa";
+      user = "contra";
+      sendEnv = [ "LANG LC_*" ];
+      remoteForwards = [
+        {
+          host.address = "${config.home.homeDirectory}/.gnupg/S.gpg-agent.extra";
+          bind.address = "/run/user/1001/gnupg/S.gpg-agent";
+        }
+        {
+          host.address = "${config.home.homeDirectory}/.gnupg/s.gpg-agent.ssh";
+          bind.address = "/run/user/1001/gnupg/S.gpg-agent.ssh";
+        }
+      ];
+    };
   };
 
   xdg.configFile."kitty/ssh.conf".text = ''
     hostname trinity
     color_scheme ${../../../modules/home/embark-theme/kitty-embark.conf}
 
+    hostname contra
+    color_scheme ${../../../modules/home/dev-null-theme/kitty-dev-null.conf}
+
     hostname tank
     # color_scheme Base2Tone Lavender Dark
     color_scheme Nord
   '';
-
 
   home = {
     username = "s.bolton";
