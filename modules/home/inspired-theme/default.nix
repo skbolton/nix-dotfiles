@@ -10,6 +10,8 @@ in
   };
 
   config = mkIf cfg.enable {
+
+    home.packages = with pkgs; [ recursive maple-mono.Normal-TTF ];
     gtk.enable = true;
     stylix.enable = true;
 
@@ -35,6 +37,13 @@ in
     programs.kitty.extraConfig = ''
       include themes/inspired-github.conf
     '';
+
+    programs.kitty.settings = {
+      font_family = mkForce "Lilex";
+      bold_font = mkForce "Lilex Bold";
+      bold_italic_font = mkForce "Maple Mono Normal Bold Italic";
+      italic_font = mkForce "Maple Mono Normal Italic";
+    };
 
     programs.neovim.plugins = [
       {
@@ -69,6 +78,10 @@ in
       vim.api.nvim_set_hl(0, "CurSearch", { link = "Search" })
       vim.api.nvim_set_hl(0, "@neorg.tags.ranged_verbatim.code_block", { link = "Visual"})
       vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#F4F4F4"})
+      vim.api.nvim_set_hl(0, "@text.strong", { bold = true })
+      vim.api.nvim_set_hl(0, "Visual", {bg = "#ebf0fc"})
+      vim.api.nvim_set_hl(0, "CursorColumn", {link = "CursorLine"})
+      vim.api.nvim_set_hl(0, "WinSeparator", {fg = "#E0E0E0"})
     '';
 
     xdg.configFile."nvim/plugin/statusline.lua".source = ./galaxy-line-inspired.lua;

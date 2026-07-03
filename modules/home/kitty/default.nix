@@ -15,7 +15,6 @@ in
       ibm-plex
       lilex
       courier-prime
-      roboto-mono
       recursive
     ];
 
