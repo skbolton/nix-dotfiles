@@ -44,7 +44,7 @@ return {
             prompt_position = 'top',
           },
           prompt_prefix = '  ',
-          selection_caret = "󰧚 ",
+          selection_caret = "▌",
           sorting_strategy = 'ascending',
           borderchars = {
             { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
