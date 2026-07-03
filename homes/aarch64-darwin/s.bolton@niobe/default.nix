@@ -40,7 +40,7 @@
     };
     rally = {
       enable = true;
-      rallypoints = [ "$HOME/c" "$HOME/c/printserver" "$HOME/c/cycler" "$HOME/c/otis" ];
+      rallypoints = [ "$HOME/c" "$HOME/c/printserver" "$HOME/c/cycler" "$HOME/c/otis" "$HOME/c/scralf-ui" ];
     };
     theme.enable = true;
     theme.palette = "evergloom";
