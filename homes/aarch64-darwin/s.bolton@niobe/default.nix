@@ -20,7 +20,7 @@
       enable = true;
       autostart = true;
       pinentry = pkgs.pinentry_mac;
-      enableExtraSocket = false;
+      enableExtraSocket = true;
     };
     zsh.enable = true;
     cli_apps.enable = true;
