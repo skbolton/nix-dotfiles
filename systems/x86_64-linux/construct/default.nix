@@ -188,8 +188,76 @@
           ];
           ttl = 43200; # 12 hours
         };
-        #"Step-3.7-Flash" = {
-        models.Delta = {
+        models."MiniMax-M3" = {
+          cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
+          cmd = ''
+            ${pkgs.docker}/bin/docker run
+            --rm --name ''${MODEL_ID}
+            --shm-size 32g  
+            --ulimit memlock=-1  
+            --ulimit stack=67108864  
+            --ipc host
+            --network host
+            -v /models:/mnt/data/models  
+            -e CUTE_DSL_ARCH=sm_120a
+            -e NCCL_SOCKET_IFNAME=lo
+            -e GLOO_SOCKET_IFNAME=lo
+            -e NCCL_DEBUG=INFO
+            -e HF_HUB_OFFLINE=1
+            -e TRANSFORMERS_OFFLINE=1
+            -e SAFETENSORS_FAST_GPU=1
+            -e VLLM_MINIMAX_M3_ENABLE_TORCH_COMPILE=1
+            -e VLLM_USE_BREAKABLE_CUDAGRAPH=0
+            -e VLLM_USE_AOT_COMPILE=1
+            -e VLLM_USE_B12X_FP8_GEMM=0
+            -e VLLM_USE_B12X_MOE=1
+            -e VLLM_USE_B12X_MINIMAX_M3_MSA=1
+            -e VLLM_USE_B12X_SPARSE_INDEXER=1
+            -e VLLM_ENABLE_PCIE_ALLREDUCE=1
+            -e VLLM_PCIE_ALLREDUCE_BACKEND=b12x
+            -e VLLM_PCIE_ONESHOT_ALLREDUCE_MAX_SIZE=64KB
+            -e B12X_DYNAMIC_DETERMINISTIC_OUTPUT=0
+            -e B12X_LOG_CUTE_COMPILES_AFTER_ENGINE_START=1
+            --device=nvidia.com/gpu=all
+            voipmonitor/vllm:chthonic-consecration-76378e8-b12x-465cb6e-glm51a16fix-cu132
+            bash -lc 
+            'unset NCCL_GRAPH_FILE NCCL_TOPO_FILE; exec /opt/venv/bin/python -m vllm.entrypoints.cli.main serve "$@"' --
+              /mnt/data/models/MiniMax-M3/MXFP8-NVFP4
+              --served-model-name MiniMax-M3 Delta
+              --trust-remote-code 
+              --host 0.0.0.0 
+              --port ''${PORT}
+              --tensor-parallel-size 3
+              --kv-offloading-backend native
+              --kv-offloading-size 32
+              --mm-encoder-tp-mode data 
+              --gpu-memory-utilization 0.98
+              --max-num-batched-tokens 2048 
+              --max-model-len 196608
+              --max-num-seqs 2
+              --quantization modelopt_mixed 
+              --kv-cache-dtype fp8_e4m3 
+              --attention-backend B12X_ATTN 
+              --linear-backend b12x 
+              --moe-backend b12x 
+              -cc.mode=VLLM_COMPILE 
+              -cc.cudagraph_mode=FULL_AND_PIECEWISE 
+              --block-size 128 
+              --load-format fastsafetensors 
+              --enable-chunked-prefill 
+              --enable-prefix-caching 
+              --skip-mm-profiling 
+              --reasoning-parser minimax_m3 
+              --enable-auto-tool-choice 
+              --tool-call-parser minimax_m3
+          '';
+          environment = [
+            "CUDA_VISIBLE_DEVICES=0,1,2"
+          ];
+          aliases = [ "Delta" ];
+          ttl = 43200; # 12 hours
+        };
+        "Step-3.7-Flash" = {
           cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
           cmd = ''
             ${pkgs.docker}/bin/docker run 
@@ -222,7 +290,6 @@
             "CUDA_VISIBLE_DEVICES=0,1"
           ];
           ttl = 43200; # 12 hours
-          aliases = [ "Delta" ];
         };
       };
   };
