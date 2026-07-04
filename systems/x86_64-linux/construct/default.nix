@@ -255,7 +255,7 @@
     environmentFiles = [ config.sops.secrets.hermes-agent-env.path ];
     settings.model.provider = "custom";
     settings.model.base_url = "http://localhost:11434/v1";
-    settings.model.default = "MiniMax-M2";
+    settings.model.default = "Delta";
     mcpServers = {
       fastmail = { url = "https://api.fastmail.com/mcp"; auth = "oauth"; };
     };
