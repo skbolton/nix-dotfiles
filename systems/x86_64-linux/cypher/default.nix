@@ -182,10 +182,10 @@
           AUTO_OCR_TAG = "gpt-ocr-auto";
 
           LLM_PROVIDER = "openai";
-          LLM_MODEL = "gemma4-31b";
+          LLM_MODEL = "Qwen3.6-35B-A3B";
           OCR_PROVIDER = "llm";
           VISION_LLM_PROVIDER = "openai";
-          VISION_LLM_MODEL = "gemma4-31b";
+          VISION_LLM_MODEL = "Qwen3.6-35B-A3B";
           OPENAI_BASE_URL = "http://cypher.home.arpa:11434/v1";
           OPENAI_API_KEY = "notneeded";
           PDF_UPLOAD = "false";
@@ -280,6 +280,16 @@
             --no-mmap
             -ctk q8_0 -ctv q8_0 
             --temp 1.0 --top-p 0.95 --top-k 64
+          '';
+          ttl = 14400; # 4 hours
+        };
+        models."Qwen3.6-35B-A3B" = {
+          cmd = ''
+            ${llama-server} --port ''${PORT} 
+            -m /models/Qwen3.6/35B-A3B/UD-Q8_K_XL.gguf
+            --mmproj /models/Qwen3.6/35B-A3B/mmproj-BF16.gguf
+            --no-mmap
+            --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --repeat-penalty 1.0
           '';
           ttl = 14400; # 4 hours
         };
