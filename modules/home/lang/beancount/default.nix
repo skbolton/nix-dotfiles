@@ -18,7 +18,7 @@ with lib;
       }
     '';
 
-    programs.neovim.extraLuaConfig = /* lua */ ''
+    programs.neovim.initLua = /* lua */ ''
       vim.lsp.enable('beancount_ls')
     '';
   };

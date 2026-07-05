@@ -105,7 +105,6 @@
 
   delta.llama-swap = {
     enable = true;
-    package = pkgs.unstable.llama-swap;
     listenAddress = "0.0.0.0";
     port = 11434;
     openFirewall = true;

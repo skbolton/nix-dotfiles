@@ -74,17 +74,15 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks.tank = {
-      hostname = "tank.home.arpa";
-      user = "u0_a351";
-      port = 8022;
+    setttings.tank = {
+      HostName = "tank.home.arpa";
+      User = "u0_a351";
+      Port = 8022;
     };
-
-    matchBlocks.contra = {
-      hostname = "construct.home.arpa";
-      user = "contra";
-      sendEnv = [ "LANG LC_*" ];
-      remoteForwards = [
+    settings.contra = {
+      HostName = "construct.home.arpa";
+      SendEnv = [ "LANG LC_*" ];
+      RemoteForward = [
         {
           host.address = "${config.home.homeDirectory}/.gnupg/S.gpg-agent.extra";
           bind.address = "/run/user/1001/gnupg/S.gpg-agent";

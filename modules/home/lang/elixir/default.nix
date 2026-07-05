@@ -48,7 +48,7 @@ in
       }
     '';
 
-    programs.neovim.extraLuaConfig = /* lua */ ''
+    programs.neovim.initLua = /* lua */ ''
       vim.lsp.enable('expert')
     '';
   };

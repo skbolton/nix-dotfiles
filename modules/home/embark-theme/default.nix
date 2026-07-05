@@ -49,7 +49,7 @@ in
           optional = true;
         }
       ];
-      extraLuaConfig = /* lua */ ''
+      initLua = /* lua */ ''
         vim.cmd("colorscheme embark")
       '';
     };
@@ -171,7 +171,7 @@ in
     xdg.configFile."aichat/dark.tmTheme".source = inputs.embark-bat-theme + "/Embark.tmTheme";
 
     programs.opencode = {
-      settings.theme = "embark";
+      tui.theme = "embark";
       themes.embark = {
         defs = {
           space0 = "#100E23";

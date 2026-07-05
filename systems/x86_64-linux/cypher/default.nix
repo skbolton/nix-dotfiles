@@ -202,7 +202,7 @@
     environmentFile = config.sops.secrets.caddy-secrets.path;
     package = pkgs.caddy.withPlugins {
       plugins = [ "github.com/tailscale/caddy-tailscale@v0.0.0-20260106222316-bb080c4414ac" ];
-      hash = "sha256-9CYQSdGAQwd1cmFuKT2RNzeiJ4DZoyrxvsLS4JDCFCY=";
+      hash = "sha256-vC/nyCKMD2jKgbGVA5NIJP6dGXiP9z0yEA8WINgFcVc=";
     };
 
     virtualHosts."https://${config.services.paperless.domain}" = {
@@ -258,9 +258,9 @@
     environmentFile = config.sops.secrets.searxng-secrets.path;
   };
 
-  services.llama-swap = {
+  delta.llama-swap = {
     enable = true;
-    package = pkgs.unstable.llama-swap;
+    listenAddress = "0.0.0.0";
     port = 11434;
     openFirewall = true;
     settings =
@@ -287,7 +287,7 @@
           cmd = ''
             ${llama-server} --port ''${PORT} 
             -m /models/Qwen3.6/35B-A3B/UD-Q8_K_XL.gguf
-            --mmproj /models/Qwen3.6/35B-A3B/mmproj-BF16.gguf
+            --mmproj /models/Qwen3.6/35B-A3B/mmproj-F16.gguf
             --no-mmap
             --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --repeat-penalty 1.0
           '';

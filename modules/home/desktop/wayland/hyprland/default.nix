@@ -22,7 +22,6 @@ in
       grim
       slurp
       grimblast
-      neofetch
       libnotify
       inputs.handy.packages.${system}.handy
       wtype
@@ -33,6 +32,8 @@ in
       enable = true;
       xwayland.enable = true;
       systemd.enableXdgAutostart = true;
+      # TODO: update to lua api
+      configType = "hyprlang";
       settings = {
         exec-once = [
           "hyprctl setcursor Bibata-Modern-Ice 22"
@@ -58,7 +59,6 @@ in
         };
 
         dwindle = {
-          pseudotile = true;
           preserve_split = true;
           # single_window_aspect_ratio = "5 3";
         };
@@ -147,19 +147,37 @@ in
           ];
         };
 
-        windowrulev2 = [
-          "workspace 1,class:kitty"
-          "workspace 2,title:^(Mozilla Firefox)(.*)$"
-          "workspace 2,class:firefox"
-          "workspace special:notes,title:^(kitty-delta)"
-          "workspace special:term,title:^(kitty-scratch)"
-          "workspace 3,class:Slack"
-          "workspace 3,class:WebCord"
-          "float,title:(GnuCash Tip Of The Day)"
-          "float,title:(Firefox — Sharing Indicator)"
-          "float,title:(Floorp — Sharing Indicator)"
-          "float,title:galculator"
-          "float,title:kitty-float"
+        windowrule = [
+          {
+            name = "kitty";
+            match.class = "kitty";
+            workspace = 1;
+          }
+          {
+            name = "firefox popup";
+            match.title = "^(Mozilla Firefox)(.*)$";
+            workspace = 2;
+          }
+          {
+            name = "firefox";
+            match.class = "firefox";
+            workspace = 2;
+          }
+          {
+            name = "firefox sharing indicator";
+            match.title = "(Firefox — Sharing Indicator)";
+            float = "on";
+          }
+          {
+            name = "galculator";
+            match.title = "galculator";
+            float = "on";
+          }
+          {
+            name = "kitty-float";
+            match.title = "kitty-float";
+            float = "on";
+          }
         ];
 
         "$mainMod" = "SUPER";
@@ -181,7 +199,6 @@ in
           "$mainMod, e, exec, kitty --title='kitty-float' --override initial_window_width=80c --override initial_window_height=20c qke"
 
           "$mainMod, n, exec, nautilus"
-          "$mainMod, P, pseudo, # dwindle"
           "$mainMod, s, togglespecialworkspace, notes"
           "$mainMod SHIFT, S, movetoworkspace, special:notes"
           "$mainMod CTRL, t, togglespecialworkspace, term"

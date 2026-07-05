@@ -8,8 +8,8 @@ in
   options.delta.desktop.wayland.waybar = with types; {
     enable = mkEnableOption "waybar";
     target = mkOption {
-      type = str;
-      default = "graphical-session.target";
+      type = listOf str;
+      default = [ "graphical-session.target" ];
     };
   };
 
@@ -21,7 +21,7 @@ in
     programs.waybar = {
       enable = true;
       systemd.enable = true;
-      systemd.target = cfg.target;
+      systemd.targets = cfg.target;
       settings = {
         mainBar = {
           start_hidden = false;

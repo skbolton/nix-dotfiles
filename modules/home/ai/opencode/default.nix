@@ -96,6 +96,10 @@ with lib;
           };
         };
       };
+      tui.keybinds = {
+        input_newline = "return";
+        input_submit = "ctrl+y";
+      };
     };
 
     programs.git.ignores = [ ".opencode" ];
@@ -103,14 +107,6 @@ with lib;
     xdg.configFile."opencode/agents" = {
       source = ./agents;
       recursive = true;
-    };
-
-    xdg.configFile."opencode/tui.json".text = builtins.toJSON {
-      "$schema" = "https://opencode.ai/tui.json";
-      keybinds = {
-        input_newline = "return";
-        input_submit = "ctrl+y";
-      };
     };
 
     xdg.configFile."opencode/boop.mp3".source = ./boop.mp3;

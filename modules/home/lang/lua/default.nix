@@ -2,7 +2,7 @@
 
 with lib;
 let
-  cfg = config.delta.lang.elixir;
+  cfg = config.delta.lang.lua;
 in
 {
   options.delta.lang.lua = with types; {
@@ -44,7 +44,7 @@ in
       }
     '';
 
-    programs.neovim.extraLuaConfig = /* lua */ ''
+    programs.neovim.initLua = /* lua */ ''
       vim.lsp.enable('lua_ls')
     '';
   };

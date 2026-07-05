@@ -89,7 +89,7 @@ with lib;
       xdg.configFile."nvim/plugin/mappings/ai.lua".source = mkIf
         config.delta.neovim.enable ./ai.lua;
 
-      programs.neovim.plugins = with pkgs.unstable.vimPlugins;
+      programs.neovim.plugins = with pkgs.vimPlugins;
         [
           {
             plugin = minuet-ai-nvim;

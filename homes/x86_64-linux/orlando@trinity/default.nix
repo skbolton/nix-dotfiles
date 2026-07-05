@@ -52,7 +52,7 @@
     };
     desktop.wayland.river.enable = true;
     desktop.wayland.waybar.enable = true;
-    desktop.wayland.waybar.target = "hyprland-session.target";
+    desktop.wayland.waybar.target = [ "hyprland-session.target" ];
     desktop.dunst.enable = true;
     desktop.nm-applet.enable = true;
     desktop.ui_applications.enable = true;
@@ -67,45 +67,6 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks.niobe = {
-      hostname = "niobe.home.arpa";
-      user = "s.bolton";
-      sendEnv = [ "LANG LC_*" ];
-      remoteForwards = [
-        {
-          # host is the local client in this situation
-          host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
-          # bind is the remote
-          bind.address = "/Users/s.bolton/.gnupg/S.gpg-agent";
-        }
-        {
-          host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
-          bind.address = "/Users/s.bolton/.gnupg/S.gpg-agent.ssh";
-        }
-      ];
-
-    };
-    matchBlocks.construct = {
-      hostname = "construct.home.arpa";
-      user = "contra";
-      remoteForwards = [
-        {
-          # host is the local client in this situation
-          host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
-          # bind is the remote
-          bind.address = "/run/user/1001/gnupg/S.gpg-agent";
-        }
-        {
-          host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
-          bind.address = "/run/user/1001/gnupg/S.gpg-agent.ssh";
-        }
-      ];
-    };
-
-    matchBlocks.framework = {
-      hostname = "framework.zionlab.local";
-      user = "orlando";
-    };
   };
 
   services.syncthing = {

@@ -57,10 +57,8 @@
     videoDrivers = [ "amdgpu" ];
     windowManager.awesome.enable = true;
   };
-  services.displayManager.gdm = {
-    enable = true;
-    wayland = true;
-  };
+  services.displayManager.gdm.enable = true;
+
   console.useXkbConfig = true;
 
   # Configure keymap in X11
@@ -156,8 +154,6 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
-    wlr.enable = true;
   };
 
   virtualisation.docker.enable = true;
@@ -223,7 +219,7 @@
 
   documentation.dev.enable = true;
   documentation.man.enable = true;
-  documentation.man.generateCaches = true;
+  documentation.man.cache.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

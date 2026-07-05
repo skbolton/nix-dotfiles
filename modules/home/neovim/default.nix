@@ -3,6 +3,74 @@
 with lib;
 let
   cfg = config.delta.neovim;
+
+  nvimTreesitterAllGrammars = pkgs.vimPlugins.nvim-treesitter.allGrammars;
+
+  findTreesitterGrammar = name:
+    builtins.head (builtins.filter
+      (
+        grammar: lib.getName grammar == name
+      )
+      nvimTreesitterAllGrammars);
+
+  markdownTreesitterSourceWithExtensions =
+    pkgs.runCommand "tree-sitter-markdown-wiki-link-source"
+      {
+        nativeBuildInputs = [
+          pkgs.nodejs
+          pkgs.tree-sitter
+        ];
+        EXTENSION_WIKI_LINK = "1";
+        EXTENSION_TAGS = "1";
+      } ''
+      cp -r ${(findTreesitterGrammar "tree-sitter-markdown").src} source
+      chmod -R +w source
+
+      (cd source/tree-sitter-markdown && tree-sitter generate)
+      (cd source/tree-sitter-markdown-inline && tree-sitter generate)
+
+      mv source $out
+    '';
+
+  overrideMarkdownGrammarExtensions = grammar:
+    grammar.overrideAttrs (old: {
+      src = markdownTreesitterSourceWithExtensions;
+    });
+
+  overriddenMarkdownGrammars = {
+    tree-sitter-markdown = overrideMarkdownGrammarExtensions (findTreesitterGrammar "tree-sitter-markdown");
+    tree-sitter-markdown_inline = overrideMarkdownGrammarExtensions (findTreesitterGrammar "tree-sitter-markdown_inline");
+  };
+
+  neovimPackageWithMarkdownExtensions = pkgs.neovim-unwrapped.override {
+    treesitter-parsers = pkgs.neovim-unwrapped.treesitter-parsers // {
+      markdown = pkgs.neovim-unwrapped.treesitter-parsers.markdown // {
+        src = markdownTreesitterSourceWithExtensions;
+      };
+    };
+  };
+
+  neovimPackageWithMarkdownExtensionsChecked = neovimPackageWithMarkdownExtensions.overrideAttrs {
+    # Upstream Neovim's treesitter tests assert the stock markdown parse tree.
+    # Enabling optional markdown extensions intentionally changes that tree.
+    doCheck = false;
+  };
+
+  nvimTreesitterWithAllGrammarsAndMarkdownExtensions =
+    pkgs.vimPlugins.nvim-treesitter.withPlugins (_:
+      map
+        (
+          grammar:
+          let
+            name = lib.getName grammar;
+          in
+          if builtins.hasAttr name overriddenMarkdownGrammars then
+            overriddenMarkdownGrammars.${name}
+          else
+            grammar
+        )
+        nvimTreesitterAllGrammars
+    );
 in
 {
   options.delta.neovim = with types; {
@@ -12,16 +80,18 @@ in
   config = mkIf cfg.enable {
     home.packages = [ pkgs.emmet-language-server ];
     programs.neovim = {
-      # package = pkgs.neovim-nightly;
+      package = neovimPackageWithMarkdownExtensionsChecked;
       enable = true;
       defaultEditor = true;
+      withRuby = false;
+      withPython3 = true;
       extraPython3Packages = pyPkgs: with pyPkgs; [ beancount ];
-      extraLuaConfig = /* lua */ ''
+      initLua = /* lua */ ''
         require 'options'
 
         require('lz.n').load("plugins")
       '';
-      plugins = with pkgs.unstable.vimPlugins; [
+      plugins = with pkgs.vimPlugins; [
         inputs.lz-n.packages.${pkgs.stdenv.hostPlatform.system}.default
         popup-nvim
         plenary-nvim
@@ -86,25 +156,8 @@ in
         { plugin = vim-test; optional = true; }
         { plugin = vim-dispatch; optional = true; }
 
+        nvimTreesitterWithAllGrammarsAndMarkdownExtensions
         { plugin = pkgs.awesomeNeovimPlugins.treewalker-nvim; optional = true; }
-        (nvim-treesitter.withPlugins (p: nvim-treesitter.allGrammars ++ [
-          (p.markdown.overrideAttrs {
-            env.EXTENSION_WIKI_LINK = "1";
-            env.EXTENSION_TAGS = "1";
-            nativeBuildInputs = [ pkgs.nodejs pkgs.tree-sitter ];
-            configurePhase = ''
-              tree-sitter generate
-            '';
-          })
-          (p.markdown_inline.overrideAttrs {
-            env.EXTENSION_WIKI_LINK = "1";
-            env.EXTENSION_TAGS = "1";
-            nativeBuildInputs = [ pkgs.nodejs pkgs.tree-sitter ];
-            configurePhase = ''
-              tree-sitter generate
-            '';
-          })
-        ]))
         { plugin = nvim-treesitter-textobjects; optional = true; }
         { plugin = nvim-treesitter-endwise; optional = true; }
 
@@ -139,5 +192,11 @@ in
       source = ./neovim;
       recursive = true;
     };
+
+    xdg.dataFile."nvim/site/parser/markdown.so".source =
+      "${overriddenMarkdownGrammars.tree-sitter-markdown}/parser";
+
+    xdg.dataFile."nvim/site/parser/markdown_inline.so".source =
+      "${overriddenMarkdownGrammars.tree-sitter-markdown_inline}/parser";
   };
 }
