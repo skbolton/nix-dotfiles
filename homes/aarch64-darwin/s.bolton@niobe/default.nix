@@ -74,7 +74,7 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    setttings.tank = {
+    settings.tank = {
       HostName = "tank.home.arpa";
       User = "u0_a351";
       Port = 8022;

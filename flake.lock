@@ -1796,11 +1796,11 @@
         "nixpkgs": "nixpkgs_18"
       },
       "locked": {
-        "lastModified": 1783231214,
-        "narHash": "sha256-TFqDt24nz7iEfJ8Z1OxqR4P0NE0tyEbR+1vn29TU+r0=",
+        "lastModified": 1783363851,
+        "narHash": "sha256-2U6LxUA5qbFnoGKv3q7HcD5foAfZAwZNNh4YmzAUJ9Q=",
         "owner": "anomalyco",
         "repo": "opencode",
-        "rev": "b7e4f1ef7433f83ba009eefa2997aeb81017f6ed",
+        "rev": "203885d241d0d51dae9d39271662043cab27c7b8",
         "type": "github"
       },
       "original": {
