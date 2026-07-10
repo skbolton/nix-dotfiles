@@ -95,15 +95,51 @@ For the files that do appear:
 
 Within each tier, prefer the file that has fewer dependencies on other changed files. The goal is that by the time the reviewer reaches file N, they have already seen everything file N depends on.
 
-**Annotation:**
+**Description composition:**
 
-Each row's description cell should be one short sentence (under ~20 words) explaining why the file appears at this position. Focus on what understanding it provides for *later* rows in the order, not what the file does mechanically.
+Treat each row's description as a miniature commit body for that file's slot in the tour. It should answer *why this file matters to the outcome*, not what changed inside it. Assume the reviewer will open the diff — the description exists to frame what they're about to see, not narrate it.
+
+Keep a description only if it answers at least one of:
+
+- Why does this file anchor the change (what concept, contract, or decision does it establish)?
+- Why does its position in the order matter (what does understanding it unlock for later rows)?
+- What non-obvious constraint or tradeoff shaped this file's shape?
+
+Subtract anything the diff would already make obvious — that a module was added, that a function was renamed, that tests were written, that wiring was updated. If the description would still be true after replacing the file's contents with a stub of the same shape, it's describing the diff instead of the decision.
+
+**Length:**
 
 - **Empty cell** when the file is self-explanatory once the position is known. The trailing test file in a feature PR rarely needs a description — its slot at the end of the order tells the reviewer it verifies everything above it.
-- **One sentence** is the common case. State the one thing the reviewer should know before opening the diff.
+- **One sentence** (under ~20 words) is the common case. State the one thing the reviewer should know before opening the diff.
 - **Two clauses separated by a semicolon** only when there is a distinct constraint or non-obvious choice worth flagging *in addition to* the primary reason — never to elaborate on the first clause.
 
 Anything longer than two clauses is a smell: the file probably needs an inline code comment or a richer commit message rather than PR-description framing. Keep descriptions to a single line so the table stays readable.
+
+**Weak vs. strong:**
+
+Weak, because it restates the diff:
+
+```text
+| lib/payments/retry_service.ex | new module containing the extracted retry logic |
+```
+
+Strong, because it frames why the file anchors the tour:
+
+```text
+| lib/payments/retry_service.ex | establishes the single retry contract the three controllers collapse onto; every later row is a consumer of the shape defined here |
+```
+
+Weak, because it narrates mechanics:
+
+```text
+| lib/payments/payments.ex | context module wiring that exposes the new service |
+```
+
+Strong, because it explains the decision the file embodies:
+
+```text
+| lib/payments/payments.ex | the seam that lets controllers stay thin wrappers during the migration window called out in the commit body |
+```
 
 **Exclusions:**
 
@@ -183,9 +219,9 @@ ticket: https://jira.example.com/browse/PROJ-142
 
 | File(s) | Description |
 | --- | --- |
-| [lib/payments/retry_service.ex](https://github.com/owner/repo/pull/7/changes#diff-abc123) | new module that defines the interface everything else delegates to |
-| [lib/payments/retry_policy.ex](https://github.com/owner/repo/pull/7/changes#diff-def456) | retry policy rules consumed by the service |
-| [lib/payments/payments.ex](https://github.com/owner/repo/pull/7/changes#diff-789abc) | context module wiring that exposes the new service |
+| [lib/payments/retry_service.ex](https://github.com/owner/repo/pull/7/changes#diff-abc123) | establishes the single retry contract the three controllers collapse onto; every later row is a consumer of the shape defined here |
+| [lib/payments/retry_policy.ex](https://github.com/owner/repo/pull/7/changes#diff-def456) | encodes the behavioral differences that previously diverged across controllers — this is where the drift risk called out in the commit body actually gets resolved |
+| [lib/payments/payments.ex](https://github.com/owner/repo/pull/7/changes#diff-789abc) | the seam that lets controllers stay thin wrappers during the migration window |
 | [lib/web/controllers/charge_controller.ex](https://github.com/owner/repo/pull/7/changes#diff-aaa111) / [lib/web/controllers/subscription_controller.ex](https://github.com/owner/repo/pull/7/changes#diff-bbb222) / [lib/web/controllers/invoice_controller.ex](https://github.com/owner/repo/pull/7/changes#diff-ccc333) | all three controllers move to the same delegation pattern; read once, the others mirror it |
 | [test/payments/retry_service_test.exs](https://github.com/owner/repo/pull/7/changes#diff-ddd444) | |
 ```
@@ -201,6 +237,6 @@ Before presenting the PR draft to the user, verify:
 - The viewing order is rendered as a two-column markdown table (File(s) | Description) and rows appear in a dependency-first order, not alphabetical or diff order.
 - Every row in the table earns its slot — files that don't change the reviewer's understanding (lockfiles, routine doc/test updates, trivial wiring) are omitted, not included for completeness.
 - Each description cell is empty, a single sentence, or at most two clauses separated by a semicolon — never longer.
-- Descriptions explain what understanding the file provides for later rows, not what the file does mechanically.
+- Each description would still be useful to a reviewer who already has the diff open — it frames why the file matters to the outcome rather than narrating what changed inside it.
 - No information has been invented beyond what the diff and commit messages support.
 - The PR is not created until the user has confirmed the viewing order.
