@@ -29,6 +29,14 @@ let
       (cd source/tree-sitter-markdown && tree-sitter generate)
       (cd source/tree-sitter-markdown-inline && tree-sitter generate)
 
+      # Drop the upstream tree-sitter-markdown queries so buildGrammar and
+      # nvim-treesitter's grammarToPlugin don't install them. If they were kept,
+      # they would shadow nvim-treesitter's own queries/markdown{,_inline}
+      # (which include captures like task_list_marker_unchecked) via
+      # symlinkJoin precedence.
+      rm -rf source/tree-sitter-markdown/queries
+      rm -rf source/tree-sitter-markdown-inline/queries
+
       mv source $out
     '';
 
@@ -41,6 +49,24 @@ let
     tree-sitter-markdown = overrideMarkdownGrammarExtensions (findTreesitterGrammar "tree-sitter-markdown");
     tree-sitter-markdown_inline = overrideMarkdownGrammarExtensions (findTreesitterGrammar "tree-sitter-markdown_inline");
   };
+
+  # Wrap each overridden grammar into an nvim-treesitter plugin with
+  # installQueries = false. Otherwise grammarToPlugin's isNvimGrammar check
+  # fails on our new derivations, sets installQueries = true, and creates
+  # an (empty, since we stripped queries above) queries/<lang> directory.
+  # That empty dir then wins the symlinkJoin race inside withPlugins and
+  # shadows nvim-treesitter's real queries/markdown{,_inline} - the ones
+  # that map task_list_marker_unchecked to @markup.list.unchecked, etc.
+  # grammarToPlugin is idempotent (guards on `grammar ? origGrammar`), so
+  # passing these pre-wrapped plugins through withPlugins is safe.
+  overriddenMarkdownGrammarPlugins = lib.mapAttrs
+    (
+      _name: grammar:
+        (pkgs.neovimUtils.grammarToPlugin grammar).overrideAttrs (_: {
+          installQueries = false;
+        })
+    )
+    overriddenMarkdownGrammars;
 
   neovimPackageWithMarkdownExtensions = pkgs.neovim-unwrapped.override {
     treesitter-parsers = pkgs.neovim-unwrapped.treesitter-parsers // {
@@ -64,8 +90,8 @@ let
           let
             name = lib.getName grammar;
           in
-          if builtins.hasAttr name overriddenMarkdownGrammars then
-            overriddenMarkdownGrammars.${name}
+          if builtins.hasAttr name overriddenMarkdownGrammarPlugins then
+            overriddenMarkdownGrammarPlugins.${name}
           else
             grammar
         )
