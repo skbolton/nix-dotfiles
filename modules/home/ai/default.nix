@@ -26,7 +26,7 @@ with lib;
 
       programs.tmux.extraConfig = /* tmux */ ''
         bind a switch-client -T ai
-        bind -T ai a split -h -l 100 \; send opencode
+        bind -T ai a split -h -l 100 \; send opencode Enter
         bind -T ai g new-window 'nvim +"set ft=markdown" $(mktemp)'
         bind -T ai A new-window -n "󱚞 " opencode
       '';
