@@ -121,6 +121,7 @@ in
         inputs.lz-n.packages.${pkgs.stdenv.hostPlatform.system}.default
         popup-nvim
         plenary-nvim
+        nvim-navic
         { plugin = nvim-web-devicons; optional = true; }
         {
           plugin = nvim-web-devicons;

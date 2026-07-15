@@ -2,6 +2,7 @@ local gl = require 'galaxyline'
 local condition = require 'galaxyline.condition'
 local vcs = require 'galaxyline.providers.vcs'
 local file = require 'galaxyline.providers.fileinfo'
+local navic = require 'nvim-navic'
 local gls = gl.section
 gl.short_line_list = { 'NvimTree', 'vista_kind', 'dbui' }
 
@@ -12,6 +13,15 @@ gl.short_line_list = { 'NvimTree', 'vista_kind', 'dbui' }
 -- LEFT
 -----------------------------------------------------------
 gls.left[1] = {
+  LeftCap = {
+    provider = function()
+      return ''
+    end,
+    highlight = { "#3DDBD9", "#161616" },
+  }
+}
+
+gls.left[2] = {
   FileDetails = {
     icon = function()
       return '  ' .. file.get_file_icon()
@@ -30,7 +40,7 @@ gls.left[1] = {
   }
 }
 
-gls.left[2] = {
+gls.left[3] = {
   GitBranch = {
     provider = function()
       if vcs.get_git_branch() then
@@ -46,43 +56,13 @@ gls.left[2] = {
   }
 }
 
-gls.left[3] = {
-  GitDiffAdded = {
-    icon = ' + ',
-    provider = function()
-      if vcs.diff_add() then
-        return vcs.diff_add()
-      else
-        return '∅ '
-      end
-    end,
-    highlight = { "#C6C6C6", "#1B1B1B" }
-  }
-}
-
 gls.left[4] = {
-  GitDiffChanged = {
-    icon = '~ ',
+  Navic = {
     provider = function()
-      if vcs.diff_modified() then
-        return vcs.diff_modified()
-      else
-        return '∅ '
-      end
+      return ' ' .. navic.get_location() .. ' '
     end,
-    highlight = { "#C6C6C6", "#1B1B1B" }
-  }
-}
-
-gls.left[5] = {
-  GitDiffRemoved = {
-    icon = '- ',
-    provider = function()
-      if vcs.diff_remove() then
-        return vcs.diff_remove()
-      else
-        return '∅ '
-      end
+    condition = function()
+      return navic.is_available()
     end,
     highlight = { "#C6C6C6", "#1B1B1B" },
     separator = '',
@@ -159,6 +139,16 @@ gls.right[3] = {
     separator_highlight = { "#3DDBD9", "#252525" }
   }
 }
+
+gls.right[4] = {
+  RightCap = {
+    provider = function()
+      return ''
+    end,
+    highlight = { "#3DDBD9", "#161616" },
+  }
+}
+
 
 
 -- SHORTLINE
