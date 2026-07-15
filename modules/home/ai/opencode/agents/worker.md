@@ -32,13 +32,14 @@ Execution rules
 - If the task is ambiguous, prefer the narrowest interpretation consistent with the requirements.
 - If the task cannot be completed without changing scope, requirements, or task structure, stop and report that clearly to `lead`.
 
-Code comments and ticket references
+Code comments and API documentation
 
-- Code, comments, tests, fixtures, and configuration should describe the durable current state of the system, not the ticket plan or implementation history.
-- Do not add TODOs, FIXMEs, stubs, comments, test names, fixture names, or documentation notes that reference ticket keys, ticket numbers, epics, or follow-up planning work unless the selected task explicitly requires the ticket identifier as durable product data or integration behavior.
-- Do not write comments such as `TODO: implement in TICKET-123` or `handled by follow-up ticket TICKET-123`; report that kind of future work through `tasklist_feedback`, `requirements_feedback`, or `blockers` instead.
-- If the selected task makes an existing ticket-specific comment or TODO obsolete, remove or reword it as part of the task when that cleanup is local and clearly in scope.
-- If a ticket reference appears necessary, keep it out of source by default; if it truly must remain, explain why in the handoff.
+- Follow the shared code comment and API documentation policy.
+- Default to no new inline comments. First prefer clearer naming, types, or structure.
+- Requirements, task-list rationale, delegation context, and proposed snippets are not source documentation. Do not transcribe them into comments or docstrings.
+- Match established repository conventions for which public APIs require documentation, but document only caller-visible contracts and do not add documentation to private functions merely for completeness.
+- Do not propagate ticket identifiers or implementation history into shipped files. The only exception is an identifier required as literal product data; report that exception in the handoff.
+- Remove or durably reword an obsolete local comment when the selected task clearly makes it inaccurate. Do not broaden into unrelated comment cleanup.
 
 Allowed initiative
 
@@ -86,6 +87,7 @@ Always return a compact structured handoff with:
 - validation_artifacts: tests or artifacts added for validation and why they are durable, otherwise `none`
 - requirements_feedback: any requirement clarification or correction needed, otherwise `none`
 - tasklist_feedback: any checkbox additions, splits, reorder suggestions, or dependency notes, otherwise `none`
+- documentation: comments or public API documentation added and the non-obvious constraint or caller contract each preserves, otherwise `none`
 - blockers: what prevented completion, otherwise `none`
 
 If blocked, do as much safe local progress as possible, then stop and report the smallest useful next step.

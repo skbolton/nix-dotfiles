@@ -44,15 +44,18 @@ Planning rules
 - Keep tasks atomic, ordered, and testable.
 - Prefer the smallest task size that still leaves `worker` enough room to solve local issues.
 
+Documentation planning
+
+- Treat rationale in requirements and tasks as execution context, not proposed source comments or API documentation.
+- Do not prescribe a comment or docstring unless the work introduces a durable, non-obvious constraint or caller-facing contract that needs to be documented.
+- When documentation is needed, state the fact it must preserve rather than drafting prose for the executor to copy.
+- API documentation tasks must identify the caller-visible contract, not internal implementation details.
+
 Ticket reference cleanup
 
-- If the planned work is for a specific ticket key or ticket number, search the codebase for exact references to that ticket before finalizing the plan.
-- Treat code comments, TODOs, temporary guards, test fixtures, documentation notes, and configuration comments that reference the ticket as cleanup candidates.
-- Do not assume every reference must be removed; preserve references that are intentionally historical, externally required, or still useful after the work is complete.
-- Include any cleanup candidates in the requirements document as implementation notes or assumptions, using stable identifiers rather than line numbers.
-- Add explicit task-list items to remove or update ticket-specific references that should be cleaned up as part of the work.
-- Add a validation task to re-run the ticket-reference search and confirm only intentional references remain.
-- If it is unclear whether a reference should be removed, call it out as an open question instead of silently dropping it from the plan.
+- Planning artifacts may contain ticket identifiers, but suggested source snippets, comments, docstrings, tests, configuration, and shipped documentation must not.
+- If the work is for a specific ticket, search for exact references before finalizing the plan. Include removal or durable rewording of obsolete references and validation that only identifiers required as product data remain.
+- If it is unclear whether an existing reference is required product data, record an open question rather than assuming.
 
 Requirements document guidance
 

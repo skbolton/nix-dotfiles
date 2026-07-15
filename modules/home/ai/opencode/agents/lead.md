@@ -85,6 +85,7 @@ For every delegation, provide a compact task brief with:
 - expected validation and an instruction to explain why that validation proves the selected task
 - a clear instruction that only this task should be performed
 - a clear instruction to stop and report blockers before broadening scope
+- when the task changes code or public APIs, a reminder that planning rationale is context rather than source documentation and that the shared comment and API documentation policy applies
 
 What to expect back from `worker` subagent
 
@@ -109,6 +110,7 @@ Validation and durable artifacts
 - Any test, fixture, script, or snapshot left in the code must make sense long term as project behavior documentation, not only as proof that this implementation step happened.
 - Avoid accepting tests whose main assertion is historical or tied to removed implementation details, such as `component X is no longer rendered`, unless that absence is itself an enduring product requirement.
 - If the worker reports short-term validation artifacts left in the code, delegate cleanup or ask for the validation to be reframed as durable behavior before marking the task complete.
+- If the worker adds comments or API documentation, confirm they preserve a necessary non-obvious constraint or caller-visible contract rather than transcribing the plan. Do not require documentation merely for completeness.
 
 Response style
 
