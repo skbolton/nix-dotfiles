@@ -63,6 +63,7 @@ with lib;
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
       settings.autoupdate = false;
       settings.formatter = true;
+      settings.instructions = [ ./instructions/code-documentation.md ];
       settings.mcp = cfg.mcp;
       settings.plugin = [ "opentmux" ];
       settings.agent = cfg.agent;
@@ -106,6 +107,11 @@ with lib;
 
     xdg.configFile."opencode/agents" = {
       source = ./agents;
+      recursive = true;
+    };
+
+    xdg.configFile."opencode/instructions" = {
+      source = ./instructions;
       recursive = true;
     };
 
