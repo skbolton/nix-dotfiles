@@ -113,6 +113,10 @@ Omit the ticket prefix and footer when no ticket information is available or exp
 ### Body Rules
 
 - Use 1-3 concise paragraphs.
+- Hard-wrap body text at 72 characters or fewer per line. This limit applies
+  to the body only, not the title.
+- Preserve paragraph breaks while wrapping; do not insert blank lines merely
+  because a paragraph was wrapped.
 - Write for two audiences: the reviewer today and the engineer reading history months later.
 - Apply the composition and filtering rules above; keep "what changed" minimal unless it helps explain a decision.
 
@@ -156,7 +160,10 @@ Update worker prompt handling, add task ownership instructions, and adjust commi
 Strong, because it records the decision and consequence:
 
 ```text
-Make worker execution deterministic by keeping task ownership explicit in the prompt instead of relying on runtime inference. This reduces coordination drift between parallel agents while leaving broader workflow automation as a separate follow-up.
+Make worker execution deterministic by keeping task ownership explicit in
+the prompt instead of relying on runtime inference. This reduces
+coordination drift between parallel agents while leaving broader workflow
+automation as a separate follow-up.
 ```
 
 Weak, because it lists implementation mechanics:
@@ -168,7 +175,10 @@ Rename scratch queue fields, update references, and add tests for the new field 
 Strong, because it explains the reason for the shape of the change:
 
 ```text
-Standardize scratch queue naming around the runtime model so tooling and worker prompts use the same vocabulary. Keeping the rename narrow avoids mixing terminology cleanup with behavior changes, making the follow-up automation work easier to review.
+Standardize scratch queue naming around the runtime model so tooling and
+worker prompts use the same vocabulary. Keeping the rename narrow avoids
+mixing terminology cleanup with behavior changes, making the follow-up
+automation work easier to review.
 ```
 
 ## Final Self-Check
@@ -176,6 +186,8 @@ Standardize scratch queue naming around the runtime model so tooling and worker 
 Before proposing or creating the commit, verify:
 
 - The title says what decision the commit makes, not just which files changed.
+- Every body line is 72 characters or fewer; the title is not wrapped as part
+  of this check.
 - The body would still help if the diff were already open.
 - Every body sentence explains context, decision, tradeoff, consequence, or intentional follow-up.
 - Any future work mentioned is grounded in the diff, task context, or user-provided plan.

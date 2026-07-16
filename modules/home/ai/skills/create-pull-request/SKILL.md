@@ -64,7 +64,11 @@ Tightly-coupled files (e.g., a header and its implementation, or two parallel mo
 
 ### Above the separator
 
-Place the commit message content as the body, with one transformation: unwrap single-newline line breaks into spaces, but preserve blank lines between paragraphs.
+Place the commit message content as the body, with one transformation: remove
+the commit body's hard wrapping. Replace single-newline line breaks within a
+paragraph with spaces, but preserve blank lines between paragraphs. The PR
+body must contain one flowing line per paragraph rather than retaining the
+commit's 72-character line breaks.
 
 Commit messages are typically hard-wrapped at 72–80 columns for git tooling, but PR descriptions render in a wide browser column. Passing the message through verbatim produces awkward early line breaks mid-sentence. Treating two-or-more consecutive newlines as paragraph breaks (matching markdown's own paragraph rules) and collapsing single newlines to spaces yields paragraphs that flow naturally in the rendered PR.
 
@@ -233,7 +237,10 @@ Notice in the example above that the commit body's hard-wrapped lines have been 
 Before presenting the PR draft to the user, verify:
 
 - The title matches the most recent commit subject exactly.
-- The body above the separator preserves the commit message verbatim except for unwrapping single-newline line breaks into spaces; blank-line paragraph breaks remain intact.
+- The body above the separator has no hard-wrapped commit lines: each
+  paragraph is one flowing line, while blank-line paragraph breaks remain
+  intact. Apart from that unwrapping, the commit message is preserved
+  verbatim.
 - The viewing order is rendered as a two-column markdown table (File(s) | Description) and rows appear in a dependency-first order, not alphabetical or diff order.
 - Every row in the table earns its slot — files that don't change the reviewer's understanding (lockfiles, routine doc/test updates, trivial wiring) are omitted, not included for completeness.
 - Each description cell is empty, a single sentence, or at most two clauses separated by a semicolon — never longer.
