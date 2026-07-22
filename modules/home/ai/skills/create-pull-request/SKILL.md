@@ -1,6 +1,6 @@
 ---
 name: create-pull-request
-description: Create a pull request with a structured description derived from the branch commits and a reviewer-guided file tour.
+description: Create a pull request with a structured description derived from the branch commits, plus an optional guided tour of the changed files for reviewers.
 ---
 
 Use this skill when the user wants to create a pull request after committing their work.
@@ -14,7 +14,7 @@ Produce a pull request whose description gives the reviewer full context from th
 - Do not modify source code, planning docs, or git history as part of this skill.
 - Do not invent motivation, ticket IDs, ticket URLs, tradeoffs, or future plans.
 - Use the branch's commit messages as the authoritative source for the PR title and the first section of the body.
-- Always confirm the proposed file viewing order with the user before creating the PR.
+- Always confirm the proposed guided tour with the user before creating the PR, or confirm its omission on a small PR.
 - If the branch has not been pushed to the remote, push it before creating the PR.
 
 ## Provider
@@ -39,6 +39,8 @@ Use the most recent commit's subject line as the PR title. This preserves any ti
 
 ## PR Description Structure
 
+The full shape of a PR description is shown below. The `## For reviewers` block (separator, heading, and tour) is optional and should be omitted on small PRs — see "When to skip the tour entirely" for the rule.
+
 ```markdown
 <commit body content>
 
@@ -46,7 +48,7 @@ Use the most recent commit's subject line as the PR title. This preserves any ti
 
 ## For reviewers
 
-### Recommended file viewing order:
+### Guided tour of changes:
 
 | File(s) | Description |
 | --- | --- |
@@ -56,7 +58,7 @@ Use the most recent commit's subject line as the PR title. This preserves any ti
 ...
 ```
 
-The viewing order is a two-column markdown table. The first column is the file link (or grouped links separated by ` / ` for tightly-coupled files). The second column is the reason. Row order still encodes the recommended reading order — reviewers read top to bottom.
+The tour is a two-column markdown table. The first column is the file link (or grouped links separated by ` / ` for tightly-coupled files). The second column is the reason. Row order encodes the recommended reading order — reviewers read top to bottom.
 
 File entries should be clickable links that jump the reviewer directly to that file's diff in the PR. Do NOT wrap file paths in backticks — keep the link text as plain text (e.g., `[path/to/file](...)`, not `` [`path/to/file`](...) ``) so the rendered links remain clean. The link format is provider-specific and may require a two-step flow (create PR, then patch links) — consult the provider reference for details.
 
@@ -82,11 +84,15 @@ When the branch has multiple commits, prefer the most recent commit's body if it
 
 The `## For reviewers` section contains information that helps during review but does not belong in permanent git history.
 
-#### Recommended file viewing order
+#### Guided tour of changes
 
 Produce a two-column table of the pivotal files a reviewer needs to read to understand the change, ordered top to bottom so that understanding builds incrementally.
 
-This is a guided tour, not an inventory. Completeness is not the goal — signal is. A file earns a slot in the order only if reading it changes the reviewer's understanding of the PR. Files that don't drive a decision, expose a contract, or carry meaningful logic should be omitted, not included for the sake of accounting for every diff.
+This is a guided tour, not an inventory. Completeness is not the goal — signal is. A file earns a slot in the tour only if reading it changes the reviewer's understanding of the PR. Files that don't drive a decision, expose a contract, or carry meaningful logic should be omitted, not included for the sake of accounting for every diff.
+
+**When to skip the tour entirely:**
+
+Omit the `## For reviewers` section (heading and all) when the PR is small enough that a reviewer can absorb it without curation — roughly three or fewer files, or a single self-contained change whose commit body already frames what to look at. In those cases a tour would just restate the diff. When skipping, drop the `---` separator too so the PR body is just the commit content. Confirm the omission with the user the same way you would confirm a tour.
 
 **Ordering strategy:**
 
@@ -101,19 +107,19 @@ Within each tier, prefer the file that has fewer dependencies on other changed f
 
 **Description composition:**
 
-Treat each row's description as a miniature commit body for that file's slot in the tour. It should answer *why this file matters to the outcome*, not what changed inside it. Assume the reviewer will open the diff — the description exists to frame what they're about to see, not narrate it.
+Treat each row's description as a miniature commit body for that file's stop on the tour. It should answer *why this file matters to the outcome*, not what changed inside it. Assume the reviewer will open the diff — the description exists to frame what they're about to see, not narrate it.
 
 Keep a description only if it answers at least one of:
 
 - Why does this file anchor the change (what concept, contract, or decision does it establish)?
-- Why does its position in the order matter (what does understanding it unlock for later rows)?
+- Why does its position in the tour matter (what does understanding it unlock for later rows)?
 - What non-obvious constraint or tradeoff shaped this file's shape?
 
 Subtract anything the diff would already make obvious — that a module was added, that a function was renamed, that tests were written, that wiring was updated. If the description would still be true after replacing the file's contents with a stub of the same shape, it's describing the diff instead of the decision.
 
 **Length:**
 
-- **Empty cell** when the file is self-explanatory once the position is known. The trailing test file in a feature PR rarely needs a description — its slot at the end of the order tells the reviewer it verifies everything above it.
+- **Empty cell** when the file is self-explanatory once its position is known. The trailing test file in a feature PR rarely needs a description — its slot at the end of the tour tells the reviewer it verifies everything above it.
 - **One sentence** (under ~20 words) is the common case. State the one thing the reviewer should know before opening the diff.
 - **Two clauses separated by a semicolon** only when there is a distinct constraint or non-obvious choice worth flagging *in addition to* the primary reason — never to elaborate on the first clause.
 
@@ -152,7 +158,7 @@ The criterion for omission is signal, not file type. Apply judgment based on the
 - Lockfiles, generated files, and purely mechanical changes (e.g., auto-formatter diffs) unless they are central to the PR's purpose.
 - README, CHANGELOG, or comment-only edits that document the change without driving any decision discussed in the PR body.
 - Test or fixture files that exist only to keep the suite green and don't demonstrate a new contract or behavior worth walking the reviewer through.
-- Trivial wiring (one-line registrations, re-exports) when the file it wires to is already in the order and the wiring is obvious.
+- Trivial wiring (one-line registrations, re-exports) when the file it wires to is already in the tour and the wiring is obvious.
 
 If the PR touches more than ~20 files after applying these exclusions, group related files and annotate the group rather than listing each individually.
 
@@ -162,12 +168,12 @@ If the PR touches more than ~20 files after applying these exclusions, group rel
 2. Run `git default-branch` to detect the repository's default branch.
 3. Ask the user which branch the PR should target. Present the default branch as the most likely option but let the user specify a different one.
 4. Read the branch's commit messages and diff relative to the confirmed base branch.
-5. Analyze file dependencies and draft the recommended viewing order.
+5. Decide whether the PR warrants a guided tour (see "When to skip the tour entirely"). If it does, analyze file dependencies and draft the tour.
 6. Present the proposed PR to the user:
    - Show the PR title.
    - Show the base branch the PR targets.
-   - Show the full description (commit body content + separator + viewing order).
-   - Ask the user to confirm or adjust the file viewing order.
+   - Show the full description (commit body content; separator and tour only when included).
+   - Ask the user to confirm the tour, or confirm that skipping it is the right call.
 7. Wait for user confirmation. Do not create the PR until the user approves.
 8. Ensure the branch is pushed to the remote.
 9. Create the PR using the provider-specific commands from the reference, targeting the confirmed base branch.
@@ -219,7 +225,7 @@ ticket: https://jira.example.com/browse/PROJ-142
 
 ## For reviewers
 
-### Recommended file viewing order:
+### Guided tour of changes:
 
 | File(s) | Description |
 | --- | --- |
@@ -230,7 +236,7 @@ ticket: https://jira.example.com/browse/PROJ-142
 | [test/payments/retry_service_test.exs](https://github.com/owner/repo/pull/7/changes#diff-ddd444) | |
 ```
 
-Notice in the example above that the commit body's hard-wrapped lines have been unwrapped into flowing paragraphs, the three controllers share a single grouped row, and the test file sits at the end with an empty description because its position alone explains its role. The PR's diff also touches `mix.lock`, a `CHANGELOG.md` entry, and a routine fixture update for the new test — none appear in the order because they don't change what the reviewer needs to understand.
+Notice in the example above that the commit body's hard-wrapped lines have been unwrapped into flowing paragraphs, the three controllers share a single grouped row, and the test file sits at the end with an empty description because its position alone explains its role. The PR's diff also touches `mix.lock`, a `CHANGELOG.md` entry, and a routine fixture update for the new test — none appear in the tour because they don't change what the reviewer needs to understand.
 
 ## Final Self-Check
 
@@ -241,9 +247,10 @@ Before presenting the PR draft to the user, verify:
   paragraph is one flowing line, while blank-line paragraph breaks remain
   intact. Apart from that unwrapping, the commit message is preserved
   verbatim.
-- The viewing order is rendered as a two-column markdown table (File(s) | Description) and rows appear in a dependency-first order, not alphabetical or diff order.
+- The decision to include or omit the guided tour matches the PR's size and shape (see "When to skip the tour entirely"). When omitted, the `---` separator and `## For reviewers` heading are also absent.
+- When a tour is included, it is rendered as a two-column markdown table (File(s) | Description) and rows appear in a dependency-first order, not alphabetical or diff order.
 - Every row in the table earns its slot — files that don't change the reviewer's understanding (lockfiles, routine doc/test updates, trivial wiring) are omitted, not included for completeness.
 - Each description cell is empty, a single sentence, or at most two clauses separated by a semicolon — never longer.
 - Each description would still be useful to a reviewer who already has the diff open — it frames why the file matters to the outcome rather than narrating what changed inside it.
 - No information has been invented beyond what the diff and commit messages support.
-- The PR is not created until the user has confirmed the viewing order.
+- The PR is not created until the user has confirmed the tour (or its omission).

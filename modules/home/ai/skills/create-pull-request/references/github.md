@@ -81,7 +81,7 @@ The anchor uses the full 64-character hex hash.
 
 Because the PR URL is needed for the diff links, use this sequence:
 
-1. Create the PR with placeholder links or without links in the viewing order.
+1. Create the PR with placeholder links or without links in the guided tour.
 2. Capture the PR URL from the `gh pr create` output.
 3. Immediately edit the PR body to inject the full links using `gh pr edit <pr-number> --body "<updated-body>"`.
 
