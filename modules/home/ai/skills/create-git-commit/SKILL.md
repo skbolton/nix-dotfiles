@@ -169,9 +169,9 @@ Rationale: most git servers auto-convert commit hashes (e.g., `abc1234`) to clic
 
 ### Code references
 
-Wrap every identifier that appears in the codebase in backticks so it renders as inline code. This includes function and method names (`Logger::logEvent`), types (`EventBus`), file paths (`logservice.cpp`, `events.yaml`), configuration keys (`status: emitted`), event names (`ui.event.logged`), CLI flags (`--check`), and any similar reference a reader could grep for.
+Wrap every identifier that appears in the codebase in backticks so it renders as inline code. This includes function and method names (`Notifier::send`), types (`MessageQueue`), file paths (`worker.cpp`, `config.yaml`), configuration keys (`status: ready`), event names (`user.created`), CLI flags (`--check`), and any similar reference a reader could grep for.
 
-The test is whether the token would exist as-is in the repository. If yes, backtick it. Plain English words that happen to sound technical (bus, producer, subscriber, emit, wire format) stay unquoted unless they are literally the name of something in the code.
+The test is whether the token would exist as-is in the repository. If yes, backtick it. Plain English words that happen to sound technical (queue, producer, subscriber, publish, wire format) stay unquoted unless they are literally the name of something in the code.
 
 ## Tone
 
@@ -191,7 +191,7 @@ When drafting a sentence, if it would naturally want an em-dash or semicolon in 
 
 The vocabulary bar is "words a competent engineer new to this codebase would recognize," not "words that would fit in a design document."
 
-- Use the codebase's own vocabulary freely. Names of components, types, events, and workflows are the shared language. `EventBus`, `IotPublisher`, `producer`, `subscriber`, `ticket`, `hook` are all fair game when they already exist in the code or team's vocabulary.
+- Use the codebase's own vocabulary freely. Names of components, types, events, and workflows are the shared language. `MessageQueue`, `Notifier`, `producer`, `subscriber`, `ticket`, `hook` are all fair game when they already exist in the code or team's vocabulary.
 - Avoid vocabulary imported from outside the codebase to add authority. Phrases like "single fan-out point," "documented destruction path," "the seam that lets X collapse onto Y," "ADR-lite record," or "the durable half of this PR" are the tell. They sound sophisticated but do not help the reader understand the change any better than plainer wording would.
 - The gut check: if the phrase would not naturally come out while explaining the change to a teammate at their desk, rewrite it in plainer words. Detailed does not mean elaborate.
 
@@ -200,34 +200,34 @@ The vocabulary bar is "words a competent engineer new to this codebase would rec
 Weak, because it reaches for a sophisticated framing:
 
 ```text
-Route both events through EventBus::emitEvent so LogService becomes a
-bus producer like every other component, aligning it with the
+Route both events through MessageQueue::publish so Worker becomes a
+queue producer like every other component, aligning it with the
 single-fan-out model the rest of the system has already adopted.
 ```
 
 Strong, because it says the same thing in plainer language and backticks the code:
 
 ```text
-Route both events through `EventBus::emitEvent` so `LogService` uses
-the event bus like every other component. The rest of the system
-already emits this way.
+Route both events through `MessageQueue::publish` so `Worker` uses
+the message queue like every other component. The rest of the system
+already publishes this way.
 ```
 
 Weak, because it uses em-dashes as sentence joiners and imports outside vocabulary:
 
 ```text
-The event bus is becoming the single fan-out point for structured
-events — producers emit once, and subscribers pick events up from the
-bus rather than being called directly.
+The message queue is becoming the single fan-out point for structured
+events — producers publish once, and subscribers pick events up from
+the queue rather than being called directly.
 ```
 
 Strong, because it splits into short sentences and stays in the codebase's own words:
 
 ```text
-The event bus is becoming the one place structured events are
-published. Producers emit once. Subscribers (external publishers,
-`Logger`, future consumers) pick events up from the bus instead of
-being called directly.
+The message queue is becoming the one place structured events are
+published. Producers publish once. Subscribers (`Notifier`, `Worker`,
+future consumers) pick events up from the queue instead of being
+called directly.
 ```
 
 ## Workflow
