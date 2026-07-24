@@ -63,7 +63,7 @@ with lib;
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
       settings.autoupdate = false;
       settings.formatter = true;
-      context = ../AGENTS.md;
+      context = ../GLOBAL_AGENTS.md;
       settings.mcp = cfg.mcp;
       settings.plugin = [ "opentmux" ];
       settings.agent = cfg.agent;
