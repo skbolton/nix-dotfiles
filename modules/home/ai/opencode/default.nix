@@ -66,7 +66,7 @@ with lib;
       context = ../GLOBAL_AGENTS.md;
       settings.mcp = cfg.mcp;
       settings.plugin = [ "opentmux" ];
-      settings.agent = cfg.agent;
+      settings.agent = cfg.agent // { build = { disable = true; }; plan = { disable = true; }; };
       settings.provider.zionlab = {
         name = "Zionlab";
         npm = "@ai-sdk/openai-compatible";
