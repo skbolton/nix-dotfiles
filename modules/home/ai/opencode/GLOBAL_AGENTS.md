@@ -20,8 +20,19 @@ preferences of the project then let the project preferences take precedence.
   - In a flake directory with a devshell: prefer `nix develop -c <cmd>`
 - Never suggest `nix-env -i`, `nix profile install`, or other imperative
   installs. They pollute the profile and are hostile to this system's model.
-- Prefer modern CLI tools when available: `rg` over `grep`, `fd` over `find`,
-  `bat` over `cat` for human-facing output, `gh` for GitHub, `jq` for JSON.
+
+## Search tools
+
+For your own codebase and filesystem exploration:
+
+- Use the dedicated `Glob` tool to find files and `Grep` tool to search file contents.
+- When a shell command is necessary, use `fd` instead of `find` and `rg` instead of `grep`.
+- Do not run `find` or `grep` through the shell when the dedicated tools or `fd` and `rg` can perform the search.
+- Scope searches as narrowly as practical, especially under `/nix/store`.
+- These rules govern agent exploration, not commands written into project scripts. Follow project portability requirements in shipped code.
+
+For other command-line work, prefer modern tools when available: `bat` over `cat` for human-facing output, `gh` for
+GitHub, and `jq` for JSON.
 
 ## Workflow
 
