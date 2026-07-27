@@ -3,8 +3,6 @@ name: create-pull-request
 description: Create a pull request with a structured description derived from the branch commits, plus an optional guided tour of the changed files for reviewers.
 ---
 
-Use this skill when the user wants to create a pull request after committing their work.
-
 ## Goal
 
 Produce a pull request whose description gives the reviewer full context from the commit history and a guided tour of the changed files in an order that builds understanding incrementally.
