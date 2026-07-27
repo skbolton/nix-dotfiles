@@ -1,11 +1,12 @@
 ---
-name: create-git-commit
-description: Draft and create git commits that preserve task and requirements context.
+name: create-or-amend-git-commit
+description: Create or amend git commits that preserve task and requirements context.
 ---
 
-Use this skill when the user wants help drafting or creating a git commit after implementation work is complete.
+A good commit message answers three questions for the next reader: why this change was needed now, what approach was chosen, and what the change enables or leaves for later. Adding new work to the commit
+serves as an opportunity to reconsider the former message.
 
-A good commit message answers three questions for the next reader: why this change was needed now, what approach was chosen, and what the change enables or leaves for later. The rest of this skill is organized around four concerns that shape a commit message and one section on workflow.
+The rest of this skill is organized around four concerns that shape a commit message and one section on workflow:
 
 - **Context** — where to gather information from before writing.
 - **Content** — what to include and what to leave out.
