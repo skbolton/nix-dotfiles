@@ -130,7 +130,7 @@
             -b 1024 
             --top-p 0.95 --top-k 64 --min-p 0.01 --temp 1.0 --prio 2
           '';
-          ttl = 1500; # 15 min
+          ttl = 1500; # 25 minutes
         };
         models."MiniMax-M2" = {
           cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
