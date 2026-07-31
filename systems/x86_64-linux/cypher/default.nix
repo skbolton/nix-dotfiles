@@ -293,6 +293,17 @@
           '';
           ttl = 14400; # 4 hours
         };
+        models."Qwen3.6-35B-A3B-MTP-think" = {
+          cmd = ''
+            ${llama-server} --port ''${PORT} 
+            -m /models/Qwen3.6/35B-A3B/MTP/UD-Q8_K_XL.gguf
+            --no-mmap
+            --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --repeat-penalty 1.0
+            --spec-type draft-mtp --spec-draft-n-max 2
+            --chat-template-kwargs '{"enable_thinking":true}'
+          '';
+          ttl = 14400; # 4 hours
+        };
         models."Qwen3.5-122b" = {
           cmd = ''
             ${llama-server} --port ''${PORT} 

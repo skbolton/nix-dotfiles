@@ -91,6 +91,14 @@ with lib;
               output = 5.50;
             };
           };
+          "Qwen3.6-35B-A3B-MTP-think" = {
+            reasoning = true;
+            tool_call = true;
+            cost = {
+              input = 0;
+              output = 0;
+            };
+          };
           "Mira" = {
             interleaved.field = "reasoning_content";
             reasoning = true;
