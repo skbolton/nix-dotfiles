@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.lang.lua;
 in
 {
-  options.delta.lang.lua = with types; {
-    enable = mkEnableOption "Lua Language support";
+  options.delta.lang.lua = {
+    enable = lib.mkEnableOption "Lua Language support";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.lua-language-server ];
 
     xdg.configFile."nvim/lsp/lua_ls.lua".text = /* lua */ ''

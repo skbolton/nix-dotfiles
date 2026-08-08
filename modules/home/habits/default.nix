@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.habits;
 in
 {
-  options.delta.habits = with types; {
-    enable = mkEnableOption "habits";
+  options.delta.habits = {
+    enable = lib.mkEnableOption "habits";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.sessionVariables = {
       HARSHPATH = "$HOME/Documents/Logbook/Trackers/Habits/$(date +%Y)";
     };

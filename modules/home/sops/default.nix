@@ -1,15 +1,14 @@
 { lib, config, ... }:
 
-with lib;
 let
   cfg = config.delta.sops;
 in
 {
-  options.delta.sops = with types; {
-    enable = mkEnableOption "home-sops";
+  options.delta.sops = {
+    enable = lib.mkEnableOption "home-sops";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     sops = {
       age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
       defaultSopsFile = ../../../secrets/home-secrets.yaml;

@@ -7,7 +7,6 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.neovim;
 
@@ -105,11 +104,11 @@ let
   );
 in
 {
-  options.delta.neovim = with types; {
-    enable = mkEnableOption "neovim";
+  options.delta.neovim = {
+    enable = lib.mkEnableOption "neovim";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.emmet-language-server ];
     programs.neovim = {
       package = neovimPackageWithMarkdownExtensionsChecked;

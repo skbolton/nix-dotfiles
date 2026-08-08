@@ -5,20 +5,19 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.desktop.wayland.waybar;
 in
 {
-  options.delta.desktop.wayland.waybar = with types; {
-    enable = mkEnableOption "waybar";
-    target = mkOption {
-      type = listOf str;
+  options.delta.desktop.wayland.waybar = {
+    enable = lib.mkEnableOption "waybar";
+    target = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
       default = [ "graphical-session.target" ];
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = [
       pkgs.noto-fonts
       pkgs.playerctl
@@ -36,8 +35,8 @@ in
           margin = "0";
           layer = "top";
           modules-left =
-            optional config.delta.desktop.wayland.hyprland.enable "hyprland/workspaces"
-            ++ optionals config.delta.desktop.wayland.river.enable [
+            lib.optional config.delta.desktop.wayland.hyprland.enable "hyprland/workspaces"
+            ++ lib.optionals config.delta.desktop.wayland.river.enable [
               "river/tags"
               "river/mode"
             ];

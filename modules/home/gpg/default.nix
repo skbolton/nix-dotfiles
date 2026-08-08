@@ -5,36 +5,35 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.gpg;
 in
 {
-  options.delta.gpg = with types; {
-    enable = mkEnableOption "gpg";
+  options.delta.gpg = {
+    enable = lib.mkEnableOption "gpg";
 
-    autostart = mkOption {
-      type = bool;
+    autostart = lib.mkOption {
+      type = lib.types.bool;
       default = true;
       description = "whether to auto start agent";
     };
 
-    enableExtraSocket = mkOption {
-      type = bool;
+    enableExtraSocket = lib.mkOption {
+      type = lib.types.bool;
       default = true;
       description = "Whether to enable extra socket";
     };
 
-    enableSshSupport = mkOption {
-      type = bool;
+    enableSshSupport = lib.mkOption {
+      type = lib.types.bool;
       default = true;
       description = "Whether to enable extra socket";
     };
 
-    pinentry = mkPackageOption pkgs "pinentry" { default = "pinentry-gnome3"; };
+    pinentry = lib.mkPackageOption pkgs "pinentry" { default = "pinentry-gnome3"; };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.gpg = {
       enable = true;
       publicKeys = [

@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.synology;
 in
 {
-  options.delta.synology = with types; {
-    enable = mkEnableOption "synology drive";
+  options.delta.synology = {
+    enable = lib.mkEnableOption "synology drive";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.synology-drive-client ];
     xdg.autostart.entries = [
       "${pkgs.synology-drive-client}/share/applications/synology-drive.desktop"

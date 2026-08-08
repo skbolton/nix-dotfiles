@@ -7,18 +7,17 @@
 let
   cfg = config.delta.rally;
 in
-with lib;
 {
-  options.delta.rally = with types; {
-    enable = mkEnableOption "rally";
-    rallypoints = mkOption {
-      type = listOf str;
+  options.delta.rally = {
+    enable = lib.mkEnableOption "rally";
+    rallypoints = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.sessionVariables = {
-      RALLYPOINTS = join ":" cfg.rallypoints;
+      RALLYPOINTS = lib.join ":" cfg.rallypoints;
     };
 
     home.packages = [

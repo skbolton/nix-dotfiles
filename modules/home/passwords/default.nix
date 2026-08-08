@@ -5,17 +5,16 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.passwords;
 in
 {
-  options.delta.passwords = with types; {
-    enable = mkEnableOption "password management";
+  options.delta.passwords = {
+    enable = lib.mkEnableOption "password management";
 
-    browsers = mkOption {
-      type = types.listOf (
-        types.enum [
+    browsers = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.enum [
           "brave"
           "chrome"
           "chromium"
@@ -33,7 +32,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.browserpass = {
       enable = true;
       browsers = [

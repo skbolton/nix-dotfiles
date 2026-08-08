@@ -8,52 +8,51 @@
 let
   cfg = config.delta.ai.opencode;
 in
-with lib;
 {
-  options.delta.ai.opencode = with types; {
-    enable = mkOption {
-      type = bool;
+  options.delta.ai.opencode = {
+    enable = lib.mkOption {
+      type = lib.types.bool;
       default = config.delta.ai.enable;
       description = "Whether to enable opencode";
     };
-    mcp = mkOption {
-      type = types.attrsOf types.unspecified;
+    mcp = lib.mkOption {
+      type = lib.types.attrsOf lib.types.unspecified;
       default = { };
     };
-    agent = mkOption {
-      type = types.attrsOf (
-        types.submodule {
+    agent = lib.mkOption {
+      type = lib.types.attrsOf (
+        lib.types.submodule {
           options = {
-            mode = mkOption {
-              type = enum [
+            mode = lib.mkOption {
+              type = lib.types.enum [
                 "primary"
                 "subagent"
               ];
             };
-            model = mkOption {
-              type = str;
+            model = lib.mkOption {
+              type = lib.types.str;
             };
-            prompt = mkOption {
-              type = str;
+            prompt = lib.mkOption {
+              type = lib.types.str;
               default = "";
             };
-            description = mkOption {
-              type = str;
+            description = lib.mkOption {
+              type = lib.types.str;
               default = "";
             };
-            tools = mkOption {
-              type = types.submodule {
+            tools = lib.mkOption {
+              type = lib.types.submodule {
                 options = {
-                  write = mkOption {
-                    type = bool;
+                  write = lib.mkOption {
+                    type = lib.types.bool;
                     default = false;
                   };
-                  edit = mkOption {
-                    type = bool;
+                  edit = lib.mkOption {
+                    type = lib.types.bool;
                     default = false;
                   };
-                  bash = mkOption {
-                    type = bool;
+                  bash = lib.mkOption {
+                    type = lib.types.bool;
                     default = false;
                   };
                 };
@@ -67,7 +66,7 @@ with lib;
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = [ pkgs.mpv ];
     programs.opencode = {
       enable = true;

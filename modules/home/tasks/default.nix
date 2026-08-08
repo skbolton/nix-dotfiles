@@ -5,17 +5,16 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.tasks;
 in
 {
-  options.delta.tasks = with types; {
-    enable = mkEnableOption "tasks";
-    sync = mkEnableOption "sync";
+  options.delta.tasks = {
+    enable = lib.mkEnableOption "tasks";
+    sync = lib.mkEnableOption "sync";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       taskwarrior-tui
       delta.task-fs
@@ -25,7 +24,7 @@ in
       tfs = "$HOME/TaskFS";
     };
 
-    programs.zsh.initContent = mkOrder 1000 /* bash */ ''
+    programs.zsh.initContent = lib.mkOrder 1000 /* bash */ ''
 
       function in() {
         task add $* proj:in
@@ -126,12 +125,12 @@ in
         };
       };
 
-      extraConfig = mkIf cfg.sync ''
+      extraConfig = lib.mkIf cfg.sync ''
         include ~/.config/task/server-credentials.conf
       '';
     };
 
-    systemd.user.services.taskwarrior-sync = mkIf cfg.sync {
+    systemd.user.services.taskwarrior-sync = lib.mkIf cfg.sync {
       Unit = {
         Description = "Taskwarrior sync";
       };
@@ -142,7 +141,7 @@ in
       };
     };
 
-    systemd.user.timers.taskwarrior-sync = mkIf cfg.sync {
+    systemd.user.timers.taskwarrior-sync = lib.mkIf cfg.sync {
       Unit = {
         Description = "Taskwarrior periodic sync";
       };
@@ -155,7 +154,7 @@ in
       };
     };
 
-    xdg.dataFile."task/hooks/on-modify-timelog" = mkIf config.delta.timetracking.enable {
+    xdg.dataFile."task/hooks/on-modify-timelog" = lib.mkIf config.delta.timetracking.enable {
       source = (lib.getExe pkgs.delta.task-timelog-hook);
     };
   };

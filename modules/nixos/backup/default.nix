@@ -5,20 +5,19 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.backup;
 in
 {
-  options.delta.backup = with types; {
-    enable = mkEnableOption "backup";
-    extraGroups = mkOption {
-      type = listOf str;
+  options.delta.backup = {
+    enable = lib.mkEnableOption "backup";
+    extraGroups = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
       default = [ ];
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       rsync
     ];

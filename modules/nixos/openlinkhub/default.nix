@@ -5,21 +5,20 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.openlinkhub;
   pkg = config.delta.openlinkhub.package;
 in
 {
-  options.delta.openlinkhub = with types; {
-    enable = mkEnableOption "openlinkhub";
-    package = mkOption {
-      type = package;
+  options.delta.openlinkhub = {
+    enable = lib.mkEnableOption "openlinkhub";
+    package = lib.mkOption {
+      type = lib.types.package;
       default = pkgs.delta.openlinkhub;
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users.users.openlinkhub = {
       isSystemUser = true;
       group = "openlinkhub";

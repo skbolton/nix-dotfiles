@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.desktop.macos.aerospace;
 in
 {
-  options.delta.desktop.macos.aerospace = with types; {
-    enable = mkEnableOption "Aerospace Window Manager";
+  options.delta.desktop.macos.aerospace = {
+    enable = lib.mkEnableOption "Aerospace Window Manager";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [ aerospace ];
 
     xdg.configFile."aerospace/aerospace.toml".text = /* toml */ ''

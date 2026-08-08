@@ -1,17 +1,17 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 let
   cfg = config.delta.ai;
 in
-with lib;
 {
-  options.delta.ai = with types; {
-    enable = mkEnableOption "ai";
-    aichat_theme = mkOption {
-      type = enum [
+  options.delta.ai = {
+    enable = lib.mkEnableOption "ai";
+    aichat_theme = lib.mkOption {
+      type = lib.types.enum [
         "light"
         "dark"
       ];
@@ -19,7 +19,7 @@ with lib;
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
 
     home.sessionVariables = {
       AICHAT_ENV_FILE = "$HOME/.config/sops-nix/secrets/aichat-env";
@@ -39,7 +39,7 @@ with lib;
     '';
 
     xdg.configFile."aichat/config.yaml".text = (
-      generators.toYAML { } {
+      lib.generators.toYAML { } {
         theme = cfg.aichat_theme;
         clients = [
           {
@@ -93,7 +93,7 @@ with lib;
       export $(xargs < "$HOME/.config/sops-nix/secrets/zaia-creds")
     '';
 
-    xdg.configFile."nvim/plugin/mappings/ai.lua".source = mkIf config.delta.neovim.enable ./ai.lua;
+    xdg.configFile."nvim/plugin/mappings/ai.lua".source = lib.mkIf config.delta.neovim.enable ./ai.lua;
 
     programs.neovim.plugins = with pkgs.vimPlugins; [
       {

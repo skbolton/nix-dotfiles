@@ -6,16 +6,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.dev-null-theme;
 in
 {
-  options.delta.dev-null-theme = with types; {
-    enable = mkEnableOption "dev-null theme";
+  options.delta.dev-null-theme = {
+    enable = lib.mkEnableOption "dev-null theme";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     gtk.enable = true;
     stylix.enable = true;
 

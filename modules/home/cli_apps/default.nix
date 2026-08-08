@@ -5,13 +5,12 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.cli_apps;
 in
 {
-  options.delta.cli_apps = with types; {
-    enable = mkEnableOption "cli applications";
+  options.delta.cli_apps = {
+    enable = lib.mkEnableOption "cli applications";
   };
 
   config = {

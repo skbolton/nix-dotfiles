@@ -6,13 +6,12 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.zsh;
 in
 {
-  options.delta.zsh = with types; {
-    enable = mkEnableOption "ZSH";
+  options.delta.zsh = {
+    enable = lib.mkEnableOption "ZSH";
   };
 
   config = {
@@ -89,8 +88,8 @@ in
         export NNN_FIFO=/tmp/nnn.fifo
       '';
 
-      initContent = mkMerge [
-        (mkOrder 550 ''
+      initContent = lib.mkMerge [
+        (lib.mkOrder 550 ''
           setopt AUTO_PUSHD           # Push the old directory onto the stack on cd
           setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack
           setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd
@@ -121,7 +120,7 @@ in
           # switch group using `<` and `>`
           zstyle ':fzf-tab:*' switch-group '<' '>'
         '')
-        (mkOrder 1000 ''
+        (lib.mkOrder 1000 ''
           autoload -Uz edit-command-line
           zle -N edit-command-line
           bindkey -M viins '^f' edit-command-line

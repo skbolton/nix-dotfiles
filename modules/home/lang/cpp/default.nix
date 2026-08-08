@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.lang.cpp;
 in
 {
-  options.delta.lang.cpp = with types; {
-    enable = mkEnableOption "C++ Language support";
+  options.delta.lang.cpp = {
+    enable = lib.mkEnableOption "C++ Language support";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       clang-tools
     ];

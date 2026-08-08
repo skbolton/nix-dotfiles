@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.finance;
 in
 {
-  options.delta.finance = with types; {
-    enable = mkEnableOption "Finance";
+  options.delta.finance = {
+    enable = lib.mkEnableOption "Finance";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       fava
       beancount

@@ -4,16 +4,15 @@
   pkgs,
   ...
 }:
-with lib;
 let
   cfg = config.delta.desktop.dunst;
 in
 {
-  options.delta.desktop.dunst = with types; {
-    enable = mkEnableOption "dunst";
+  options.delta.desktop.dunst = {
+    enable = lib.mkEnableOption "dunst";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       inter
       mpv

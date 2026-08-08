@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.kitty;
 in
 {
-  options.delta.kitty = with types; {
-    enable = mkEnableOption "Elixir Language support";
+  options.delta.kitty = {
+    enable = lib.mkEnableOption "Elixir Language support";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       nerd-fonts.roboto-mono
       ibm-plex

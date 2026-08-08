@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.lang.go;
 in
 {
-  options.delta.lang.go = with types; {
-    enable = mkEnableOption "Go Language support";
+  options.delta.lang.go = {
+    enable = lib.mkEnableOption "Go Language support";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       go
       gopls

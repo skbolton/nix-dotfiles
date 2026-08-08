@@ -5,22 +5,21 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.notes;
 in
 {
-  options.delta.notes = with types; {
-    enable = mkEnableOption "Notes";
-    notebook_dir = mkOption {
-      type = str;
+  options.delta.notes = {
+    enable = lib.mkEnableOption "Notes";
+    notebook_dir = lib.mkOption {
+      type = lib.types.str;
       description = "Primary nootbook root";
       default = "$HOME/Notes";
       example = "$HOME/Notes";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.sessionVariables = {
       JOURNALS = "$HOME/Documents/Logbook/Journal";
       ZK_NOTEBOOK_DIR = cfg.notebook_dir;

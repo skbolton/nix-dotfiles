@@ -1,14 +1,13 @@
 { lib, config, ... }:
 
-with lib;
 let
   cfg = config.delta.theme;
 in
 {
-  options.delta.theme = with types; {
-    enable = mkEnableOption "themeing";
-    palette = mkOption {
-      type = enum [
+  options.delta.theme = {
+    enable = lib.mkEnableOption "themeing";
+    palette = lib.mkOption {
+      type = lib.types.enum [
         "inspired"
         "embark"
         "dev-null"
@@ -17,7 +16,7 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     delta = {
       "embark-theme".enable = cfg.palette == "embark";
       "inspired-theme".enable = cfg.palette == "inspired";

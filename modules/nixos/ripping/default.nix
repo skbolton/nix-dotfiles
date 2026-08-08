@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.ripping;
 in
 {
-  options.delta.ripping = with types; {
-    enable = mkEnableOption "ripping";
+  options.delta.ripping = {
+    enable = lib.mkEnableOption "ripping";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       handbrake
       makemkv

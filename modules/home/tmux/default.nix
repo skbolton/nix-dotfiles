@@ -5,21 +5,20 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.tmux;
 in
 {
-  options.delta.tmux = with types; {
-    enable = mkEnableOption "tmux";
-    extraConfig = mkOption {
-      type = lines;
+  options.delta.tmux = {
+    enable = lib.mkEnableOption "tmux";
+    extraConfig = lib.mkOption {
+      type = lib.types.lines;
       description = "Extra lines to add at the end of tmux config";
       default = "";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.zsh = {
       shellAliases = {
         mux = "${pkgs.tmux}/bin/tmux";

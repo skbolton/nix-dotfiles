@@ -5,19 +5,18 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.tailscale;
 in
 {
-  options.delta.tailscale = with types; {
-    enable = mkEnableOption "tailscale";
-    package = mkPackageOption pkgs "tailscale" {
+  options.delta.tailscale = {
+    enable = lib.mkEnableOption "tailscale";
+    package = lib.mkPackageOption pkgs "tailscale" {
       default = "tailscale";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.tailscale.enable = true;
     services.tailscale.package = cfg.package;
     environment.systemPackages = [ cfg.package ];

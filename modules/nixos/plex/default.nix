@@ -5,25 +5,24 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.plex;
 in
 {
-  options.delta.plex = with types; {
-    enable = mkEnableOption "plex";
-    package = mkPackageOption pkgs.unstable "plex";
-    openFirewall = mkOption {
-      type = bool;
+  options.delta.plex = {
+    enable = lib.mkEnableOption "plex";
+    package = lib.mkPackageOption pkgs.unstable "plex";
+    openFirewall = lib.mkOption {
+      type = lib.types.bool;
       default = true;
     };
-    dataDir = mkOption {
-      type = str;
+    dataDir = lib.mkOption {
+      type = lib.types.str;
       default = "/var/lib/plex";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     services.plex = {
       enable = cfg.enable;
       openFirewall = cfg.openFirewall;

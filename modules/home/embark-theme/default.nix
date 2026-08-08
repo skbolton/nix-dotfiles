@@ -6,16 +6,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.embark-theme;
 in
 {
-  options.delta.embark-theme = with types; {
-    enable = mkEnableOption "embark theme";
+  options.delta.embark-theme = {
+    enable = lib.mkEnableOption "embark theme";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     gtk.enable = true;
     stylix.enable = true;
 

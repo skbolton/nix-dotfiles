@@ -5,17 +5,16 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.desktop.wayland.river;
 in
 {
-  options.delta.desktop.wayland.river = with types; {
-    enable = mkEnableOption "river";
+  options.delta.desktop.wayland.river = {
+    enable = lib.mkEnableOption "river";
   };
 
   config = {
-    home.packages = mkIf cfg.enable [
+    home.packages = lib.mkIf cfg.enable [
       pkgs.wl-clipboard
       pkgs.river-filtile
     ];

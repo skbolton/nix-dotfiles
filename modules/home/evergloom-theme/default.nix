@@ -6,16 +6,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.evergloom-theme;
 in
 {
-  options.delta.evergloom-theme = with types; {
-    enable = mkEnableOption "evergloom theme";
+  options.delta.evergloom-theme = {
+    enable = lib.mkEnableOption "evergloom theme";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     gtk.enable = true;
     stylix.enable = true;
 

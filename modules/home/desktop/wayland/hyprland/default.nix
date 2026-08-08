@@ -7,22 +7,21 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.desktop.wayland.hyprland;
 in
 {
-  options.delta.desktop.wayland.hyprland = with types; {
-    enable = mkEnableOption "hyprland";
+  options.delta.desktop.wayland.hyprland = {
+    enable = lib.mkEnableOption "hyprland";
 
-    autostart = mkOption {
-      type = listOf str;
+    autostart = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
       default = [ ];
       description = "List of applications to start at hyprland startup";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
 
     home.packages = with pkgs; [
       wl-clipboard

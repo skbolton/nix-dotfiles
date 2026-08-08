@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.cloud.gcloud;
 in
 {
-  options.delta.cloud.gcloud = with types; {
-    enable = mkEnableOption "gcloud";
+  options.delta.cloud.gcloud = {
+    enable = lib.mkEnableOption "gcloud";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.sessionVariables = {
       USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
     };

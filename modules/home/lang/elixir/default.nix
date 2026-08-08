@@ -6,16 +6,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.lang.elixir;
 in
 {
-  options.delta.lang.elixir = with types; {
-    enable = mkEnableOption "Elixir Language support";
+  options.delta.lang.elixir = {
+    enable = lib.mkEnableOption "Elixir Language support";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages =
       with pkgs;
       [

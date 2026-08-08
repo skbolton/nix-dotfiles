@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.inspired-theme;
 in
 {
-  options.delta.inspired-theme = with types; {
-    enable = mkEnableOption "inspired theme";
+  options.delta.inspired-theme = {
+    enable = lib.mkEnableOption "inspired theme";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
 
     home.packages = with pkgs; [
       recursive
@@ -47,10 +46,10 @@ in
     '';
 
     programs.kitty.settings = {
-      font_family = mkForce "Lilex";
-      bold_font = mkForce "Lilex Bold";
-      bold_italic_font = mkForce "Maple Mono Normal Bold Italic";
-      italic_font = mkForce "Maple Mono Normal Italic";
+      font_family = lib.mkForce "Lilex";
+      bold_font = lib.mkForce "Lilex Bold";
+      bold_italic_font = lib.mkForce "Maple Mono Normal Bold Italic";
+      italic_font = lib.mkForce "Maple Mono Normal Italic";
     };
 
     programs.neovim.plugins = [

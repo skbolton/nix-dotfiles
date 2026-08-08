@@ -5,16 +5,15 @@
   ...
 }:
 
-with lib;
 let
   cfg = config.delta.lang.nodejs;
 in
 {
-  options.delta.lang.nodejs = with types; {
-    enable = mkEnableOption "NodeJS Language support";
+  options.delta.lang.nodejs = {
+    enable = lib.mkEnableOption "NodeJS Language support";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       nodejs
       typescript-language-server

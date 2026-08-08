@@ -5,9 +5,8 @@
   ...
 }:
 
-with lib;
 {
-  config = mkIf config.delta.finance.enable {
+  config = lib.mkIf config.delta.finance.enable {
     home.packages = with pkgs; [
       beancount-language-server
     ];
