@@ -19,6 +19,10 @@
       enable = true;
       palette = "dev-null";
     };
+    rally = {
+      enable = true;
+      rallypoints = [ "$HOME/c" "$HOME/c/scralf-ui" "$HOME/c/plans" ];
+    };
     kitty.enable = true;
     lang = {
       elixir.enable = true;
