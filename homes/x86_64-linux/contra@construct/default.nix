@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   fonts.fontconfig.enable = true;
@@ -58,6 +58,7 @@
     packages = with pkgs; [
       docker-compose
       firefox
+      jira-cli-go
     ];
   };
 
