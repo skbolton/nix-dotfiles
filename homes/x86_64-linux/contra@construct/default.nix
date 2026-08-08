@@ -45,7 +45,8 @@
     export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
   '';
 
-  programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch";
+  programs.nh.enable = true;
+  programs.zsh.shellAliases.rebuild = "nh os switch '${config.home.homeDirectory}/c/nix-dotfiles#construct' --accept-flake-config";
 
   programs.man.generateCaches = true;
 
