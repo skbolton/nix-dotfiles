@@ -89,19 +89,7 @@
   delta.theme.palette = "dev-null";
   delta.tailscale.enable = true;
 
-  virtualisation.oci-containers = {
-    backend = "docker";
-
-    containers = {
-      cloudflared = {
-        image = "cloudflare/cloudflared:latest";
-        environmentFiles = [
-          config.sops.secrets.cloudflared-tunnel-creds.path
-        ];
-        cmd = [ "tunnel" "run" ];
-      };
-    };
-  };
+  virtualisation.docker.enable = true;
 
   delta.llama-swap = {
     enable = true;
@@ -115,7 +103,7 @@
       in
       {
         logLevel = "debug";
-        healthCheckTimeout = 900;
+        healthCheckTimeout = 1500;
         includeAliasesInList = true;
         models."gemma3:27b" = {
           cmd = ''
@@ -253,7 +241,7 @@
           environment = [
             "CUDA_VISIBLE_DEVICES=0,1,2"
           ];
-          aliases = [ "Delta" ];
+          # aliases = [ "Delta" ];
           ttl = 43200; # 12 hours
         };
         "Step-3.7-Flash" = {
@@ -289,6 +277,43 @@
             "CUDA_VISIBLE_DEVICES=0,1"
           ];
           ttl = 43200; # 12 hours
+        };
+        models."DeepSeek-V4-Flash" = {
+          cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
+          cmd = ''
+            ${pkgs.docker}/bin/docker run
+              --rm --name DeepSeek-V4-Flash
+              --shm-size 32g
+              --ipc host
+              --network host
+              --init
+              --device=nvidia.com/gpu=all
+              --ulimit memlock=-1:-1
+              --ulimit nofile=1048576:1048576
+              --ulimit stack=67108864
+              -v /models/DeepseekV4Flash/:/root/models:ro
+              -e PORT=''${PORT}
+              -e MODE=dspark
+              -e BACKEND=b12x-a8
+              -e TP_SIZE=3
+              -e DCP_SIZE=1
+              -e DSPARK_DEPTH_MODE=fixed
+              -e DSPARK_TOKENS=5
+              -e MAX_NUM_SEQS=16
+              -e MAX_MODEL_LEN=1048576
+              -e MAX_NUM_BATCHED_TOKENS=8192
+              -e GPU_MEMORY_UTILIZATION=0.975
+              -e LOAD_FORMAT=instanttensor
+              -e INSTANTTENSOR_BACKEND=BUFFERED
+              -e KV_OFFLOADING_SIZE=0
+              -e SERVED_MODEL_NAME=Delta
+              voipmonitor/vllm:gilded-gnosis-v20-vllm55db472-b12x6bc35fd-fi801d57a-cu132-20260807-r29
+              /usr/local/bin/serve-ds4-flash.sh
+          '';
+          environment = [
+            "CUDA_VISIBLE_DEVICES=0,1,2"
+          ];
+          aliases = [ "Delta" ];
         };
       };
   };
