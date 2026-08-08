@@ -26,6 +26,7 @@
       lua.enable = true;
       nix.enable = true;
       json.enable = true;
+      cpp.enable = true;
     };
   };
 
