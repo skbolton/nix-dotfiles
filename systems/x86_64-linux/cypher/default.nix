@@ -158,7 +158,7 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 3010 config.services.paperless.port config.services.searx.settings.server.port ];
+  networking.firewall.allowedTCPPorts = [ 3010 config.services.paperless.port config.services.searx.settings.server.port 9001 ];
 
   virtualisation.oci-containers = {
     backend = "docker";
@@ -170,6 +170,11 @@
           config.sops.secrets.cloudflared-tunnel-creds.path
         ];
         cmd = [ "tunnel" "run" ];
+      };
+
+      kokoro = {
+        image = "ghcr.io/remsky/kokoro-fastapi-gpu";
+        ports = [ "9001:8880" ];
       };
 
       paperless-gpt = {
