@@ -9,6 +9,29 @@ Nix flake-based dotfiles using [snowfall-lib](https://github.com/snowfallorg/lib
 - `modules/<context>/<name>/` - Reusable modules
 - `packages/<name>/` - Custom packages
 - `overlays/<name>/` - Nixpkgs overlays
+- `shells/<name>/` - Development shells
+
+## Development Shell
+
+This flake provides a default development shell at `shells/default/`, available as
+`devShells.<system>.default`. It includes the tools needed to work on this repository
+(for example, `sops` for editing secrets).
+
+```bash
+# Enter the shell directly
+nix develop
+```
+
+For direnv to automatically activate the shell when you enter this directory, `.envrc` must contain
+`use flake`, and the file must be allowed:
+
+```bash
+# Create .envrc if it doesn't exist yet
+echo "use flake" > .envrc
+
+# Trust it; from then on the shell loads automatically on cd
+direnv allow
+```
 
 ## Building Systems
 

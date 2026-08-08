@@ -14,10 +14,14 @@ Snowfall discovers components from directories containing a `default.nix`:
 | [Homes](https://snowfall.org/guides/lib/homes/) | `homes/<arch>/<user>@<host>/default.nix` | `homeConfigurations."<user>@<host>"` |
 | [Modules](https://snowfall.org/guides/lib/modules/) | `modules/{nixos,darwin,home}/**/default.nix` | Automatically imported into matching configurations |
 | [Packages](https://snowfall.org/guides/lib/packages/) | `packages/<name>/default.nix` | `packages.<system>.<name>` and `pkgs.delta.<name>` |
+| [Shells](https://snowfall.org/guides/lib/shells/) | `shells/<name>/default.nix` | `devShells.<system>.<name>` |
 | [Overlays](https://snowfall.org/guides/lib/overlays/) | `overlays/<name>/default.nix` | Exported and applied to the flake's package sets |
 
 Do not manually import shared modules; local supporting files may still be imported. This repository's `unstable`
 overlay provides `pkgs.unstable`.
+
+The default development shell lives at `shells/default/` and is entered with `nix develop` (or automatically via the
+repository's `.envrc` when direnv is present). It provides tools used to work on this flake, such as `sops`.
 
 Reusable module options use `config.delta.*` and `options.delta.*` by this project's convention. Snowfall discovers and
 imports the modules, but each module still declares its own options.
@@ -57,6 +61,7 @@ report it and do not describe validation as passing. Validation must not modify 
    nix build --no-link --no-update-lock-file '.#homeConfigurations."<user>@<host>".activationPackage'
    nix build --no-link --no-update-lock-file '.#install-isoConfigurations.<name>'
    nix build --no-link --no-update-lock-file '.#packages.<system>.<name>'
+   nix build --no-link --no-update-lock-file '.#devShells.<system>.default'
    ```
 
    Trace consumers before selecting outputs. Treat a shared module as affecting every configuration of the matching

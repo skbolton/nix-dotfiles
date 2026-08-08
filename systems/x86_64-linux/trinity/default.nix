@@ -129,7 +129,6 @@
     qmk
     obs-studio
     simple-scan
-    sops
     (google-cloud-sdk.withExtraComponents [
       google-cloud-sdk.components.kubectl
       google-cloud-sdk.components.gke-gcloud-auth-plugin

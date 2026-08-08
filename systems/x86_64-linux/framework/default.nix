@@ -93,7 +93,6 @@
     yubikey-manager
     pavucontrol
     pulseaudio
-    sops
   ];
 
   delta.tailscale.enable = true;
