@@ -171,5 +171,9 @@
         stylix.darwinModules.stylix
         nix-homebrew.darwinModules.nix-homebrew
       ];
+
+      outputs-builder = channels: {
+        formatter = channels.nixpkgs.nixpkgs-fmt;
+      };
     };
 }

@@ -108,7 +108,7 @@
   delta.tailscale.enable = true;
   delta.tailscale.package = pkgs.unstable.tailscale;
   delta.theme.enable = true;
-  delta.theme.palette = true;
+  delta.theme.palette = "embark";
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.pathsToLink = [ "/share/zsh" ];
@@ -162,12 +162,6 @@
     };
   };
 
-  programs.light = {
-    enable = true;
-    brightnessKeys.step = 5;
-    brightnessKeys.enable = true;
-  };
-
   services.tlp = {
     enable = true;
     settings = {
@@ -196,4 +190,3 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
 }
-

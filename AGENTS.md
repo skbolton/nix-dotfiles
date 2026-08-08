@@ -1,269 +1,82 @@
-# AGENTS.md
+# Agent Instructions
 
-This document provides guidance for agentic coding agents operating in this Nix dotfiles repository.
+This flake manages the NixOS, nix-darwin, Home Manager, installer, and package configurations for all machines in this
+repository. It uses [Snowfall Lib](https://snowfall.org/guides/lib/quickstart/) to discover files and generate flake
+outputs from their paths.
 
-## Repository Overview
+## Repository Layout
 
-This is a Nix flake-based dotfiles configuration using [snowfall-lib](@snowfall.txt) for module organization. The repository manages:
-- **Systems**: NixOS and darwin configurations in `systems/<arch>-<platform>/<hostname>/`
-- **Homes**: Home Manager configurations in `homes/<arch>-<platform>/<user>@<hostname>/`
-- **Modules**: Reusable modules in `modules/<platform>/<category>/<name>/`
-- **Packages**: Custom packages in `packages/<name>/`
-- **Overlays**: Nixpkgs overlays in `overlays/<name>/`
-- **Shells**: Development shells in `shells/<name>/`
+Snowfall discovers components from directories containing a `default.nix`:
 
-## Build Commands
+| Component | Discovery path | Output or behavior |
+| --- | --- | --- |
+| [Systems and images](https://snowfall.org/guides/lib/systems/) | `systems/<arch>/<name>/default.nix` | `nixosConfigurations.<name>`, `darwinConfigurations.<name>`, or `install-isoConfigurations.<name>` |
+| [Homes](https://snowfall.org/guides/lib/homes/) | `homes/<arch>/<user>@<host>/default.nix` | `homeConfigurations."<user>@<host>"` |
+| [Modules](https://snowfall.org/guides/lib/modules/) | `modules/{nixos,darwin,home}/**/default.nix` | Automatically imported into matching configurations |
+| [Packages](https://snowfall.org/guides/lib/packages/) | `packages/<name>/default.nix` | `packages.<system>.<name>` and `pkgs.delta.<name>` |
+| [Overlays](https://snowfall.org/guides/lib/overlays/) | `overlays/<name>/default.nix` | Exported and applied to the flake's package sets |
 
-### Flake Evaluation and Building
+Do not manually import shared modules; local supporting files may still be imported. This repository's `unstable`
+overlay provides `pkgs.unstable`.
 
-```bash
-# Evaluate the flake and show what will be built
-nix flake check
-nix flake show
+Reusable module options use `config.delta.*` and `options.delta.*` by this project's convention. Snowfall discovers and
+imports the modules, but each module still declares its own options.
 
-# Build a specific NixOS system configuration
-nixos-rebuild switch --flake .#<hostname>
+## Validation Workflow
 
-# Build a specific darwin system configuration
-darwin-rebuild switch --flake .#<hostname>
+After changing Nix code, run the applicable steps below from the repository root. If a check fails or cannot run,
+report it and do not describe validation as passing. Validation must not modify `flake.lock`; the commands below use
+`--no-update-lock-file` to enforce this.
 
-# Build home configuration
-home-manager switch --flake .#<user>@<hostname>
+1. **Format every changed Nix file.**
 
-# Build a specific package (auto-discovered from packages/ directory)
-nix build '.#packages.<system>.<name>'
-# Example: nix build '.#packages.x86_64-linux.frg'
+   ```bash
+   nix fmt --no-update-lock-file path/to/changed-file.nix [other-changed-file.nix...]
+   ```
 
-# Build installer ISO (from x86_64-install-iso)
-nix build '.#install-isoConfigurations.minimal'
-```
+2. **Parse every changed Nix file.** This catches syntax errors without evaluating the full configuration.
 
-### Development Shells
+   ```bash
+   nix-instantiate --parse path/to/changed-file.nix >/dev/null
+   ```
 
-```bash
-# Enter development shell (auto-discovers shells/ directory)
-nix develop
+3. **Check the flake.** This evaluates recognized flake outputs for the current system and builds any checks defined by
+   the flake. It does not fully validate Snowfall's Home Manager, nix-darwin, or generated-image outputs, so the
+   targeted validation in the next step is still required.
 
-# Enter a specific shell
-nix develop '.#default'
-```
+   ```bash
+   nix flake check --no-update-lock-file
+   ```
 
-### Linting and Formatting
+4. **Build every affected output that the current machine can build.** `--no-link` prevents creation of a `result`
+   symlink. Building realizes store paths but does not activate a system or Home Manager generation.
 
-```bash
-# Format all Nix files
-nix fmt
+   ```bash
+   nix build --no-link --no-update-lock-file '.#nixosConfigurations.<host>.config.system.build.toplevel'
+   nix build --no-link --no-update-lock-file '.#darwinConfigurations.<host>.system'
+   nix build --no-link --no-update-lock-file '.#homeConfigurations."<user>@<host>".activationPackage'
+   nix build --no-link --no-update-lock-file '.#install-isoConfigurations.<name>'
+   nix build --no-link --no-update-lock-file '.#packages.<system>.<name>'
+   ```
 
-# Check for syntax errors
-nix-instantiate --parse <file.nix>
+   Trace consumers before selecting outputs. Treat a shared module as affecting every configuration of the matching
+   type unless a narrower scope can be demonstrated. If an affected output targets a platform unavailable to the
+   current machine, at least force its evaluation by requesting its derivation path, then report that it was not built:
 
-# Evaluate with strictness checks
-nix eval --strict '<nixpkgs>' -A lib
+   ```bash
+   nix eval --no-update-lock-file --raw '.#darwinConfigurations.<host>.system.drvPath'
+   ```
 
-# Check for unused imports or references
-nix flake check --impure
-```
+Git-backed flake references ignore untracked files. To validate a new file without staging it, use a `path:.` reference
+(for example, `nix flake check --no-update-lock-file 'path:.'`) only after inspecting untracked files for secrets or
+generated artifacts that must not enter the Nix store. Do not stage files solely for validation.
 
-### Testing
+## Safety Boundary
 
-```bash
-# Dry-run NixOS system switch
-nixos-rebuild dry-run --flake .#<hostname>
+Configuration activation is always user-triggered. Never run commands that switch, boot, test, or activate a system or
+home generation, including `nixos-rebuild switch`, `nixos-rebuild boot`, `nixos-rebuild test`, `darwin-rebuild switch`,
+`home-manager switch`, or an activation script. Do not use `sudo` for validation. Building with `nix build --no-link`
+and evaluating with `nix flake check` or `nix eval` are allowed because they do not apply the configuration.
 
-# Dry-run darwin system switch
-darwin-rebuild dry-run --flake .#<hostname>
-
-# Dry-run home switch
-home-manager dry-switch --flake .#<user>@<hostname>
-
-# Check flake outputs
-nix flake check
-```
-
-## Code Style Guidelines
-
-### Module Structure
-
-All module files should follow this pattern:
-
-```nix
-{ lib, config, pkgs, inputs, ... }:
-
-with lib;
-let
-  cfg = config.delta.<module-name>;
-in
-{
-  options.delta.<module-name> = with types; {
-    enable = mkEnableOption "<description>";
-  };
-
-  config = {
-    # Module implementation
-  };
-}
-```
-
-### Imports
-
-- Use `with lib;` for Nixpkgs/lib functions
-- **Modules are auto-discovered** by snowfall-lib from `modules/` - do NOT manually import them
-- Only import local files: `./hardware-configuration.nix`, `./disks.nix`, `./rgb.nix`, etc.
-
-### Naming Conventions
-
-- **Option names**: Use `delta.` prefix (namespace defined in flake.nix)
-- **Hostnames**: Use lowercase descriptive names (neo, trinity, framework, construct, mouse, niobe)
-- **Packages**: Descriptive snake_case names (frg, dsearch, task-fs)
-- **Modules**: Descriptive names matching their function (git, zsh, tmux, neovim)
-- **Home configs**: Format is `<user>@<hostname>` (e.g., `orlando@neo`, `s.bolton@niobe`)
-
-### Attribute Sets
-
-- Use shorthand attribute set syntax when possible: `{ ... }` vs `rec { ... }`
-- Keep attribute sets organized by category
-- Use `mkIf`, `mkMerge`, `mkOrder` for conditional module composition
-
-### Package Definitions
-
-```nix
-{ writeShellApplication, ripgrep, bat, fzf, ... }:
-
-writeShellApplication {
-  name = "<package-name>";
-  runtimeInputs = [ ripgrep bat fzf ];
-  text = builtins.readFile ./script.sh;
-}
-```
-
-### Overlays
-
-```nix
-final: prev: {
-  # Add packages to final pkgs
-}
-```
-
-## Snowfall-lib Integration
-
-This flake uses `snowfall-lib.mkFlake` which auto-discovers:
-- Packages from `packages/**/default.nix`
-- Modules from `modules/**/default.nix`
-- Overlays from `overlays/**/default.nix`
-- Shells from `shells/**/default.nix`
-- Systems from `systems/**/default.nix`
-- Homes from `homes/**/default.nix`
-
-### Key Configuration (from flake.nix)
-
-- **Namespace**: `delta` (options use `delta.*`)
-- **Channels**: nixpkgs (nixos-25.11), unstable, nixos-generators, darwin, home-manager
-- **Global modules applied to all NixOS**: stylix, sops, disko
-- **Global modules applied to all darwin**: stylix, nix-homebrew
-- **Global modules applied to all homes**: sops
-
-### External Inputs Available
-
-- `inputs.nixpkgs` - Stable channel
-- `inputs.unstable` - Unstable channel
-- `inputs.darwin` - nix-darwin
-- `inputs.home-manager` - Home Manager
-- `inputs.sops-nix` - Secrets management
-- `inputs.stylix` - Theming
-- `inputs.disko` - Disk partitioning
-- `inputs.nixos-generators` - System image generation
-- `inputs.nixos-hardware` - Hardware-specific configs
-- `inputs.nix-homebrew` - Homebrew on macOS
-
-## Adding New Components
-
-### New NixOS System
-
-```bash
-# 1. Create directory structure
-mkdir -p systems/x86_64-linux/<hostname>
-
-# 2. Generate hardware config (from installer)
-# Copy /etc/nixos/hardware-configuration.nix to systems/x86_64-linux/<hostname>/hardware-configuration.nix
-
-# 3. Create default.nix with system configuration:
-{ lib, inputs, ... }:
-{
-  imports = [
-    ./hardware-configuration.nix
-  ];
-
-  networking.hostName = "<hostname>";
-}
-```
-
-### New Darwin System
-
-```bash
-# 1. Create directory structure
-mkdir -p systems/aarch64-darwin/<hostname>
-
-# 2. Create default.nix with system configuration
-```
-
-### New Home
-
-```bash
-# 1. Create directory structure
-mkdir -p homes/x86_64-linux/<user>@<hostname>
-
-# 2. Create default.nix with home configuration
-```
-
-### New Module
-
-Modules are auto-discovered by snowfall-lib - no manual imports needed.
-
-```bash
-# 1. Create directory (choose platform and category)
-mkdir -p modules/<nixos|home>/<category>/<module-name>
-
-# 2. Create default.nix
-```
-
-### New Package
-
-```bash
-# 1. Create directory
-mkdir -p packages/<package-name>
-
-# 2. Create default.nix
-```
-
-### New Overlay
-
-```bash
-# 1. Create directory
-mkdir -p overlays/<overlay-name>
-
-# 2. Create default.nix
-```
-
-## Secrets Management
-
-This repository uses sops-nix for secrets:
-- Secrets stored encrypted in repository (`.sops.yaml` defines rules)
-- Age keys at `~/.config/sops/age-key.txt` on target systems
-- Secrets referenced as `config.sops.secrets.<name>.path`
-
-## Common Patterns
-
-- Use `mkIf cfg.enable` to conditionally enable features
-- Use `mkMerge` to combine multiple configuration parts
-- Use `mkOrder` to control module evaluation order
-- Access unstable packages via `pkgs.unstable.<package>`
-- Access inputs in modules via `inputs.<input-name>`
-
-## Available Utilities
-
- snowfall-lib provides utilities accessible via `lib`:
-- `lib.snowfall.fs.*` - File system utilities (readDir, get-files, etc.)
-- `lib.snowfall.attrs.*` - Attribute set utilities (merge-deep, merge-shallow)
-- `lib.snowfall.system.*` - System configuration helpers
-- `lib.snowfall.home.*` - Home Manager helpers
-- `lib.snowfall.flake.*` - Flake utilities
+Never place private keys or plaintext secrets in Nix source, including the installer image configuration. Do not
+decrypt or modify secret material without explicit approval.
