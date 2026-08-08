@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -11,7 +16,10 @@ in
 
   config = mkIf cfg.enable {
 
-    home.packages = with pkgs; [ recursive maple-mono.Normal-TTF ];
+    home.packages = with pkgs; [
+      recursive
+      maple-mono.Normal-TTF
+    ];
     gtk.enable = true;
     stylix.enable = true;
 
@@ -189,13 +197,10 @@ in
       };
     };
 
-
     programs.btop.settings.color_theme = "flat-remix-light";
-
 
     delta.ai.aichat_theme = "light";
     xdg.configFile."aichat/light.tmTheme".source = ./github-light.conf;
 
   };
 }
-

@@ -1,4 +1,11 @@
-{ lib, config, pkgs, inputs, system, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
 
 with lib;
 let
@@ -42,11 +49,9 @@ in
         ]
         ++ cfg.autostart;
 
-        workspace = lib.lists.flatten (map
-          (m:
-            map (w: "${w}, monitor:${m.name}") (m.workspaces)
-          )
-          (config.monitors));
+        workspace = lib.lists.flatten (
+          map (m: map (w: "${w}, monitor:${m.name}") (m.workspaces)) (config.monitors)
+        );
 
         env = [ "XCURSOR_SIZE,24" ];
 
@@ -123,15 +128,14 @@ in
           }
         ];
 
-        monitor = map
-          (m:
-            let
-              resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-              position = "${toString m.x}x${toString m.y}";
-            in
-            "${m.name},${if m.enabled then "${resolution},${position},${toString m.scale}" else "disable"}"
-          )
-          (config.monitors);
+        monitor = map (
+          m:
+          let
+            resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+            position = "${toString m.x}x${toString m.y}";
+          in
+          "${m.name},${if m.enabled then "${resolution},${position},${toString m.scale}" else "disable"}"
+        ) (config.monitors);
 
         animations = {
           enabled = true;

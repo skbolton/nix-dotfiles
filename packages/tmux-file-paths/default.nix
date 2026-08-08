@@ -1,13 +1,17 @@
-{ writeShellApplication
-, fzf
-, ripgrep
-, bat
+{
+  writeShellApplication,
+  fzf,
+  ripgrep,
+  bat,
 }:
 
-writeShellApplication
-{
+writeShellApplication {
   name = "tmux-file-paths";
-  runtimeInputs = [ fzf ripgrep bat ];
+  runtimeInputs = [
+    fzf
+    ripgrep
+    bat
+  ];
   text = ''
     POSITIONAL_ARGS=()
     PREVIEWER="print"

@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -12,7 +17,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       nixd
-      nixpkgs-fmt
+      nixfmt
     ];
 
     xdg.configFile."nvim/lsp/nixd.lua".text = /* lua */ ''
@@ -25,7 +30,7 @@ in
             nixpkgs = {
               expr = "import <nixpkgs> { }",
              },
-            formatting = { command = { "nixpkgs-fmt" } },
+            formatting = { command = { "nixfmt" } },
             options = {
               nixos = {
                expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.' .. vim.fn.hostname() .. '.options',

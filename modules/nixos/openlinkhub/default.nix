@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -15,7 +20,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    users.users.openlinkhub = { isSystemUser = true; group = "openlinkhub"; };
+    users.users.openlinkhub = {
+      isSystemUser = true;
+      group = "openlinkhub";
+    };
     users.groups.openlinkhub = { };
 
     systemd.services.OpenLinkHub = {

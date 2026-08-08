@@ -27,7 +27,7 @@ writeShellScriptBin "dyear" ''
   * [October](./$(date '+%Y-10' --date "$1").md)
   * [November](./$(date '+%Y-11' --date "$1").md)
   * [December](./$(date '+%Y-12' --date "$1").md)
-  
+
   ---
   EOF
   }
@@ -39,4 +39,3 @@ writeShellScriptBin "dyear" ''
     nvim $FILEPATH
   fi
 ''
-

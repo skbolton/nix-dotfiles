@@ -29,4 +29,3 @@ writeShellScriptBin "dmonth" ''
     nvim $FILEPATH
   fi
 ''
-

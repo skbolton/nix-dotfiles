@@ -2,7 +2,10 @@
   description = "Stephen Bolton's Dotfiles";
 
   nixConfig = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     # substituters = [
     #   "https://cache.nixos.org"
     # ];
@@ -131,7 +134,8 @@
     hermes-agent.url = "github:NousResearch/hermes-agent";
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     inputs.snowfall-lib.mkFlake {
       inherit inputs;
 
@@ -173,7 +177,7 @@
       ];
 
       outputs-builder = channels: {
-        formatter = channels.nixpkgs.nixpkgs-fmt;
+        formatter = channels.nixpkgs.nixfmt;
       };
     };
 }

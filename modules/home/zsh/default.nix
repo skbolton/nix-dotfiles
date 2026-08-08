@@ -1,4 +1,10 @@
-{ lib, config, pkgs, inputs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 with lib;
 let
@@ -20,14 +26,25 @@ in
       autosuggestion.enable = true;
       enableCompletion = true;
       syntaxHighlighting.enable = true;
-      syntaxHighlighting.styles = { comment = "fg=8,bold"; };
+      syntaxHighlighting.styles = {
+        comment = "fg=8,bold";
+      };
       historySubstringSearch.enable = true;
       autocd = true;
-      cdpath = [ "." "$HOME" "$HOME/c" "$HOME/Documents" "$HOME/Notes" ];
+      cdpath = [
+        "."
+        "$HOME"
+        "$HOME/c"
+        "$HOME/Documents"
+        "$HOME/Notes"
+      ];
       defaultKeymap = "viins";
       dotDir = "${config.xdg.configHome}/zsh";
       plugins = [
-        { name = "fzf-tab"; src = "${pkgs.zsh-fzf-tab}/share/fzf-tab"; }
+        {
+          name = "fzf-tab";
+          src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+        }
       ];
       dirHashes = {
         co = "$HOME/.config";
@@ -114,7 +131,7 @@ in
           ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
           ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
           ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_UNDERLINE
-    
+
           tput setaf ''${$(( ( RANDOM % 6 ) + 1 ))} && printf "%*s\n" $(((''${#title}+$COLUMNS)/2)) "EYES UP, GUARDIAN"
 
           function w() {

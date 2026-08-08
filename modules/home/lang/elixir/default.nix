@@ -1,4 +1,10 @@
-{ lib, config, inputs, pkgs, ... }:
+{
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -10,13 +16,16 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      postgresql
-      elixir_1_17
-      erlang_27
-      inputs.expert-lsp.packages.${stdenv.hostPlatform.system}.expert
-    ] ++ lib.optional stdenv.isLinux inotify-tools
-    ++ lib.optional stdenv.isDarwin terminal-notifier;
+    home.packages =
+      with pkgs;
+      [
+        postgresql
+        elixir_1_17
+        erlang_27
+        inputs.expert-lsp.packages.${stdenv.hostPlatform.system}.expert
+      ]
+      ++ lib.optional stdenv.isLinux inotify-tools
+      ++ lib.optional stdenv.isDarwin terminal-notifier;
 
     home.sessionVariables = {
       ERL_AFLAGS = "-kernel shell_history enabled";
@@ -31,7 +40,12 @@ in
             )
     '';
 
-    programs.git.ignores = [ ".lexical" ".expert" "scratchpad.ex" ".elixir-ls" ];
+    programs.git.ignores = [
+      ".lexical"
+      ".expert"
+      "scratchpad.ex"
+      ".elixir-ls"
+    ];
 
     programs.zsh.shellAliases = {
       m = "iex -S mix";
@@ -53,4 +67,3 @@ in
     '';
   };
 }
-

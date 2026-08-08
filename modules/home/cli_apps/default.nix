@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -37,7 +42,10 @@ in
 
     programs.nnn = {
       enable = cfg.enable;
-      package = pkgs.nnn.override ({ withNerdIcons = true; extraMakeFlags = [ "O_NAMEFIRST=1" ]; });
+      package = pkgs.nnn.override ({
+        withNerdIcons = true;
+        extraMakeFlags = [ "O_NAMEFIRST=1" ];
+      });
       bookmarks = {
         d = "~/Documents";
         o = "~/Downloads";
@@ -74,7 +82,11 @@ in
         "--pointer ' '"
       ];
       historyWidgetOptions = [ "--pointer ' '" ];
-      defaultOptions = [ "--reverse" "--ansi" "--pointer '▌'" ];
+      defaultOptions = [
+        "--reverse"
+        "--ansi"
+        "--pointer '▌'"
+      ];
     };
 
     programs.skim = {
@@ -83,13 +95,19 @@ in
       defaultCommand = "${pkgs.fd}/bin/fd --type f --exclude '.git'";
       changeDirWidgetCommand = "${pkgs.fd}/bin/fd --type d";
       fileWidgetCommand = "${pkgs.fd}/bin/fd --type f";
-      defaultOptions = [ "--reverse" "--ansi" ];
+      defaultOptions = [
+        "--reverse"
+        "--ansi"
+      ];
     };
 
     programs.eza = {
       enable = cfg.enable;
       icons = "auto";
-      extraOptions = [ "--group-directories-first" "--header" ];
+      extraOptions = [
+        "--group-directories-first"
+        "--header"
+      ];
       git = true;
     };
 

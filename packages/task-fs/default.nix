@@ -1,6 +1,7 @@
-{ writeShellApplication
-, taskwarrior3
-, ...
+{
+  writeShellApplication,
+  taskwarrior3,
+  ...
 }:
 writeShellApplication {
   name = "task-fs";

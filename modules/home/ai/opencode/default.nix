@@ -1,4 +1,10 @@
-{ inputs, lib, config, pkgs, ... }:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   cfg = config.delta.ai.opencode;
 in
@@ -15,43 +21,48 @@ with lib;
       default = { };
     };
     agent = mkOption {
-      type = types.attrsOf (types.submodule {
-        options = {
-          mode = mkOption {
-            type = enum [ "primary" "subagent" ];
-          };
-          model = mkOption {
-            type = str;
-          };
-          prompt = mkOption {
-            type = str;
-            default = "";
-          };
-          description = mkOption {
-            type = str;
-            default = "";
-          };
-          tools = mkOption {
-            type = types.submodule {
-              options = {
-                write = mkOption {
-                  type = bool;
-                  default = false;
-                };
-                edit = mkOption {
-                  type = bool;
-                  default = false;
-                };
-                bash = mkOption {
-                  type = bool;
-                  default = false;
+      type = types.attrsOf (
+        types.submodule {
+          options = {
+            mode = mkOption {
+              type = enum [
+                "primary"
+                "subagent"
+              ];
+            };
+            model = mkOption {
+              type = str;
+            };
+            prompt = mkOption {
+              type = str;
+              default = "";
+            };
+            description = mkOption {
+              type = str;
+              default = "";
+            };
+            tools = mkOption {
+              type = types.submodule {
+                options = {
+                  write = mkOption {
+                    type = bool;
+                    default = false;
+                  };
+                  edit = mkOption {
+                    type = bool;
+                    default = false;
+                  };
+                  bash = mkOption {
+                    type = bool;
+                    default = false;
+                  };
                 };
               };
+              default = { };
             };
-            default = { };
           };
-        };
-      });
+        }
+      );
       default = { };
     };
   };
@@ -68,9 +79,15 @@ with lib;
       settings.mcp = cfg.mcp;
       settings.plugin = [ "opentmux" ];
       settings.agent = cfg.agent // {
-        build = { disable = true; };
-        plan = { disable = true; };
-        explore = { disable = true; };
+        build = {
+          disable = true;
+        };
+        plan = {
+          disable = true;
+        };
+        explore = {
+          disable = true;
+        };
       };
       settings.permission = {
         external_directory = {

@@ -1,4 +1,10 @@
-{ inputs, lib, config, pkgs, ... }:
+{
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -172,4 +178,3 @@ in
     xdg.configFile."aichat/dark.tmTheme".source = ./evergloom.tmTheme;
   };
 }
-

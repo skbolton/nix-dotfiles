@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -10,7 +15,7 @@ in
     extraConfig = mkOption {
       type = lines;
       description = "Extra lines to add at the end of tmux config";
-      default = '''';
+      default = "";
     };
   };
 
@@ -55,7 +60,11 @@ in
           extraConfig = ''
             set -g @fuzzback-popup 1
             set -g @fuzzback-popup-size '90%'
-            set -g @fuzzback-fzf-colors '${lib.strings.concatStringsSep "," (lib.attrsets.mapAttrsToList (name: value: name + ":" + value) config.programs.fzf.colors)}'
+            set -g @fuzzback-fzf-colors '${
+              lib.strings.concatStringsSep "," (
+                lib.attrsets.mapAttrsToList (name: value: name + ":" + value) config.programs.fzf.colors
+              )
+            }'
           '';
         }
       ];
@@ -98,7 +107,7 @@ in
       bind-key -T copy-mode-vi C-y send-keys -X rectangle-toggle
       bind-key -T copy-mode-vi Escape send-keys -X cancel
       bind-key C-r choose-buffer
-    
+
       #######################################################################
       # Panes
       #######################################################################
@@ -109,7 +118,7 @@ in
       bind K resize-pane -U 10
       bind L resize-pane -R 10
       bind o kill-pane -a
-    
+
       #######################################################################
       # Windows
       #######################################################################
@@ -118,7 +127,7 @@ in
       bind h previous-window
       bind l next-window
       bind > display-popup -E -w 50% -h 50%
-    
+
       #######################################################################
       # Clients
       #######################################################################
@@ -127,14 +136,14 @@ in
       bind BSpace switch-client -l
       bind C-d switch-client -t Delta
       bind C-h new-window -n  dijo
-    
+
       #######################################################################
       # Tasks
       #######################################################################
       bind s neww -n '󰈽' ${pkgs.delta.rally}/bin/rally.sh pick
       bind C-l split-window -h -l 120 zk log
       bind C-h split-window -h -l 150 fman
-    
+
       #######################################################################
       # Layers
       #######################################################################
@@ -168,4 +177,3 @@ in
     };
   };
 }
-

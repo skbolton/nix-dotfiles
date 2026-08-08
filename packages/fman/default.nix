@@ -1,5 +1,6 @@
-{ writeShellApplication
-, fzf
+{
+  writeShellApplication,
+  fzf,
 }:
 
 writeShellApplication {

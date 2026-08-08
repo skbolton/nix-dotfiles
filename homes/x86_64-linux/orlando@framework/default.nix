@@ -28,7 +28,10 @@
     kitty.enable = true;
     rally = {
       enable = true;
-      rallypoints = [ "$HOME" "$HOME/c" ];
+      rallypoints = [
+        "$HOME"
+        "$HOME/c"
+      ];
     };
     lang = {
       elixir.enable = true;
@@ -64,7 +67,14 @@
       height = 1920;
       scale = "1.666667, vrr, 1";
       refreshRate = 60;
-      workspaces = [ "1" "2" "3" "4" "5" "6" ];
+      workspaces = [
+        "1"
+        "2"
+        "3"
+        "4"
+        "5"
+        "6"
+      ];
     }
   ];
 
@@ -92,4 +102,3 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 }
-

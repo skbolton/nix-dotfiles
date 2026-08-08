@@ -11,13 +11,27 @@
       generateKey = true;
     };
 
-    secrets.orlando-password = { neededForUsers = true; };
-    secrets.contra-password = { neededForUsers = true; };
-    secrets.mira-password = { neededForUsers = true; };
-    secrets.beevey-password = { neededForUsers = true; };
-    secrets.mouse-password = { neededForUsers = true; };
-    secrets.construct-password = { neededForUsers = true; };
-    secrets.cypher-password = { neededForUsers = true; };
+    secrets.orlando-password = {
+      neededForUsers = true;
+    };
+    secrets.contra-password = {
+      neededForUsers = true;
+    };
+    secrets.mira-password = {
+      neededForUsers = true;
+    };
+    secrets.beevey-password = {
+      neededForUsers = true;
+    };
+    secrets.mouse-password = {
+      neededForUsers = true;
+    };
+    secrets.construct-password = {
+      neededForUsers = true;
+    };
+    secrets.cypher-password = {
+      neededForUsers = true;
+    };
     secrets.cloudflared-tunnel-creds = { };
     secrets.smb-creds = { };
     secrets.hermes-agent-env = { };

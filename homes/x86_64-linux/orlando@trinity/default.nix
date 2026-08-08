@@ -32,7 +32,10 @@
     };
     rally = {
       enable = true;
-      rallypoints = [ "$HOME" "$HOME/c" ];
+      rallypoints = [
+        "$HOME"
+        "$HOME/c"
+      ];
     };
     kitty.enable = true;
     lang = {
@@ -129,4 +132,3 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 }
-

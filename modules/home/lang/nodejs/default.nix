@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -8,7 +13,6 @@ in
   options.delta.lang.nodejs = with types; {
     enable = mkEnableOption "NodeJS Language support";
   };
-
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [

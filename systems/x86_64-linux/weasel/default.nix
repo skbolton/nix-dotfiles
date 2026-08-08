@@ -5,10 +5,15 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-wsl = {
+  wsl = {
     enable = true;
     wslConf = {
       automount.root = "/mnt";
@@ -17,16 +22,22 @@ wsl = {
     defaultUser = "orlando";
     startMenuLaunchers = true;
     usbip.enable = true;
-    usbip.autoAttach = ["2-3"];
+    usbip.autoAttach = [ "2-3" ];
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   networking.hostName = "weasel";
 
   users.users.orlando = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
     initialPassword = "temp";
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
@@ -41,7 +52,7 @@ wsl = {
   services.udev.packages = [ pkgs.yubikey-personalization ];
   services.pcscd.enable = true;
 
- environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     git
     zsh
     neovim

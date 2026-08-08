@@ -1,4 +1,10 @@
-{ lib, config, inputs, pkgs, ... }:
+{
+  lib,
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -159,13 +165,14 @@ in
 
     programs.btop.settings.color_theme = "embark";
 
-    xdg.configFile."btop/themes/embark.theme".source = pkgs.fetchFromGitHub
-      {
+    xdg.configFile."btop/themes/embark.theme".source =
+      pkgs.fetchFromGitHub {
         owner = "embark-theme";
         repo = "bashtop";
         rev = "master";
         sha256 = "sha256-HHoCVdCH4jCIK0JzoYagURcU722sBARtFkNeGPXuCNM=";
-      } + "/embark.theme";
+      }
+      + "/embark.theme";
 
     delta.ai.aichat_theme = "dark";
     xdg.configFile."aichat/dark.tmTheme".source = inputs.embark-bat-theme + "/Embark.tmTheme";
@@ -253,4 +260,3 @@ in
     };
   };
 }
-

@@ -1,8 +1,17 @@
-{ writeShellApplication, miller, youplot, jq }:
+{
+  writeShellApplication,
+  miller,
+  youplot,
+  jq,
+}:
 
 writeShellApplication {
   name = "qs";
-  runtimeInputs = [ miller youplot jq ];
+  runtimeInputs = [
+    miller
+    youplot
+    jq
+  ];
   text = ''
     METRIC_DIR="$HOME/Documents/Logbook/Trackers"
     _weight() {

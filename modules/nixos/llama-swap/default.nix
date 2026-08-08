@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   cfg = config.delta.llama-swap;
@@ -75,18 +76,20 @@ in
   config = lib.mkIf cfg.enable {
     systemd.services.llama-swap = {
       description = "Model swapping for LLaMA C++ Server / SGLang Docker";
-      after = [ "network.target" "docker.service" ]; # Ensure docker is ready
+      after = [
+        "network.target"
+        "docker.service"
+      ]; # Ensure docker is ready
       requires = [ "docker.service" ];
       wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
         Type = "exec";
         ExecStart = "${lib.getExe cfg.package} ${
-          lib.escapeShellArgs 
-            [
-              "--listen=${cfg.listenAddress}:${toString cfg.port}"
-              "--config=${configFile}"
-            ]
+          lib.escapeShellArgs [
+            "--listen=${cfg.listenAddress}:${toString cfg.port}"
+            "--config=${configFile}"
+          ]
         }";
         Restart = "on-failure";
         RestartSec = 3;
@@ -108,7 +111,12 @@ in
         ProcSubset = "all";
 
         # SGLang/Docker needs more syscalls than the standard @system-service
-        SystemCallFilter = [ "@system-service" "@network-io" "@file-system" "@process" ];
+        SystemCallFilter = [
+          "@system-service"
+          "@network-io"
+          "@file-system"
+          "@process"
+        ];
         SystemCallArchitectures = "native";
 
         # Keep some hardening but allow Docker interaction

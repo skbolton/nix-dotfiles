@@ -5,7 +5,11 @@
     "${modulesPath}/installer/cd-dvd/installation-cd-minimal-new-kernel-no-zfs.nix"
   ];
 
-  environment.systemPackages = with pkgs; [ neovim git networkmanager ];
+  environment.systemPackages = with pkgs; [
+    neovim
+    git
+    networkmanager
+  ];
 
   # if building a new host fill in the age key to make the key available in installer
   environment.etc."orlando-age-key.txt".text = ''

@@ -2,19 +2,27 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ inputs, config, lib, pkgs, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./disks.nix
-      ./hardware.nix
-    ];
+  imports = [
+    ./disks.nix
+    ./hardware.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
   nix = {
     settings = {
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       substituters = [
       ];
       trusted-public-keys = [
@@ -53,7 +61,10 @@
   users.users.nixos = {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.cypher-password.path;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOsUvi/j/2Gs8QkZ5S0/bGsK/BhmU8n24eDFCc7GZx9 cardno:13_494_293"
@@ -79,7 +90,10 @@
   delta.theme.enable = true;
   delta.theme.palette = "dev-null";
   delta.backup.enable = true;
-  delta.backup.extraGroups = [ "vaultwarden" "paperless" ];
+  delta.backup.extraGroups = [
+    "vaultwarden"
+    "paperless"
+  ];
 
   virtualisation.arion = {
     backend = "docker";
@@ -92,9 +106,15 @@
           "/var/zion-data/affine/config:/root/.affine/config"
         ];
         service.depends_on = {
-          redis = { condition = "service_healthy"; };
-          postgres = { condition = "service_healthy"; };
-          affine_migration = { condition = "service_completed_successfully"; };
+          redis = {
+            condition = "service_healthy";
+          };
+          postgres = {
+            condition = "service_healthy";
+          };
+          affine_migration = {
+            condition = "service_completed_successfully";
+          };
         };
 
         service.env_file = [ config.sops.secrets.affine-secrets.path ];
@@ -112,7 +132,11 @@
           "/var/zion-data/affine/storage:/root/.affine/storage"
           "/var/zion-data/affine/config:/root/.affine/config"
         ];
-        service.command = [ "sh" "-c" "node ./scripts/self-host-predeploy.js" ];
+        service.command = [
+          "sh"
+          "-c"
+          "node ./scripts/self-host-predeploy.js"
+        ];
         service.env_file = [ config.sops.secrets.affine-secrets.path ];
         service.environment = {
           REDIS_SERVER_HOST = "redis";
@@ -128,7 +152,13 @@
       services.redis = {
         service.image = "redis";
         service.healthcheck = {
-          test = [ "CMD" "redis-cli" "--raw" "incr" "ping" ];
+          test = [
+            "CMD"
+            "redis-cli"
+            "--raw"
+            "incr"
+            "ping"
+          ];
           interval = "10s";
           timeout = "5s";
           retries = 5;
@@ -147,8 +177,14 @@
           POSTGRES_HOST_AUTH_METHOD = "trust";
         };
         service.healthcheck = {
-          test =
-            [ "CMD" "pg_isready" "-U" "affine" "-d" "affine" ];
+          test = [
+            "CMD"
+            "pg_isready"
+            "-U"
+            "affine"
+            "-d"
+            "affine"
+          ];
           interval = "10s";
           timeout = "5s";
           retries = 5;
@@ -158,7 +194,12 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 3010 config.services.paperless.port config.services.searx.settings.server.port 9001 ];
+  networking.firewall.allowedTCPPorts = [
+    3010
+    config.services.paperless.port
+    config.services.searx.settings.server.port
+    9001
+  ];
 
   virtualisation.oci-containers = {
     backend = "docker";
@@ -169,7 +210,10 @@
         environmentFiles = [
           config.sops.secrets.cloudflared-tunnel-creds.path
         ];
-        cmd = [ "tunnel" "run" ];
+        cmd = [
+          "tunnel"
+          "run"
+        ];
       };
 
       kokoro = {
@@ -258,7 +302,10 @@
       server.port = 8333;
       server.bind_address = "0.0.0.0";
       server.secret_key = "$SEARXNG_SECRET_KEY";
-      search.formats = [ "html" "json" ];
+      search.formats = [
+        "html"
+        "json"
+      ];
     };
     environmentFile = config.sops.secrets.searxng-secrets.path;
   };
@@ -347,7 +394,10 @@
         groups.shared = {
           swap = false;
           exclusive = true;
-          members = [ "Qwen3.5-27b" "Qwen3.5-27b-nothink" ];
+          members = [
+            "Qwen3.5-27b"
+            "Qwen3.5-27b-nothink"
+          ];
         };
       };
   };
@@ -394,5 +444,3 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
 }
-
-

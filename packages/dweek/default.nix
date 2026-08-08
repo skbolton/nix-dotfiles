@@ -28,4 +28,3 @@ writeShellScriptBin "dweek" ''
     nvim $FILEPATH
   fi
 ''
-

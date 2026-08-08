@@ -3,7 +3,15 @@
 {
   programs.home-manager.enable = true;
 
-  home.packages = with pkgs; [ docker-compose zk rancher docker docker-credential-helpers raycast wget ];
+  home.packages = with pkgs; [
+    docker-compose
+    zk
+    rancher
+    docker
+    docker-credential-helpers
+    raycast
+    wget
+  ];
 
   delta = {
     ai = {
@@ -40,7 +48,13 @@
     };
     rally = {
       enable = true;
-      rallypoints = [ "$HOME/c" "$HOME/c/printserver" "$HOME/c/cycler" "$HOME/c/otis" "$HOME/c/scralf-ui" ];
+      rallypoints = [
+        "$HOME/c"
+        "$HOME/c/printserver"
+        "$HOME/c/cycler"
+        "$HOME/c/otis"
+        "$HOME/c/scralf-ui"
+      ];
     };
     theme.enable = true;
     theme.palette = "inspired";

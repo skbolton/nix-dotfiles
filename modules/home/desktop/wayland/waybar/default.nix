@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -14,7 +19,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.noto-fonts pkgs.playerctl ];
+    home.packages = [
+      pkgs.noto-fonts
+      pkgs.playerctl
+    ];
 
     services.playerctld.enable = true;
 
@@ -27,9 +35,24 @@ in
           start_hidden = false;
           margin = "0";
           layer = "top";
-          modules-left = optional config.delta.desktop.wayland.hyprland.enable "hyprland/workspaces" ++ optionals config.delta.desktop.wayland.river.enable [ "river/tags" "river/mode" ];
+          modules-left =
+            optional config.delta.desktop.wayland.hyprland.enable "hyprland/workspaces"
+            ++ optionals config.delta.desktop.wayland.river.enable [
+              "river/tags"
+              "river/mode"
+            ];
           modules-center = [ "mpris" ];
-          modules-right = [ "network#interface" "network#speed" "pulseaudio" "cpu" "temperature" "backlight" "battery" "clock" "tray" ];
+          modules-right = [
+            "network#interface"
+            "network#speed"
+            "pulseaudio"
+            "cpu"
+            "temperature"
+            "backlight"
+            "battery"
+            "clock"
+            "tray"
+          ];
 
           persistent_workspaces = {
             "1" = [ ];
@@ -50,7 +73,12 @@ in
 
           "river/tags" = {
             num-tags = 5;
-            tag-labels = [ " " "󰈹 " "󰙯 " "󰝚 " ];
+            tag-labels = [
+              " "
+              "󰈹 "
+              "󰙯 "
+              "󰝚 "
+            ];
           };
 
           mpris = {
@@ -89,18 +117,32 @@ in
 
           temperature = {
             format = "{icon} {temperatureC} °C";
-            format-icons = [ "" "" "" "󰈸" ];
+            format-icons = [
+              ""
+              ""
+              ""
+              "󰈸"
+            ];
           };
 
           backlight = {
             format = "{icon} {percent}%";
-            format-icons = [ "󰃜" "󰃛" "󰃚 " ];
+            format-icons = [
+              "󰃜"
+              "󰃛"
+              "󰃚 "
+            ];
           };
 
           battery = {
             format-critical = "{icon} {capacity}%";
             format = "{icon} {capacity}%";
-            format-icons = [ "󰁺" "󰁾" "󰂀" "󱟢" ];
+            format-icons = [
+              "󰁺"
+              "󰁾"
+              "󰂀"
+              "󱟢"
+            ];
           };
 
           clock = {
@@ -159,7 +201,7 @@ in
         #tray {
           padding: 0 4px;
         }
-      
+
         #tray * {
           padding: 0;
           margin: 0;

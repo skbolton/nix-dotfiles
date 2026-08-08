@@ -21,7 +21,10 @@
     };
     rally = {
       enable = true;
-      rallypoints = [ "$HOME" "$HOME/c" ];
+      rallypoints = [
+        "$HOME"
+        "$HOME/c"
+      ];
     };
     desktop.wayland.hyprland = {
       enable = true;
@@ -66,7 +69,3 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 }
-
-
-
-

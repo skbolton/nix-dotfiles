@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -9,8 +14,20 @@ in
     enable = mkEnableOption "password management";
 
     browsers = mkOption {
-      type = types.listOf (types.enum [ "brave" "chrome" "chromium" "firefox" "librewolf" "vivaldi" ]);
-      default = [ "firefox" "brave" ];
+      type = types.listOf (
+        types.enum [
+          "brave"
+          "chrome"
+          "chromium"
+          "firefox"
+          "librewolf"
+          "vivaldi"
+        ]
+      );
+      default = [
+        "firefox"
+        "brave"
+      ];
       example = [ "firefox" ];
       description = "Which browsers to install browserpass for";
     };
@@ -19,7 +36,10 @@ in
   config = mkIf cfg.enable {
     programs.browserpass = {
       enable = true;
-      browsers = [ "firefox" "brave" ];
+      browsers = [
+        "firefox"
+        "brave"
+      ];
     };
 
     programs.zsh.shellAliases = {

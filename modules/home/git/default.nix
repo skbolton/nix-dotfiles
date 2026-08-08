@@ -97,19 +97,25 @@
       };
 
       log.abbrevCommit = true;
-      blame = { date = "relative"; };
+      blame = {
+        date = "relative";
+      };
       branch.sort = "-committerdate";
       tag.sort = "-taggerdate";
       rebase.autosquash = true;
       rebase.missingCommitsCheck = "warn";
-      merge = { conflictStyle = "zdiff3"; };
+      merge = {
+        conflictStyle = "zdiff3";
+      };
       pull.ff = "only";
       pull.rebase = true;
       pull.default = "current";
       push.autoSetupRemote = true;
       push.default = "current";
       push.followTags = true;
-      checkout = { defaultRemote = "origin"; };
+      checkout = {
+        defaultRemote = "origin";
+      };
       commit = {
         verbose = true;
         template = "~/.config/git/commit-template";
@@ -120,26 +126,35 @@
       url."git@github.com:".insteadOf = "gh:";
 
       gtr.worktrees.dir = "../";
-      gtr.copy.include = [ ".envrc" ".devenv.*" ];
+      gtr.copy.include = [
+        ".envrc"
+        ".devenv.*"
+      ];
       gtr.copy.includeDirs = [ ".direnv" ];
     };
 
-    ignores = [ "stevies" ".envrc" ".envrc.private" ".direnv" ".vim" ];
+    ignores = [
+      "stevies"
+      ".envrc"
+      ".envrc.private"
+      ".direnv"
+      ".vim"
+    ];
   };
 
   xdg.configFile."git/commit-template" = {
     text = ''
       # Title: Summary, imperative, Capital starting, don't end with period
       # No more than 50 chars. Which is less than this  |
-      
+
       # Remember the blank between the title and body
-      
+
       # Body: Explain *what* and *why* not *how*
-      
+
       # Space between Body and Footer
-      
+
       # Footer: Project metadata (area, ticket hash, related)
-      
+
       # Great example commit
       # Capitalized, short (50 chars or less) summary
       # 

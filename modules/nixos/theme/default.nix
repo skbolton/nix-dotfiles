@@ -8,7 +8,11 @@ in
   options.delta.theme = with types; {
     enable = mkEnableOption "themeing";
     palette = mkOption {
-      type = enum [ "inspired" "embark" "dev-null" ];
+      type = enum [
+        "inspired"
+        "embark"
+        "dev-null"
+      ];
       default = "embark";
     };
   };

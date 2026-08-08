@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 with lib;
 let
@@ -18,7 +23,9 @@ in
       rsync
     ];
 
-    users.groups.backup = { name = "backup"; };
+    users.groups.backup = {
+      name = "backup";
+    };
 
     users.users.backup = {
       isNormalUser = true;
@@ -30,4 +37,3 @@ in
     };
   };
 }
-

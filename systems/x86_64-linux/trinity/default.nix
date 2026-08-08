@@ -2,14 +2,18 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running `nixos-help`).
 
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -18,7 +22,10 @@
 
   fonts.fontDir.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   nix.settings.download-buffer-size = 1048576000; # 1GB
   nix.settings.trusted-users = [ "@wheel" ];
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
@@ -82,7 +89,13 @@
   users.users.orlando = {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.orlando-password.path;
-    extraGroups = [ "wheel" "docker" "networkmanager" "scanner" "lp" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "docker"
+      "networkmanager"
+      "scanner"
+      "lp"
+    ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOsUvi/j/2Gs8QkZ5S0/bGsK/BhmU8n24eDFCc7GZx9 cardno:13_494_293"
@@ -92,7 +105,10 @@
   users.users.contra = {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.contra-password.path;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOsUvi/j/2Gs8QkZ5S0/bGsK/BhmU8n24eDFCc7GZx9 cardno:13_494_293"
@@ -169,7 +185,11 @@
     extraConfig.pipewire.adjust-sample-rate = {
       "context.properties" = {
         "default.clock.rate" = 192000;
-        "defautlt.allowed-rates" = [ 192000 48000 44100 ];
+        "defautlt.allowed-rates" = [
+          192000
+          48000
+          44100
+        ];
       };
     };
   };
@@ -230,4 +250,3 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
 }
-

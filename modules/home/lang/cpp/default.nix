@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 with lib;
 let
@@ -50,7 +55,7 @@ in
           vim.cmd.edit(vim.uri_to_fname(result))
         end, bufnr)
       end
-      
+
       local function symbol_info(bufnr, client)
         local method_name = 'textDocument/symbolInfo'
         ---@diagnostic disable-next-line:param-type-mismatch

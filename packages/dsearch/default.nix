@@ -1,8 +1,17 @@
-{ writeShellApplication, ripgrep, bat, fzf }:
+{
+  writeShellApplication,
+  ripgrep,
+  bat,
+  fzf,
+}:
 
 writeShellApplication {
   name = "dsearch";
-  runtimeInputs = [ ripgrep bat fzf ];
+  runtimeInputs = [
+    ripgrep
+    bat
+    fzf
+  ];
   text = ''
     rm -f /tmp/rg-fzf-{r,f}
     RG_PREFIX="rg -l --color=always --smart-case "

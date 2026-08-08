@@ -31,26 +31,46 @@
               # Subvolume name is different from mountpoint
               "@" = {
                 mountpoint = "/";
-                mountOptions = [ "compress=zstd" "space_cache=v2" "noatime" ];
+                mountOptions = [
+                  "compress=zstd"
+                  "space_cache=v2"
+                  "noatime"
+                ];
               };
               # Subvolume name is the same as the mountpoint
               "@home" = {
-                mountOptions = [ "compress=zstd" "space_cache=v2" "noatime" ];
+                mountOptions = [
+                  "compress=zstd"
+                  "space_cache=v2"
+                  "noatime"
+                ];
                 mountpoint = "/home";
               };
               # Parent is not mounted so the mountpoint must be set
               "@nix" = {
-                mountOptions = [ "compress=zstd" "noatime" "space_cache=v2" ];
+                mountOptions = [
+                  "compress=zstd"
+                  "noatime"
+                  "space_cache=v2"
+                ];
                 mountpoint = "/nix";
               };
 
               "@var/log" = {
-                mountOptions = [ "compress=zstd" "noatime" "space_cache=v2" ];
+                mountOptions = [
+                  "compress=zstd"
+                  "noatime"
+                  "space_cache=v2"
+                ];
                 mountpoint = "/var/log";
               };
 
               "@var/zion-data" = {
-                mountOptions = [ "compress=zstd" "noatime" "space_cache=v2" ];
+                mountOptions = [
+                  "compress=zstd"
+                  "noatime"
+                  "space_cache=v2"
+                ];
                 mountpoint = "/var/zion-data";
               };
             };
@@ -60,4 +80,3 @@
     };
   };
 }
-

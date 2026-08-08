@@ -1,7 +1,8 @@
-{ lib
-, config
-, pkgs
-, ...
+{
+  lib,
+  config,
+  pkgs,
+  ...
 }:
 
 with lib;
@@ -15,7 +16,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ taskwarrior-tui delta.task-fs ];
+    home.packages = with pkgs; [
+      taskwarrior-tui
+      delta.task-fs
+    ];
 
     programs.zsh.dirHashes = {
       tfs = "$HOME/TaskFS";
@@ -47,7 +51,7 @@ in
       function tweek() {
         if [[ $(date +%w) == "0" ]] && task sched.before:eow+6d or +WEEK sched || task sched.before:eow-1d or +WEEK sched
       }
-      
+
       function tnweek() {
         task sched.after:eow-1d sched.before:eow+6d or due.after:eow-1d due.before:eow+6d sched
       }
@@ -128,7 +132,9 @@ in
     };
 
     systemd.user.services.taskwarrior-sync = mkIf cfg.sync {
-      Unit = { Description = "Taskwarrior sync"; };
+      Unit = {
+        Description = "Taskwarrior sync";
+      };
       Service = {
         CPUSchedulingPolicy = "idle";
         IOSchedulingClass = "idle";
@@ -137,12 +143,16 @@ in
     };
 
     systemd.user.timers.taskwarrior-sync = mkIf cfg.sync {
-      Unit = { Description = "Taskwarrior periodic sync"; };
+      Unit = {
+        Description = "Taskwarrior periodic sync";
+      };
       Timer = {
         Unit = "taskwarrior-sync.service";
         OnCalendar = "*:0/15";
       };
-      Install = { WantedBy = [ "timers.target" ]; };
+      Install = {
+        WantedBy = [ "timers.target" ];
+      };
     };
 
     xdg.dataFile."task/hooks/on-modify-timelog" = mkIf config.delta.timetracking.enable {

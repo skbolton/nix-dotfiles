@@ -1,7 +1,16 @@
-{ writeShellApplication, ripgrep, bat, fzf }:
+{
+  writeShellApplication,
+  ripgrep,
+  bat,
+  fzf,
+}:
 
 writeShellApplication {
   name = "frg";
-  runtimeInputs = [ ripgrep bat fzf ];
+  runtimeInputs = [
+    ripgrep
+    bat
+    fzf
+  ];
   text = builtins.readFile ./frg.sh;
 }

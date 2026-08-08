@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 with lib;
 let
   cfg = config.delta.desktop.dunst;
@@ -8,9 +13,11 @@ in
     enable = mkEnableOption "dunst";
   };
 
-
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ inter mpv ];
+    home.packages = with pkgs; [
+      inter
+      mpv
+    ];
 
     services.dunst = {
       enable = true;

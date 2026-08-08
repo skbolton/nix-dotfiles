@@ -55,7 +55,14 @@
       height = 1800;
       scale = "1.25";
       refreshRate = 60;
-      workspaces = [ "1" "2" "3" "4" "5" "6" ];
+      workspaces = [
+        "1"
+        "2"
+        "3"
+        "4"
+        "5"
+        "6"
+      ];
     }
   ];
 
@@ -83,4 +90,3 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 }
-

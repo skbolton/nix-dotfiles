@@ -21,7 +21,11 @@
     };
     rally = {
       enable = true;
-      rallypoints = [ "$HOME/c" "$HOME/c/scralf-ui" "$HOME/c/plans" ];
+      rallypoints = [
+        "$HOME/c"
+        "$HOME/c/scralf-ui"
+        "$HOME/c/plans"
+      ];
     };
     kitty.enable = true;
     lang = {
@@ -66,4 +70,3 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 }
-

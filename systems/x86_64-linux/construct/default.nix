@@ -2,20 +2,28 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ inputs, config, lib, pkgs, ... }:
+{
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./disks.nix
-      ./hardware.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./disks.nix
+    ./hardware.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
   nix = {
     settings = {
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       substituters = [
         "https://cache.nixos-cuda.org"
       ];
@@ -59,7 +67,10 @@
   users.users.contra = {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.contra-password.path;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOsUvi/j/2Gs8QkZ5S0/bGsK/BhmU8n24eDFCc7GZx9 cardno:13_494_293"
@@ -348,7 +359,10 @@
     settings.model.base_url = "http://localhost:11434/v1";
     settings.model.default = "Delta";
     mcpServers = {
-      fastmail = { url = "https://api.fastmail.com/mcp"; auth = "oauth"; };
+      fastmail = {
+        url = "https://api.fastmail.com/mcp";
+        auth = "oauth";
+      };
     };
     settings.web.search_backend = "searxng";
     addToSystemPackages = true;
@@ -358,7 +372,9 @@
     createUser = false;
   };
 
-  networking.firewall.allowedTCPPorts = [ (lib.toIntBase10 config.services.hermes-agent.environment.API_SERVER_PORT) ];
+  networking.firewall.allowedTCPPorts = [
+    (lib.toIntBase10 config.services.hermes-agent.environment.API_SERVER_PORT)
+  ];
 
   users.groups.hermes = { };
   users.users.mira = {
@@ -404,5 +420,3 @@
   system.stateVersion = "24.11"; # Did you read the comment?
 
 }
-
-
