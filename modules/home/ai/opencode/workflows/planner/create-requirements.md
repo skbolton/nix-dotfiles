@@ -1,9 +1,4 @@
----
-name: create-requirements
-description: Create a reviewable requirements document grounded in the user request and the current codebase.
----
-
-Use this skill when you need to turn a requested change into a concrete requirements document.
+Use this document when you need to turn a requested change into a concrete requirements document.
 
 ## Goal
 

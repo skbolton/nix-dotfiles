@@ -1,9 +1,4 @@
----
-name: create-tasklist
-description: Create an execution-ready markdown task list with nested checkboxes for one-task-at-a-time agent workflows.
----
-
-Use this skill when you need to turn reviewed requirements into a task list that an orchestrator can execute one checkbox at a time.
+Use this document when you need to turn reviewed requirements into a task list that an orchestrator can execute one checkbox at a time.
 
 ## Goal
 
@@ -106,7 +101,7 @@ Nested context is encouraged but not required at task-list creation time. The or
 
 - Add explicit validation tasks when tests, builds, manual verification, or rollout checks are needed.
 - Keep validation near the work it verifies or in a final validation section when that is clearer.
-- When writing tests as part of validation, apply the **test classification** guidance from the `create-requirements` skill: only write tests that represent permanent behavior contracts. Transition verification tests and regression guard tests for the old flag-off path are valuable during development and review — retain them as scaffolding with clear comments marking them as such, so the reviewer can see what was verified. They are **not committed** but they are kept in the code during review.
+- When writing tests as part of validation, apply the **test classification** guidance from the `create-requirements` workflow asset: only write tests that represent permanent behavior contracts. Transition verification tests and regression guard tests for the old flag-off path are valuable during development and review — retain them as scaffolding with clear comments marking them as such, so the reviewer can see what was verified. They are **not committed** but they are kept in the code during review.
 
 ### Post-Approval Cleanup
 

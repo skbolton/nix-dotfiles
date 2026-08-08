@@ -72,6 +72,18 @@ with lib;
         plan = { disable = true; };
         explore = { disable = true; };
       };
+      settings.permission = {
+        external_directory = {
+          "~/.config/opencode/**" = "allow";
+        };
+        edit = {
+          "~/.config/opencode/**" = "ask";
+        };
+      };
+      settings.references.agents = {
+        path = "~/c/nix-dotfiles/modules/home/ai/opencode/agents";
+        description = "Where ai agents are defined in case improvements or modifications need to be made";
+      };
       settings.provider.zionlab = {
         name = "Zionlab";
         npm = "@ai-sdk/openai-compatible";
@@ -120,6 +132,11 @@ with lib;
 
     xdg.configFile."opencode/agents" = {
       source = ./agents;
+      recursive = true;
+    };
+
+    xdg.configFile."opencode/workflows" = {
+      source = ./workflows;
       recursive = true;
     };
 
