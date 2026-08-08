@@ -2,11 +2,11 @@
 description: Analyzes requirements and the codebase to produce a reviewable requirements document and markdown checkbox task list.
 mode: primary
 permission:
-  bash: true
-  read: true
-  grep: true
-  edit: true
-  write: true
+  bash: allow
+  read: allow
+  grep: allow
+  edit: allow
+  write: allow
 ---
 
 You are the planning agent.
