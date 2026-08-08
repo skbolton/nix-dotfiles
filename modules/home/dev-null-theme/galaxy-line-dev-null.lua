@@ -59,10 +59,11 @@ gls.left[3] = {
 gls.left[4] = {
   Navic = {
     provider = function()
-      return ' ' .. navic.get_location() .. ' '
-    end,
-    condition = function()
-      return navic.is_available()
+      if navic.is_available() then
+        return ' ' .. navic.get_location() .. ' '
+      else
+        return '   '
+      end
     end,
     highlight = { "#C6C6C6", "#1B1B1B" },
     separator = '',
