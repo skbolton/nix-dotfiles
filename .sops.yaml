@@ -13,7 +13,7 @@ keys:
     - &weasel age1nfj07rm4gxdx7g4hfzqs6y0rfchpg4cx2f4a3ledkd32tk45uvsqtflged
 
 creation_rules:
-  - path_regex: secrets/system-secrets.yaml$
+  - path_regex: ^secrets/nixos/.*
     key_groups:
     - age:
       - *orlando
@@ -25,7 +25,7 @@ creation_rules:
       - *construct
       - *cypher
       - *weasel
-  - path_regex: secrets/home-secrets.yaml$
+  - path_regex: ^secrets/home/.*
     key_groups:
     - age:
       - *orlando

@@ -201,21 +201,27 @@
     9001
   ];
 
+  sops.secrets.cloudflared-tunnel-creds = { };
+
+  services.cloudflared = {
+    enable = true;
+
+    tunnels."d169a480-91ac-4e26-b362-6a1d3a53ccbd" = {
+      credentialsFile = "${config.sops.secrets.cloudflared-tunnel-creds.path}";
+      ingress = {
+        "zai.zionlab.online" = "http://localhost:${toString config.services.open-webui.port}";
+        "zai-logs.zionlab.online" = "http://construct.home.arpa:11434";
+        "search.zionlab.online" = "http://localhost:${toString config.services.searx.settings.server.port}";
+      };
+
+      default = "http_status:404";
+    };
+  };
+
   virtualisation.oci-containers = {
     backend = "docker";
 
     containers = {
-      cloudflared = {
-        image = "cloudflare/cloudflared:latest";
-        environmentFiles = [
-          config.sops.secrets.cloudflared-tunnel-creds.path
-        ];
-        cmd = [
-          "tunnel"
-          "run"
-        ];
-      };
-
       kokoro = {
         image = "ghcr.io/remsky/kokoro-fastapi-gpu";
         ports = [ "9001:8880" ];

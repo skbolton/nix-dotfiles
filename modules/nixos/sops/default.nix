@@ -2,7 +2,7 @@
 
 {
   sops = {
-    defaultSopsFile = ../../../secrets/system-secrets.yaml;
+    defaultSopsFile = ../../../secrets/nixos/secrets.yaml;
     validateSopsFiles = false;
 
     age = {
@@ -32,7 +32,6 @@
     secrets.cypher-password = {
       neededForUsers = true;
     };
-    secrets.cloudflared-tunnel-creds = { };
     secrets.smb-creds = { };
     secrets.hermes-agent-env = { };
     secrets.builder-ssh-key = {

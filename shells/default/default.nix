@@ -9,5 +9,6 @@
 mkShell {
   packages = with pkgs; [
     sops
+    cloudflared
   ];
 }
