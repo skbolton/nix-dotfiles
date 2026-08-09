@@ -111,226 +111,117 @@
     listenAddress = "0.0.0.0";
     port = 11434;
     openFirewall = true;
-    settings =
-      let
-        llama-cpp = inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.cuda;
-        llama-server = lib.getExe' llama-cpp "llama-server";
-      in
-      {
-        logLevel = "debug";
-        healthCheckTimeout = 1500;
-        includeAliasesInList = true;
-        models."gemma3:27b" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} 
-            -m /models/Gemma3/UD-Q6_K_XL.gguf 
-            --mmproj /models/Gemma3/mmproj-BF16.gguf 
-            -c 32768 
-            -fa on 
-            -ctk q8_0 
-            -ctv q8_0 
-            -ub 1024 
-            -b 1024 
-            --top-p 0.95 --top-k 64 --min-p 0.01 --temp 1.0 --prio 2
-          '';
-          ttl = 1500; # 25 minutes
-        };
-        models."MiniMax-M2" = {
-          cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
-          cmd = ''
-            ${pkgs.docker}/bin/docker run
-            --rm --name ''${MODEL_ID}
-            --shm-size 32g  
-            --ipc host
-            --ulimit memlock=-1  
-            --ulimit stack=67108864  
-            -p ''${PORT}:5000  
-            -v /models:/mnt/data/models  
-            -e SGLANG_ENABLE_JIT_DEEPGEMM=0
-            -e TORCH_ALLOW_TF32_CUBLAS_OVERRIDE=1
-            -e SGLANG_CUSTOM_ALLREDUCE_ALGO=oneshot
-            -e NCCL_P2P_DISABLE=1
-            -e NCCL_IB_DISABLE=1
-            -e NCCL_NVLS_ENABLE=0
-            -e NCCL_CUMEM_ENABLE=0
-            -e B12X_MOE_FORCE_A16=1
-            -e CUDA_MODULE_LOADING=LAZY
-            -e OMP_NUM_THREADS=16
-            -e MKL_NUM_THREADS=16
-            --device=nvidia.com/gpu=all
-            voipmonitor/sglang:cu130
-            sglang serve 
-              --sleep-on-idle 
-              --model-path /mnt/data/models/MiniMax-M2.7/NVFP4
-              --served-model-name MiniMax-M2.7     
-              --reasoning-parser minimax
-              --tool-call-parser minimax-m2     
-              --tp 2  
-              --enable-pcie-oneshot-allreduce
-              --pcie-oneshot-allreduce-max-size 8388608
-              --enable-torch-compile  
-              --trust-remote-code
-              --chunked-prefill-size 4096
-              --quantization modelopt_fp4  
-              --num-continuous-decode-steps 4
-              --enable-mixed-chunk
-              --prefill-max-requests 4
-              --max-running-requests 8
-              --cuda-graph-bs 1 2 4 6 8
-              --cuda-graph-max-bs 4
-              --kv-cache-dtype fp8_e4m3
-              --moe-runner-backend b12x  
-              --fp4-gemm-backend b12x         
-              --attention-backend flashinfer
-              --mem-fraction-static 0.95
-              --host 0.0.0.0 --port 5000
-          '';
-          environment = [
-            "CUDA_VISIBLE_DEVICES=0,1"
-          ];
-          ttl = 43200; # 12 hours
-        };
-        models."MiniMax-M3" = {
-          cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
-          cmd = ''
-            ${pkgs.docker}/bin/docker run
-            --rm --name ''${MODEL_ID}
-            --shm-size 32g  
-            --ulimit memlock=-1  
-            --ulimit stack=67108864  
+    settings = {
+      logLevel = "debug";
+      healthCheckTimeout = 1500;
+      includeAliasesInList = true;
+      models."MiniMax-M3" = {
+        cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
+        cmd = ''
+          ${pkgs.docker}/bin/docker run
+          --rm --name ''${MODEL_ID}
+          --shm-size 32g  
+          --ulimit memlock=-1  
+          --ulimit stack=67108864  
+          --ipc host
+          --network host
+          -v /models:/mnt/data/models  
+          -e CUTE_DSL_ARCH=sm_120a
+          -e NCCL_SOCKET_IFNAME=lo
+          -e GLOO_SOCKET_IFNAME=lo
+          -e NCCL_DEBUG=INFO
+          -e HF_HUB_OFFLINE=1
+          -e TRANSFORMERS_OFFLINE=1
+          -e SAFETENSORS_FAST_GPU=1
+          -e VLLM_MINIMAX_M3_ENABLE_TORCH_COMPILE=1
+          -e VLLM_USE_BREAKABLE_CUDAGRAPH=0
+          -e VLLM_USE_AOT_COMPILE=1
+          -e VLLM_USE_B12X_FP8_GEMM=0
+          -e VLLM_USE_B12X_MOE=1
+          -e VLLM_USE_B12X_MINIMAX_M3_MSA=1
+          -e VLLM_USE_B12X_SPARSE_INDEXER=1
+          -e VLLM_ENABLE_PCIE_ALLREDUCE=1
+          -e VLLM_PCIE_ALLREDUCE_BACKEND=b12x
+          -e VLLM_PCIE_ONESHOT_ALLREDUCE_MAX_SIZE=64KB
+          -e B12X_DYNAMIC_DETERMINISTIC_OUTPUT=0
+          -e B12X_LOG_CUTE_COMPILES_AFTER_ENGINE_START=1
+          --device=nvidia.com/gpu=all
+          voipmonitor/vllm:chthonic-consecration-76378e8-b12x-465cb6e-glm51a16fix-cu132
+          bash -lc 
+          'unset NCCL_GRAPH_FILE NCCL_TOPO_FILE; exec /opt/venv/bin/python -m vllm.entrypoints.cli.main serve "$@"' --
+            /mnt/data/models/MiniMax-M3/MXFP8-NVFP4
+            --served-model-name MiniMax-M3 Delta
+            --trust-remote-code 
+            --host 0.0.0.0 
+            --port ''${PORT}
+            --tensor-parallel-size 3
+            --kv-offloading-backend native
+            --kv-offloading-size 32
+            --mm-encoder-tp-mode data 
+            --gpu-memory-utilization 0.98
+            --max-num-batched-tokens 2048 
+            --max-model-len 196608
+            --max-num-seqs 2
+            --quantization modelopt_mixed 
+            --kv-cache-dtype fp8_e4m3 
+            --attention-backend B12X_ATTN 
+            --linear-backend b12x 
+            --moe-backend b12x 
+            -cc.mode=VLLM_COMPILE 
+            -cc.cudagraph_mode=FULL_AND_PIECEWISE 
+            --block-size 128 
+            --load-format fastsafetensors 
+            --enable-chunked-prefill 
+            --enable-prefix-caching 
+            --skip-mm-profiling 
+            --reasoning-parser minimax_m3 
+            --enable-auto-tool-choice 
+            --tool-call-parser minimax_m3
+        '';
+        environment = [
+          "CUDA_VISIBLE_DEVICES=0,1,2"
+        ];
+        # aliases = [ "Delta" ];
+        ttl = 43200; # 12 hours
+      };
+      models."DeepSeek-V4-Flash" = {
+        cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
+        cmd = ''
+          ${pkgs.docker}/bin/docker run
+            --rm --name DeepSeek-V4-Flash
+            --shm-size 32g
             --ipc host
             --network host
-            -v /models:/mnt/data/models  
-            -e CUTE_DSL_ARCH=sm_120a
-            -e NCCL_SOCKET_IFNAME=lo
-            -e GLOO_SOCKET_IFNAME=lo
-            -e NCCL_DEBUG=INFO
-            -e HF_HUB_OFFLINE=1
-            -e TRANSFORMERS_OFFLINE=1
-            -e SAFETENSORS_FAST_GPU=1
-            -e VLLM_MINIMAX_M3_ENABLE_TORCH_COMPILE=1
-            -e VLLM_USE_BREAKABLE_CUDAGRAPH=0
-            -e VLLM_USE_AOT_COMPILE=1
-            -e VLLM_USE_B12X_FP8_GEMM=0
-            -e VLLM_USE_B12X_MOE=1
-            -e VLLM_USE_B12X_MINIMAX_M3_MSA=1
-            -e VLLM_USE_B12X_SPARSE_INDEXER=1
-            -e VLLM_ENABLE_PCIE_ALLREDUCE=1
-            -e VLLM_PCIE_ALLREDUCE_BACKEND=b12x
-            -e VLLM_PCIE_ONESHOT_ALLREDUCE_MAX_SIZE=64KB
-            -e B12X_DYNAMIC_DETERMINISTIC_OUTPUT=0
-            -e B12X_LOG_CUTE_COMPILES_AFTER_ENGINE_START=1
+            --init
             --device=nvidia.com/gpu=all
-            voipmonitor/vllm:chthonic-consecration-76378e8-b12x-465cb6e-glm51a16fix-cu132
-            bash -lc 
-            'unset NCCL_GRAPH_FILE NCCL_TOPO_FILE; exec /opt/venv/bin/python -m vllm.entrypoints.cli.main serve "$@"' --
-              /mnt/data/models/MiniMax-M3/MXFP8-NVFP4
-              --served-model-name MiniMax-M3 Delta
-              --trust-remote-code 
-              --host 0.0.0.0 
-              --port ''${PORT}
-              --tensor-parallel-size 3
-              --kv-offloading-backend native
-              --kv-offloading-size 32
-              --mm-encoder-tp-mode data 
-              --gpu-memory-utilization 0.98
-              --max-num-batched-tokens 2048 
-              --max-model-len 196608
-              --max-num-seqs 2
-              --quantization modelopt_mixed 
-              --kv-cache-dtype fp8_e4m3 
-              --attention-backend B12X_ATTN 
-              --linear-backend b12x 
-              --moe-backend b12x 
-              -cc.mode=VLLM_COMPILE 
-              -cc.cudagraph_mode=FULL_AND_PIECEWISE 
-              --block-size 128 
-              --load-format fastsafetensors 
-              --enable-chunked-prefill 
-              --enable-prefix-caching 
-              --skip-mm-profiling 
-              --reasoning-parser minimax_m3 
-              --enable-auto-tool-choice 
-              --tool-call-parser minimax_m3
-          '';
-          environment = [
-            "CUDA_VISIBLE_DEVICES=0,1,2"
-          ];
-          # aliases = [ "Delta" ];
-          ttl = 43200; # 12 hours
-        };
-        "Step-3.7-Flash" = {
-          cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
-          cmd = ''
-            ${pkgs.docker}/bin/docker run 
-              --rm --name ''${MODEL_ID}
-              --shm-size 32g  
-              --ipc host
-              --ulimit memlock=-1  
-              --ulimit stack=67108864  
-              --device=nvidia.com/gpu=all
-              -p ''${PORT}:5000  
-              -v /models:/mnt/data/models  
-              vllm/vllm-openai:stepfun37
-                /mnt/data/models/Step-3.7-Flash/NVFP4
-                --host 0.0.0.0 
-                --port 5000
-                --served-model-name ''${MODEL_ID}
-                --tensor-parallel-size 2 
-                --gpu-memory-utilization 0.94
-                --enable-expert-parallel 
-                --trust-remote-code 
-                --quantization modelopt 
-                --kv-cache-dtype fp8 
-                --reasoning-parser step3p5 
-                --enable-auto-tool-choice 
-                --tool-call-parser step3p5 
-                --speculative_config '{"method": "mtp", "num_speculative_tokens": 3}'
-                --async-scheduling
-          '';
-          environment = [
-            "CUDA_VISIBLE_DEVICES=0,1"
-          ];
-          ttl = 43200; # 12 hours
-        };
-        models."DeepSeek-V4-Flash" = {
-          cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
-          cmd = ''
-            ${pkgs.docker}/bin/docker run
-              --rm --name DeepSeek-V4-Flash
-              --shm-size 32g
-              --ipc host
-              --network host
-              --init
-              --device=nvidia.com/gpu=all
-              --ulimit memlock=-1:-1
-              --ulimit nofile=1048576:1048576
-              --ulimit stack=67108864
-              -v /models/DeepseekV4Flash/:/root/models:ro
-              -e PORT=''${PORT}
-              -e MODE=dspark
-              -e BACKEND=b12x-a8
-              -e TP_SIZE=3
-              -e DCP_SIZE=1
-              -e DSPARK_DEPTH_MODE=fixed
-              -e DSPARK_TOKENS=5
-              -e MAX_NUM_SEQS=16
-              -e MAX_MODEL_LEN=1048576
-              -e MAX_NUM_BATCHED_TOKENS=8192
-              -e GPU_MEMORY_UTILIZATION=0.975
-              -e LOAD_FORMAT=instanttensor
-              -e INSTANTTENSOR_BACKEND=BUFFERED
-              -e KV_OFFLOADING_SIZE=0
-              -e SERVED_MODEL_NAME=Delta
-              voipmonitor/vllm:gilded-gnosis-v20-vllm55db472-b12x6bc35fd-fi801d57a-cu132-20260807-r29
-              /usr/local/bin/serve-ds4-flash.sh
-          '';
-          environment = [
-            "CUDA_VISIBLE_DEVICES=0,1,2"
-          ];
-          aliases = [ "Delta" ];
-        };
+            --ulimit memlock=-1:-1
+            --ulimit nofile=1048576:1048576
+            --ulimit stack=67108864
+            -v /models/DeepseekV4Flash/:/root/models:ro
+            -e PORT=''${PORT}
+            -e MODE=dspark
+            -e BACKEND=b12x-a8
+            -e TP_SIZE=3
+            -e DCP_SIZE=1
+            -e DSPARK_DEPTH_MODE=fixed
+            -e DSPARK_TOKENS=5
+            -e MAX_NUM_SEQS=16
+            -e MAX_MODEL_LEN=1048576
+            -e MAX_NUM_BATCHED_TOKENS=8192
+            -e GPU_MEMORY_UTILIZATION=0.975
+            -e LOAD_FORMAT=instanttensor
+            -e INSTANTTENSOR_BACKEND=BUFFERED
+            -e KV_OFFLOADING_SIZE=0
+            -e SERVED_MODEL_NAME=Delta
+            voipmonitor/vllm:gilded-gnosis-v20-vllm55db472-b12x6bc35fd-fi801d57a-cu132-20260807-r29
+            /usr/local/bin/serve-ds4-flash.sh
+        '';
+        environment = [
+          "CUDA_VISIBLE_DEVICES=0,1,2"
+        ];
+        aliases = [ "Delta" ];
       };
+    };
   };
 
   services.hardware.openrgb = {
