@@ -1,69 +1,39 @@
-# My personal preferences and guidelines
+# Stephen's Development Environment
 
-I'm Stephen, a software engineer. You're an agent running on my machine — talk to me directly. The following describes
-my personal machine, its environment, as well as personal preferences or tastes. If any of these conflict with
-preferences of the project then let the project preferences take precedence.
+I'm Stephen, a software engineer. The following is a brief guide to the environment you are currently running in so that
+you may take advantage of all it has to offer, as well as a mention of my personal preferences in terms of tone and
+coding style. If any of this description conflicts with the preferences of the project then please let the project's
+preferences win.
 
-## Environment
+The shell is almost always running inside a tmux session. You are free to create new windows and panes in order to run
+background processes or daemons for long-running tasks. But **NEVER** run anything that would kill the server or the session.
 
-- The shell is almost always running inside a **tmux** session. New windows and
-  panes are cheap; use them instead of daemonizing or backgrounding processes
-  when you need something long-lived. Never run `tmux kill-server` or
-  `kill-session`.
-- The system is **NixOS** (or nix-darwin) with **Nix flakes** enabled. `direnv`
-  with `nix-direnv` may be active in project directories.
-- If a command you want is not installed, do not give up or ask — reach for
-  Nix:
+All of my machines are also running Nix with heavy flake usage. If a command you want is not installed, do not give up
+or ask. Instead reach for Nix!
+
   - One-shot: `nix run nixpkgs#<pkg> -- <args>`
   - Ephemeral shell: `nix shell nixpkgs#<pkg> -c <cmd>`
   - Multiple tools: `nix shell nixpkgs#a nixpkgs#b -c <cmd>`
   - In a flake directory with a devshell: prefer `nix develop -c <cmd>`
-- Never suggest `nix-env -i`, `nix profile install`, or other imperative
-  installs. They pollute the profile and are hostile to this system's model.
 
-## Search tools
+Never suggest `nix-env -i`, `nix profile install`, or other imperative installs. They pollute the profile and are
+hostile to this system's model.
 
-For your own codebase and filesystem exploration:
+I would prefer you use modern versions of many tools such as rg for grepping, fd for finding, and bat for printing output.
+fd in particular is much better suited for searching `/nix/store`.
 
-- Use the dedicated `Glob` tool to find files and `Grep` tool to search file contents.
-- When a shell command is necessary, use `fd` instead of `find` and `rg` instead of `grep`.
-- Do not run `find` or `grep` through the shell when the dedicated tools or `fd` and `rg` can perform the search.
-- Scope searches as narrowly as practical, especially under `/nix/store`.
-- These rules govern agent exploration, not commands written into project scripts. Follow project portability requirements in shipped code.
+Lastly, manpages are installed on the system and can be consulted in case a command fails for invalid usage.
 
-For other command-line work, prefer modern tools when available: `bat` over `cat` for human-facing output, `gh` for
-GitHub, and `jq` for JSON.
+## Style
 
-## Workflow
+Default to no comments. Prefer clear, descriptive names and put the why in git commits. Be prepared to justify every
+comment you write.
 
-- **Fail loudly.** If a command errors, surface the error. Do not silently
-  retry variations hoping something sticks, and do not paper over failures
-  with fallbacks the user did not ask for.
-- **Ask before destructive or system-level actions.** Anything that mutates
-  state outside the working tree or rewrites shared history needs explicit
-  go-ahead — system rebuilds, store GC, `flake.lock` changes, force-push,
-  editing secrets. Read-only exploration does not.
+Add a comment only to preserve a non-obvious, durable constraint whose absence could cause an incorrect change: an
+invariant, external limitation, necessary workaround, ordering requirement, or deliberate tradeoff. And even then a test
+would do a better job of showing rather than telling the edge case.
 
-## Voice
+### Documentation
 
-How to express things, both in replies to me and in text written on my
-behalf.
-
-### Code comments
-
-Default to no comment. Prefer clearer names, types, or structure.
-
-Add one only to preserve a non-obvious, durable constraint whose absence could cause an incorrect change: an invariant,
-external limitation, necessary workaround, ordering requirement, or deliberate tradeoff.
-
-Do not narrate code, restate names or requirements, explain ordinary behavior, label blocks, summarize changes, or
-record tickets and implementation history. Planning context belongs in planning artifacts, not source comments.
-
-### API documentation
-
-Write public API documentation for callers. Describe only what they need for correct use: purpose, non-obvious inputs
-and outputs, errors, side effects, lifecycle, ordering, ownership, concurrency, and useful examples. Omit private
-helpers, control flow, storage, and rationale unless callers must account for them. Documentation should survive private
-refactors that preserve behavior.
-
-Never put ticket identifiers or issue links in shipped files unless they are required product data.
+Write from the user's perspective, not the implementer's: get them up to speed with as little surface area to absorb
+as possible. No technical details or changelog commentary in function or module docs.
