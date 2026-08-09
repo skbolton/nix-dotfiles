@@ -45,6 +45,10 @@
   environment.shells = [ pkgs.zsh ];
   programs.zsh.enable = true;
 
+  sops.secrets.mouse-password = {
+    neededForUsers = true;
+  };
+
   users.users.nixos = {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.mouse-password.path;

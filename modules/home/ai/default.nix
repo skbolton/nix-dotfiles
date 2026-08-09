@@ -31,6 +31,9 @@ in
       python3
     ];
 
+    sops.secrets.zaia-creds.path = "%r/zaia-creds.txt";
+    sops.secrets.aichat-env.path = "%r/aichat/.env";
+
     programs.tmux.extraConfig = /* tmux */ ''
       bind a switch-client -T ai
       bind -T ai a split -h -l 100 \; send opencode Enter

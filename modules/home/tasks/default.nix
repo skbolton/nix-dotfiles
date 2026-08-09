@@ -20,6 +20,10 @@ in
       delta.task-fs
     ];
 
+    sops.secrets.taskwarrior-sync-server-credentials = {
+      path = "${config.home.homeDirectory}/.config/task/server-credentials.conf";
+    };
+
     programs.zsh.dirHashes = {
       tfs = "$HOME/TaskFS";
     };

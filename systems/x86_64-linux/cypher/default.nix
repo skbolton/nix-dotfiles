@@ -58,6 +58,10 @@
   environment.shells = [ pkgs.zsh ];
   programs.zsh.enable = true;
 
+  sops.secrets.cypher-password = {
+    neededForUsers = true;
+  };
+
   users.users.nixos = {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.cypher-password.path;
@@ -94,6 +98,8 @@
     "vaultwarden"
     "paperless"
   ];
+
+  sops.secrets.affine-secrets = { };
 
   virtualisation.arion = {
     backend = "docker";
@@ -218,6 +224,8 @@
     };
   };
 
+  sops.secrets.paperless-gpt-secrets = { };
+
   virtualisation.oci-containers = {
     backend = "docker";
 
@@ -252,6 +260,8 @@
     };
   };
 
+  sops.secrets.caddy-secrets = { };
+
   services.caddy = {
     enable = true;
     environmentFile = config.sops.secrets.caddy-secrets.path;
@@ -281,6 +291,8 @@
     };
   };
 
+  sops.secrets.paperless-admin-password = { };
+
   services.paperless = {
     enable = true;
     package = pkgs.unstable.paperless-ngx;
@@ -291,6 +303,8 @@
     database.createLocally = true;
   };
 
+  sops.secrets.vaultwarden-secrets = { };
+
   services.vaultwarden = {
     enable = true;
     domain = "vault.gorgon-procyon.ts.net";
@@ -300,6 +314,8 @@
     config.ROCKET_PORT = 8222;
     environmentFile = config.sops.secrets.vaultwarden-secrets.path;
   };
+
+  sops.secrets.searxng-secrets = { };
 
   services.searx = {
     enable = true;

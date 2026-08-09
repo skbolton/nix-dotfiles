@@ -54,6 +54,10 @@
   environment.shells = [ pkgs.zsh ];
   programs.zsh.enable = true;
 
+  sops.secrets.construct-password = {
+    neededForUsers = true;
+  };
+
   users.users.nixos = {
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets.construct-password.path;
@@ -345,6 +349,8 @@
     };
   };
 
+  sops.secrets.hermes-agent-env = { };
+
   services.hermes-agent = {
     enable = true;
     environment = {
@@ -375,6 +381,10 @@
   networking.firewall.allowedTCPPorts = [
     (lib.toIntBase10 config.services.hermes-agent.environment.API_SERVER_PORT)
   ];
+
+  sops.secrets.mira-password = {
+    neededForUsers = true;
+  };
 
   users.groups.hermes = { };
   users.users.mira = {

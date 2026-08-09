@@ -17,32 +17,10 @@
     secrets.contra-password = {
       neededForUsers = true;
     };
-    secrets.mira-password = {
-      neededForUsers = true;
-    };
-    secrets.beevey-password = {
-      neededForUsers = true;
-    };
-    secrets.mouse-password = {
-      neededForUsers = true;
-    };
-    secrets.construct-password = {
-      neededForUsers = true;
-    };
-    secrets.cypher-password = {
-      neededForUsers = true;
-    };
     secrets.smb-creds = { };
-    secrets.hermes-agent-env = { };
     secrets.builder-ssh-key = {
       neededForUsers = true;
       path = "/root/.ssh/builder_ed25519";
     };
-    secrets.affine-secrets = { };
-    secrets.caddy-secrets = { };
-    secrets.vaultwarden-secrets = { };
-    secrets.searxng-secrets = { };
-    secrets.paperless-admin-password = { };
-    secrets.paperless-gpt-secrets = { };
   };
 }

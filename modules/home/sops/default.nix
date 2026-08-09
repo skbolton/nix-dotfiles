@@ -12,14 +12,6 @@ in
     sops = {
       age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
       defaultSopsFile = ../../../secrets/home/secrets.yaml;
-      secrets.taskwarrior-sync-server-credentials = {
-        path = "${config.home.homeDirectory}/.config/task/server-credentials.conf";
-      };
-      secrets.fastmail-vdirsync-password = {
-        path = "%r/fastmail-vdirsync-password.txt";
-      };
-      secrets.aichat-env.path = "%r/aichat/.env";
-      secrets.zaia-creds.path = "%r/zaia-creds.txt";
     };
   };
 
