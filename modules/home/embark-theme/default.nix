@@ -173,9 +173,6 @@ in
       }
       + "/embark.theme";
 
-    delta.ai.aichat_theme = "dark";
-    xdg.configFile."aichat/dark.tmTheme".source = inputs.embark-bat-theme + "/Embark.tmTheme";
-
     programs.opencode = {
       tui.theme = "embark";
       themes.embark = {

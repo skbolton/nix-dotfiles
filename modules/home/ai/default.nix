@@ -10,29 +10,15 @@ in
 {
   options.delta.ai = {
     enable = lib.mkEnableOption "ai";
-    aichat_theme = lib.mkOption {
-      type = lib.types.enum [
-        "light"
-        "dark"
-      ];
-      default = "dark";
-    };
   };
 
   config = lib.mkIf cfg.enable {
 
-    home.sessionVariables = {
-      AICHAT_ENV_FILE = "$HOME/.config/sops-nix/secrets/aichat-env";
-      AICHAT_CONFIG_DIR = "$HOME/.config/aichat";
-    };
-
     home.packages = with pkgs; [
-      unstable.aichat
       python3
     ];
 
     sops.secrets.zaia-creds.path = "%r/zaia-creds.txt";
-    sops.secrets.aichat-env.path = "%r/aichat/.env";
 
     programs.tmux.extraConfig = /* tmux */ ''
       bind a switch-client -T ai
@@ -41,58 +27,12 @@ in
       bind -T ai A new-window -n "󱚞 " opencode
     '';
 
-    xdg.configFile."aichat/config.yaml".text = (
-      lib.generators.toYAML { } {
-        theme = cfg.aichat_theme;
-        clients = [
-          {
-            type = "openai-compatible";
-            name = "Zionlab";
-            api_base = "https://zai.zionlab.online/api/v1";
-            models = [
-              { name = "MiniMax-M2"; }
-              { name = "qwen3-coder:30b-a3b"; }
-              { name = "gemma3:27b"; }
-            ];
-          }
-        ];
-      }
-    );
-
-    xdg.configFile."aichat/roles" = {
-      source = ./aichat/roles;
-      recursive = true;
-    };
-
     home.file.".agents/skills" = {
       source = ./skills;
       recursive = true;
     };
 
     programs.zsh.initContent = lib.mkOrder 1200 ''
-      _aichat_zsh_suggest() {
-        if [[ -n "$BUFFER" ]]; then
-          local _old=$BUFFER
-          BUFFER+=" 󰑓 "
-          zle -I && zle redisplay
-          BUFFER=$(aichat -r '%shell%' "$_old")
-          zle end-of-line
-        fi
-      }
-
-      _aichat_zsh_explain() {
-        if [[ -n "$BUFFER" ]]; then
-          BUFFER="aichat -e '"$BUFFER"'"
-          zle accept-line
-        fi
-      }
-
-      zle -N _aichat_zsh_suggest
-      bindkey -M viins '^x' _aichat_zsh_suggest
-
-      zle -N _aichat_zsh_explain
-      bindkey -M viins '^X' _aichat_zsh_explain
-
       export $(xargs < "$HOME/.config/sops-nix/secrets/zaia-creds")
     '';
 

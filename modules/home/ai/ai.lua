@@ -31,8 +31,6 @@ vim.api.nvim_create_user_command('SendPrompt', function(opts)
   })
 end, { nargs = "+", range = true })
 
-vim.keymap.set({ 'n', 'v' }, '<leader>ag', '!aichat -r grammar<CR>')
-vim.keymap.set({ 'n', 'v' }, '<leader>ar', '!aichat -r dev ')
 vim.keymap.set({ 'n', 'v' }, '<leader>aa', ':SendPrompt ')
 vim.keymap.set({ 'n', 'v' }, '<leader>ae', ':SendPrompt explain this<CR>')
 vim.keymap.set({ 'n', 'v' }, '<leader>ai', ':SendPrompt improve this<CR>')

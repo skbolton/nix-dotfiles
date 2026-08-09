@@ -197,9 +197,5 @@ in
     };
 
     programs.btop.settings.color_theme = "flat-remix-light";
-
-    delta.ai.aichat_theme = "light";
-    xdg.configFile."aichat/light.tmTheme".source = ./github-light.conf;
-
   };
 }

@@ -148,9 +148,6 @@ in
       };
     };
 
-    delta.ai.aichat_theme = "dark";
-    # xdg.configFile."aichat/dark.tmTheme".source = inputs.embark-bat-theme + "/Embark.tmTheme";
-
     programs.opencode = {
       tui.theme = "dev-null";
       themes.dev-null = {

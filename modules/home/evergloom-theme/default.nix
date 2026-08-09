@@ -172,8 +172,5 @@ in
     };
 
     programs.btop.settings.color_theme = "night-owl";
-
-    delta.ai.aichat_theme = "dark";
-    xdg.configFile."aichat/dark.tmTheme".source = ./evergloom.tmTheme;
   };
 }
