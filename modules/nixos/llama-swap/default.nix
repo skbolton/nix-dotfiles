@@ -13,7 +13,7 @@ in
   options.delta.llama-swap = {
     enable = lib.mkEnableOption "the llama-swap service";
 
-    package = lib.mkPackageOption pkgs "llama-swap" { };
+    package = lib.mkPackageOption pkgs.unstable "llama-swap" { };
 
     listenAddress = lib.mkOption {
       type = lib.types.str;

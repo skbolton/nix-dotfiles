@@ -245,7 +245,7 @@
           AUTO_OCR_TAG = "gpt-ocr-auto";
 
           LLM_PROVIDER = "openai";
-          LLM_MODEL = "Qwen3.6-35B-A3B";
+          LLM_MODEL = "Qwen3.6-35B-A3B:think";
           OCR_PROVIDER = "llm";
           VISION_LLM_PROVIDER = "openai";
           VISION_LLM_MODEL = "Qwen3.6-35B-A3B";
@@ -360,65 +360,24 @@
         models."Qwen3.6-35B-A3B" = {
           cmd = ''
             ${llama-server} --port ''${PORT} 
-            -m /models/Qwen3.6/35B-A3B/UD-Q8_K_XL.gguf
-            --mmproj /models/Qwen3.6/35B-A3B/mmproj-F16.gguf
-            --no-mmap
-            --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --repeat-penalty 1.0
-          '';
-          ttl = 14400; # 4 hours
-        };
-        models."Qwen3.6-35B-A3B-MTP-think" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} 
             -m /models/Qwen3.6/35B-A3B/MTP/UD-Q8_K_XL.gguf
             --no-mmap
             --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --repeat-penalty 1.0
             --spec-type draft-mtp --spec-draft-n-max 2
             --chat-template-kwargs '{"enable_thinking":true}'
           '';
-          ttl = 14400; # 4 hours
-        };
-        models."Qwen3.5-122b" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} 
-            -m /models/Qwen3.5/122b/UD-Q4_K_XL.gguf
-            --mmproj /models/Qwen3.5/122b/mmproj-F16.gguf
-            --no-mmap
-            -ctk q8_0 -ctv q8_0 
-            --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0
-          '';
-          ttl = 14400; # 4 hours
-        };
-        models."Qwen3.5-27b" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} 
-            -m /models/Qwen3.5/27b/UD-Q6_K_XL.gguf
-            --mmproj /models/Qwen3.5/27b/mmproj-BF16.gguf
-            --no-mmap
-            -ctk q8_0 -ctv q8_0 
-            --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0
-          '';
-          ttl = 14400; # 4 hours
-        };
-
-        models."Qwen3.5-27b-nothink" = {
-          cmd = ''
-            ${llama-server} --port ''${PORT} 
-            -m /models/Qwen3.5/27b/UD-Q6_K_XL.gguf
-            --mmproj /models/Qwen3.5/27b/mmproj-BF16.gguf
-            --chat-template-kwargs '{"enable_thinking":false}'
-            --no-mmap
-            -ctk q8_0 -ctv q8_0 
-            --temp 1.0 --top-p 0.95 --top-k 20 --min-p 0.0 --presence-penalty 1.5 --repeat-penalty 1.0
-          '';
+          filters.setParamsByID = {
+            "\${MODEL_ID}".chat_template_kwargs.enable_thinking = false;
+            "\${MODEL_ID}:think".chat_template_kwargs.enable_thinking = true;
+          };
           ttl = 14400; # 4 hours
         };
         groups.shared = {
           swap = false;
           exclusive = true;
           members = [
-            "Qwen3.5-27b"
-            "Qwen3.5-27b-nothink"
+            "Qwen3.6-35B-A3B"
+            "Qwen3.6-35B-A3B:think"
           ];
         };
       };
