@@ -207,6 +207,7 @@
     config.services.paperless.port
     config.services.searx.settings.server.port
     9001
+    9002
   ];
 
   sops.secrets.cloudflared-tunnel-creds = { };
@@ -220,6 +221,7 @@
         "zai.zionlab.online" = "http://localhost:${toString config.services.open-webui.port}";
         "zai-logs.zionlab.online" = "http://construct.home.arpa:11434";
         "search.zionlab.online" = "http://localhost:${toString config.services.searx.settings.server.port}";
+        "noise.zionlab.online" = "http://localhost:9002";
       };
 
       default = "http_status:404";
@@ -258,6 +260,11 @@
           PDF_OCR_COMPLETE_TAG = "paperless-gpt-ocr-complete";
           LOG_LEVEL = "info";
         };
+      };
+
+      moodist = {
+        image = "ghcr.io/remvze/moodist:latest";
+        ports = [ "9002:8080" ];
       };
     };
   };
