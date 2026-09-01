@@ -249,10 +249,10 @@
           AUTO_OCR_TAG = "gpt-ocr-auto";
 
           LLM_PROVIDER = "openai";
-          LLM_MODEL = "Qwen3.6-35B-A3B:think";
+          LLM_MODEL = "Qwen3.8-27B:think";
           OCR_PROVIDER = "llm";
           VISION_LLM_PROVIDER = "openai";
-          VISION_LLM_MODEL = "Qwen3.6-35B-A3B";
+          VISION_LLM_MODEL = "Qwen3.8-27B";
           OPENAI_BASE_URL = "http://cypher.home.arpa:11434/v1";
           OPENAI_API_KEY = "notneeded";
           PDF_UPLOAD = "false";
@@ -388,6 +388,35 @@
             "Qwen3.6-35B-A3B"
             "Qwen3.6-35B-A3B:think"
           ];
+        };
+
+        models."Qwen3.8-27B" = {
+          cmd = ''
+            ${llama-server} --port ''${PORT} 
+            -m /models/Qwen3.8/27B/UD-Q8_K_XL.gguf
+            --mmproj /models/Qwen3.8/27B/mmproj-BF16.gguf
+            --spec-type draft-mtp --spec-draft-n-max 3
+          '';
+          filters.setParams = {
+            top_k = 20;
+            min_p = 0.0;
+            repeat_penalty = 1.0;
+          };
+          filters.setParamsByID = {
+            "\${MODEL_ID}:think" = {
+              temperature = 1.0;
+              top_p = 0.95;
+              presence_penalty = 0.0;
+              chat_template_kwargs.enable_thinking = true;
+            };
+            "\${MODEL_ID}" = {
+              temperature = 0.7;
+              top_p = 0.80;
+              presence_penalty = 1.5;
+              chat_template_kwargs.enable_thinking = false;
+            };
+          };
+          ttl = 14400; # 4 hours
         };
       };
   };
