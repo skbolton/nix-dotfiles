@@ -99,6 +99,8 @@
     "paperless"
   ];
 
+  delta.forgejo.enable = true;
+
   sops.secrets.affine-secrets = { };
 
   virtualisation.arion = {
