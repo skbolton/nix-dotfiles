@@ -142,6 +142,7 @@ in
         input_newline = "return";
         input_submit = "ctrl+y";
       };
+      tui.cursor.style = "line";
     };
 
     programs.git.ignores = [ ".opencode" ];
