@@ -140,6 +140,7 @@ in
       # Tasks
       #######################################################################
       bind s neww -n '󰈽' ${pkgs.delta.rally}/bin/rally.sh pick
+      bind e run-shell -b 'tmux send-keys -t #{pane_id} -l "$(${pkgs.delta.fff}/bin/fff --quote)"'
       bind C-l split-window -h -l 120 zk log
       bind C-h split-window -h -l 150 fman
 

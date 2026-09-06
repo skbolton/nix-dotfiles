@@ -21,6 +21,7 @@ in
       md-tangle
       dateutils
       devenv
+      delta.fff
     ];
 
     programs.jq.enable = cfg.enable;
