@@ -119,7 +119,7 @@ in
               output = 5.50;
             };
           };
-          "Qwen3.6-35B-A3B-MTP-think" = {
+          "Qwen3.6-35B-A3B:think" = {
             reasoning = true;
             tool_call = true;
             cost = {
