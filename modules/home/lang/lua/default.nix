@@ -36,6 +36,9 @@ in
             -- Make the server aware of Neovim runtime files
             workspace = {
               checkThirdParty = false,
+              ignoreDir = {
+                '.direnv'
+              },
               library = {
                 vim.env.VIMRUNTIME
               }
