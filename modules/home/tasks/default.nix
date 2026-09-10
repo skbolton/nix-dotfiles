@@ -60,18 +60,18 @@ in
       }
 
       function tmonth() {
-        task sched.before:$(nextm) sched
+        task sched.before:$(${pkgs.delta.cycle}/bin/cycle 1 month) sched
       }
 
       function tquarter() {
-        task sched.before:$(${pkgs.delta.next-q}/bin/nextq)-1d or due.before:$(${pkgs.delta.next-q}/bin/nextq)-1d sched
+        task sched.before:$(${pkgs.delta.cycle}/bin/cycle 0 quarter -e) or due.before:$(${pkgs.delta.cycle}/bin/cycle 0 quarter -e) sched
       }
 
       function tnquarter() {
-        task sched.after:$(${pkgs.delta.next-q}/bin/nextq)-1d \
-          sched.before:$(${pkgs.delta.next-q}/bin/nextq)+12w-1d \
-          or due.after:$(${pkgs.delta.next-q}/bin/nextq)-1d \
-          due.before:$(${pkgs.delta.next-q}/bin/nextq)+12w-1d \
+        task sched.after:$(${pkgs.delta.cycle}/bin/cycle 0 quarter -e) \
+          sched.before:$(${pkgs.delta.cycle}/bin/cycle 1 quarter -e) \
+          or due.after:$(${pkgs.delta.cycle}/bin/cycle 0 quarter -e) \
+          due.before:$(${pkgs.delta.cycle}/bin/cycle 1 quarter -e) \
           sched
       }
 

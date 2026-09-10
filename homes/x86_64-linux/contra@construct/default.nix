@@ -63,6 +63,7 @@
       docker-compose
       firefox
       jira-cli-go
+      delta.cycle
     ];
   };
 

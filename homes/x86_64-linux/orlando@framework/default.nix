@@ -93,8 +93,7 @@
       docker-compose
       firefox
       delta.zen-fan-control
-      delta.next-m
-      delta.next-q
+      delta.cycle
     ];
   };
 
