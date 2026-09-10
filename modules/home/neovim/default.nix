@@ -209,6 +209,18 @@ in
         {
           plugin = markdown-preview-nvim;
           optional = true;
+          config = /* lua */ ''
+            vim.g.mkdp_open_to_the_world = 1
+            vim.g.mkdp_open_ip = '127.0.0.1'
+            vim.g.mkdp_port = 10101
+            vim.cmd([[
+              function! g:EchoUrl(url)
+                echo a:url
+              endfunction
+              let g:mkdp_browserfunc = 'g:EchoUrl'
+            ]])
+          '';
+          type = "lua";
         }
         {
           plugin = zk-nvim;
