@@ -41,6 +41,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
@@ -129,7 +134,7 @@
 
     expert-lsp.url = "github:elixir-lang/expert";
 
-    handy.url = "github:cjpais/Handy";
+    # handy.url = "github:cjpais/Handy";
 
     hermes-agent.url = "github:NousResearch/hermes-agent";
   };
@@ -178,6 +183,12 @@
 
       outputs-builder = channels: {
         formatter = channels.nixpkgs.nixfmt;
+      };
+    }
+    // {
+      nixOnDroidConfigurations.default = inputs.nix-on-droid.lib.nixOnDroidConfiguration {
+        pkgs = import inputs.nixpkgs { system = "aarch64-linux"; };
+        modules = [ ./phone/nix-on-droid.nix ];
       };
     };
 }
