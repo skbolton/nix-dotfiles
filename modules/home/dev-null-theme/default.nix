@@ -41,7 +41,8 @@ in
     '';
 
     programs.fzf.colors = {
-      "bg+" = "#161616";
+      # "bg+" = "#161616";
+      "bg+" = "#141414";
       "fg" = "#6F6F6F";
       "fg+" = "#C6C6C6";
       "prompt" = "#3DDBD9";
@@ -63,6 +64,64 @@ in
           };
           config = /* lua */ ''
             vim.cmd("colorscheme dev-null")
+
+            vim.api.nvim_set_hl(0, "@markup.heading.1", {  bg = "#120722", fg = "#a56eff" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.1.title", { link = "@markup.heading.1" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.1.prefix", { fg = "#a56eff" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH1", { link = "@markup.heading.1" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { link = "@markup.heading.1" })
+
+            vim.api.nvim_set_hl(0, "@markup.heading.2", { bg = "#001031", fg = "#4589ff" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.2.title", { link = "@markup.heading.2" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.2.prefix", { fg = "#4589ff" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH2", { link = "@markup.heading.2" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { link = "@markup.heading.2" })
+
+            vim.api.nvim_set_hl(0, "@markup.heading.3", { bg = "#001b1a", fg = "#009d9a" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.3.title", { link = "@markup.heading.3" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.3.prefix", { fg = "#009d9a" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH3", { link = "@markup.heading.3" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { link = "@markup.heading.3" })
+
+            vim.api.nvim_set_hl(0, "@markup.heading.4", { bg = "#1a2300", fg = "#d5ff5e" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.4.title", { link = "@markup.heading.4" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.4.prefix", { fg = "#d5ff5e" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH4", { link = "@markup.heading.4" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { link = "@markup.heading.4" })
+
+            vim.api.nvim_set_hl(0, "@markup.heading.5", { bg = "#1a2300", fg = "#d5ff5e" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.5.title", { link = "@markup.heading.5" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.5.prefix", { fg = "#d5ff5e" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH5", { link = "@markup.heading.5" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { link = "@markup.heading.5" })
+
+            vim.api.nvim_set_hl(0, "@markup.heading.6", { bg = "#1a2300", fg = "#d5ff5e" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.6.title", { link = "@markup.heading.6" })
+            vim.api.nvim_set_hl(0, "@neorg.headings.6.prefix", { fg = "#d5ff5e" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH6", { link = "@markup.heading.6" })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { link = "@markup.heading.6" })
+
+            vim.api.nvim_set_hl(0, "Folded", { bg = "#171522", fg = "#3d2f59" })
+
+            vim.api.nvim_set_hl(0, "Normal", { bg = "#141414" })
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1B1B1B" })
+            vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#252525" })
+            vim.api.nvim_set_hl(0, "@markup.list.unchecked", { bold = true, fg = "#d5ff5e" })
+            vim.api.nvim_set_hl(0, "@markup.list.checked", { link = "Comment"})
+            vim.api.nvim_set_hl(0, "@text.strong", { bold = true })
+            vim.api.nvim_set_hl(0, "MatchParen", { fg = "#d9fbfb" })
+            vim.api.nvim_set_hl(0, "DiffAdd", { bg = "#173634" })
+            vim.api.nvim_set_hl(0, "DiffChange", { link = "DiffAdd" })
+            vim.api.nvim_set_hl(0, "DiffText", { bg = "#173634", bold = true })
+            vim.api.nvim_set_hl(0, "DiffDelete", { bg = "#2b1828", fg = "#9f1853" })
+            -- vim.api.nvim_set_hl(0, "StatusLine", { bg = "#161616" })
+            vim.api.nvim_set_hl(0, "StatusLine", { bg = "#141414" })
+            -- vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#161616" })
+            vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "#141414" })
+            vim.api.nvim_set_hl(0, "CursorColumn", { link = "CursorLine"})
+            vim.api.nvim_set_hl(0, "DiagnosticWarn", { fg = "#d5ff5e"})
+            vim.api.nvim_set_hl(0, "SpecialChar", { fg = "#a6c8ff"})
+            vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = "#e8daff" })
           '';
           type = "lua";
           optional = false;
@@ -75,7 +134,7 @@ in
     xdg.configFile."tmux/statusline.tmux".source = ./dev-null.tmux;
     programs.starship.settings = {
       format = ''
-        [](fg:#252525 bg:#161616)$jobs$directory[](fg:#252525 bg:#161616)$fill[$git_branch$git_status ](bg:#252525)[](fg:#252525 bg:#161616)
+        [](fg:#202020 bg:#141414)$jobs$directory[](fg:#202020 bg:#141414)$fill[$git_branch$git_status ](bg:#202020)[](fg:#202020 bg:#141414)
         [  ├─](fg:#484848) $username$hostname$kubernetes$elixir
         [  └──](fg:#484848) $character 
       '';
@@ -93,7 +152,7 @@ in
 
       fill = {
         symbol = "";
-        style = "fg:#161616 bg:#161616";
+        style = "fg:#141414 bg:#141414";
       };
 
       elixir = {
@@ -102,7 +161,7 @@ in
       };
 
       directory = {
-        format = "[   $path ](bg:#252525 fg:#C6C6C6)";
+        format = "[   $path ](bg:#202020 fg:#C6C6C6)";
         truncation_length = 5;
         truncate_to_repo = false;
       };
@@ -114,21 +173,21 @@ in
       };
 
       git_branch = {
-        format = "[](fg:#252525 bg:#161616)[  $branch ](bg:#252525 fg:#C6C6C6)";
+        format = "[](fg:#202020 bg:#141414)[  $branch ](bg:#202020 fg:#C6C6C6)";
       };
 
       git_status = {
         format = "$ahead_behind$stashed$staged$modified$deleted$untracked";
         style = "#C6C6C6";
-        ahead = "[ ](bg:#252525 bold #d5ff5e)";
-        behind = "[ ](bg:#252525 bold #d5ff5e)";
-        up_to_date = "[- ](bg:#252525 bold #C6C6C6)";
-        diverged = "[](bg:#252525 bold #d5ff5e)";
-        staged = "[](bg:#252525 #9ef0f0)";
-        untracked = "[](bg:#252525 #C6C6C6)";
-        modified = "[](bg:#252525 #d4bbff)";
-        stashed = "[](bg:#252525 #d5ff5e)";
-        deleted = "[](bg:#252525 #FF75B6)";
+        ahead = "[ ](bg:#202020 bold #d5ff5e)";
+        behind = "[ ](bg:#202020 bold #d5ff5e)";
+        up_to_date = "[- ](bg:#202020 bold #C6C6C6)";
+        diverged = "[](bg:#202020 bold #d5ff5e)";
+        staged = "[](bg:#202020 #9ef0f0)";
+        untracked = "[](bg:#202020 #C6C6C6)";
+        modified = "[](bg:#202020 #d4bbff)";
+        stashed = "[](bg:#202020 #d5ff5e)";
+        deleted = "[](bg:#202020 #FF75B6)";
       };
 
       jobs = {
@@ -137,7 +196,7 @@ in
       };
 
       status = {
-        format = "[ $symbol$status ](fg:#C6C6C6 bg:#252525)";
+        format = "[ $symbol$status ](fg:#C6C6C6 bg:#222222)";
         disabled = false;
         symbol = " ";
       };
@@ -152,7 +211,8 @@ in
       tui.theme = "dev-null";
       themes.dev-null = {
         defs = {
-          bg = "#161616";
+          # bg = "#161616";
+          bg = "#141414";
           surface = "#1B1B1B";
           surfaceAlt = "#252525";
           border = "#393939";

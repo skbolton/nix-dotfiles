@@ -36,7 +36,7 @@ gls.left[2] = {
     end,
     highlight = { "#161616", "#3DDBD9" },
     separator = '',
-    separator_highlight = { "#3DDBD9", "#252525" }
+    separator_highlight = { "#3DDBD9", "#202020" }
   }
 }
 
@@ -50,9 +50,9 @@ gls.left[3] = {
       end
     end,
     icon = ' 󰊢  ',
-    highlight = { "#C6C6C6", "#252525" },
+    highlight = { "#C6C6C6", "#202020" },
     separator = '',
-    separator_highlight = { "#252525", "#1B1B1B" }
+    separator_highlight = { "#202020", "#1B1B1B" }
   }
 }
 
@@ -122,8 +122,8 @@ gls.right[2] = {
     icon = function()
       return ' ' .. ai_icons[ai_state]
     end,
-    highlight = { "#C6C6C6", "#252525" },
-    separator_highlight = { "#252525", "#1B1B1B" },
+    highlight = { "#C6C6C6", "#202020" },
+    separator_highlight = { "#202020", "#1B1B1B" },
     separator = '',
   }
 }
@@ -137,7 +137,7 @@ gls.right[3] = {
     end,
     highlight = { "#161616", "#3DDBD9" },
     separator = '',
-    separator_highlight = { "#3DDBD9", "#252525" }
+    separator_highlight = { "#3DDBD9", "#202020" }
   }
 }
 
