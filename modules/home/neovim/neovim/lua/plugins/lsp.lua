@@ -17,6 +17,7 @@ return {
 
       navic.setup {
         highlight = false,
+        depth_limit = 3,
         separator = " | ",
         icons = {
           File = ' ',
