@@ -58,7 +58,7 @@ opt.inccommand = "nosplit"
 -- Don't show what mode I am in
 -- My statusline will tell me this not the editor
 opt.showmode = false
-opt.cmdheight = 1
+opt.cmdheight = 0
 -- how often to poll for updates
 -- affects things like gutter symbols
 opt.updatetime = 300
@@ -96,6 +96,10 @@ end
 -- define the leaders
 vim.g.mapleader = " "
 vim.g.maplocalleader = " m"
+
+require 'vim._core.ui2'.enable {
+  msg = { targets = 'msg' }
+}
 
 -- abbreviations
 vim.cmd('abb ::t <C-r>=strftime("%T")<CR>')
