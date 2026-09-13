@@ -444,6 +444,31 @@
     SCARF_NO_ANALYTICS = "True";
   };
 
+  programs = {
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
+
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+    };
+  };
+
+  services = {
+    getty.autologinUser = "nixos";
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${lib.getExe pkgs.gamescope} -f -e --xwayland-count 2 --hdr-enabled --hdr-itm-enabled -- steam -pipewire-dmabuf -gamepadui -tenfoot > /dev/null 2>&1";
+          user = "nixos";
+        };
+      };
+    };
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
