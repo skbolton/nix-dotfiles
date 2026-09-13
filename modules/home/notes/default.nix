@@ -34,6 +34,47 @@ in
       delta.dyear
       delta.dmonth
       delta.cosma
+      unstable.vimPlugins.diagram-nvim
+      unstable.vimPlugins.image-nvim
+      mermaid-cli
+    ];
+
+    programs.neovim.extraLuaPackages = luaPkgs: with luaPkgs; [ neorg-interim-ls ];
+
+    programs.neovim.plugins = with pkgs; [
+      {
+        plugin = vimPlugins.image-nvim;
+        type = "lua";
+        optional = true;
+        config = /* lua */ ''
+          require 'lz.n'.load {
+            "image.nvim",
+            filetypes = {"neorg", "markdown"},
+            after = function()
+              require 'image'.setup {}
+            end
+          }
+        '';
+      }
+      {
+        plugin = vimPlugins.diagram-nvim;
+        type = "lua";
+        optional = true;
+        config = /* lua */ ''
+          require 'lz.n'.load {
+            "diagram.nvim",
+            filetypes = {"neorg", "markdown"},
+            after = function()
+              require 'diagram'.setup {
+                events = {
+                  render_buffer = {'InsertLeave', 'BufEnter', 'BufWinEnter', 'FocusGained', 'TextChanged' },
+                  clear_buffer = { 'FocusLost' }
+                }
+              }
+            end
+          }
+        '';
+      }
     ];
 
     xdg.configFile."zk/config.toml".source = ./zk.toml;
