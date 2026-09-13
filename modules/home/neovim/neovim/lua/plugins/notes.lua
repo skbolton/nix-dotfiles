@@ -77,7 +77,26 @@ return {
       require("neorg").setup {
         load = {
           ["core.defaults"] = {},
-          ["core.concealer"] = {},
+          ["core.completion"] = {
+            config = { engine = { module_name = "external.lsp-completion" } },
+          },
+          ["core.concealer"] = {
+            config = {
+              icons = {
+                code_block = { conceal = true },
+                heading = {
+                  icons = {
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                  }
+                }
+              }
+            }
+          },
           ["core.dirman"] = {
             config = {
               workspaces = {
@@ -89,10 +108,25 @@ return {
           ["core.qol.todo_items"] = {},
           ["core.tangle"] = {
             config = {
-              tangle_on_write = true
+              tangle_on_write = true,
+              report_on_empty = false
             }
           },
-          ["core.summary"] = {}
+          ["core.summary"] = {},
+          ["core.looking-glass"] = {},
+          ["external.interim-ls"] = {
+            config = {
+              -- default config shown
+              completion_provider = {
+                -- Enable or disable the completion provider
+                enable = true,
+                -- Show file contents as documentation when you complete a file name
+                documentation = true,
+                -- Try to complete categories provided by Neorg Query. Requires `benlubas/neorg-query`
+                categories = false,
+              }
+            }
+          }
         }
       }
     end
