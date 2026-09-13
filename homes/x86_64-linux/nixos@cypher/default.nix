@@ -13,6 +13,10 @@
       enableExtraSocket = true;
     };
     neovim.enable = true;
+    notes = {
+      enable = true;
+      notebook_dir = "$HOME/Documents/Notes";
+    };
     theme = {
       enable = true;
       palette = "dev-null";
