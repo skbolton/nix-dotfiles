@@ -223,11 +223,6 @@ in
           type = "lua";
         }
         {
-          plugin = zk-nvim;
-          optional = true;
-        }
-        neorg
-        {
           plugin = pkgs.vimUtils.buildVimPlugin {
             name = "spelunk-nvim";
             src = inputs.spelunk-nvim;
