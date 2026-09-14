@@ -33,6 +33,7 @@
 
   programs.git = {
     enable = true;
+    lfs.enable = true;
     settings = {
       core.editor = "nvim";
       core.compression = 9;
