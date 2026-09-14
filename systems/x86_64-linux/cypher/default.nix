@@ -99,7 +99,13 @@
     "paperless"
   ];
 
-  delta.forgejo.enable = true;
+  delta.forgejo = {
+    enable = true;
+    domain = "git.gorgon-procyon.ts.net";
+    ssh_domain = "cypher.gorgon-procyon.ts.net";
+  };
+
+  delta.tailscale.enable = true;
 
   sops.secrets.affine-secrets = { };
 

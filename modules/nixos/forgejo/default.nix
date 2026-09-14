@@ -10,6 +10,25 @@ in
 {
   options.delta.forgejo = {
     enable = lib.mkEnableOption "forgejo";
+    domain = lib.mkOption {
+      type = lib.types.str;
+      description = "domain name for the forgejo web interface";
+    };
+    server_port = lib.mkOption {
+      type = lib.types.int;
+      description = "port for web server";
+      default = 9712;
+    };
+    ssh_domain = lib.mkOption {
+      type = lib.types.str;
+      description = "domain name for the forgejo ssh interface";
+      default = cfg.delta.forgejo.domain;
+    };
+    ssh_port = lib.mkOption {
+      type = lib.types.int;
+      description = "port for ssh server";
+      default = 2222;
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -47,12 +66,17 @@ in
       dump.enable = false;
       group = "forgejo";
       user = "forgejo";
-      settings.server.DOMAIN = "git.gorgon-procyon.ts.net";
-      settings.server.ROOT_URL = "https://${config.services.forgejo.settings.server.DOMAIN}";
+      # settings.server.DOMAIN = "git.gorgon-procyon.ts.net";
+      settings.server.DOMAIN = cfg.domain;
+      settings.server.ROOT_URL = "https://${cfg.domain}";
       settings.server.HTTP_ADDR = "127.0.0.1";
-      settings.server.HTTP_PORT = 9712;
+      settings.server.HTTP_PORT = cfg.server_port;
       settings.service.DISABLE_REGISTRATION = false;
-      settings.server.SSH_PORT = lib.head config.services.openssh.ports;
+      settings.server.START_SSH_SERVER = true;
+      settings.server.SSH_PORT = cfg.ssh_port;
+      settings.server.SSH_LISTEN_PORT = cfg.ssh_port;
+      # TODO:
+      settings.server.SSH_DOMAIN = cfg.ssh_domain;
       settings.session.COOKIE_SECURE = true;
       settings.mailer.ENABLED = false;
       settings.actions.ENABLED = false;
@@ -71,6 +95,7 @@ in
 
     networking.firewall.allowedTCPPorts = [
       config.services.forgejo.settings.server.HTTP_PORT
+      config.services.forgejo.settings.server.SSH_PORT
     ];
   };
 }
