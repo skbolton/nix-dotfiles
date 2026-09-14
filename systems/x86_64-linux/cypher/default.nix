@@ -88,6 +88,9 @@
   ];
 
   services.openssh.enable = true;
+  services.openssh.extraConfig = ''
+    StreamLocalBindUnlink yes
+  '';
 
   security.sudo.wheelNeedsPassword = false;
 
@@ -307,6 +310,7 @@
   };
 
   sops.secrets.paperless-admin-password = { };
+  sops.secrets.paperless-env-file = { };
 
   services.paperless = {
     enable = true;
@@ -315,6 +319,7 @@
     domain = "paper.gorgon-procyon.ts.net";
     address = "0.0.0.0";
     passwordFile = config.sops.secrets.paperless-admin-password.path;
+    environmentFile = config.sops.secrets.paperless-env-file.path;
     database.createLocally = true;
   };
 
