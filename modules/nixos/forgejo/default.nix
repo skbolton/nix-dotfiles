@@ -61,7 +61,7 @@ in
       lfs.enable = true;
       lfs.contentDir = "/mnt/git/lfs";
       stateDir = "/var/zion-data/forgejo";
-      repositoryRoot = "/mnt/git/forgejo";
+      repositoryRoot = "/var/zion-data/forgejo-repos";
       database.type = "sqlite3";
       dump.enable = false;
       group = "forgejo";
