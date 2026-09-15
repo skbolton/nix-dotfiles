@@ -9,6 +9,8 @@
 mkShell {
   packages = with pkgs; [
     sops
+    age
+    pass
     cloudflared
   ];
 }

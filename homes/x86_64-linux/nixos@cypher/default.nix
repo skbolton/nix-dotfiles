@@ -7,6 +7,10 @@
     zsh.enable = true;
     cli_apps.enable = true;
     tmux.enable = true;
+    ai.enable = true;
+    sops.enable = true;
+    ai.opencode.enable = true;
+    ai.opencode.zionlab_base_url = "http://localhost:8080";
     gpg = {
       enable = true;
       autostart = false;

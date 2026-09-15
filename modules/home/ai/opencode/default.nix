@@ -15,6 +15,10 @@ in
       default = config.delta.ai.enable;
       description = "Whether to enable opencode";
     };
+    zionlab_base_url = lib.mkOption {
+      type = lib.types.str;
+      default = "https://zai.zionlab.online";
+    };
     mcp = lib.mkOption {
       type = lib.types.attrsOf lib.types.unspecified;
       default = { };
@@ -104,7 +108,7 @@ in
         name = "Zionlab";
         npm = "@ai-sdk/openai-compatible";
         options = {
-          baseURL = "https://zai.zionlab.online/api/v1";
+          baseURL = cfg.zionlab_base_url + "/api/v1";
           headers = {
             CF-Access-Client-Secret = "{env:ZAIA_CLIENT_SECRET}";
             CF-Access-Client-Id = "{env:ZAIA_CLIENT_ID}";
