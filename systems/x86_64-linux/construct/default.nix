@@ -295,57 +295,6 @@
     };
   };
 
-  sops.secrets.hermes-agent-env = { };
-
-  services.hermes-agent = {
-    enable = true;
-    environment = {
-      SEARXNG_URL = "http://cypher.home.arpa:8333";
-      API_SERVER_ENABLED = "true";
-      API_SERVER_PORT = "8642";
-      API_SERVER_HOST = "0.0.0.0";
-      API_SERVER_MODEL_NAME = "Mira";
-    };
-    environmentFiles = [ config.sops.secrets.hermes-agent-env.path ];
-    settings.model.provider = "custom";
-    settings.model.base_url = "http://localhost:11434/v1";
-    settings.model.default = "Delta";
-    mcpServers = {
-      fastmail = {
-        url = "https://api.fastmail.com/mcp";
-        auth = "oauth";
-      };
-    };
-    settings.web.search_backend = "searxng";
-    addToSystemPackages = true;
-    stateDir = config.users.users.mira.home;
-    user = "mira";
-    group = "hermes";
-    createUser = false;
-  };
-
-  networking.firewall.allowedTCPPorts = [
-    (lib.toIntBase10 config.services.hermes-agent.environment.API_SERVER_PORT)
-  ];
-
-  sops.secrets.mira-password = {
-    neededForUsers = true;
-  };
-
-  users.groups.hermes = { };
-  users.users.mira = {
-    isNormalUser = true;
-    home = "/home/mira";
-    hashedPasswordFile = config.sops.secrets.mira-password.path;
-    extraGroups = [ "hermes" ];
-    shell = pkgs.bashInteractive;
-    openssh = {
-      authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIOsUvi/j/2Gs8QkZ5S0/bGsK/BhmU8n24eDFCc7GZx9 cardno:13_494_293"
-      ];
-    };
-  };
-
   # Open ports in the firewall.
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
