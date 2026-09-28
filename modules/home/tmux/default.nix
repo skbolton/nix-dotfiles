@@ -95,7 +95,9 @@ in
       #######################################################################
       # General
       #######################################################################
-      bind ! kill-server
+      bind ! switch-client -T kill
+      bind -T kill S kill-server
+      bind -T kill s kill-session
       bind -n S-Up set-option status
       bind -n S-Down set-option status
       bind Escape copy-mode
