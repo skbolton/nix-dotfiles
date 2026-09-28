@@ -132,6 +132,8 @@
     handy.url = "github:cjpais/Handy";
 
     hermes-agent.url = "github:NousResearch/hermes-agent";
+
+    slam.url = "github:skbolton/slam";
   };
 
   outputs =

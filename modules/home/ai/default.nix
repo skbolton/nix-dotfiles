@@ -1,6 +1,8 @@
 {
   lib,
   config,
+  inputs,
+  system,
   pkgs,
   ...
 }:
@@ -34,6 +36,7 @@ in
 
     programs.zsh.initContent = lib.mkOrder 1200 ''
       export $(xargs < "$HOME/.config/sops-nix/secrets/zaia-creds")
+      source "${inputs.slam.packages.${system}.default}/share/slam/slam.plugin.zsh"
     '';
 
     xdg.configFile."nvim/plugin/mappings/ai.lua".source = lib.mkIf config.delta.neovim.enable ./ai.lua;
