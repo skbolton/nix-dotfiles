@@ -10,7 +10,7 @@
     ai.enable = true;
     sops.enable = true;
     ai.opencode.enable = true;
-    ai.opencode.zionlab_base_url = "http://localhost:8080";
+    ai.opencode.zionlab_base_url = "http://localhost:11434";
     gpg = {
       enable = true;
       autostart = false;

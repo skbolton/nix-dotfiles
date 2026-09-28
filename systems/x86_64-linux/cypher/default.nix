@@ -227,8 +227,9 @@
     tunnels."d169a480-91ac-4e26-b362-6a1d3a53ccbd" = {
       credentialsFile = "${config.sops.secrets.cloudflared-tunnel-creds.path}";
       ingress = {
-        "zai.zionlab.online" = "http://localhost:${toString config.services.open-webui.port}";
+        "zai.zionlab.online" = "http://localhost:${toString config.delta.llama-swap.port}";
         "zai-logs.zionlab.online" = "http://construct.home.arpa:11434";
+        "chat.zionlab.online" = "http://localhost:${toString config.services.open-webui.port}";
         "search.zionlab.online" = "http://localhost:${toString config.services.searx.settings.server.port}";
         "noise.zionlab.online" = "http://localhost:9002";
       };
@@ -428,6 +429,11 @@
             };
           };
           ttl = 14400; # 4 hours
+        };
+
+        peers.zionlab = {
+          proxy = "http://construct.home.arpa:11434";
+          models = [ "Delta" ];
         };
       };
   };

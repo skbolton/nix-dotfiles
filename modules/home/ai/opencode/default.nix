@@ -108,7 +108,7 @@ in
         name = "Zionlab";
         npm = "@ai-sdk/openai-compatible";
         options = {
-          baseURL = cfg.zionlab_base_url + "/api/v1";
+          baseURL = cfg.zionlab_base_url + "/v1";
           headers = {
             CF-Access-Client-Secret = "{env:ZAIA_CLIENT_SECRET}";
             CF-Access-Client-Id = "{env:ZAIA_CLIENT_ID}";
