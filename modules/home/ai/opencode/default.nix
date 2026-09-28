@@ -118,6 +118,13 @@ in
           "Delta" = {
             reasoning = true;
             tool_call = true;
+            modalities = {
+              input = [
+                "text"
+                "image"
+              ];
+              output = [ "text" ];
+            };
             cost = {
               input = 1.10;
               output = 5.50;

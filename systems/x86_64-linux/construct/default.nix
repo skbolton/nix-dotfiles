@@ -219,6 +219,61 @@
         environment = [
           "CUDA_VISIBLE_DEVICES=0,1,2"
         ];
+        # aliases = [ "Delta" ];
+      };
+
+      models."GLM-5.3-Flash" = {
+        cmdStop = "${pkgs.docker}/bin/docker stop \${MODEL_ID}";
+        cmd = ''
+          ${pkgs.docker}/bin/docker run
+            --rm --name ''${MODEL_ID}
+            --shm-size 32g
+            --ipc host
+            --network host
+            --init
+            --device=nvidia.com/gpu=all
+            --ulimit memlock=-1:-1
+            --ulimit nofile=1048576:1048576
+            --ulimit stack=67108864
+            -v /models/:/root/models:ro
+            -e VLLM_ENABLE_PCIE_ALLREDUCE=1
+            -e VLLM_PCIE_ALLREDUCE_BACKEND=b12x
+            --entrypoint vllm
+            infernix/vllm@sha256:e81f9399aa9fe800593cc8f646d8a2c7958e1938da50c5ae65effbe47d8604eb
+            serve
+              /root/models/GLM-5.3-Flash/NVFP4
+              --served-model-name GLM-5.3-Flash Delta
+              --host 0.0.0.0 
+              --port ''${PORT}
+              --trust-remote-code 
+              --tensor-parallel-size 3
+              --pipeline-parallel-size 1
+              --decode-context-parallel-size 1
+              --mamba-cache-mode align
+              --enable-prefix-caching
+              --enable-chunked-prefill
+              --dtype bfloat16
+              --kv-cache-dtype fp8
+              --quantization modelopt_mixed
+              --attention-backend B12X
+              --block-size 256
+              --moe-backend auto
+              --linear-backend b12x
+              --no-enable-flashinfer-autotune
+              --load-format instanttensor
+              --gpu-memory-utilization 0.97
+              --max-model-len auto
+              --max-num-seqs 4
+              --max-num-batched-tokens 2048
+              --reasoning-parser glm45
+              --tool-call-parser glm47
+              --enable-auto-tool-choice
+              --speculative-config '{"method":"mtp","model":"/root/models/GLM-5.3-Flash/NVFP4","num_speculative_tokens":"3","attention_backend":"B12X","draft_sample_method":"probabilistic"}'
+              --default-chat-template-kwargs '{"reasoning_effort":"high"}'
+              --override-generation-config '{"temperature":1.0,"top_p":0.95}'
+              --enable-expert-parallel
+              --mm-encoder-tp-mode weights
+        '';
         aliases = [ "Delta" ];
       };
     };
