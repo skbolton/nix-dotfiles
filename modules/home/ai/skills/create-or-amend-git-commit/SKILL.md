@@ -103,9 +103,9 @@ Update worker prompt handling, add task ownership instructions, and adjust commi
 Strong, because it records the decision and consequence in plain words:
 
 ```text
-Make worker execution deterministic by keeping task ownership explicit
-in the prompt instead of relying on runtime inference. This removes
-coordination drift between parallel agents. Broader workflow
+Worker execution is now deterministic because task ownership stays
+explicit in the prompt instead of being inferred at runtime. This
+removes coordination drift between parallel agents. Broader workflow
 automation is a separate follow-up.
 ```
 
@@ -118,10 +118,10 @@ Rename scratch queue fields, update references, and add tests for the new field 
 Strong, because it explains the reason for the shape of the change in the codebase's own vocabulary:
 
 ```text
-Standardize scratch queue naming around the runtime model so tooling
-and worker prompts use the same words. Keeping the rename narrow
-avoids mixing terminology cleanup with behavior changes, which makes
-the follow-up automation work easier to review.
+Scratch queue naming now follows the runtime model, so tooling and
+worker prompts use the same words. The rename stays narrow to avoid
+mixing terminology cleanup with behavior changes, which makes the
+follow-up automation work easier to review.
 ```
 
 ## Structure
@@ -148,6 +148,7 @@ Omit the ticket prefix and footer when no ticket information is available or exp
 
 ### Body
 
+- Unlike the title, the body is free to drop the imperative mood.
 - Aim for 1-3 concise paragraphs. Expand past three only when the change touches multiple collaborating concepts, or has a significant tradeoff or follow-up that a reviewer needs to understand. When in doubt, ship the shorter version.
 - Hard-wrap body text at 72 characters or fewer per line. This limit applies to the body only, not the title or footer.
 - Preserve paragraph breaks while wrapping. Do not insert blank lines merely because a paragraph was wrapped.
