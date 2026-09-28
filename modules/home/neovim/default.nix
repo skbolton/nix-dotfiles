@@ -251,7 +251,6 @@ in
 
         {
           plugin = gitsigns-nvim;
-          optional = true;
         }
         {
           plugin = diffview-nvim;
