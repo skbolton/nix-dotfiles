@@ -163,6 +163,11 @@ in
       recursive = true;
     };
 
+    xdg.configFile."opencode/commands" = {
+      source = ./commands;
+      recursive = true;
+    };
+
     xdg.configFile."opencode/workflows" = {
       source = ./workflows;
       recursive = true;
