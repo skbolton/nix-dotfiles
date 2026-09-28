@@ -213,7 +213,7 @@
             -e INSTANTTENSOR_BACKEND=BUFFERED
             -e KV_OFFLOADING_SIZE=0
             -e SERVED_MODEL_NAME=Delta
-            voipmonitor/vllm:gilded-gnosis-v20-vllm55db472-b12x6bc35fd-fi801d57a-cu132-20260807-r29
+            voipmonitor/vllm:gilded-gnosis-v20-vllmfa13d33-b12x06db0f4-fi1ac6942-cu132-20260809-r33
             /usr/local/bin/serve-ds4-flash.sh
         '';
         environment = [
