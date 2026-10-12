@@ -189,9 +189,9 @@ in
                   ["core.dirman"] = {
                     config = {
                       workspaces = {
-                        journal = "~/Documents/Notes/journal"
+                        helm = "~/Documents/Notes/Helm"
                       },
-                      default_workspace = "journal"
+                      default_workspace = "helm"
                     }
                   },
                   ["core.qol.todo_items"] = {},
