@@ -160,10 +160,10 @@ in
       bind W choose-tree -Zw
 
       bind w switch-client -T window
-      bind -T window j split-window -v
-      bind -T window k split-window -v -b
-      bind -T window h split-window -h -b
-      bind -T window l split-window -h
+      bind -T window j split-window -v -c '#{pane_current_path}'
+      bind -T window k split-window -v -b -c '#{pane_current_path}'
+      bind -T window h split-window -h -b -c '#{pane_current_path}'
+      bind -T window l split-window -h -c '#{pane_current_path}'
 
       bind -T window Left swap-pane -d -t '{left-of}'
       bind -T window Up swap-pane -d -t '{up-of}'
