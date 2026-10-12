@@ -34,6 +34,10 @@
   programs.git = {
     enable = true;
     lfs.enable = true;
+    signing = {
+      key = "0x60410414D406AF1D";
+      signByDefault = true;
+    };
     settings = {
       core.editor = "nvim";
       core.compression = 9;
@@ -48,11 +52,6 @@
 
       user.email = "stephen@bitsonthemind.com";
       user.name = "Stephen Bolton";
-
-      signing = {
-        key = "0x60410414D406AF1D";
-        signByDefault = true;
-      };
 
       status.branch = true;
       status.showStash = true;
