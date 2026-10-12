@@ -44,6 +44,7 @@
       lua.enable = true;
       nix.enable = true;
       go.enable = true;
+      bash.enable = true;
     };
     notes = {
       enable = true;
