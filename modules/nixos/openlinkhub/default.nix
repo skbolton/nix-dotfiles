@@ -14,7 +14,7 @@ in
     enable = lib.mkEnableOption "openlinkhub";
     package = lib.mkOption {
       type = lib.types.package;
-      default = pkgs.delta.openlinkhub;
+      default = pkgs.openlinkhub;
     };
   };
 
@@ -30,12 +30,15 @@ in
       after = [ "sleep.target" ];
       wantedBy = [ "multi-user.target" ];
       script = ''
-        for dir in database static web; do
-          if ! [[ -d $dir ]]; then
-            cp -r ${pkg}/share/OpenLinkHub/$dir .
-            chmod -R u+w $dir
-          fi
-        done
+        # mkdir -p database
+        # chmod -R u+w database
+        # cp -rn ${pkg}/share/OpenLinkHub/database/. database/
+        #
+        # mkdir -p static web
+        # chmod -R u+w static web
+        # cp -r ''${pkg}/share/OpenLinkHub/static/. static/
+        # cp -r ''${pkg}/share/OpenLinkHub/web/. web/
+
         ${lib.getExe pkg}
       '';
       reload = "kill -s HUB $MAINPID";

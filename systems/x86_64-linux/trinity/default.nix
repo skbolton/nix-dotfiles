@@ -225,7 +225,12 @@
   services.hardware.openrgb = {
     package = pkgs.openrgb-with-all-plugins;
     enable = true;
+    startupProfile = "blood-moon";
   };
+
+  systemd.tmpfiles.rules = [
+    "C /var/lib/OpenRGB/blood-moon.orp 0644 root root - ${./blood-moon.orp}"
+  ];
 
   hardware.opentabletdriver = {
     enable = true;
