@@ -372,7 +372,6 @@
             ${llama-server} --port ''${PORT} 
             -m /models/gemma4/31b/UD-Q8_K_XL.gguf
             --mmproj /models/gemma4/31b/mmproj-BF16.gguf
-            --no-mmap
             -ctk q8_0 -ctv q8_0 
             --temp 1.0 --top-p 0.95 --top-k 64
           '';
@@ -382,7 +381,6 @@
           cmd = ''
             ${llama-server} --port ''${PORT} 
             -m /models/Qwen3.6/35B-A3B/MTP/UD-Q8_K_XL.gguf
-            --no-mmap
             --temp 0.6 --top-p 0.95 --top-k 20 --min-p 0.00 --repeat-penalty 1.0
             --spec-type draft-mtp --spec-draft-n-max 2
             --chat-template-kwargs '{"enable_thinking":true}'
