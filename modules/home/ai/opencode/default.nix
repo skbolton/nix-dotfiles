@@ -71,7 +71,6 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.mpv ];
     programs.opencode = {
       enable = true;
       package = inputs.opencode.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -172,20 +171,5 @@ in
       source = ./workflows;
       recursive = true;
     };
-
-    xdg.configFile."opencode/boop.mp3".source = ./boop.mp3;
-
-    xdg.configFile."opencode/plugins/alert.js".text = /* js */ ''
-      export const NotificationPlugin = async ({ project, client, $, directory, worktree }) => {
-        return {
-          event: async ({ event }) => {
-            // Send notification on session completion
-            if (event.type === "session.idle") {
-              await $`mpv '~/.config/opencode/boop.mp3' > /dev/null`
-            }
-          },
-        }
-      }
-    '';
   };
 }
