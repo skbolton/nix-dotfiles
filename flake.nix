@@ -134,6 +134,8 @@
     hermes-agent.url = "github:NousResearch/hermes-agent";
 
     slam.url = "github:skbolton/slam";
+
+    graft.url = "github:skbolton/graft";
   };
 
   outputs =

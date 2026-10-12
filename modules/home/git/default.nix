@@ -1,9 +1,15 @@
-{ pkgs, ... }:
+{
+  inputs,
+  system,
+  pkgs,
+  ...
+}:
 
 {
   home.packages = [
     pkgs.git-extras
     pkgs.delta.gtr
+    inputs.graft.packages.${system}.default
   ];
 
   programs.gh = {

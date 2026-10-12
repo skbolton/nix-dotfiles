@@ -32,6 +32,7 @@ in
     home.packages = [
       pkgs.unstable.smug
       pkgs.delta.rally
+      pkgs.delta.gft
       pkgs.delta.tmux-file-paths
       pkgs.imagemagick
       pkgs.delta.fman
