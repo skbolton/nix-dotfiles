@@ -185,6 +185,37 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
+
+    settings.cypher = {
+      HostName = "cypher.home.arpa";
+      User = "nixos";
+      RemoteForward = [
+        {
+          host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
+          bind.address = "/run/user/1000/gnupg/S.gpg-agent";
+        }
+        {
+          host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+          bind.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+        }
+      ];
+    };
+
+    settings.contra = {
+      HostName = "construct.home.arpa";
+      User = "contra";
+      RemoteForward = [
+        {
+          host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
+          bind.address = "/run/user/1001/gnupg/S.gpg-agent";
+        }
+        {
+          host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+          bind.address = "/run/user/1001/gnupg/S.gpg-agent.ssh";
+        }
+      ];
+    };
+
   };
 
   services.syncthing = {
