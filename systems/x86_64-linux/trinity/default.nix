@@ -165,11 +165,17 @@
   programs.dconf.enable = true;
 
   programs.hyprland.enable = true;
-  programs.river-classic.enable = true;
+  programs.mango.enable = true;
 
-  xdg.portal = {
-    enable = true;
-  };
+  # xdg-desktop-portal-wlr's default source chooser tries a fixed list of
+  # pickers (slurp, wmenu, wofi, ...) via the service PATH, which NixOS
+  # restricts to basic system utilities. Add the pickers there or every
+  # screenshare request fails with "wlroots: no output found".
+  systemd.user.services.xdg-desktop-portal-wlr.path = with pkgs; [
+    fuzzel
+  ];
+
+  programs.river-classic.enable = true;
 
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
@@ -206,9 +212,6 @@
 
   services.flatpak.enable = true;
   services.hardware.bolt.enable = true;
-
-  hardware.logitech.wireless.enable = true;
-  hardware.logitech.wireless.enableGraphical = true;
 
   hardware.bluetooth = {
     enable = true;

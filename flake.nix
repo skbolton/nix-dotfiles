@@ -72,6 +72,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    mangowm = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    msnap = {
+      url = "github:xtheeq/msnap";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     embark-bat-theme = {
       url = "github:embark-theme/bat";
       flake = false;
@@ -155,12 +170,15 @@
       };
 
       overlays = with inputs; [
+        msnap.overlays.default
         neorg-overlay.overlays.default
         awesome-neovim-plugins.overlays.default
       ];
 
       homes.modules = with inputs; [
         sops-nix.homeManagerModules.sops
+        inputs.dms.homeModules.dank-material-shell
+        inputs.mangowm.hmModules.mango
       ];
 
       systems.modules.nixos = with inputs; [
@@ -169,6 +187,7 @@
         sops-nix.nixosModules.sops
         disko.nixosModules.disko
         hermes-agent.nixosModules.default
+        inputs.mangowm.nixosModules.mango
       ];
 
       systems.hosts.weasel.modules = with inputs; [

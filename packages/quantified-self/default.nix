@@ -6,7 +6,7 @@
 }:
 
 writeShellApplication {
-  name = "qs";
+  name = "qself";
   runtimeInputs = [
     miller
     youplot

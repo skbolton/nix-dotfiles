@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -51,18 +56,126 @@
       enable = true;
       notebook_dir = "$HOME/Documents/Reference";
     };
-    desktop.wayland.hyprland = {
-      enable = true;
-      autostart = [ ];
-    };
-    desktop.wayland.river.enable = true;
-    desktop.wayland.waybar.enable = true;
-    desktop.wayland.waybar.target = [ "hyprland-session.target" ];
-    desktop.dunst.enable = true;
+    desktop.wayland.mango.enable = true;
     desktop.nm-applet.enable = true;
     desktop.ui_applications.enable = true;
     synology.enable = true;
     cloud.gcloud.enable = true;
+  };
+
+  programs.dank-material-shell = {
+    enable = true;
+
+    systemd.enable = true;
+    settings = {
+      screenPreferences.wallpaper = [ ];
+      useFahrenheit = true;
+      dwlShowAllTags = true;
+      fontFamily = lib.mkForce "Inter";
+      monoFontFamily = lib.mkForce "IBM Plex Mono";
+      textRenderQuality = 3;
+      clocFormat = "24h";
+      firstDayOfWeek = 1;
+      workspaceColorMode = "primaryContainer";
+      workspaceOccupiedColorMode = "primary";
+      workspaceUnfocusedColorMode = "s";
+      barConfigs = [
+        {
+          id = "default";
+          name = "Main Bar";
+          enabled = true;
+          position = 0;
+          screenPreferences = [
+            "all"
+          ];
+          showOnLastDisplay = true;
+          leftWidgets = [
+            "launcherButton"
+            "workspaceSwitcher"
+            "focusedWindow"
+          ];
+          centerWidgets = [
+            {
+              id = "music";
+              enabled = true;
+              mediaSize = 3;
+            }
+            "music"
+            "clock"
+            "weather"
+            "colorPicker"
+          ];
+          rightWidgets = [
+            "systemTray"
+            "cpuUsage"
+            "cpuTemp"
+            "memUsage"
+            "gpuTemp"
+            "notificationButton"
+            "powerMenuButton"
+          ];
+          spacing = 0;
+          innerPadding = 4;
+          bottomGap = 0;
+          transparency = 0.68;
+          followInterfaceStyle = true;
+          surfaceColor = "default";
+          surfaceCustomColor = "#6750A4";
+          widgetTransparency = 0.67;
+          widgetFollowInterfaceStyle = true;
+          squareCorners = true;
+          noBackground = false;
+          widgetStyle = "pills";
+          maximizeWidgetIcons = false;
+          maximizeWidgetText = false;
+          widgetPadding = 12;
+          barInsetPadding = 12;
+          batteryColorMode = "theme";
+          gothCornersEnabled = false;
+          gothCornerRadiusOverride = false;
+          gothCornerRadiusValue = 12;
+          borderEnabled = false;
+          borderColor = "surfaceText";
+          borderOpacity = 1;
+          borderThickness = 1;
+          widgetOutlineEnabled = false;
+          widgetOutlineColor = "primary";
+          widgetOutlineOpacity = 1.0;
+          widgetOutlineThickness = 1;
+          fontScale = 1;
+          iconScale = 1.0;
+          autoHide = false;
+          autoHideStrict = false;
+          autoHideDelay = 250;
+          showOnWindowsOpen = false;
+          openOnOverview = false;
+          visible = true;
+          popupGapsAuto = true;
+          popupGapsManual = 4;
+          maximizeDetection = true;
+          useOverlayLayer = false;
+          scrollEnabled = true;
+          scrollXBehavior = "focusWindow";
+          scrollYBehavior = "workspace";
+          middleClickAction = "none";
+          rightClickAction = "none";
+          clickActionFollowMouse = false;
+          shadowIntensity = 0;
+          shadowOpacity = 60;
+          shadowColorMode = "default";
+          shadowCustomColor = "#000000";
+          shadowDirectionMode = "inherit";
+          shadowDirection = "top";
+          clickThrough = false;
+          hoverPopouts = false;
+          hoverPopoutDelay = 150;
+          attachToScreenEdge = false;
+          barLengthPadding = 0;
+          barLengthMode = "full";
+          barLengthPercent = 80;
+        }
+      ];
+    };
   };
 
   programs.zsh.shellAliases.rebuild = "sudo nixos-rebuild switch --flake '${config.home.homeDirectory}/c/nix-dotfiles#trinity'";
