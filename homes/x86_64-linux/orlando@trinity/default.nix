@@ -27,7 +27,7 @@
     neovim.enable = true;
     theme = {
       enable = true;
-      palette = "embark";
+      palette = "evergloom";
     };
     rally = {
       enable = true;
