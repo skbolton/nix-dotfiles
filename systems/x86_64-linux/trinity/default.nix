@@ -234,18 +234,20 @@
     startupProfile = "blood-moon";
   };
 
-  systemd.tmpfiles.rules = [
-    "C /var/lib/OpenRGB/blood-moon.orp 0644 root root - ${./blood-moon.orp}"
-  ];
+  # OpenLinkHub resets all iCUE Link channels to black at startup before
+  # yielding control to OpenRGB, so the profile must be applied after it.
+  systemd.services.openrgb.after = [ "OpenLinkHub.service" ];
+
+  systemd.services.openrgb.preStart = ''
+    install -m 0644 ${./blood-moon.orp} /var/lib/OpenRGB/blood-moon.orp
+  '';
+
+  delta.openlinkhub.enable = true;
 
   hardware.opentabletdriver = {
     enable = true;
     daemon.enable = true;
   };
-
-  # Personal dashboard config
-
-  delta.openlinkhub.enable = true;
 
   documentation.dev.enable = true;
   documentation.man.enable = true;
