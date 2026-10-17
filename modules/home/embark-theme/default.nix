@@ -25,6 +25,7 @@ in
     };
 
     stylix.icons = {
+      enable = true;
       package = pkgs.fluent-icon-theme;
       dark = "Fluent-dark";
       light = "Fluent";
@@ -147,6 +148,11 @@ in
     };
 
     programs.delta.options."syntax-theme" = "embark";
+
+    wayland.windowManager.mango.settings.root_color = "0x1e1c31FF";
+    wayland.windowManager.mango.settings.border_px = 2;
+    wayland.windowManager.mango.settings.border_color = "0x1e1c31FF";
+    wayland.windowManager.mango.settings.focus_color = "0x585273FF";
 
     programs.fzf.colors = {
       "bg+" = "#1E1C31";
