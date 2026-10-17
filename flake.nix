@@ -187,6 +187,7 @@
         sops-nix.nixosModules.sops
         disko.nixosModules.disko
         hermes-agent.nixosModules.default
+        dms.nixosModules.dank-material-shell
         inputs.mangowm.nixosModules.mango
       ];
 

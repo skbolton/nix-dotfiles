@@ -179,6 +179,7 @@
   ];
 
   programs.river-classic.enable = true;
+  programs.dank-material-shell.lockscreen.securityKey.enable = true;
 
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
