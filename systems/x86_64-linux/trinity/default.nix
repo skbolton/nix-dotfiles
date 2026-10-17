@@ -66,6 +66,9 @@
   };
   services.displayManager.gdm.enable = true;
 
+  programs.steam.enable = true;
+  programs.steam.extraPackages = with pkgs; [ hidapi ];
+
   console.useXkbConfig = true;
 
   # Configure keymap in X11
