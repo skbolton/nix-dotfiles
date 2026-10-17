@@ -26,7 +26,6 @@
     sops.enable = true;
     gpg = {
       enable = true;
-      autostart = true;
       pinentry = pkgs.pinentry_mac;
       enableExtraSocket = true;
     };

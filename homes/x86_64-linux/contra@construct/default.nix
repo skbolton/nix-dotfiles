@@ -8,8 +8,8 @@
     sops.enable = true;
     gpg = {
       enable = true;
-      autostart = false;
       enableExtraSocket = false;
+      agentPassthrough = true;
     };
     zsh.enable = true;
     cli_apps.enable = true;
@@ -38,17 +38,6 @@
       bash.enable = true;
     };
   };
-
-  # home manage enable ssh support always starts the gpg agent
-  # which doesn't work for passthrough
-  delta.gpg.enableSshSupport = false;
-  services.gpg-agent.extraConfig = ''
-    enable-ssh-support
-  '';
-  home.sessionVariablesExtra = ''
-    unset SSH_AGENT_PID
-    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-  '';
 
   programs.nh.enable = true;
   programs.zsh.shellAliases.rebuild = "nh os switch '${config.home.homeDirectory}/c/nix-dotfiles#construct' --accept-flake-config";

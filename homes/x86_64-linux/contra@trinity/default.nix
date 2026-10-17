@@ -8,7 +8,6 @@
     sops.enable = true;
     gpg = {
       enable = true;
-      autostart = true;
       enableExtraSocket = false;
     };
     zsh.enable = true;

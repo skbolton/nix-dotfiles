@@ -6,8 +6,8 @@
   delta = {
     gpg = {
       enable = true;
-      autostart = false;
       enableExtraSocket = false;
+      agentPassthrough = true;
     };
     zsh.enable = true;
     cli_apps.enable = true;
