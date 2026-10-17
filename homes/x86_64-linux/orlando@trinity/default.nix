@@ -206,41 +206,27 @@
     ];
   };
 
-  # monitors = [
-  #   {
-  #     name = "DP-1";
-  #     width = 5120;
-  #     height = 2160;
-  #     x = 2560;
-  #     y = 0;
-  #     refreshRate = 165;
-  #     scale = "1";
-  #     workspaces = [ "1" "3" "5" ];
-  #     enabled = true;
-  #   }
-  #   {
-  #     name = "DP-4";
-  #     width = 5120;
-  #     height = 2160;
-  #     x = 2560;
-  #     y = 0;
-  #     refreshRate = 165;
-  #     scale = "1";
-  #     workspaces = [ ];
-  #     enabled = false;
-  #   }
-  #   {
-  #     name = "DP-5";
-  #     width = 2560;
-  #     height = 2880;
-  #     x = 0;
-  #     y = 0;
-  #     refreshRate = 60;
-  #     scale = "1";
-  #     workspaces = [ "2" "4" "6" ];
-  #     enabled = true;
-  #   }
-  # ];
+  monitors = [
+    {
+      name = "DP-1";
+      width = 5120;
+      height = 2160;
+      x = 2560;
+      y = 0;
+      refreshRate = 165;
+      scale = "1";
+      workspaces = [
+        "1"
+        "3"
+        "5"
+      ];
+      enabled = true;
+    }
+    {
+      name = "DP-5";
+      enabled = false;
+    }
+  ];
 
   keyboard = {
     variant = "colemak";
