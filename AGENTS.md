@@ -58,11 +58,14 @@ report it and do not describe validation as passing. Validation must not modify 
    ```bash
    nix build --no-link --no-update-lock-file '.#nixosConfigurations.<host>.config.system.build.toplevel'
    nix build --no-link --no-update-lock-file '.#darwinConfigurations.<host>.system'
-   nix build --no-link --no-update-lock-file '.#homeConfigurations."<user>@<host>".activationPackage'
    nix build --no-link --no-update-lock-file '.#install-isoConfigurations.<name>'
    nix build --no-link --no-update-lock-file '.#packages.<system>.<name>'
    nix build --no-link --no-update-lock-file '.#devShells.<system>.default'
    ```
+
+   Do not build `.#homeConfigurations."<user>@<host>".activationPackage` outputs. Homes are evaluated through their
+   matching system configuration, and standalone home evaluations fail because stylix themes rely on stylix's NixOS
+   auto-inheritance to provide the palette, which does not exist without the surrounding system.
 
    Trace consumers before selecting outputs. Treat a shared module as affecting every configuration of the matching
    type unless a narrower scope can be demonstrated. If an affected output targets a platform unavailable to the

@@ -18,6 +18,8 @@ in
       mpv
     ];
 
+    stylix.targets.dunst.enable = false;
+
     services.dunst = {
       enable = true;
       iconTheme = {
