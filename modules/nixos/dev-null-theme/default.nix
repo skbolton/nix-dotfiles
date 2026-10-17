@@ -35,7 +35,7 @@ in
       # Red and brignt red - Variables Diff
       palette.base08 = "#FF7EB6";
       # Orange - integers boolean constants
-      palette.base09 = "#FFF395";
+      palette.base09 = "#bce95f";
       # Yellow - classes, markup bold, search background
       palette.base0A = "#FF5D62";
       # Green
