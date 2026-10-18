@@ -226,52 +226,68 @@
         cmd = ''
           ${pkgs.docker}/bin/docker run
             --rm --name ''${MODEL_ID}
-            --shm-size 32g
+            --shm-size 64g
             --ipc host
             --network host
             --init
+            --cpuset-cpus 8-47
             --device=nvidia.com/gpu=all
             --ulimit memlock=-1:-1
             --ulimit nofile=1048576:1048576
             --ulimit stack=67108864
             -v /models/:/root/models:ro
-            -e VLLM_ENABLE_PCIE_ALLREDUCE=1
-            -e VLLM_PCIE_ALLREDUCE_BACKEND=b12x
-            --entrypoint vllm
-            infernix/vllm@sha256:e81f9399aa9fe800593cc8f646d8a2c7958e1938da50c5ae65effbe47d8604eb
-            serve
-              /root/models/GLM-5.3-Flash/NVFP4
-              --served-model-name GLM-5.3-Flash Delta
-              --host 0.0.0.0 
-              --port ''${PORT}
-              --trust-remote-code 
-              --tensor-parallel-size 3
-              --pipeline-parallel-size 1
-              --decode-context-parallel-size 1
-              --mamba-cache-mode align
-              --enable-prefix-caching
-              --enable-chunked-prefill
-              --dtype bfloat16
-              --kv-cache-dtype fp8
-              --quantization modelopt_mixed
-              --attention-backend B12X
-              --block-size 256
-              --moe-backend auto
-              --linear-backend b12x
-              --no-enable-flashinfer-autotune
-              --load-format instanttensor
-              --gpu-memory-utilization 0.97
-              --max-model-len auto
-              --max-num-seqs 4
-              --max-num-batched-tokens 2048
-              --reasoning-parser glm45
-              --tool-call-parser glm47
-              --enable-auto-tool-choice
-              --speculative-config '{"method":"mtp","model":"/root/models/GLM-5.3-Flash/NVFP4","num_speculative_tokens":"3","attention_backend":"B12X","draft_sample_method":"probabilistic"}'
-              --default-chat-template-kwargs '{"reasoning_effort":"high"}'
-              --override-generation-config '{"temperature":1.0,"top_p":0.95}'
-              --enable-expert-parallel
-              --mm-encoder-tp-mode weights
+            -e HF_HUB_OFFLINE=1
+            -e TRANSFORMERS_OFFLINE=1
+            -e VLLM_NO_USAGE_STATS=1
+            -e VLLM_TP3_PCIE_DCP=1
+            -e VLLM_B12X_BF16_GEMV=1
+            -e VLLM_GLM53_MXFP8_GEMV=1
+            -e VLLM_PCIE_ONESHOT_ALLREDUCE_MAX_SIZE=1MB
+            -e VLLM_GLM53_FP8_DENSE=1
+            -e VLLM_GLM53_FP8_LM_HEAD=1
+            -e VLLM_GLM53_FP8_FFN=1
+            -e VLLM_GLM53_FP8_MTP=1
+            -e VLLM_GLM53_FP8_PREFILL=w8a8
+            -e VLLM_GLM53_L2_PREFETCH_BUDGET_A_MB=10
+            -e VLLM_GLM53_L2_PREFETCH_BUDGET_B_MB=25
+            -e VLLM_GLM53_L2_PREFETCH_BUDGET_C_MB=7.5
+            -e VLLM_GLM53_L2_PREFETCH_BUDGET_A_MLA_MB=18
+            -e VLLM_GLM53_L2_PREFETCH_PERSIST_MB=0
+            -e VLLM_GLM53_L2_PREFETCH_A_NEXT_MB=0
+            -e VLLM_GLM53_CSF_RESIDENT_SCALES=1
+            -e VLLM_B12X_MOE_FP4_FORCE_A16=0
+            -e VLLM_GLM53_TP3_MOE_TP=2112
+            -e VLLM_GLM53_KDA_NO_COPY=0
+            -e VLLM_GLM53_FP8_LM_HEAD_DROP_BF16=1
+            -e VLLM_SHARE_PYNCCL_COMMS=1
+            -e GLM53_TP3_REQUIRE_RUNTIME_PROOF=1
+            --entrypoint /usr/local/bin/lil-entrypoint
+            azallaza/glm53-kraken-tp3@sha256:358c9b64ffaf7c7d45e9447e385b7b79858165c9d90797d4acd4b90425655c24
+            --profile glm53-flash
+            --hardware rtx-pro-6000-pcie
+            --checkpoint csf
+            --model /root/models/GLM-5.3-Flash/NVFP4-CSF
+            --mode mtp
+            --tensor-parallel-size 3
+            --decode-context-parallel-size 1
+            --moe-backend b12x
+            --max-num-seqs 8
+            --max-model-len 1048576
+            --gpu-memory-utilization 0.95
+            --max-num-batched-tokens 4096
+            --max-parallel-prefills auto
+            --max-cudagraph-capture-size 128
+            --cache-mode vram
+            --enable-flashinfer-autotune
+            --served-model-name Delta
+            --default-chat-template-kwargs '{"reasoning_effort":"high"}'
+            --override-generation-config '{"temperature":1.0,"top_p":0.95}'
+            --mm-encoder-tp-mode data
+            --additional-config '{"glm53_kda_decode_backend":"b12x","kda_prefill_backend":"flashkda"}'
+            --kv-cache-memory-bytes 30415841280
+            --cudagraph-capture-sizes 1 2 4 8 12 16 20 24 28 32 40 48 56 64 72 80 88 96 104 112 120 128
+            --host 0.0.0.0
+            --port ''${PORT}
         '';
         aliases = [ "Delta" ];
       };
