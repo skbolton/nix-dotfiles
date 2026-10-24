@@ -285,7 +285,7 @@
     environmentFile = config.sops.secrets.caddy-secrets.path;
     package = pkgs.caddy.withPlugins {
       plugins = [ "github.com/tailscale/caddy-tailscale@v0.0.0-20260106222316-bb080c4414ac" ];
-      hash = "sha256-tP/ZQjZvfb+e3322dzd3I89Y9QwujcyqV1fbNWyw08g=";
+      hash = "sha256-3Dzgarb1nhPEA8Bxfxk7L3cn4OsIIWshYUosWf3fhqM=";
     };
 
     virtualHosts."https://${config.services.paperless.domain}" = {
@@ -303,6 +303,16 @@
         bind tailscale/vault
         tailscale_auth
         reverse_proxy ${config.services.vaultwarden.config.ROCKET_ADDRESS}:${toString config.services.vaultwarden.config.ROCKET_PORT} {
+          header_up X-Webauth-User {http.auth.user.tailscale_user}
+        }
+      '';
+    };
+
+    virtualHosts."https://task-sync.gorgon-procyon.ts.net" = {
+      extraConfig = ''
+        bind tailscale/task-sync
+        tailscale_auth
+        reverse_proxy ${config.services.taskchampion-sync-server.host}:${toString config.services.taskchampion-sync-server.port} {
           header_up X-Webauth-User {http.auth.user.tailscale_user}
         }
       '';
@@ -470,6 +480,10 @@
         };
       };
     };
+  };
+
+  services.taskchampion-sync-server = {
+    enable = true;
   };
 
   # Open ports in the firewall.

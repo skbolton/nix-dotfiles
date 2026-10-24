@@ -11,6 +11,8 @@
     sops.enable = true;
     ai.opencode.enable = true;
     ai.opencode.zionlab_base_url = "http://localhost:11434";
+    tasks.enable = true;
+    tasks.sync = true;
     gpg = {
       enable = true;
       enableExtraSocket = true;
