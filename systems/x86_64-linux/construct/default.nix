@@ -232,6 +232,20 @@
     };
   };
 
+  systemd.services.nvidia-power-limit = {
+    description = "Cap NVIDIA GPU power limits";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "systemd-modules-load.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = [
+        "${config.hardware.nvidia.package.bin}/bin/nvidia-smi --persistence-mode=1"
+        "${config.hardware.nvidia.package.bin}/bin/nvidia-smi --power-limit=300"
+      ];
+    };
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
